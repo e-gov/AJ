@@ -2,7 +2,7 @@
 layout: default
 ---
 
-### Personal Data Monitoring Service
+### Andmejälgija / Personal Data Monitoring Service
 
 ![Extractor]({{ site.url }}/img/Extractor.svg)
 
