@@ -1,7 +1,9 @@
+---
+layout: default
+---
+
 ### Personal Data Monitoring Service
 
-[Extractor]()
-
-<img src='/img/Extractor.svg'>
+![Extractor]({{ site.url }}/img/Extractor.svg)
 
 test
