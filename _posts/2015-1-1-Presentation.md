@@ -14,17 +14,17 @@ The power lies in how the components are connected to each other and the element
 
 Extractor is placed as a proxy between X-Road Security Server and governmental Information System.  
 
-<img style='float:left; margin: 10px 50px 80px 50px;' src='{{ site.url }}/img/Extractor.svg'>
+<img style='float:left; margin: 10px 50px 120px 50px;' src='{{ site.url }}/img/Extractor.svg'>
 
 Extractor has four interfaces:
 
-<img style='display: inline-block;' src='{{ site.url }}/img/ProvidesRIGHT.svg'> (1) provides a service of delivering X-Road message from Information System to Security Server
+(1) <img style='display: inline-block;' src='{{ site.url }}/img/ProvidesRIGHT.svg'> provides a service of delivering X-Road message from Information System to Security Server
 
-<img style='display: inline-block;' src='{{ site.url }}/img/RequiresLEFT.svg'> (2) requires a service that accepts the X-Road message to be passed on
+(2) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresLEFT.svg'> requires a service that accepts the X-Road message to be passed on
 
-<img style='display: inline-block;' src='{{ site.url }}/img/RequiresDOWN.svg'> (3) requires a service to where to send the log record
+(3) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresDOWN.svg'> requires a service to where to send the log record
 
-<img style='display: inline-block;' src='{{ site.url }}/img/RequiresDOWN.svg'> (4) requires a configuration file with extraction rules.
+(4) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresDOWN.svg'> requires a configuration file with extraction rules.
 
 (1) and (2) conform to X-Road message protocol (which is built over SOAP/HTTP(S)); (3) conforms to Logger protocol; and (4) follows a special extraction rule format.
 
