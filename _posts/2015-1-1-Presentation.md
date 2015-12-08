@@ -3,6 +3,8 @@ layout: page
 title: Andmejälgija / Personal Data Monitor
 ---
 
+Personal Data Monitor is a set of 4 [microservice](https://en.wikipedia.org/wiki/Microservices)-style small applications that, when combined with each other and attached to X-Road can offer a citizen the comprehensive view of how his or her personal data has been used in governmental databases. Each component is designed to be "dumb" - that is to be simple in function.
+
 ---
 
 <img src='{{ site.url }}/img/Extractor.svg'>
