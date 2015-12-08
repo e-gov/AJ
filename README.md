@@ -1,2 +1,1 @@
-### AJ
-Personal Data Monitoring Service: [presentation/esitlus](http://e-gov.github.io/AJ/Presentation/)
+Andmejälgija / Personal Data Monitor [esitlus / presentation](http://e-gov.github.io/AJ/Presentation/)
