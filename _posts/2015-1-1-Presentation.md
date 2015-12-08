@@ -14,6 +14,7 @@ The power lies in how the components are connected to each other and the element
 Extractor is placed as a proxy between X-Road Security Server and governmental Information System.  
 
 <img style='float:left; margin: 10px 50px 140px 50px;' src='{{ site.url }}/img/Extractor.svg'>
+
 ---
 Extractor has four interfaces:
 
@@ -30,7 +31,9 @@ Protocols: (1) and (2) conform to X-Road message protocol (which is built over S
 **Personal Data Usage Logger** (*et* *Andmesalvestaja*) stores the personal data usage log record in database. Contents of the database is made available for request by the person.  
 
 <img style='float:left; margin: 10px 50px 140px 50px;'  src='{{ site.url }}/img/Logger.svg'>
+
 ---
+
 Personal Data Usage Logger has four interfaces:
 
 (1) <img style='display: inline-block;' src='{{ site.url }}/img/ProvidesUP.svg'> provides a service of storing personal data usage log records in database
@@ -43,7 +46,7 @@ Personal Data Usage Logger has four interfaces:
 
 Protocols: (1) conforms to Personal Data Usage Logger protocol; (2) conforms to X-Road message protocol (which is built over SOAP/HTTP(S)); (3) is a RESTful API.
 
-**Personal Data Usage Viewer** (*et* *Esitleja*) offers the citizen, through UI, the comprehensive view of how his or her personal data has been used by the government.  
+**Personal Data Usage Viewer** (*et* *Vaataja*) offers the citizen, through UI, the comprehensive view of how his or her personal data has been used by the government.  
 
 <img style='float:left; margin: 10px 50px 140px 50px;'  src='{{ site.url }}/img/Viewer.svg'>
 
