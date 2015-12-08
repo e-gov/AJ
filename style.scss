@@ -15,7 +15,7 @@
 
 html { font-size: 100%; }
 
-body { background: $white; font: 14px/1.4 $times; color: $darkGray; }
+body { background: $white; font: 16px/1.4 $helvetica; color: $darkGray; }
 
 .container {
   margin: 0 auto; max-width: 740px; padding: 0 10px; width: 100%; }
@@ -31,11 +31,11 @@ h1, h2 {
   }
 }
 
-h1 { font-family: $helveticaNeue; font-size: 20px;
+h1 { font-family: $helveticaNeue; font-size: 24px;
   a { color: inherit; }
 }
 
-h2 { font-family: $georgia; font-weight: bold; font-size: 16px; }
+h2 { font-family: $georgia; font-weight: bold; font-size: 20px; }
 
 p { margin: 15px 0; font-size: 16px; }
 
