@@ -8,7 +8,7 @@ Personal Data Monitor, *Andmejälgija* in Estonian, is a set of 4 [microservice]
 ---
 Extractor is placed as a proxy between X-Road Security Server and governmental Information System. It watches Information System's outbound traffic and filters out the events where personal data is being sent out from the Information System. A metadata record is created for each such event.
 
-<img src='{{ site.url }}/img/Extractor.svg'>
+<img style='float:left; margin: 10px 50px;' src='{{ site.url }}/img/Extractor.svg'>
 
 - pakub X-tee sõnumite edastamise teenust / X-tee sõnumiprotokoll (SOAP)
 - vajab teenust, kuhu X-tee sõnum edastada / X-tee sõnumiprotokoll (SOAP)
