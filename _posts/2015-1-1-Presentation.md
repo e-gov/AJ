@@ -3,9 +3,10 @@ layout: page
 title: Andmejälgija / Personal Data Monitor
 ---
 
-Personal Data Monitor is a set of 4 [microservice](https://en.wikipedia.org/wiki/Microservices)-style small applications that, when combined with each other and attached to X-Road can offer a citizen the comprehensive view of how his or her personal data has been used in governmental databases. Each component is designed to be "dumb" - that is to be simple in function.
+Personal Data Monitor, *Andmejälgija* in Estonian, is a set of 4 [microservice](https://en.wikipedia.org/wiki/Microservices)-style small applications that, when combined with each other and attached to X-Road can offer the citizen the comprehensive view of how his or her personal data has been used by the government. Each component is designed to be "dumb". The power lies in how the components are connected to each other and the elements of X-Road.
 
 ---
+Extractor is placed as a proxy between X-Road Security Server and governmental Information System. It watches Information System's outbound traffic and filters out the events where personal data is being sent out from the Information System. A metadata record is created for each such event.
 
 <img src='{{ site.url }}/img/Extractor.svg'>
 
