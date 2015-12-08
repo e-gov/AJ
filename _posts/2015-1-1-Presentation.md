@@ -5,7 +5,7 @@ title: Andmejälgija / Personal Data Monitor
 
 Personal Data Monitor, *Andmejälgija* in Estonian, is a set of 4 [microservice](https://en.wikipedia.org/wiki/Microservices)-style  applications that, when combined with each other and attached to X-Road can offer the citizen the comprehensive view of how his or her personal data has been used by the government.
 
-Each component is designed to be simple, "dumb". That means the component performs a single, clear function and communicates with its environment via clean APIs. Component requires only limited view and understanding of its environment. 
+Each component is designed to be simple, "dumb". That means the component performs a single, clear function and communicates with its environment via clean APIs. Component has to have only a limited view and understanding of its environment. 
 
 The power lies in how the components are connected to each other and the elements of X-Road.
 
@@ -67,7 +67,7 @@ Protocols: (1) uses HTML/CSS/JS over HTTPS; (2) requires a X-Road web service.
 ---
 Personal Data Usage Verifier has three interfaces:
 
-(1) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresRIGHT.svg'> requires a service that provides personal data usage log records 
+(1) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresLEFT.svg'> requires a service that provides personal data usage log records 
 
 (2) <img style='display: inline-block;' src='{{ site.url }}/img/ProvidesLEFT.svg'> provides an UI to the Information System's auditor
 
