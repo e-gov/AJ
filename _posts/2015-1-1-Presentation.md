@@ -9,7 +9,6 @@ Each component is designed to be simple, "dumb". That means the component perfor
 
 The power lies in how the components are connected to each other and the elements of X-Road.
 
----
 **Extractor** (*et* *Eraldusfilter*) watches Information System's outbound traffic and filters out the messages where personal data is being sent out from the Information System. A personal data usage log record is created for each such event. The log record contains metadata about personal data usage: person's ID, date, name of the X-Road service, name of the message recipient agency and the purpose of the personal data use (if available). Personal data itself, however, is neither extracted from the message nor recorded. 
 
 Extractor is placed as a proxy between X-Road Security Server and governmental Information System.  
@@ -24,7 +23,7 @@ Extractor has four interfaces:
 
 (3) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresDOWN.svg'> requires a service to where to send the log record
 
-(4) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresDOWN.svg'> requires a configuration file with extraction rules.
+(4) <img style='display: inline-block;' src='{{ site.url }}/img/ConfUP.svg'> requires a configuration file with extraction rules.
 
 Protocols: (1) and (2) conform to X-Road message protocol (which is built over SOAP/HTTP(S)); (3) conforms to Personal Data Usage Logger protocol; and (4) follows a special extraction rule format.
 
@@ -41,14 +40,14 @@ Personal Data Usage Logger has four interfaces:
 
 (3) <img style='display: inline-block;' src='{{ site.url }}/img/ProvidesDOWN.svg'> serves log records to Information Systems audit personnel
 
-(4) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresRIGHT.svg'> requires a configuration file that sets storage parameters.
+(4) <img style='display: inline-block;' src='{{ site.url }}/img/ConfRIGHT.svg'> requires a configuration file that sets storage parameters.
 
 Protocols: (1) conforms to Personal Data Usage Logger protocol; (2) conforms to X-Road message protocol (which is built over SOAP/HTTP(S)); (3) is a RESTful API.
 
 --- 
 **Personal Data Usage Viewer** (*et* *Esitleja*) offers the citizen, through UI, the comprehensive view of how his or her personal data has been used by the government.  
 
-<img style='float:left; margin: 10px 50px 140px 50px;'  src='{{ site.url }}/img/Presenter.svg'>
+<img style='float:left; margin: 10px 50px 140px 50px;'  src='{{ site.url }}/img/Viewer.svg'>
 
 Personal Data Usage Viewer has three interfaces:
 
@@ -56,7 +55,7 @@ Personal Data Usage Viewer has three interfaces:
 
 (2) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresRIGHT.svg'> requires a service that provides personal data usage log records 
 
-(3) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresUP.svg'> requires a configuration file
+(3) <img style='display: inline-block;' src='{{ site.url }}/img/ConfUP.svg'> requires a configuration file
 
 Protocols: (1) uses HTML/CSS/JS over HTTPS; (2) requires a X-Road web service.
 
@@ -72,7 +71,7 @@ Personal Data Usage Verifier has three interfaces:
 
 (2) <img style='display: inline-block;' src='{{ site.url }}/img/ProvidesLEFT.svg'> provides an UI to the Information System's auditor
 
-(3) <img style='display: inline-block;' src='{{ site.url }}/img/RequiresUP.svg'> requires a configuration file
+(3) <img style='display: inline-block;' src='{{ site.url }}/img/ConfUP.svg'> requires a configuration file
 
 Protocols: (1) requires a X-Road web service; (2) uses HTML/CSS/JS over HTTPS.
 
