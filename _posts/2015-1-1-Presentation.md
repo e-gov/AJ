@@ -3,6 +3,12 @@ layout: page
 title: Andmejälgija / Personal Data Monitor
 ---
 
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+
+
 | Komponent | Pakub ja vajab |
 |-----------|----------------|
 | <img src='{{ site.url }}/img/Extractor.svg'> |
