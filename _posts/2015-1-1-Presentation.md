@@ -3,13 +3,20 @@ layout: page
 title: Andmejälgija / Personal Data Monitor
 ---
 
-Personal Data Monitor, *Andmejälgija* in Estonian, is a set of 4 [microservice](https://en.wikipedia.org/wiki/Microservices)-style small applications that, when combined with each other and attached to X-Road can offer the citizen the comprehensive view of how his or her personal data has been used by the government. Each component is designed to be "dumb". The power lies in how the components are connected to each other and the elements of X-Road.
+Personal Data Monitor, *Andmejälgija* in Estonian, is a set of 4 [microservice](https://en.wikipedia.org/wiki/Microservices)-style  applications that, when combined with each other and attached to X-Road can offer the citizen the comprehensive view of how his or her personal data has been used by the government.
+
+Each component is designed to be simple, "dumb". That means the component performs a single, clear function and communicates with its environment via clean APIs. Component requires only limited view and understanding of its environment. 
+
+The power lies in how the components are connected to each other and the elements of X-Road.
 
 ---
-Extractor is placed as a proxy between X-Road Security Server and governmental Information System. It watches Information System's outbound traffic and filters out the events where personal data is being sent out from the Information System. A metadata record is created for each such event.
+**Extractor** (*Eraldusfilter* *et*) watches Information System's outbound traffic and filters out the messages where personal data is being sent out from the Information System. A log record is created for each such event.
+
+Extractor is placed as a proxy between X-Road Security Server and governmental Information System.  
 
 <img style='float:left; margin: 10px 50px;' src='{{ site.url }}/img/Extractor.svg'>
 
+Extractor has four intefaces:
 - pakub X-tee sõnumite edastamise teenust / X-tee sõnumiprotokoll (SOAP)
 - vajab teenust, kuhu X-tee sõnum edastada / X-tee sõnumiprotokoll (SOAP)
 - vajab teenust, kuhu isikuandmete kasutamise metaandmed salvestada / AS salvestusprotokoll
