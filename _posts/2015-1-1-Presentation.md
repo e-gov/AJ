@@ -20,6 +20,12 @@ Extractor has four intefaces:
 
 <img style='display: inline-block;' src='{{ site.url }}/img/ProvidesRIGHT.svg'> - provides a service of delivering X-Road message from Information System to Security Server
 
+<img style='display: inline-block;' src='{{ site.url }}/img/RequiresLEFT.svg'> - requires a service that accepts the X-Road message to be passed on
+
+<img style='display: inline-block;' src='{{ site.url }}/img/RequiresDOWN.svg'> - requires a service to where to send the log record
+
+<img style='display: inline-block;' src='{{ site.url }}/img/RequiresUP.svg'> - requires a configuration file with extraction rules.
+
 - pakub X-tee sõnumite edastamise teenust / X-tee sõnumiprotokoll (SOAP)
 - vajab teenust, kuhu X-tee sõnum edastada / X-tee sõnumiprotokoll (SOAP)
 - vajab teenust, kuhu isikuandmete kasutamise metaandmed salvestada / AS salvestusprotokoll
