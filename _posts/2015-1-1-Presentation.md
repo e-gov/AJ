@@ -17,6 +17,9 @@ Extractor is placed as a proxy between X-Road Security Server and governmental I
 <img style='float:left; margin: 10px 50px;' src='{{ site.url }}/img/Extractor.svg'>
 
 Extractor has four intefaces:
+
+<img style='display: inline-block;' src='{{ site.url }}/img/ProvidesRIGHT.svg'> - provides a service of delivering X-Road message from Information System to Security Server
+
 - pakub X-tee sõnumite edastamise teenust / X-tee sõnumiprotokoll (SOAP)
 - vajab teenust, kuhu X-tee sõnum edastada / X-tee sõnumiprotokoll (SOAP)
 - vajab teenust, kuhu isikuandmete kasutamise metaandmed salvestada / AS salvestusprotokoll
