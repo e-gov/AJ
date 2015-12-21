@@ -39,7 +39,10 @@ h2 { font-family: $georgia; font-weight: bold; font-size: 20px; }
 
 p { margin: 15px 0; font-size: 16px; }
 
-.RIHA {  border: 1px solid $mereroheline; padding: 5px; }
+.RIHA { border: 1px solid Aquamarine; border-radius: 8px; 
+  background-color: Azure; padding: 0 20px; font-family: $courier; }
+  
+.label { font-family: $helveticaNeue; font-size: 12px; }  
 
 a {
   color: $mereroheline;
