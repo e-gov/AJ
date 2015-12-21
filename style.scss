@@ -23,8 +23,7 @@ body { background: $white; font: 16px/1.4 $helvetica; color: $darkGray; }
 h1, h2 {
   color: $darkerGray;
   line-height: 1.7;
-  margin: 1em 0 0;
-  padding: 0;
+  margin: 1em 0 0; padding: 0;
 
   @include mobile {
     line-height: 1.4;
@@ -47,9 +46,9 @@ p { margin: 15px 0; font-size: 16px; }
 a {
   color: $gray;
   text-decoration: underline;
-	cursor: pointer;
+  cursor: pointer;
   &:hover, &:active {
-    color: $darkgray;
+    color: Black;
   }
 }
 
