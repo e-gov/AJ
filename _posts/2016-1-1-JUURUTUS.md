@@ -1,3 +1,8 @@
+---
+layout: page
+title: Andmejälgija juurutuses tüüpkava
+---
+
 ## Andmejälgija juurutuse tüüpkava
 
 **Lühendid**: AJ - andmejälgija; ER - eraldusfilter; AS - andmesalvestaja
