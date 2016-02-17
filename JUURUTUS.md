@@ -20,7 +20,7 @@ Andmejälgija dokumentatsioon: [analüüsi ja disaini projekti tulemused](http:/
 |    | - kooskõlastamine oma haldusosakonnaga | Paigaldusvariant on andmekogu halduse suhtes OK. | andmekogu halduse eest vastutaja |
 | 5   | Eraldusfiltri (ER) häälestusfaili koostamine | Töö tulemuseks on ER häälestusfail, mis määrab, millised andmeliikumised X-tee liiklusest kinni püütakse ja Andmesalvestajas registreeritakse (tehniliselt XPath filtrid). Töö sisendiks on p 3 koostatud loetelu teenustest ja teenuste dokumentatsioon.  | arenduspartner |
 | 6   | Sisemise andmekasutuse osa arendus (sõltuvalt p 4 tehtud otsusest) | Arendatud on tarkvarakomponent, mis saadab andmekogust andmeid sisemise andmekasutuse kohta Andmesalvestaja (AS) vastavasse REST liidesesse. | arenduspartner | 
-| 7   | Paigaldamine | AJ komponendid on paigaldatud, vastavalt p 2 valitud paigalduslahendusele. | andmekogu tehnilise taristu eest vastutaja |
+| 7   | Paigaldamine | AJ komponendid on paigaldatud, vastavalt p 4 valitud paigalduslahendusele. | andmekogu tehnilise taristu eest vastutaja |
 |     | - Andmesalvestaja (AS) paigaldamine | Andmesalvestaja on paigaldatud. | andmekogu tehnilise taristu eest vastutaja |
 |     | - Eraldusfiltri (ER) paigaldamine | Eraldusfilter on paigaldatud. | andmekogu tehnilise taristu eest vastutaja |
 |     | - ühendamine | AJ komponendid - ER ja AS on ühendatud turvaserveriga (-serveritega), üksteisega ja andmekoguga (andmekogu X-tee adapterserveriga). | andmekogu tehnilise taristu eest vastutaja |
