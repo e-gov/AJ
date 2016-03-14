@@ -4,7 +4,13 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
     <display-name>salvestaja</display-name>
-    <!-- listener>
-        <listener-class>ee.degeetia.xrtracker.salvestaja.core.ApplicationLifecycleListener</listener-class>
-    </listener -->
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>ee.degeetia.xrtracker.salvestaja.Test</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
 </web-app>

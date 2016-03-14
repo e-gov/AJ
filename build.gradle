@@ -4,15 +4,15 @@ allprojects {
 	group 'ee.degeetia'
 	apply plugin: 'eclipse'
 	apply plugin: 'eclipse-wtp'
-	apply plugin: 'checkstyle'
+	// apply plugin: 'checkstyle'
 
 	repositories {
 	    mavenCentral()
 	}
 	
-	checkstyle {
-		configFile = rootProject.file('config/checkstyle/checkstyle.xml')
-	}
+	//checkstyle {
+	//	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+	//}
 }
 
 subprojects {
