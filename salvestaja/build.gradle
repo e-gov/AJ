@@ -1,0 +1,7 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'war'
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+}

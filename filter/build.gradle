@@ -1,0 +1,11 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'war'
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+
+    compile 'com.sun.xml.messaging.saaj:saaj-impl:1.3.25'
+
+    testCompile 'org.eclipse.jetty.aggregate:jetty-all:8.1.19.v20160209'
+}

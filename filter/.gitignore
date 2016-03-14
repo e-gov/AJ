@@ -1,0 +1,19 @@
+### Java
+*.class
+*.war
+
+### Gradle
+.gradle
+build/
+
+### IDEA
+/out/
+*.iml
+.idea/
+
+### Eclipse
+.classpath
+
+
+
+
