@@ -1,4 +1,4 @@
-package ee.degeetia.xrtracker.filter.core.config;
+package ee.degeetia.xrtracker.filter.config.properties;
 
 public enum Property {
 

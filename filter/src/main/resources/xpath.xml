@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xr:xPathConfiguration xmlns:xr="xrt.xsd">
+    <xr:expressionSuite>
+        <xr:filterExpression>//isikukood</xr:filterExpression>
+        <xr:saveableData>
+            <xr:dataEntry>
+                <xr:xpath>//isikukood</xr:xpath>
+                <xr:dataKey>isikukood</xr:dataKey>
+            </xr:dataEntry>
+            <xr:dataEntry>
+                <xr:xpath>//eesnimi</xr:xpath>
+                <xr:dataKey>eesnimi</xr:dataKey>
+            </xr:dataEntry>
+            <xr:dataEntry>
+                <xr:xpath>//perenimi</xr:xpath>
+                <xr:dataKey>perenimi</xr:dataKey>
+            </xr:dataEntry>
+        </xr:saveableData>
+    </xr:expressionSuite>
+    <xr:expressionSuite>
+        <xr:filterExpression>//testElement</xr:filterExpression>
+        <xr:saveableData>
+            <xr:dataEntry>
+                <xr:xpath>//testElement</xr:xpath>
+                <xr:dataKey>testElement</xr:dataKey>
+            </xr:dataEntry>
+        </xr:saveableData>
+    </xr:expressionSuite>
+</xr:xPathConfiguration>

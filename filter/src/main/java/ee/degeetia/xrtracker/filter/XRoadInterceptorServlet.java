@@ -1,6 +1,7 @@
 package ee.degeetia.xrtracker.filter;
 
-import ee.degeetia.xrtracker.filter.core.config.Property;
+import ee.degeetia.xrtracker.filter.config.properties.Property;
+import ee.degeetia.xrtracker.filter.processor.MessageProcessorQueue;
 import ee.degeetia.xrtracker.filter.util.HttpUtil;
 import ee.degeetia.xrtracker.filter.util.IOUtil;
 import org.apache.logging.log4j.LogManager;
@@ -31,7 +32,7 @@ public class XRoadInterceptorServlet extends HttpServlet {
     URL_MAPPINGS.put(Property.TURVASERVER_INTERCEPTOR_PATH.getValue(), Property.TURVASERVER_URL.getValue());
   }
 
-  private final XRoadMessageProcessor messageProcessor = new XRoadMessageProcessor();
+  private final MessageProcessorQueue queue = new MessageProcessorQueue();
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -63,7 +64,7 @@ public class XRoadInterceptorServlet extends HttpServlet {
 
   private byte[] processMessage(InputStream inputStream, String contentType) throws IOException {
     byte[] content = IOUtil.readBytes(inputStream);
-    messageProcessor.submitForProcessing(content, contentType);
+    queue.submit(content, contentType);
     return content;
   }
 

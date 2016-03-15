@@ -1,4 +1,4 @@
-package ee.degeetia.xrtracker.filter.core.config;
+package ee.degeetia.xrtracker.filter.config.properties;
 
 import ee.degeetia.xrtracker.filter.util.ResourceUtil;
 import org.apache.logging.log4j.LogManager;
@@ -38,7 +38,7 @@ public class PropertyLoader {
 
     for (Property property : Property.values()) {
       String value = properties.getProperty(property.getKey());
-      LOG.debug("Property {} has value {}", property.getKey(), value);
+      LOG.info("Loaded property {} = {}", property.getKey(), value);
       if (property.isRequired() && value == null) {
         throw new RuntimeException("Missing required property " + property.getKey());
       }

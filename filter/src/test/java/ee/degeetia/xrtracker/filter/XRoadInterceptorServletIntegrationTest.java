@@ -2,7 +2,7 @@ package ee.degeetia.xrtracker.filter;
 
 import ee.degeetia.testutils.jetty.EmbeddedJettyIntegrationTest;
 import ee.degeetia.testutils.soap.SoapTestUtil.XmlElement;
-import ee.degeetia.xrtracker.filter.core.config.Property;
+import ee.degeetia.xrtracker.filter.config.properties.Property;
 import ee.degeetia.xrtracker.filter.util.IOUtil;
 import ee.degeetia.xrtracker.filter.util.ResourceUtil;
 import org.junit.After;
@@ -31,7 +31,7 @@ import static org.junit.Assert.*;
 
 public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegrationTest {
 
-  private static final String TEST_WS_URL = "http://localhost:8080" + Property.ANDMEKOGU_INTERCEPTOR_PATH.getValue();
+  private static final String TEST_WS_URL = "http://localhost:8123" + Property.ANDMEKOGU_INTERCEPTOR_PATH.getValue();
 
   private SOAPConnection connection;
 

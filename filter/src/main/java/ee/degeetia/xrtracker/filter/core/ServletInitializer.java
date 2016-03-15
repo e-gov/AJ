@@ -10,11 +10,17 @@ public class ServletInitializer {
 
   private static final Logger LOG = LogManager.getLogger(ServletInitializer.class);
 
-  public void addServlet(ServletContext context, Class<? extends Servlet> servletClass, String... servletMappings) {
+  private final ServletContext servletContext;
+
+  public ServletInitializer(ServletContext servletContext) {
+    this.servletContext = servletContext;
+  }
+
+  public void addServlet(Class<? extends Servlet> servletClass, String... servletMappings) {
     String servletName = servletClass.getSimpleName();
     LOG.info("Initializing servlet {} with mappings {}", servletName, servletMappings);
 
-    context.addServlet(servletName, servletClass).addMapping(servletMappings);
+    servletContext.addServlet(servletName, servletClass).addMapping(servletMappings);
   }
 
 }

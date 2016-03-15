@@ -10,7 +10,7 @@ import javax.servlet.Servlet;
 public class EmbeddedJettyServer extends Server {
 
   public EmbeddedJettyServer() {
-    super(8080);
+    super(8123);
     WebAppContext context = new WebAppContext();
     context.setContextPath("/");
     context.setBaseResource(new ResourceCollection(new String[]{"src/main/webapp", "src/main/resources"}));

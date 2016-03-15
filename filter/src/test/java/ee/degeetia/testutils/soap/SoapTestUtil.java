@@ -3,6 +3,8 @@ package ee.degeetia.testutils.soap;
 import ee.degeetia.xrtracker.filter.util.IOUtil;
 
 import javax.xml.soap.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public final class SoapTestUtil {
 
@@ -23,6 +25,17 @@ public final class SoapTestUtil {
 
     message.saveChanges();
     return message;
+  }
+
+  public static byte[] createByteArray(XmlElement... xmlElements) throws SOAPException, IOException {
+    SOAPMessage message = createMessage(xmlElements);
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    try {
+      message.writeTo(out);
+      return out.toByteArray();
+    } finally {
+      out.close();
+    }
   }
 
   private static void addChildElement(SOAPElement soapElement, XmlElement xmlElement) throws SOAPException {
