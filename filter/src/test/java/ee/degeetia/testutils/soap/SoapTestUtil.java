@@ -34,7 +34,7 @@ public final class SoapTestUtil {
       message.writeTo(out);
       return out.toByteArray();
     } finally {
-      out.close();
+      IOUtil.close(out);
     }
   }
 

@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.soap.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,12 +30,12 @@ import static org.junit.Assert.*;
 
 public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegrationTest {
 
-  private static final String TEST_WS_URL = "http://localhost:8123" + Property.ANDMEKOGU_INTERCEPTOR_PATH.getValue();
+  private static final String TEST_WS_URL = "http://localhost:8123" + Property.ANDMEKOGU_INTERCEPTOR_PATH.getString();
 
   private SOAPConnection connection;
 
   @BeforeClass
-  public static void createFakeAndmekoguServlet() throws MalformedURLException {
+  public static void createFakeAndmekoguServlet() {
     createServlet(new HttpServlet() {
       @Override
       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -45,7 +44,18 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
         response.setContentLength(request.getContentLength());
         IOUtil.pipe(request.getInputStream(), response.getOutputStream());
       }
-    }, new URL(Property.ANDMEKOGU_URL.getValue()).getPath());
+    }, Property.ANDMEKOGU_URL.getURL().getPath());
+  }
+
+  @BeforeClass
+  public static void createFakeLoggerRestEndpoint() {
+    createServlet(new HttpServlet() {
+      @Override
+      protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.setContentLength(0);
+      }
+    }, Property.LOGGER_REST_URL.getURL().getPath());
   }
 
   @Before

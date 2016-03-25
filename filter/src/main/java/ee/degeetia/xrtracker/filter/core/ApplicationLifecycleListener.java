@@ -48,8 +48,8 @@ public class ApplicationLifecycleListener implements ServletContextListener {
   private void addServlets(ServletContext servletContext) {
     ServletInitializer servletInitializer = new ServletInitializer(servletContext);
     servletInitializer.addServlet(XRoadInterceptorServlet.class,
-                                  Property.ANDMEKOGU_INTERCEPTOR_PATH.getValue(),
-                                  Property.TURVASERVER_INTERCEPTOR_PATH.getValue());
+                                  Property.ANDMEKOGU_INTERCEPTOR_PATH.getString(),
+                                  Property.TURVASERVER_INTERCEPTOR_PATH.getString());
   }
 
 }

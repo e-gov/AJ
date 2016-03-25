@@ -6,6 +6,10 @@ public final class ExceptionUtil {
     throw new UnsupportedOperationException();
   }
 
+  public static RuntimeException toUnchecked(Throwable throwable) {
+    return new RuntimeException(throwable);
+  }
+
   public static RuntimeException toUnchecked(String message, Throwable throwable) {
     return new RuntimeException(message, throwable);
   }

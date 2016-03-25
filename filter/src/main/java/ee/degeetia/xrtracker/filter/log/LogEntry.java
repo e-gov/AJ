@@ -1,5 +1,6 @@
 package ee.degeetia.xrtracker.filter.log;
 
+// TODO
 public class LogEntry {
 
   private String testElement;

@@ -18,18 +18,20 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * The class where the main logic happens in this application.
+ * The class where the main logic happens in this application. Forwards all POST requests unchanged to the server
+ * specified in properties and returns the response, again unchanged. Message contents are submitted to a queue for
+ * later processing in separate threads.
  */
 public class XRoadInterceptorServlet extends HttpServlet {
 
   private static final Logger LOG = LogManager.getLogger(XRoadInterceptorServlet.class);
 
   // Request path -> Target WS URL
-  private static final Map<String, String> URL_MAPPINGS = new ConcurrentHashMap<String, String>();
+  private static final Map<String, URL> URL_MAPPINGS = new ConcurrentHashMap<String, URL>();
 
   static {
-    URL_MAPPINGS.put(Property.ANDMEKOGU_INTERCEPTOR_PATH.getValue(), Property.ANDMEKOGU_URL.getValue());
-    URL_MAPPINGS.put(Property.TURVASERVER_INTERCEPTOR_PATH.getValue(), Property.TURVASERVER_URL.getValue());
+    URL_MAPPINGS.put(Property.ANDMEKOGU_INTERCEPTOR_PATH.getString(), Property.ANDMEKOGU_URL.getURL());
+    URL_MAPPINGS.put(Property.TURVASERVER_INTERCEPTOR_PATH.getString(), Property.TURVASERVER_URL.getURL());
   }
 
   private final MessageProcessorQueue queue = new MessageProcessorQueue();
@@ -43,9 +45,9 @@ public class XRoadInterceptorServlet extends HttpServlet {
   }
 
   // TODO: might also be HttpsURLConnection
-  private HttpURLConnection openConnection(String url) throws IOException {
+  private HttpURLConnection openConnection(URL url) throws IOException {
     try {
-      HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setDoOutput(true);
       return connection;
     } catch (IOException e) {

@@ -6,6 +6,11 @@ import org.apache.logging.log4j.Logger;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+/**
+ * Class for mapping properties from a {@link Map} to a POJO.
+ *
+ * @param <T> the type of the POJO. Must have a default constructor and setters for all fields.
+ */
 public class ObjectMapper<T> {
 
   private static final Logger LOG = LogManager.getLogger(ObjectMapper.class);
@@ -16,6 +21,14 @@ public class ObjectMapper<T> {
     this.objectClass = objectClass;
   }
 
+  /**
+   * Matches keys from <code>properties</code> with field names in {@link T} and writes the values to the fields using
+   * the corresponding setters. If a matching setter (with the correct name and parameter type) is not found, then the
+   * key is ignored.
+   *
+   * @param properties the Map to read properties from
+   * @return the mapped object
+   */
   public T map(Map<String, ?> properties) {
     String className = objectClass.getSimpleName();
     T object;

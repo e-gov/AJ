@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -16,6 +16,8 @@ public final class ExecutorManager {
   private static final Logger LOG = LogManager.getLogger(ExecutorManager.class);
 
   private static final ExecutorManager INSTANCE = new ExecutorManager();
+
+  private static final int SHUTDOWN_TIMEOUT_SECONDS = 10;
 
   private final Set<ExecutorService> managedExecutors;
 
@@ -32,33 +34,37 @@ public final class ExecutorManager {
   }
 
   public void shutdownAll() {
-    final int shutdownTimeout = 10;
+    if (managedExecutors.isEmpty()) {
+      return;
+    }
 
     LOG.info("Shutting down {} thread pool executors", managedExecutors.size());
 
-    ExecutorService shutdownExecutor = Executors.newFixedThreadPool(managedExecutors.size());
+    final Iterator<ExecutorService> iterator = managedExecutors.iterator();
 
-    for (final ExecutorService executorService : managedExecutors) {
+    ExecutorService shutdownExecutor = Executors.newFixedThreadPool(managedExecutors.size());
+    while (iterator.hasNext()) {
+      final ExecutorService executorService = iterator.next();
       shutdownExecutor.submit(new Runnable() {
         @Override
         public void run() {
-          executorService.shutdown();
-          try {
-            if (!executorService.awaitTermination(shutdownTimeout, TimeUnit.SECONDS)) {
-              List<Runnable> stoppedTasks = executorService.shutdownNow();
-              LOG.warn("{} did not shutdown in {} seconds, stopping {} tasks",
-                       executorService,
-                       shutdownTimeout,
-                       stoppedTasks.size());
-            }
-          } catch (InterruptedException e) {
-            LOG.error("Failed to shutdown thread pool executor", e);
-          }
+          shutdown(executorService);
+          iterator.remove();
         }
       });
     }
+    shutdown(shutdownExecutor);
+  }
 
-    shutdownExecutor.shutdown();
+  private void shutdown(ExecutorService executorService) {
+    executorService.shutdown();
+    try {
+      if (!executorService.awaitTermination(SHUTDOWN_TIMEOUT_SECONDS, TimeUnit.SECONDS)) {
+        executorService.shutdownNow();
+      }
+    } catch (InterruptedException e) {
+      LOG.error("Failed to shutdown thread pool executor", e);
+    }
   }
 
 }

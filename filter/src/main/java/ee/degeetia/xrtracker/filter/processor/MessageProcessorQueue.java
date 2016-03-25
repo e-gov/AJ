@@ -26,7 +26,6 @@ public class MessageProcessorQueue {
         try {
           processor.process(content, contentType);
         } catch (Exception e) {
-          // TODO: this log entry should come from MessageProcessor
           LOG.error("Failed to process message: " + new String(content, IOUtil.UTF_8), e);
         }
       }

@@ -1,5 +1,6 @@
 package ee.degeetia.xrtracker.filter.config.properties;
 
+import ee.degeetia.xrtracker.filter.util.IOUtil;
 import ee.degeetia.xrtracker.filter.util.ResourceUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +33,7 @@ public class PropertyLoader {
       try {
         properties.load(propertiesFile);
       } finally {
-        propertiesFile.close();
+        IOUtil.close(propertiesFile);
       }
     }
 
