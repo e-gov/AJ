@@ -1,9 +1,13 @@
 package ee.degeetia.xrtracker.filter.http;
 
+/**
+ * A class that contains the code and the corresponding message of an HTTP status.
+ */
 public class HttpStatus {
 
   private final int code;
   private final String message;
+
 
   public HttpStatus(int code, String message) {
     if (code < 100 || code > 599) {

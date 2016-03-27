@@ -12,31 +12,52 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * A simple class for performing HTTP requests using JSON for encoding data.
+ */
 public class HttpClient {
 
   private static final Logger LOG = LogManager.getLogger(HttpClient.class);
 
-  public <T> HttpResponse<T> post(String url, Object body, Class<T> responseBodyType) throws HttpException {
-    return performRequest(url, body, HttpMethod.POST, responseBodyType);
+  /**
+   * Sends an HTTP POST request to the specified URL.
+   *
+   * @param url          the URL to which to send the request
+   * @param body         the request body which will be JSON-encoded
+   * @param responseType the type of response to expect
+   * @param <T>          the type of response to expect
+   * @return a {@link HttpResponse} object containing the response status and response body
+   * @throws HttpException if something goes wrong when performing the request
+   */
+  public <T> HttpResponse<T> post(URL url, Object body, Class<T> responseType) throws HttpException {
+    return execute(url, body, HttpMethod.POST, responseType);
   }
 
-  public HttpResponse<Void> post(String url, Object body) throws HttpException {
-    return performRequest(url, body, HttpMethod.POST, null);
+  /**
+   * Sends an HTTP POST request to the specified URL.
+   *
+   * @param url  the URL to which to send the request
+   * @param body the request body which will be JSON-encoded
+   * @return a {@link HttpResponse} object containing the response status
+   * @throws HttpException if something goes wrong when performing the request
+   */
+  public HttpResponse<Void> post(URL url, Object body) throws HttpException {
+    return execute(url, body, HttpMethod.POST, null);
   }
 
-  private <T> HttpResponse<T> performRequest(String url,
-                                             Object object,
-                                             HttpMethod method,
-                                             Class<T> responseBodyType) throws HttpException {
+  private <T> HttpResponse<T> execute(URL url,
+                                      Object body,
+                                      HttpMethod method,
+                                      Class<T> responseType) throws HttpException {
     HttpURLConnection connection = null;
     try {
-      connection = (HttpURLConnection) new URL(url).openConnection();
+      connection = (HttpURLConnection) url.openConnection();
 
-      String json = serialize(object);
+      String json = serialize(body);
       sendHeaders(connection, method, "application/json", json.length());
       sendBody(connection, json);
 
-      return getResponse(connection, responseBodyType);
+      return getResponse(connection, responseType);
     } catch (Exception e) {
       throw new HttpException("Failed to perform " + method + " request", e);
     } finally {
@@ -68,16 +89,16 @@ public class HttpClient {
     }
   }
 
-  private <T> HttpResponse<T> getResponse(HttpURLConnection connection, Class<T> responseBodyType) throws IOException {
+  private <T> HttpResponse<T> getResponse(HttpURLConnection connection, Class<T> responseType) throws IOException {
     HttpStatus status = getStatus(connection);
 
-    if (responseBodyType == null) {
+    if (responseType == null) {
       return new HttpResponse<T>(status);
     }
 
     InputStream inputStream = connection.getInputStream();
     try {
-      T responseBody = deserialize(IOUtil.readString(inputStream), responseBodyType);
+      T responseBody = deserialize(IOUtil.readString(inputStream), responseType);
       return new HttpResponse<T>(status, responseBody);
     } finally {
       IOUtil.close(inputStream);

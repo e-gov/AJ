@@ -1,0 +1,28 @@
+version '1.0-SNAPSHOT'
+
+buildscript {
+	repositories {
+	    maven {
+	      url "https://plugins.gradle.org/m2/"
+	    }
+	}
+	dependencies {
+		classpath ("gradle.plugin.net.foragerr.jmeter:jmeter-gradle-plugin:1.0.3-2.13") {
+			exclude group: 'xml-apis' 
+		}
+		classpath 'xml-apis:xml-apis:1.4.01'
+	}
+}
+
+apply plugin: 'net.foragerr.jmeter'
+
+jmeter {
+	excludes = ["load-test.jmx"]
+	// jmTestFiles = [file("src/test/jmeter/test2.jmx")] //if jmx file is not in the default location
+	// jmUserProperties = [file("src/test/jmeter/user.properties")] //to add additional user properties
+	enableExtendedReports = true //produce Graphical and CSV reports
+}
+
+task buildSoapuiWar (type: Exec) {
+	commandLine 'wargenerator.sh', '-w', 'true', '-d', '.', '-f', 'testak.war', 'testak-soapui-project.xml'
+}

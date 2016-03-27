@@ -15,7 +15,7 @@ public class LogService {
 
   public void createEntry(LogEntry logEntry) {
     try {
-      httpClient.post(Property.LOGGER_REST_URL.getString(), logEntry);
+      httpClient.post(Property.LOGGER_REST_URL.getURL(), logEntry);
     } catch (HttpException e) {
       LOG.error("Failed to send logs over REST", e);
     }

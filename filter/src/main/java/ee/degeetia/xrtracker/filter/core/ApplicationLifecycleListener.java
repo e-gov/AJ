@@ -13,6 +13,10 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.io.IOException;
 
+/**
+ * Listens for changes to the servlet context. Actions related to application startup and shutdown should be taken in
+ * this class.
+ */
 public class ApplicationLifecycleListener implements ServletContextListener {
 
   private static final Logger LOG = LogManager.getLogger(ApplicationLifecycleListener.class);
@@ -35,7 +39,7 @@ public class ApplicationLifecycleListener implements ServletContextListener {
   private void loadProperties() {
     PropertyLoader propertyLoader = new PropertyLoader();
     try {
-      propertyLoader.loadProperties("test.properties", "default.properties");
+      propertyLoader.loadProperties("xrtracker.properties", "test.properties", "default.properties");
     } catch (IOException e) {
       ExceptionUtil.uncheck("Failed to load properties", e);
     }

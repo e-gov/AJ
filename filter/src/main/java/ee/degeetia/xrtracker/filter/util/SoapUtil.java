@@ -7,7 +7,9 @@ import javax.xml.soap.SOAPMessage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-
+/**
+ * Utility class for SOAP parsing.
+ */
 public final class SoapUtil {
 
   private SoapUtil() {

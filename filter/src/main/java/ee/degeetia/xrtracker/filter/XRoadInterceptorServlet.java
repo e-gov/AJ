@@ -1,6 +1,7 @@
 package ee.degeetia.xrtracker.filter;
 
 import ee.degeetia.xrtracker.filter.config.properties.Property;
+import ee.degeetia.xrtracker.filter.config.properties.RuntimeProperty;
 import ee.degeetia.xrtracker.filter.processor.MessageProcessorQueue;
 import ee.degeetia.xrtracker.filter.util.HttpUtil;
 import ee.degeetia.xrtracker.filter.util.IOUtil;
@@ -38,7 +39,14 @@ public class XRoadInterceptorServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    HttpURLConnection connection = openConnection(URL_MAPPINGS.get(request.getRequestURI()));
+    if (!RuntimeProperty.APPLICATION_URL.isSet()) {
+      // TODO: move to URLUtil
+      URL url = new URL(request.getRequestURL().toString());
+      String value = url.getProtocol() + "://" + url.getAuthority();
+      RuntimeProperty.APPLICATION_URL.setValue(value);
+    }
+
+    HttpURLConnection connection = openConnection(URL_MAPPINGS.get(request.getServletPath()));
 
     forwardRequest(request, connection, processRequest(request));
     forwardResponse(response, connection, processResponse(connection));

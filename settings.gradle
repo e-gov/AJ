@@ -1,5 +1,6 @@
 
 include ':filter'
 include ':salvestaja'
+include ':testak'
 
 rootProject.name = 'AJ'

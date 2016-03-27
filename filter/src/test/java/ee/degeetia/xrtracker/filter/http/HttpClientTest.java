@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,14 +35,15 @@ public class HttpClientTest extends EmbeddedJettyIntegrationTest {
   }
 
   @Test
-  public void testPostWithJsonSerialization() throws HttpException {
+  public void testPostWithJsonSerialization() throws HttpException, MalformedURLException {
     TestObject request = new TestObject();
     request.setString("stringValue");
     request.setNumber(123.456);
     request.setArray(new int[]{123, 456});
     request.setList(Arrays.asList(1, 2, 3));
 
-    HttpResponse<TestObject> response = httpClient.post("http://localhost:8123/rest/test", request, TestObject.class);
+    HttpResponse<TestObject> response =
+        httpClient.post(new URL("http://localhost:8123/rest/test"), request, TestObject.class);
     HttpStatus status = response.getStatus();
     TestObject body = response.getBody();
 

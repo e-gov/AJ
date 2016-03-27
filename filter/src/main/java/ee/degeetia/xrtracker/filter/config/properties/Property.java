@@ -1,6 +1,7 @@
 package ee.degeetia.xrtracker.filter.config.properties;
 
 import ee.degeetia.xrtracker.filter.util.ExceptionUtil;
+import ee.degeetia.xrtracker.filter.util.URLUtil;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -26,10 +27,9 @@ public enum Property {
     return value;
   }
 
-  // TODO: validate URL at application startup
   public URL getURL() {
     try {
-      return new URL(value);
+      return URLUtil.getAbsoluteURL(RuntimeProperty.APPLICATION_URL.getValue(), value);
     } catch (MalformedURLException e) {
       throw ExceptionUtil.toUnchecked("Invalid URL", e);
     }
@@ -43,7 +43,7 @@ public enum Property {
     return required;
   }
 
-  protected void setValue(String value) {
+  public void setValue(String value) {
     this.value = value;
   }
 

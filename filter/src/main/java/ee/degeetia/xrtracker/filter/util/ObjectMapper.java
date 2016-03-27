@@ -17,6 +17,11 @@ public class ObjectMapper<T> {
 
   private final Class<T> objectClass;
 
+  /**
+   * Creates an instance of ObjectMapper for the specified class.
+   *
+   * @param objectClass the type of objects this ObjectMapper will map
+   */
   public ObjectMapper(Class<T> objectClass) {
     this.objectClass = objectClass;
   }
