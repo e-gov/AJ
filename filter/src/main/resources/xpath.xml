@@ -51,4 +51,34 @@
             </xr:dataEntry>
         </xr:saveableData>
     </xr:expressionSuite>
+    <xr:expressionSuite>
+        <xr:filterExpression>//isikukood</xr:filterExpression>
+        <xr:saveableData>
+            <xr:dataEntry>
+                <xr:xpath>//isikukood</xr:xpath>
+                <xr:dataKey>personcode</xr:dataKey>
+            </xr:dataEntry>
+            <xr:dataEntry>
+                <xr:xpath>//action</xr:xpath>
+                <xr:dataKey>action</xr:dataKey>
+            </xr:dataEntry>
+            <xr:dataEntry>
+                <xr:xpath>//saatja</xr:xpath>
+                <xr:dataKey>sender</xr:dataKey>
+            </xr:dataEntry>
+            <xr:dataEntry>
+                <xr:xpath>//vastuvõtja</xr:xpath>
+                <xr:dataKey>receiver</xr:dataKey>
+            </xr:dataEntry>
+        </xr:saveableData>
+    </xr:expressionSuite>
+    <xr:expressionSuite>
+        <xr:filterExpression>//testElement</xr:filterExpression>
+        <xr:saveableData>
+            <xr:dataEntry>
+                <xr:xpath>//action</xr:xpath>
+                <xr:dataKey>action</xr:dataKey>
+            </xr:dataEntry>
+        </xr:saveableData>
+    </xr:expressionSuite>
 </xr:xPathConfiguration>
