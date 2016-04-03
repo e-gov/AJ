@@ -1,5 +1,5 @@
 
-package ee.degeetia.dumonitor.filter.config.xpath.generated;
+package ee.degeetia.dumonitor.filter.config.filter.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -8,18 +8,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for filter complex type.
+ * <p>Java class for Filter complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="filter">
+ * &lt;complexType name="Filter">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
+ *       &lt;all>
  *         &lt;element name="xpath" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="loggableFields" type="{xpath_conf_schema.xsd}loggableFields"/>
- *       &lt;/sequence>
+ *         &lt;element name="loggableFields" type="{filter_schema.xsd}LoggableFields"/>
+ *       &lt;/all>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -28,9 +28,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "filter", propOrder = {
-    "xpath",
-    "loggableFields"
+@XmlType(name = "Filter", propOrder = {
+
 })
 public class Filter {
 

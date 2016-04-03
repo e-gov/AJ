@@ -8,7 +8,7 @@ import java.net.URL;
 
 public enum Property {
 
-  XPATH_CONFIGURATION_FILE("dumonitor.filter.xpath.configuration.file"),
+  FILTER_CONFIGURATION_FILE("dumonitor.filter.configuration.file"),
   TURVASERVER_URL("dumonitor.filter.turvaserver.url"),
   ANDMEKOGU_URL("dumonitor.filter.andmekogu.url"),
   TURVASERVER_INTERCEPTOR_PATH("dumonitor.filter.turvaserver.interceptor.path"),

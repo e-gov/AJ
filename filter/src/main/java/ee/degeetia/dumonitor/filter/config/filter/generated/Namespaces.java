@@ -1,5 +1,5 @@
 
-package ee.degeetia.dumonitor.filter.config.xpath.generated;
+package ee.degeetia.dumonitor.filter.config.filter.generated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for loggableFields complex type.
+ * <p>Java class for Namespaces complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="loggableFields">
+ * &lt;complexType name="Namespaces">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="loggableField" type="{xpath_conf_schema.xsd}loggableField" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="namespace" type="{filter_schema.xsd}Namespace" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,40 +28,40 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "loggableFields", propOrder = {
-    "loggableField"
+@XmlType(name = "Namespaces", propOrder = {
+    "namespace"
 })
-public class LoggableFields {
+public class Namespaces {
 
-    protected List<LoggableField> loggableField;
+    protected List<Namespace> namespace;
 
     /**
-     * Gets the value of the loggableField property.
+     * Gets the value of the namespace property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the loggableField property.
+     * This is why there is not a <CODE>set</CODE> method for the namespace property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getLoggableField().add(newItem);
+     *    getNamespace().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link LoggableField }
+     * {@link Namespace }
      * 
      * 
      */
-    public List<LoggableField> getLoggableField() {
-        if (loggableField == null) {
-            loggableField = new ArrayList<LoggableField>();
+    public List<Namespace> getNamespace() {
+        if (namespace == null) {
+            namespace = new ArrayList<Namespace>();
         }
-        return this.loggableField;
+        return this.namespace;
     }
 
 }

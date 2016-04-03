@@ -3,7 +3,7 @@ package ee.degeetia.dumonitor.filter.core;
 import ee.degeetia.dumonitor.filter.XRoadInterceptorServlet;
 import ee.degeetia.dumonitor.filter.config.properties.Property;
 import ee.degeetia.dumonitor.filter.config.properties.PropertyLoader;
-import ee.degeetia.dumonitor.filter.config.xpath.XPathExpressionsManager;
+import ee.degeetia.dumonitor.filter.config.filter.FilterConfigurationManager;
 import ee.degeetia.dumonitor.filter.util.ExceptionUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +26,7 @@ public class ApplicationLifecycleListener implements ServletContextListener {
   @Override
   public void contextInitialized(ServletContextEvent sce) {
     loadProperties();
-    compileXPathExpressions();
+    loadXmlConfiguration();
     addServlets(sce.getServletContext());
 
     LOG.info("Application started");
@@ -47,9 +47,9 @@ public class ApplicationLifecycleListener implements ServletContextListener {
     }
   }
 
-  private void compileXPathExpressions() {
+  private void loadXmlConfiguration() {
     try {
-      XPathExpressionsManager.getManager().compile();
+      FilterConfigurationManager.getManager().loadConfiguration();
     } catch (JAXBException e) {
       ExceptionUtil.uncheck("Failed to read XPath configuration", e);
     } catch (XPathExpressionException e) {

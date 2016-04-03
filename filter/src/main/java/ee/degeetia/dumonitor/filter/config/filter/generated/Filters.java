@@ -1,5 +1,5 @@
 
-package ee.degeetia.dumonitor.filter.config.xpath.generated;
+package ee.degeetia.dumonitor.filter.config.filter.generated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for filters complex type.
+ * <p>Java class for Filters complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="filters">
+ * &lt;complexType name="Filters">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="filter" type="{xpath_conf_schema.xsd}filter" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="filter" type="{filter_schema.xsd}Filter" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "filters", propOrder = {
+@XmlType(name = "Filters", propOrder = {
     "filter"
 })
 public class Filters {

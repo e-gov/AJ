@@ -1,25 +1,25 @@
 
-package ee.degeetia.dumonitor.filter.config.xpath.generated;
+package ee.degeetia.dumonitor.filter.config.filter.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for dumonitorXPathConfiguration complex type.
+ * <p>Java class for FilterConfiguration complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="dumonitorXPathConfiguration">
+ * &lt;complexType name="FilterConfiguration">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="namespaces" type="{xpath_conf_schema.xsd}namespaces"/>
- *         &lt;element name="filters" type="{xpath_conf_schema.xsd}filters"/>
- *       &lt;/sequence>
+ *       &lt;all>
+ *         &lt;element name="namespaces" type="{filter_schema.xsd}Namespaces" minOccurs="0"/>
+ *         &lt;element name="filters" type="{filter_schema.xsd}Filters" minOccurs="0"/>
+ *         &lt;element name="defaults" type="{filter_schema.xsd}LoggableFields" minOccurs="0"/>
+ *       &lt;/all>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -28,16 +28,14 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "dumonitorXPathConfiguration", propOrder = {
-    "namespaces",
-    "filters"
-})
-public class DumonitorXPathConfiguration {
+@XmlType(name = "FilterConfiguration", propOrder = {
 
-    @XmlElement(required = true)
+})
+public class FilterConfiguration {
+
     protected Namespaces namespaces;
-    @XmlElement(required = true)
     protected Filters filters;
+    protected LoggableFields defaults;
 
     /**
      * Gets the value of the namespaces property.
@@ -85,6 +83,30 @@ public class DumonitorXPathConfiguration {
      */
     public void setFilters(Filters value) {
         this.filters = value;
+    }
+
+    /**
+     * Gets the value of the defaults property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link LoggableFields }
+     *     
+     */
+    public LoggableFields getDefaults() {
+        return defaults;
+    }
+
+    /**
+     * Sets the value of the defaults property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link LoggableFields }
+     *     
+     */
+    public void setDefaults(LoggableFields value) {
+        this.defaults = value;
     }
 
 }

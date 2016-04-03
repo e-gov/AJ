@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filterConfiguration xmlns="filter_schema.xsd">
+    <namespaces>
+        <namespace>
+            <prefix>SOAP-ENV</prefix>
+            <uri>http://schemas.xmlsoap.org/soap/envelope/</uri>
+        </namespace>
+        <namespace>
+            <prefix>xrd</prefix>
+            <uri>http://x-road.eu/xsd/xroad.xsd</uri>
+        </namespace>
+        <namespace>
+            <prefix>id</prefix>
+            <uri>http://x-road.eu/xsd/identifiers</uri>
+        </namespace>
+    </namespaces>
+    <defaults>
+        <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender>
+        <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver>
+        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sendercode>
+        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receivercode>
+        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id</xroadrequestid>
+        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode</xroadservice>
+        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId</usercode>
+    </defaults>
+</filterConfiguration>

@@ -1,6 +1,6 @@
 package ee.degeetia.dumonitor.filter.processor;
 
-import ee.degeetia.dumonitor.filter.config.xpath.XPathExpressionsManager;
+import ee.degeetia.dumonitor.filter.config.filter.FilterConfigurationManager;
 import ee.degeetia.dumonitor.filter.log.LogService;
 import ee.degeetia.dumonitor.filter.util.SoapUtil;
 import ee.degeetia.dumonitor.filter.util.XPathUtil;
@@ -30,7 +30,7 @@ public class MessageProcessor {
     Map<String, String> loggableFields = new HashMap<String, String>();
 
     Map<XPathExpression, Map<String, XPathExpression>> xPathExpressions =
-        XPathExpressionsManager.getManager().getCompiledExpressions();
+        FilterConfigurationManager.getManager().getCompiledExpressions();
 
     for (Entry<XPathExpression, Map<String, XPathExpression>> entry : xPathExpressions.entrySet()) {
       XPathExpression filter = entry.getKey();

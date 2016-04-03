@@ -41,7 +41,7 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="SoapSampler.URL_DATA">http://localhost:8080/testak/testak</stringProp>
+          <stringProp name="SoapSampler.URL_DATA">http://aj02.ci.kit:8080/testak/testak</stringProp>
           <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope 
 	xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; 
 	xmlns:xro=&quot;http://x-road.eu/xsd/xroad.xsd&quot; 
