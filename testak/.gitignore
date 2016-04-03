@@ -1,6 +1,7 @@
 ### Java
 *.class
 *.war
+!testak.war
 
 ### Gradle
 .gradle
@@ -14,3 +15,7 @@ build/
 ### Eclipse
 .classpath
 bin/
+
+### Other
+*.log
+/test123.bdoc

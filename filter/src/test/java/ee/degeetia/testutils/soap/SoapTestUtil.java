@@ -1,6 +1,6 @@
 package ee.degeetia.testutils.soap;
 
-import ee.degeetia.xrtracker.filter.util.IOUtil;
+import ee.degeetia.dumonitor.filter.util.IOUtil;
 
 import javax.xml.soap.*;
 import java.io.ByteArrayOutputStream;

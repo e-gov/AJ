@@ -6,4 +6,5 @@ connection.java.home=null
 connection.jvm.arguments=
 connection.project.dir=
 eclipse.preferences.version=1
+filters=1.0-projectRelativePath-matches-false-false-testak
 project.path=\:
