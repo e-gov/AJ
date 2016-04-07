@@ -1,7 +1,8 @@
 package ee.degeetia.dumonitor.filter.processor;
 
+import ee.degeetia.dumonitor.common.util.IOUtil;
 import ee.degeetia.dumonitor.filter.core.ExecutorManager;
-import ee.degeetia.dumonitor.filter.util.IOUtil;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

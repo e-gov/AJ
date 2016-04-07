@@ -1,7 +1,7 @@
 package ee.degeetia.dumonitor.filter.log;
 
-import ee.degeetia.dumonitor.filter.config.properties.Property;
-import ee.degeetia.dumonitor.filter.config.properties.RuntimeProperty;
+import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.config.properties.RuntimeProperty;
 import ee.degeetia.dumonitor.filter.http.HttpClient;
 import org.junit.After;
 import org.junit.Before;

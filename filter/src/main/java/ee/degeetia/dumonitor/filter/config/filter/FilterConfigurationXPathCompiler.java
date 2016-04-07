@@ -1,7 +1,8 @@
 package ee.degeetia.dumonitor.filter.config.filter;
 
+import ee.degeetia.dumonitor.common.util.XPathUtil;
 import ee.degeetia.dumonitor.filter.config.filter.generated.LoggableFields;
-import ee.degeetia.dumonitor.filter.util.XPathUtil;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

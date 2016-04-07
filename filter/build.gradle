@@ -20,4 +20,6 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 	testCompile 'org.mockito:mockito-all:1.10.18'
     testCompile 'org.eclipse.jetty.aggregate:jetty-all:8.1.19.v20160209'
+    
+    compile project(':dumonitor-common')
 }

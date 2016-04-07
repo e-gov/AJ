@@ -1,8 +1,9 @@
 package ee.degeetia.dumonitor.filter.core;
 
-import ee.degeetia.dumonitor.filter.config.properties.Property;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import ee.degeetia.dumonitor.common.config.properties.Property;
 
 import java.util.Collections;
 import java.util.Iterator;

@@ -1,11 +1,12 @@
 package ee.degeetia.dumonitor.filter;
 
-import ee.degeetia.dumonitor.filter.config.properties.Property;
-import ee.degeetia.dumonitor.filter.config.properties.RuntimeProperty;
+import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.config.properties.RuntimeProperty;
+import ee.degeetia.dumonitor.common.util.HttpUtil;
+import ee.degeetia.dumonitor.common.util.IOUtil;
+import ee.degeetia.dumonitor.common.util.URLUtil;
 import ee.degeetia.dumonitor.filter.processor.MessageProcessorQueue;
-import ee.degeetia.dumonitor.filter.util.HttpUtil;
-import ee.degeetia.dumonitor.filter.util.IOUtil;
-import ee.degeetia.dumonitor.filter.util.URLUtil;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

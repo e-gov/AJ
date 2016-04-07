@@ -1,6 +1,11 @@
-
-include ':filter'
-include ':salvestaja'
-include ':testak'
-
 rootProject.name = 'AJ'
+
+include 'dumonitor-common'
+include 'dumonitor-filter'
+include 'dumonitor-storage'
+include 'dumonitor-test'
+
+project(":dumonitor-common").projectDir = file("common")
+project(":dumonitor-filter").projectDir = file("filter")
+project(":dumonitor-storage").projectDir = file("storage")
+project(":dumonitor-test").projectDir = file("test")

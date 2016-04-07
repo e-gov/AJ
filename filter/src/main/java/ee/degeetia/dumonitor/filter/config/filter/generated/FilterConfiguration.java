@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;all>
- *         &lt;element name="namespaces" type="{filter_schema.xsd}Namespaces" minOccurs="0"/>
- *         &lt;element name="filters" type="{filter_schema.xsd}Filters" minOccurs="0"/>
- *         &lt;element name="defaults" type="{filter_schema.xsd}LoggableFields" minOccurs="0"/>
+ *         &lt;element name="namespaces" type="{http://x-road.eu/xsd/dumonitor.xsd}Namespaces" minOccurs="0"/>
+ *         &lt;element name="filters" type="{http://x-road.eu/xsd/dumonitor.xsd}Filters" minOccurs="0"/>
+ *         &lt;element name="defaults" type="{http://x-road.eu/xsd/dumonitor.xsd}LoggableFields" minOccurs="0"/>
  *       &lt;/all>
  *     &lt;/restriction>
  *   &lt;/complexContent>

@@ -1,6 +1,6 @@
 package ee.degeetia.dumonitor.filter.http;
 
-import ee.degeetia.dumonitor.filter.util.Range;
+import ee.degeetia.dumonitor.common.util.Range;
 
 /**
  * A class that contains the code and the corresponding message of an HTTP status.

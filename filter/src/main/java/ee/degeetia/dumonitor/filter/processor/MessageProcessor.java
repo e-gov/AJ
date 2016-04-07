@@ -1,9 +1,10 @@
 package ee.degeetia.dumonitor.filter.processor;
 
+import ee.degeetia.dumonitor.common.util.SoapUtil;
+import ee.degeetia.dumonitor.common.util.XPathUtil;
 import ee.degeetia.dumonitor.filter.config.filter.FilterConfigurationManager;
 import ee.degeetia.dumonitor.filter.log.LogService;
-import ee.degeetia.dumonitor.filter.util.SoapUtil;
-import ee.degeetia.dumonitor.filter.util.XPathUtil;
+
 import org.w3c.dom.Node;
 
 import javax.xml.soap.SOAPMessage;

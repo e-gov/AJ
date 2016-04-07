@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<filterConfiguration xmlns="filter_schema.xsd">
+<filterConfiguration xmlns="http://x-road.eu/xsd/dumonitor.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://x-road.eu/xsd/dumonitor.xsd dumonitor.xsd">
     <namespaces>
         <namespace>
             <prefix>SOAP-ENV</prefix>

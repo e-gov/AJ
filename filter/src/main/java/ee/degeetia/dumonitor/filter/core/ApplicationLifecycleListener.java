@@ -1,10 +1,11 @@
 package ee.degeetia.dumonitor.filter.core;
 
+import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.config.properties.PropertyLoader;
+import ee.degeetia.dumonitor.common.util.ExceptionUtil;
 import ee.degeetia.dumonitor.filter.XRoadInterceptorServlet;
-import ee.degeetia.dumonitor.filter.config.properties.Property;
-import ee.degeetia.dumonitor.filter.config.properties.PropertyLoader;
 import ee.degeetia.dumonitor.filter.config.filter.FilterConfigurationManager;
-import ee.degeetia.dumonitor.filter.util.ExceptionUtil;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

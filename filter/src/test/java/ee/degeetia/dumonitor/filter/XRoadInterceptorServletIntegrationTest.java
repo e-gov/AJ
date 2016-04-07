@@ -1,10 +1,11 @@
 package ee.degeetia.dumonitor.filter;
 
-import ee.degeetia.dumonitor.filter.util.IOUtil;
+import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.util.IOUtil;
+import ee.degeetia.dumonitor.common.util.ResourceUtil;
 import ee.degeetia.testutils.jetty.EmbeddedJettyIntegrationTest;
 import ee.degeetia.testutils.soap.SoapTestUtil.XmlElement;
-import ee.degeetia.dumonitor.filter.config.properties.Property;
-import ee.degeetia.dumonitor.filter.util.ResourceUtil;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>AJ</name>
-	<comment>Project AJ created by Buildship.</comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
-	</natures>
 	<filteredResources>
 		<filter>
 			<id>1458026793328</id>
-			<name></name>
+			<name/>
 			<type>26</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
@@ -26,7 +12,7 @@
 		</filter>
 		<filter>
 			<id>1458026793359</id>
-			<name></name>
+			<name/>
 			<type>26</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
@@ -35,7 +21,7 @@
 		</filter>
 		<filter>
 			<id>1458026793399</id>
-			<name></name>
+			<name/>
 			<type>26</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
@@ -44,7 +30,7 @@
 		</filter>
 		<filter>
 			<id>1458026793414</id>
-			<name></name>
+			<name/>
 			<type>26</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
@@ -52,8 +38,17 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1459106786657</id>
-			<name></name>
+			<id>1460007961365</id>
+			<name/>
+			<type>26</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-projectRelativePath-matches-false-false-common</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1460007961369</id>
+			<name/>
 			<type>26</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>
@@ -61,4 +56,17 @@
 			</matcher>
 		</filter>
 	</filteredResources>
+	<name>AJ</name>
+	<comment>Project AJ created by Buildship.</comment>
+	<projects/>
+	<natures>
+		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
+	</natures>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+			<arguments/>
+		</buildCommand>
+	</buildSpec>
+	<linkedResources/>
 </projectDescription>

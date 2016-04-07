@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _FilterConfiguration_QNAME = new QName("filter_schema.xsd", "filterConfiguration");
+    private final static QName _FilterConfiguration_QNAME = new QName("http://x-road.eu/xsd/dumonitor.xsd", "filterConfiguration");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: ee.degeetia.dumonitor.filter.config.xpath.generated
@@ -85,7 +85,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link FilterConfiguration }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "filter_schema.xsd", name = "filterConfiguration")
+    @XmlElementDecl(namespace = "http://x-road.eu/xsd/dumonitor.xsd", name = "filterConfiguration")
     public JAXBElement<FilterConfiguration> createFilterConfiguration(FilterConfiguration value) {
         return new JAXBElement<FilterConfiguration>(_FilterConfiguration_QNAME, FilterConfiguration.class, null, value);
     }

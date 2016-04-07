@@ -1,6 +1,6 @@
 package ee.degeetia.dumonitor.filter.http;
 
-import ee.degeetia.dumonitor.filter.util.IOUtil;
+import ee.degeetia.dumonitor.common.util.IOUtil;
 import ee.degeetia.testutils.jetty.EmbeddedJettyIntegrationTest;
 import org.junit.BeforeClass;
 import org.junit.Test;

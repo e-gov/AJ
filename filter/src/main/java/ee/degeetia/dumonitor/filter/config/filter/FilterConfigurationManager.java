@@ -1,14 +1,15 @@
 package ee.degeetia.dumonitor.filter.config.filter;
 
+import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.util.IOUtil;
+import ee.degeetia.dumonitor.common.util.ResourceUtil;
+import ee.degeetia.dumonitor.common.util.XPathUtil;
+import ee.degeetia.dumonitor.common.util.XmlUtil;
 import ee.degeetia.dumonitor.filter.config.filter.generated.Filter;
 import ee.degeetia.dumonitor.filter.config.filter.generated.FilterConfiguration;
 import ee.degeetia.dumonitor.filter.config.filter.generated.LoggableFields;
 import ee.degeetia.dumonitor.filter.config.filter.generated.Namespace;
-import ee.degeetia.dumonitor.filter.config.properties.Property;
-import ee.degeetia.dumonitor.filter.util.IOUtil;
-import ee.degeetia.dumonitor.filter.util.ResourceUtil;
-import ee.degeetia.dumonitor.filter.util.XPathUtil;
-import ee.degeetia.dumonitor.filter.util.XmlUtil;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,14 +18,15 @@ import javax.xml.bind.JAXBException;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
+
+import static ee.degeetia.dumonitor.common.util.ObjectUtil.eq;
+
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static ee.degeetia.dumonitor.filter.util.ObjectUtil.eq;
 
 public final class FilterConfigurationManager {
 

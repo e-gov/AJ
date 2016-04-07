@@ -1,5 +1,9 @@
 // build.gradle
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}
+
 allprojects {
 	group 'ee.degeetia'
 	apply plugin: 'eclipse'

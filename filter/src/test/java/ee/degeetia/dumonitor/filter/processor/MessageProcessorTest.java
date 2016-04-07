@@ -1,8 +1,9 @@
 package ee.degeetia.dumonitor.filter.processor;
 
+import ee.degeetia.dumonitor.common.util.IOUtil;
+import ee.degeetia.dumonitor.common.util.ResourceUtil;
 import ee.degeetia.dumonitor.filter.log.LogService;
-import ee.degeetia.dumonitor.filter.util.IOUtil;
-import ee.degeetia.dumonitor.filter.util.ResourceUtil;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

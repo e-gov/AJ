@@ -1,8 +1,9 @@
 package ee.degeetia.testutils.soap;
 
-import ee.degeetia.dumonitor.filter.util.IOUtil;
-
 import javax.xml.soap.*;
+
+import ee.degeetia.dumonitor.common.util.IOUtil;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 

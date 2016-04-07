@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;all>
  *         &lt;element name="xpath" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="loggableFields" type="{filter_schema.xsd}LoggableFields"/>
+ *         &lt;element name="loggableFields" type="{http://x-road.eu/xsd/dumonitor.xsd}LoggableFields"/>
  *       &lt;/all>
  *     &lt;/restriction>
  *   &lt;/complexContent>
