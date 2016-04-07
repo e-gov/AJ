@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filterConfiguration xmlns="http://x-road.eu/xsd/dumonitor.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://x-road.eu/xsd/dumonitor.xsd dumonitor.xsd">
+	<namespaces>
+		<namespace>
+			<prefix>SOAP-ENV</prefix>
+			<uri>http://schemas.xmlsoap.org/soap/envelope/</uri>
+		</namespace>
+		<namespace>
+			<prefix>xrd</prefix>
+			<uri>http://x-road.eu/xsd/xroad.xsd</uri>
+		</namespace>
+		<namespace>
+			<prefix>id</prefix>
+			<uri>http://x-road.eu/xsd/identifiers</uri>
+		</namespace>
+		<namespace>
+			<prefix>pr</prefix>
+			<uri>http://producer.x-road.eu</uri>
+		</namespace>
+	</namespaces>
+	<defaults>
+		<sender>'Test AK'</sender>
+		<receiver>'Test receiver'</receiver>
+	</defaults>
+	<filters>
+		<filter>
+			<xpath>
+				/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'getPersonData' and 
+				/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'v1' and
+				/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonDataResponse
+			</xpath>
+			<loggableFields>
+				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonDataResponse/response/personCode</personcode>
+				<action>'Get Person Data'</action>
+				<restrictions>'A'</restrictions>
+				<actioncode>'getPersonData.v1'</actioncode>
+			</loggableFields>
+		</filter>
+	</filters>
+</filterConfiguration>
