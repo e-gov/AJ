@@ -19,3 +19,4 @@ bin/
 
 ### GFM View
 .*.md.html
+/test/

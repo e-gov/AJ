@@ -1,7 +1,6 @@
 ### Java
 *.class
 *.war
-!testak.war
 
 ### Gradle
 .gradle
