@@ -1,7 +1,6 @@
 ### Java
 *.class
 *.war
-!testak.war
 
 ### Gradle
 .gradle
@@ -18,4 +17,3 @@ bin/
 
 ### Other
 *.log
-/test123.bdoc

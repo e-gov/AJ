@@ -23,6 +23,3 @@ jmeter {
 	enableExtendedReports = true //produce Graphical and CSV reports
 }
 
-task buildSoapuiWar (type: Exec) {
-	commandLine 'wargenerator.sh', '-w', 'true', '-d', '.', '-f', 'testak.war', 'testak-soapui-project.xml'
-}
