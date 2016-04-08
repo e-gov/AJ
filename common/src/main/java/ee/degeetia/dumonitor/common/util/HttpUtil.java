@@ -1,9 +1,13 @@
 package ee.degeetia.dumonitor.common.util;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.URL;
+
+import static ee.degeetia.dumonitor.common.util.ObjectUtil.eq;
 
 /**
  * Utility class for HTTP related actions.
@@ -41,6 +45,24 @@ public final class HttpUtil {
     to.setStatus(from.getResponseCode());
     to.setContentType(from.getContentType());
     to.setContentLength(from.getContentLength());
+  }
+
+  /**
+   * Opens an HTTP or HTTPS connection depending on the protocol of the URL.
+   *
+   * @param url the URL to connect to
+   * @return the HttpURLConnection object
+   * @throws IOException if an I/O error occurs
+   */
+  public static HttpURLConnection openConnection(URL url) throws IOException {
+    if (!eq(url.getProtocol(), "http", "https")) {
+      throw new IllegalArgumentException("Invalid protocol: " + url.getProtocol());
+    }
+    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+    if (httpURLConnection instanceof HttpsURLConnection) {
+      // TODO
+    }
+    return httpURLConnection;
   }
 
 }

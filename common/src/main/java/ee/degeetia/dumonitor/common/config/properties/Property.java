@@ -1,11 +1,14 @@
 package ee.degeetia.dumonitor.common.config.properties;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import ee.degeetia.dumonitor.common.util.ExceptionUtil;
 import ee.degeetia.dumonitor.common.util.URLUtil;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+/**
+ * Properties that are loaded from a .properties file
+ */
 public enum Property {
 
   FILTER_CONFIGURATION_FILE("dumonitor.filter.configuration.file"),
@@ -15,16 +18,21 @@ public enum Property {
   ANDMEKOGU_INTERCEPTOR_PATH("dumonitor.filter.andmekogu.interceptor.path"),
   LOGGER_REST_URL("dumonitor.filter.logger.rest.url"),
   EXECUTOR_SHUTDOWN_TIMEOUT_SECONDS("dumonitor.filter.executor.shutdown.timeout.seconds"),
- 
+  
   DATABASE_CONNECTSTRING("dumonitor.storage.database.connectstring"),
   DATABASE_USER("dumonitor.storage.database.user"),
   DATABASE_PASSWORD("dumonitor.storage.database.password");
-  
+
+
   private String key;
   private String value;
 
   Property(String key) {
     this.key = key;
+  }
+
+  public String getKey() {
+    return key;
   }
 
   public String getString() {
@@ -43,12 +51,14 @@ public enum Property {
     }
   }
 
-  protected String getKey() {
-    return key;
-  }
-
   public void setValue(String value) {
     this.value = value;
+  }
+
+  public static void clearAll() {
+    for (Property property : values()) {
+      property.setValue(null);
+    }
   }
 
 }

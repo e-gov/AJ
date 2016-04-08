@@ -108,7 +108,9 @@ public final class IOUtil {
         closeable.close();
       }
     } catch (IOException e) {
-      LOG.error("Failed to close " + closeable.getClass().getSimpleName(), e);
+      if (LOG.isErrorEnabled()) {
+        LOG.error("Failed to close " + closeable.getClass().getSimpleName(), e);
+      }
     }
   }
 

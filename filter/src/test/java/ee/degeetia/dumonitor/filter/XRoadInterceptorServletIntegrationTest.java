@@ -1,15 +1,12 @@
 package ee.degeetia.dumonitor.filter;
 
 import ee.degeetia.dumonitor.common.config.properties.Property;
-import ee.degeetia.dumonitor.common.util.IOUtil;
 import ee.degeetia.dumonitor.common.util.ResourceUtil;
+import ee.degeetia.testutils.jetty.EmbeddedJettyHttpServer;
 import ee.degeetia.testutils.jetty.EmbeddedJettyIntegrationTest;
+import ee.degeetia.testutils.servlet.MirroringServlet;
 import ee.degeetia.testutils.soap.SoapTestUtil.XmlElement;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -18,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.soap.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,25 +27,42 @@ import static org.junit.Assert.*;
 
 public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegrationTest {
 
-  private static final String TEST_WS_URL = "http://localhost:8123" + Property.ANDMEKOGU_INTERCEPTOR_PATH.getString();
-
   private SOAPConnection connection;
 
-  @BeforeClass
-  public static void createFakeAndmekoguServlet() {
-    createServlet(new HttpServlet() {
-      @Override
-      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.setContentType(request.getContentType());
-        response.setContentLength(request.getContentLength());
-        IOUtil.pipe(request.getInputStream(), response.getOutputStream());
-      }
-    }, Property.ANDMEKOGU_URL.getURL().getPath());
+  public XRoadInterceptorServletIntegrationTest() {
+    super(new EmbeddedJettyHttpServer());
   }
 
   @BeforeClass
-  public static void createFakeLoggerRestEndpoint() {
+  public static void setProperties() {
+    Property.ANDMEKOGU_INTERCEPTOR_PATH.setValue("/filter/andmekogu");
+    Property.TURVASERVER_INTERCEPTOR_PATH.setValue("/filter/turvaserver");
+  }
+
+  @AfterClass
+  public static void clearProperties() {
+    Property.clearAll();
+  }
+
+  @Before
+  public void setUp() throws Exception {
+    setRuntimeProperties();
+    createAndmekoguServlet();
+    createLoggerServlet();
+    createConnection();
+  }
+
+  private void setRuntimeProperties() {
+    Property.ANDMEKOGU_URL.setValue(getApplicationUrl() + "/andmekogu");
+    Property.TURVASERVER_URL.setValue(getApplicationUrl() + "/turvaserver");
+    Property.LOGGER_REST_URL.setValue(getApplicationUrl() + "/logger");
+  }
+
+  private void createAndmekoguServlet() {
+    createServlet(MirroringServlet.class, Property.ANDMEKOGU_URL.getURL().getPath());
+  }
+
+  private void createLoggerServlet() {
     createServlet(new HttpServlet() {
       @Override
       protected void doPost(HttpServletRequest request, HttpServletResponse response) {
@@ -59,8 +72,7 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
     }, Property.LOGGER_REST_URL.getURL().getPath());
   }
 
-  @Before
-  public void createConnection() throws SOAPException {
+  private void createConnection() throws SOAPException {
     connection = SOAPConnectionFactory.newInstance().createConnection();
   }
 
@@ -72,16 +84,21 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
   @Test
   public void testEmptyBody() throws SOAPException {
     SOAPMessage request = createMessage();
-    SOAPMessage response = connection.call(request, TEST_WS_URL);
+    SOAPMessage response = doCall(request);
 
     Iterator childElements = response.getSOAPBody().getChildElements();
     assertFalse(childElements.hasNext());
   }
 
+  private SOAPMessage doCall(SOAPMessage request) throws SOAPException {
+    String url = getTestWsUrl();
+    return connection.call(request, url);
+  }
+
   @Test
   public void testSingleElement() throws SOAPException {
     SOAPMessage request = createMessage(new XmlElement("testElement", "testElementValue"));
-    SOAPMessage response = connection.call(request, TEST_WS_URL);
+    SOAPMessage response = doCall(request);
 
     Node firstChild = response.getSOAPBody().getFirstChild();
     assertThat(firstChild.getNodeName(), is("testElement"));
@@ -91,7 +108,7 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
   @Test
   public void testSpecialCharacters() throws SOAPException {
     SOAPMessage request = createMessage(new XmlElement("õäöü", "šž"));
-    SOAPMessage response = connection.call(request, TEST_WS_URL);
+    SOAPMessage response = doCall(request);
 
     Node firstChild = response.getSOAPBody().getFirstChild();
     assertThat(firstChild.getNodeName(), is("õäöü"));
@@ -107,7 +124,7 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
     originalAttachment.setContentId("test_attachment");
     request.addAttachmentPart(originalAttachment);
 
-    SOAPMessage response = connection.call(request, TEST_WS_URL);
+    SOAPMessage response = doCall(request);
 
     Iterator attachments = response.getAttachments();
     assertTrue(attachments.hasNext());
@@ -127,7 +144,7 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
     }
 
     SOAPMessage request = createMessage(elements);
-    SOAPMessage response = connection.call(request, TEST_WS_URL);
+    SOAPMessage response = doCall(request);
 
     NodeList childNodes = response.getSOAPBody().getChildNodes();
     assertThat(childNodes.getLength(), is(numElements));
@@ -145,7 +162,7 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
       tasks.add(new Callable<SOAPMessage>() {
         @Override
         public SOAPMessage call() throws Exception {
-          return connection.call(createMessage(new XmlElement("test", "test")), TEST_WS_URL);
+          return doCall(createMessage(new XmlElement("test", "test")));
         }
       });
     }
@@ -163,6 +180,10 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
       executor.shutdownNow();
       fail();
     }
+  }
+
+  private String getTestWsUrl() {
+    return getApplicationUrl() + Property.ANDMEKOGU_INTERCEPTOR_PATH.getString();
   }
 
 }

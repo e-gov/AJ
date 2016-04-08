@@ -49,14 +49,15 @@ public class XRoadInterceptorServlet extends HttpServlet {
     forwardResponse(response, connection, processResponse(connection));
   }
 
-  // TODO: might also be HttpsURLConnection
   private HttpURLConnection openConnection(URL url) throws IOException {
     try {
-      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      HttpURLConnection connection = HttpUtil.openConnection(url);
       connection.setDoOutput(true);
       return connection;
     } catch (IOException e) {
-      LOG.error("Error opening HTTP connection to " + url, e);
+      if (LOG.isErrorEnabled()) {
+        LOG.error("Error opening connection to " + url, e);
+      }
       throw e;
     }
   }
@@ -87,7 +88,7 @@ public class XRoadInterceptorServlet extends HttpServlet {
 
   private void setRuntimeProperties(HttpServletRequest request) throws IOException {
     if (!RuntimeProperty.APPLICATION_URL.isSet()) {
-      RuntimeProperty.APPLICATION_URL.setValue(URLUtil.withoutPath(request.getRequestURL().toString()));
+      RuntimeProperty.APPLICATION_URL.setValue(URLUtil.getBasePath(request.getRequestURL().toString()));
     }
   }
 

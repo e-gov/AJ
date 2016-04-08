@@ -2,8 +2,6 @@ package ee.degeetia.dumonitor.common.util;
 
 import org.junit.Test;
 
-import ee.degeetia.dumonitor.common.util.HttpUtil;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

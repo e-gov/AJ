@@ -1,5 +1,8 @@
 package ee.degeetia.dumonitor.common.config.properties;
 
+/**
+ * Properties that are not preconfigured but discovered at runtime instead.
+ */
 public enum RuntimeProperty {
 
   APPLICATION_URL;

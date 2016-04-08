@@ -12,8 +12,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.mockito.Mockito.verify;
 
@@ -25,13 +23,13 @@ public class LogServiceTest {
   @Mock
   private HttpClient httpClient;
 
-  private Map<String, String> testEntry;
+  private LogEntry testEntry;
 
   @Before
   public void setUp() {
-    testEntry = new HashMap<String, String>();
-    testEntry.put("personcode", "33311110000");
-    testEntry.put("action", "action");
+    testEntry = new LogEntry();
+    testEntry.setPersoncode("33311110000");
+    testEntry.setAction("action");
 
     RuntimeProperty.APPLICATION_URL.setValue("http://localhost:8123");
   }

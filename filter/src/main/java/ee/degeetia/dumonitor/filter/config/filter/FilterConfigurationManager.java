@@ -9,7 +9,6 @@ import ee.degeetia.dumonitor.filter.config.filter.generated.Filter;
 import ee.degeetia.dumonitor.filter.config.filter.generated.FilterConfiguration;
 import ee.degeetia.dumonitor.filter.config.filter.generated.LoggableFields;
 import ee.degeetia.dumonitor.filter.config.filter.generated.Namespace;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,15 +17,14 @@ import javax.xml.bind.JAXBException;
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
-
-import static ee.degeetia.dumonitor.common.util.ObjectUtil.eq;
-
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static ee.degeetia.dumonitor.common.util.ObjectUtil.eq;
 
 public final class FilterConfigurationManager {
 
@@ -76,8 +74,10 @@ public final class FilterConfigurationManager {
       compiledDefaults.putAll(compileDefaults(conf));
     }
 
+    XPathNamespaceContext namespaceContext = new XPathNamespaceContext(conf);
+
     for (Filter filter : conf.getFilters().getFilter()) {
-      XPathExpression compiledXPath = XPathUtil.compile(filter.getXpath(), new XPathNamespaceContext(conf));
+      XPathExpression compiledXPath = XPathUtil.compile(filter.getXpath(), namespaceContext);
 
       Map<String, XPathExpression> compiledFields = new HashMap<String, XPathExpression>();
       compiledFields.putAll(compiledDefaults);
@@ -98,7 +98,7 @@ public final class FilterConfigurationManager {
     return new FilterConfigurationXPathCompiler(fields, new XPathNamespaceContext(configuration)).compile();
   }
 
-  private class XPathNamespaceContext implements NamespaceContext {
+  private static class XPathNamespaceContext implements NamespaceContext {
     private final FilterConfiguration filterConfiguration;
 
     XPathNamespaceContext(FilterConfiguration filterConfiguration) {

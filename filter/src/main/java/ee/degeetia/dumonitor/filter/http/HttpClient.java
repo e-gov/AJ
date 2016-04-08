@@ -2,6 +2,7 @@ package ee.degeetia.dumonitor.filter.http;
 
 import com.google.gson.Gson;
 
+import com.google.gson.GsonBuilder;
 import ee.degeetia.dumonitor.common.util.HttpUtil;
 import ee.degeetia.dumonitor.common.util.IOUtil;
 
@@ -21,6 +22,8 @@ public class HttpClient {
 
   private static final Logger LOG = LogManager.getLogger(HttpClient.class);
 
+  private final Gson gson = createGson();
+
   /**
    * Sends an HTTP POST request to the specified URL.
    *
@@ -32,7 +35,7 @@ public class HttpClient {
    * @throws HttpException if something goes wrong when performing the request
    */
   public <T> HttpResponse<T> post(URL url, Object body, Class<T> responseType) throws HttpException {
-    return execute(url, body, HttpMethod.POST, responseType);
+    return execute(url, body, "POST", responseType);
   }
 
   /**
@@ -44,18 +47,15 @@ public class HttpClient {
    * @throws HttpException if something goes wrong when performing the request
    */
   public HttpResponse<Void> post(URL url, Object body) throws HttpException {
-    return execute(url, body, HttpMethod.POST, null);
+    return execute(url, body, "POST", null);
   }
 
-  private <T> HttpResponse<T> execute(URL url,
-                                      Object body,
-                                      HttpMethod method,
-                                      Class<T> responseType) throws HttpException {
+  private <T> HttpResponse<T> execute(URL url, Object body, String method, Class<T> responseType) throws HttpException {
     HttpURLConnection connection = null;
     try {
-      connection = (HttpURLConnection) url.openConnection();
+      connection = HttpUtil.openConnection(url);
 
-      String json = serialize(body);
+      String json = gson.toJson(body);
       sendHeaders(connection, method, "application/json", json.length());
       sendBody(connection, json);
 
@@ -70,12 +70,12 @@ public class HttpClient {
   }
 
   private void sendHeaders(HttpURLConnection connection,
-                           HttpMethod method,
+                           String method,
                            String contentType,
                            int contentLength) throws IOException {
     connection.setDoInput(true);
     connection.setDoOutput(true);
-    connection.setRequestMethod(method.name());
+    connection.setRequestMethod(method);
     connection.setRequestProperty(HttpUtil.HEADER_CONTENT_TYPE, contentType);
     connection.setRequestProperty(HttpUtil.HEADER_CONTENT_LENGTH, Integer.toString(contentLength));
   }
@@ -100,7 +100,7 @@ public class HttpClient {
 
     InputStream inputStream = connection.getInputStream();
     try {
-      T responseBody = deserialize(IOUtil.readString(inputStream), responseType);
+      T responseBody = gson.fromJson(IOUtil.readString(inputStream), responseType);
       return new HttpResponse<T>(status, responseBody);
     } finally {
       IOUtil.close(inputStream);
@@ -115,12 +115,10 @@ public class HttpClient {
     return status;
   }
 
-  private String serialize(Object object) {
-    return new Gson().toJson(object);
-  }
-
-  private <T> T deserialize(String json, Class<T> type) {
-    return new Gson().fromJson(json, type);
+  private Gson createGson() {
+    GsonBuilder builder = new GsonBuilder();
+    builder.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+    return builder.create();
   }
 
 }

@@ -1,38 +1,43 @@
 package ee.degeetia.testutils.jetty;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 
 import javax.servlet.Servlet;
 
 public class EmbeddedJettyIntegrationTest {
 
-  private static EmbeddedJettyServer server = new EmbeddedJettyServer();
+  private final EmbeddedJettyHttpServer server;
 
-  protected EmbeddedJettyIntegrationTest() {
+  protected EmbeddedJettyIntegrationTest(EmbeddedJettyHttpServer server) {
+    this.server = server;
   }
 
-  @BeforeClass
-  public static void startServer() throws Exception {
+  @Before
+  public void startServer() throws Exception {
     server.start();
   }
 
-  @AfterClass
-  public static void stopServer() throws Exception {
+  @After
+  public void stopServer() throws Exception {
     server.stop();
   }
 
+  protected String getApplicationUrl() {
+    return "http://localhost:" + server.getPort();
+  }
+
   /**
-   * Use in public static {@link BeforeClass} methods to create test servlets for integration tests
+   * Use in public {@link Before} methods to create test servlets for integration tests
    */
-  protected static void createServlet(Servlet servlet, String urlPattern) {
+  protected void createServlet(Servlet servlet, String urlPattern) {
     server.createServlet(servlet, urlPattern);
   }
 
   /**
    * @see #createServlet(Servlet, String)
    */
-  protected static void createServlet(Class<? extends Servlet> servletClass, String urlPattern) {
+  protected void createServlet(Class<? extends Servlet> servletClass, String urlPattern) {
     server.createServlet(servletClass, urlPattern);
   }
 

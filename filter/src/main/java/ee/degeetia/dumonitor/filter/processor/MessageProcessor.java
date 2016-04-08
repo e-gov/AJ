@@ -1,14 +1,16 @@
 package ee.degeetia.dumonitor.filter.processor;
 
+import ee.degeetia.dumonitor.common.util.ObjectMapper;
 import ee.degeetia.dumonitor.common.util.SoapUtil;
 import ee.degeetia.dumonitor.common.util.XPathUtil;
 import ee.degeetia.dumonitor.filter.config.filter.FilterConfigurationManager;
+import ee.degeetia.dumonitor.filter.log.LogEntry;
 import ee.degeetia.dumonitor.filter.log.LogService;
-
 import org.w3c.dom.Node;
 
 import javax.xml.soap.SOAPMessage;
 import javax.xml.xpath.XPathExpression;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,13 +19,17 @@ public class MessageProcessor {
 
   private LogService logService = new LogService();
 
+  private ObjectMapper<LogEntry> logEntryMapper = new ObjectMapper<LogEntry>(LogEntry.class);
+
   public void process(byte[] content, String contentType) throws Exception {
     SOAPMessage message = SoapUtil.parseMessage(content, contentType);
 
     Map<String, String> loggableFields = getLoggableFields(message.getSOAPPart());
 
-    if (loggableFields.size() > 0) {
-      logService.createEntry(loggableFields);
+    if (!loggableFields.isEmpty()) {
+      LogEntry logEntry = logEntryMapper.map(loggableFields);
+      logEntry.setLogtime(new Date());
+      logService.createEntry(logEntry);
     }
   }
 

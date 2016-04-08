@@ -34,7 +34,14 @@ public final class URLUtil {
     }
   }
 
-  public static String withoutPath(String urlStr) throws MalformedURLException {
+  /**
+   * Returns the base path of the input URL.
+   *
+   * @param urlStr the input URL as a String
+   * @return the base path of the input URL
+   * @throws MalformedURLException if the input String does not represent a valid URL
+   */
+  public static String getBasePath(String urlStr) throws MalformedURLException {
     URL url = new URL(urlStr);
     return url.getProtocol() + "://" + url.getAuthority();
   }
