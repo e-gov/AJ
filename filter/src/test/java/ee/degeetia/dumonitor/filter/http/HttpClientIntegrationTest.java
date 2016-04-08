@@ -1,38 +1,49 @@
 package ee.degeetia.dumonitor.filter.http;
 
-import ee.degeetia.dumonitor.common.util.IOUtil;
+import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.testutils.jetty.EmbeddedJettyHttpServer;
 import ee.degeetia.testutils.jetty.EmbeddedJettyIntegrationTest;
+import ee.degeetia.testutils.servlet.MirroringServlet;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-public class HttpClientTest extends EmbeddedJettyIntegrationTest {
+public class HttpClientIntegrationTest extends EmbeddedJettyIntegrationTest {
 
   private HttpClient httpClient = new HttpClient();
 
+  private URL testEndpoint;
+
+  public HttpClientIntegrationTest() {
+    super(new EmbeddedJettyHttpServer());
+  }
+
   @BeforeClass
-  public static void createServerMock() {
-    createServlet(new HttpServlet() {
-      @Override
-      protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.setContentType(request.getContentType());
-        response.setContentLength(request.getContentLength());
-        IOUtil.pipe(request.getInputStream(), response.getOutputStream());
-      }
-    }, "/rest/test");
+  public static void setProperties() {
+    Property.ANDMEKOGU_INTERCEPTOR_PATH.setValue("/filter/andmekogu");
+    Property.TURVASERVER_INTERCEPTOR_PATH.setValue("/filter/turvaserver");
+  }
+
+  @AfterClass
+  public static void clearProperties() {
+    Property.clearAll();
+  }
+
+  @Before
+  public void setTestEndpoint() throws Exception {
+    testEndpoint = new URL(getApplicationUrl() + "/test/rest");
+  }
+
+  @Before
+  public void createServerMock() {
+    createServlet(MirroringServlet.class, testEndpoint.getPath());
   }
 
   @Test
@@ -43,8 +54,7 @@ public class HttpClientTest extends EmbeddedJettyIntegrationTest {
     request.setArray(new int[]{123, 456});
     request.setList(Arrays.asList(1, 2, 3));
 
-    HttpResponse<TestObject> response =
-        httpClient.post(new URL("http://localhost:8123/rest/test"), request, TestObject.class);
+    HttpResponse<TestObject> response = httpClient.post(testEndpoint, request, TestObject.class);
     HttpStatus status = response.getStatus();
     TestObject body = response.getBody();
 
@@ -62,8 +72,7 @@ public class HttpClientTest extends EmbeddedJettyIntegrationTest {
     Map<String, Object> map = new HashMap<String, Object>();
     map.put("string", "stringValue");
     map.put("number", 123.456);
-    HttpResponse<TestObject> response =
-        httpClient.post(new URL("http://localhost:8123/rest/test"), map, TestObject.class);
+    HttpResponse<TestObject> response = httpClient.post(testEndpoint, map, TestObject.class);
     HttpStatus status = response.getStatus();
     TestObject body = response.getBody();
 

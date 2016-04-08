@@ -42,7 +42,7 @@ public class ApplicationLifecycleListener implements ServletContextListener {
   private void loadProperties() {
     PropertyLoader propertyLoader = new PropertyLoader();
     try {
-      propertyLoader.loadProperties("dumonitor.properties", "test.properties", "default.properties");
+      propertyLoader.loadProperties("dumonitor.properties", "default.properties");
     } catch (IOException e) {
       ExceptionUtil.uncheck("Failed to load properties", e);
     }

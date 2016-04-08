@@ -7,9 +7,9 @@ import org.eclipse.jetty.webapp.WebAppContext;
 
 import javax.servlet.Servlet;
 
-public class EmbeddedJettyServer extends Server {
+public class EmbeddedJettyHttpServer extends Server {
 
-  public EmbeddedJettyServer() {
+  public EmbeddedJettyHttpServer() {
     super(8123);
     WebAppContext context = new WebAppContext();
     context.setContextPath("/");
@@ -24,6 +24,14 @@ public class EmbeddedJettyServer extends Server {
 
   public void createServlet(Servlet servlet, String urlPattern) {
     ((WebAppContext) getHandler()).addServlet(new ServletHolder(servlet), urlPattern);
+  }
+
+  public int getPort() {
+    int port = getConnectors()[0].getLocalPort();
+    if (port == -1) {
+      throw new IllegalStateException("Server is not running");
+    }
+    return port;
   }
 
 }

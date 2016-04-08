@@ -2,8 +2,6 @@ package ee.degeetia.dumonitor.common.util;
 
 import org.junit.Test;
 
-import ee.degeetia.dumonitor.common.util.IOUtil;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
