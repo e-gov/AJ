@@ -84,13 +84,16 @@ public class Util  {
     if (context==null) return;
     
     String ctype = req.getHeader("Content-Type");    
-    if (ctype==null || (!ctype.equals("application/json") && !ctype.equals("text/xml"))) {
+    //if (ctype==null || (!ctype.equals("application/json") && !ctype.equals("text/xml"))) {
+    if (ctype==null || (!ctype.contains("json") && !ctype.contains("xml"))) {
       // default: parse input as cgi key=value parametets
       ok=Util.parseCgi(context, inKeys);
-    } else if (ctype.equals("application/json")) {
+    //} else if (ctype.equals("application/json")) {
+    } else if (ctype.contains("json")) {  
       // parse input as json
       ok=Util.parseJson(context, inKeys);
-    } else if (ctype.equals("text/xml")) {    
+    //} else if (ctype.equals("text/xml")) {    
+    } else if (ctype.contains("xml")) {   
       // parse input as json
       ok=Util.parseXml(context, inKeys);              
     } else {
