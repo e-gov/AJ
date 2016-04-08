@@ -13,4 +13,24 @@
         <servlet-name>StoreServlet</servlet-name>
         <url-pattern>/store</url-pattern>
     </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>QueryServlet</servlet-name>
+        <servlet-class>ee.degeetia.dumonitor.storage.Query</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>QueryServlet</servlet-name>
+        <url-pattern>/query</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>XroadServlet</servlet-name>
+        <servlet-class>ee.degeetia.dumonitor.storage.Xroad</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>XroadServlet</servlet-name>
+        <url-pattern>/xroad</url-pattern>
+    </servlet-mapping>
 </web-app>
