@@ -14,8 +14,12 @@ public enum Property {
   TURVASERVER_INTERCEPTOR_PATH("dumonitor.filter.turvaserver.interceptor.path"),
   ANDMEKOGU_INTERCEPTOR_PATH("dumonitor.filter.andmekogu.interceptor.path"),
   LOGGER_REST_URL("dumonitor.filter.logger.rest.url"),
-  EXECUTOR_SHUTDOWN_TIMEOUT_SECONDS("dumonitor.filter.executor.shutdown.timeout.seconds");
-
+  EXECUTOR_SHUTDOWN_TIMEOUT_SECONDS("dumonitor.filter.executor.shutdown.timeout.seconds"),
+ 
+  DATABASE_CONNECTSTRING("dumonitor.storage.database.connectstring"),
+  DATABASE_USER("dumonitor.storage.database.user"),
+  DATABASE_PASSWORD("dumonitor.storage.database.password");
+  
   private String key;
   private String value;
 
