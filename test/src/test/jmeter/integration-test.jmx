@@ -302,7 +302,7 @@
           <value class="SampleSaveConfiguration">
             <time>true</time>
             <latency>true</latency>
-            <timestamp>false</timestamp>
+            <timestamp>true</timestamp>
             <success>true</success>
             <label>true</label>
             <code>true</code>
@@ -314,7 +314,7 @@
             <subresults>false</subresults>
             <responseData>false</responseData>
             <samplerData>false</samplerData>
-            <xml>false</xml>
+            <xml>true</xml>
             <fieldNames>true</fieldNames>
             <responseHeaders>false</responseHeaders>
             <requestHeaders>false</requestHeaders>
@@ -327,7 +327,7 @@
             <sampleCount>true</sampleCount>
           </value>
         </objProp>
-        <stringProp name="filename">build/jmeter-report/results.jtl</stringProp>
+        <stringProp name="filename">build/jmeter-report/results.xml</stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="true">
@@ -337,7 +337,7 @@
           <value class="SampleSaveConfiguration">
             <time>true</time>
             <latency>true</latency>
-            <timestamp>false</timestamp>
+            <timestamp>true</timestamp>
             <success>true</success>
             <label>true</label>
             <code>true</code>
@@ -349,7 +349,7 @@
             <subresults>false</subresults>
             <responseData>false</responseData>
             <samplerData>false</samplerData>
-            <xml>false</xml>
+            <xml>true</xml>
             <fieldNames>true</fieldNames>
             <responseHeaders>false</responseHeaders>
             <requestHeaders>false</requestHeaders>
@@ -362,7 +362,7 @@
             <sampleCount>true</sampleCount>
           </value>
         </objProp>
-        <stringProp name="filename">build/jmeter-report/graph.jtl</stringProp>
+        <stringProp name="filename">build/jmeter-report/graph.xml</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
