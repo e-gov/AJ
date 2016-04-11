@@ -132,7 +132,7 @@ public class Util  {
   
   public static Context initRequest(HttpServletRequest req, HttpServletResponse resp) 
   throws ServletException, IOException {    
-    resp.setContentType("text/plain");             
+    resp.setContentType("application/json");             
     ServletOutputStream os = resp.getOutputStream();    
     Logger log = LogManager.getLogger(Store.class);
     Map<String, String> inParams = new HashMap(); // parsed params stored here

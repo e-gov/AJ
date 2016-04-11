@@ -1,381 +1,404 @@
-<!DOCTYPE html>
-<html lang="en">
-<head itemscope>
+<!DOCTYPE html> 
+<html lang="et">
+<head>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<meta name="description" content="andmesalvestaja siserakendus">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="description" content="Andmejälgija siserakendus ainult asutuse jaoks">
 <meta name="author" content="Tanel Tammet, Ivo Mehide">
 
-<title>Andmejälgija</title>
-<link href="css/bootstrap.css" rel="stylesheet">
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
+<title id="title">Andmejälgija</title>
 
-</head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/aj.css">
 
+<script>
+// configuration used by aj.js javascript functions
+
+var queryURL = "http://localhost:8080/dumonitor-storage-1.0-SNAPSHOT/query"; // url to query from
+var pageLength = 50; // maximal number of rows shown on a page
+var ajaxTimeout = 5000; // milliseconds until the data query timeouts
+var debugging=true; // set to true for some console logging
+
+</script>
+
+</head> 
 <body>
 
-<div id="fb-root"></div>
+<!-- titlebar -->
 
-<div class="navbar navbar-inverse navbar-static-top" style="background-color: #333333;">
+<div class="navbar navbar-inverse navbar-static-top" style="background-color: #222;">
   <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <div class="navbar-header"> 
+       <button type="button" class="navbar-toggle" 
+               data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">Andmejälgija</a>
+      </button>    
+      <a href="#" class="navbar-brand navbar-logo-text"
+         data-target="#aboutModal" data-toggle="modal">Andmejälgija</a>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="index.html">Home</a></li>        
-        <li class="dummy"><a href="tutorial.html">Tutorial</a></li>
-        <li class="dummy"><a href="c_api.html">C API</a></li>        
-        <li class="dummy"><a href="python_api.html">Python</a></li> 
-        <li class="dummy"><a href="tools.html">Tools</a></li>
-        <li class="dummy"><a href="download.html">Download</a></li>
-        <li class="dummy"><a href="install.html">Install</a></li>
-        <li class="dummy"><a href="licence.html">Licence</a></li>
-        <li class="dummy"><a href="contact.html">Contact</a></li>        
+      <ul class="nav navbar-nav">        
+        <li class="dummy navbar-button">
+          <a href="#" class="navbar-btn-link" 
+             data-target="#helpModal" data-toggle="modal">Abi</a>
+        </li>               
       </ul>
-    </div><!--/.navbar-collapse -->
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dummy navbar-button">
+          <a href="#" class="navbar-btn-link" 
+             data-target="#helpModal" data-toggle="modal">Abi</a>
+        </li>   
+      </ul>
+      -->
+    </div>
   </div>
 </div>
 
 <!-- content after titlebar -->
 
-
-
-<!-- Main jumbotron for a primary message -->
-<div class="jumbotron">
-  <div class="container">
-    <h1 style="color: #bbbbbb; text-shadow: 2px 2px #f0f0f0;">Pure speed</h1>
-    <p style="color: #666666; margin-bottom: 20px;">
-    WhiteDB is a lightweight NoSQL database library written in C, operating fully in main memory. 
-    There is no server process. Data is read and written directly from/to shared memory, no sockets are used between
-    WhiteDB and the application program.</p>
-    <p><a class="btn btn-primary btn-lg btn-top" style="margin-right: 30px;" href="tutorial.html">Tutorial </a>
-       <a class="btn btn-default btn-lg btn-top" style="color: #bbbbbb; margin-right: 30px;" href="speed.html">Speed </a>
-       <a class="btn btn-default btn-lg btn-top" style="color: #bbbbbb; margin-right: 30px;" href="download.html">Download </a></p>
-  </div>
-</div>
-
 <div class="container">
-  <!-- Example row of columns -->
   <div class="row">
-    <div class="col-md-4 wblock wblock1">
-      <div class="wiblock wiblock1">
-      <h2>Project goals</h2>
-      <ul>   
-        <li>speed
-        <li>portability
-        <li>simplicity and small footprint 
-        <li>low memory usage
-        <li>easy to use in embedded systems 
-        <li>graph database applications
-        <li>extended rdf database applications       
-        <li>fast interprocess communication
-      </ul> 
-      For the next version we're working on JSON support and a REST tool.
-      </div>
+    <div class="col-md-16 stdblock">
+              
+    
+
+      <div id="maincontent">
+      <!-- <form name="mainform" id="mainform" action="?" method="post"> -->
+      <div class='tabletop'>
+      Kirjed <span id='firstrownr'>0</span>...<span id='lastrownr'>0</span></div>
+      
+      <div class="filters">
+        <div class="row">
+          <div class="col-md-6">
+            <table>
+              <tbody>
+              
+              <tr>
+              <td class="filterlabel">Isikukood</td>
+              <td class="filtercomp">võrdub</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_personcode_value"
+                autocomplete="off" placeholder="EE47101010033">
+              </td>
+              </tr>
+
+              <tr>
+              <td class="filterlabel">Tegevuse avalik nimi	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_action_value"
+                autocomplete="off">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">Saaja avalik nimi	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_receiver_value"
+                autocomplete="off">
+              </td>
+              </tr>
+
+              
+              <tr>
+              <td class="filterlabel">Saatja avalik nimi	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_sender_value"
+                autocomplete="off">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">X-tee päringu id</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_xroadrequestid_value"
+                autocomplete="off">
+              </td>
+              </tr>
+     
+              <tr>
+              <td class="filterlabel">Salvestamisaeg</td>
+              <td class="filtercomp">suurem kui</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_from_date_value"
+                autocomplete="off" placeholder="2016-06-30 14:20:55">
+              </td>
+              </tr>
+              
+              </tbody>
+            </table>            
+          </div>  
+
+          <div class="col-md-6">
+            <table>
+              <tbody>
+              
+              <tr>
+              <td class="filterlabel">Tegevuse tehniline kood	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_actioncode_value"
+                autocomplete="off">
+              </td>
+              </tr>
+
+              <tr>
+              <td class="filterlabel">Saaja tehniline kood	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_receivercode_value"
+                autocomplete="off">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">Saatja tehniline kood	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_sendercode_value"
+                autocomplete="off">
+              </td>
+              </tr>
+
+              <tr>
+              <td class="filterlabel">Töötleja isikukood</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_usercode_value"
+                autocomplete="off" placeholder="EE47101010033">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">X-tee teenuse nimetus</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_xroadservice_value"
+                autocomplete="off">
+              </td>
+              </tr>
+     
+              <tr>
+              <td class="filterlabel">Salvestamisaeg</td>
+              <td class="filtercomp">väiksem kui</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_to_date_value"
+                autocomplete="off" placeholder="2016-06-30 14:20:55">              
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">Piirangud</td>
+              <td class="filtercomp">võrdub</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_restrictions_value"
+                autocomplete="off" placeholder="täht P: piiratud">
+              </td>
+              </tr>
+              
+              </tbody>
+            </table>            
+          </div>
+        </div>
+
+          
     </div>
-    <div class="col-md-4 wblock wblock1">
-      <div class="wiblock wiblock2">
-        <h2>Data storage</h2>
-        <p>
-        Data is kept in shared memory by default, making all the data accessible to separate processes.
-        <p>
-        Each database record is a tuple of N elements, encoded in WhiteDB-s simple compact format.
-        You can store both conventional datatypes and direct pointers to records: the latter
-        enables highly efficient traversal of complex data.
-        <!--
-        The available data types include decimal and floating point numbers, strings, URIs, time and date, BLOB,
-        pointers to records and more. 
-        -->
-      </div>
-    </div>
-    <div class="col-md-4 wblock wblock1">
-      <div class="wiblock wiblock3">
-        <h2>Supported features</h2>
-        <p>
-        <ul>  
-        <li>indexes (T-tree)
-        <li>persistence through logging and memory dumps
-        <li>concurrency through locking
-        <li>limited queries (conjunctive only)
-        <li><!--json, -->CSV and RDF support
-        <li>Linux and Windows
-        <li>Python bindings
-        <li>command line utility tools
-        <!--<li>json REST tools-->
-        </ul>
-      </div>
-   </div>
-   
-  </div>
+          
+    <div class="buttonbar" id="listbuttonbar">
+
+      <button class="btn" name="left" onclick=" 
+      previousPage(); return false;" 
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'"> 
+      <font id="leftscrollbutton">&lt;&lt;</font>
+      </button>
+
+      <button class="btn" name="refresh" onclick="
+      askData(); return false;" 
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">   
+      Uuenda
+      </button>
+
+      <button class="btn" name="clear" onclick="     
+      clearFilters();" 
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">
+      Tühjenda filtrid 
+      </button>
+
+      <button class="btn" name="right" onclick="
+      nextPage(); return false;"       
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">            
+      <font id="rightscrollbutton">&gt;&gt;</font>
+      </button>
+      
+    </div>     
+     
+    <table id="maintable" class="datatable">
+    <tbody>
+
+      <tr class="headerrow">
+      <th onclick="sortcol('personcode'); return false;" class="colheader">
+      <span class="clearsortmark">?</span>
+      Isik
+      </th>
+      <th class="colheader">
+      <span class="clearsortmark">?</span>
+      Aeg
+      </th>
+      <th onclick="sortcol('actioncode'); return false;" class="colheader">
+      <span class="clearsortmark">?</span>
+      Tegevus
+      </th>
+      <th onclick="sortcol('receivercode'); return false;" class="colheader widelistcol">
+      <span class="clearsortmark">?</span>
+      Saaja
+      </th>
+      <th onclick="sortcol('sendercode'); return false;" class="colheader widelistcol">
+      <span class="clearsortmark">?</span>
+      Saatja
+      </th>
+      <th onclick="sortcol('usercode'); return false;" class="colheader">
+      <span class="clearsortmark">?</span>
+      Töötleja
+      </th>
+      <th onclick="sortcol('restrictions'); return false;" class="colheader widelistcol">
+      <span class="clearsortmark">?</span>
+      Piirang
+      </th>
+      </tr>
+      
+    <!-- here are the data rows inserted -->
+    
+    </tbody>
+    </table>
+
+  </form>
+  </div>   
 </div>
 
-<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-<h1 style="text-align: center">Built with WhiteDB</h1>
-</div>
-  
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row">
-    <div class="col-md-4 wblock wblock2">
-      <div class="wiblock wiblock1">
-      <h2>Roboswarm</h2>   
-        <div class="wiblockimg"><img  src="img/robotarmy_white_2.jpg"></img></div>
-        <p> 
-        An early version of WhiteDB was used in the Roboswarm EU project
-        enhancing the (cooperative) intelligence of iRobot Roombas functioning
-        as a swarm. 
+<!-- help popup start --> 
+
+<div class="modal fade" id="helpModal" style="margin-top: 20px;  border-radius: 0px;">
+  <div class="modal-dialog" style="border-radius: 0px;">
+    <div class="modal-content" style="border-radius: 0px;">
+      <div class="modal-header" style="background-color: #f8f8f8">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Abiks kasutamisel</h4>
+      </div>
+      <div class="modal-body">           
+        Selle veebilehe kaudu saad uurida oma asutuse isikuandmete saatmise
+        logi. Vaikimisi kuvatakse kõige uuemaid kirjeid. Noolenuppudega saad liikuda
+        lehekülgede kaupa edasi ja tagasi. 
         <p>
-        All the external commands and data arriving from the robot sensors are stored in a WhiteDB
-        onboard Roomba, running on a <a href="https://www.gumstix.com/">tiny linux computer</a>. The reasoner generates new
-        tasks for the Roomba reactively, in real-time, using rules and the 
-        WhiteDB contents.
-        <p class="wiblockbtn" style="vertical-align: bottom">
-          <a class="btn btn-primary" href="http://vimeo.com/user2952867/videos">Roboswarm videoclips &raquo;</a></p>  
-      </div>
-    </div>
-    <div class="col-md-4 wblock wblock2">
-      <div class="wiblock wiblock2">
-      <h2>Travel planner</h2>
-     <div class="wiblockimg"><img  src="img/planner.jpg"></img></div>   
+        Otsinguks täida lihtsalt filtriväljad: enamus neist töötab teksti sisalduvuse
+        põhimõttel, seejuures väike- ja suurtähed on erinevad, Isikukoodi väli töötab täpse
+        otsingu põhimõttel.
         <p>
-         The personalized tourism travel planner of a main national <a href="http://www.visitestonia.com">tourism site</a>
-         uses WhiteDB as the storage for the hard search tasks.
-         <p>
-         The planner has to sift through, match and evaluate all the tourism objects in the country during
-         a heuristics-guided search for the best available plan to visit interesting sites. 
-         <p>
-         <p class="wiblockbtn">
-            <a class="btn btn-primary" href="http://www.visitestonia.com/en/travel-planner">Travel planner &raquo;</a></p>         
+        Kui logis on piiratud ligipääsuga kirjeid, siis nende piirangu välja väärtuseks on P:
+        väärtuse puudumine või A tähendab, et piirangut ei ole.
       </div>
-    </div>
-    <div class="col-md-4 wblock wblock2">
-      <div class="wiblock wiblock3">
-      <h2>Telemedicine</h2>
-      <div class="wiblockimg"><img  src="img/Digibox.jpg"></img></div>    
-       <p>
-       Intelligent telemedicine systems developed at <a href="http://www.eliko.ee">eliko</a> use WhiteDB running on
-       a small MIPS type CPU for storing and analysing sensor data.
-       <p>
-       The principles of using whiteboard systems with WhiteDB as a core tool for fast interprocess communication of multi-agent
-       systems are described 
-       in a Ph.D thesis "Whiteboard Architecture for the Multi-agent Sensor Systems" 
-       <p class="wiblockbtn"><a class="btn btn-primary" href="doc/Reilent_phd_thesis.pdf">Thesis pdf &raquo;</a></p>
+      <div class="modal-footer" style="border-radius: 0px;">      
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
       </div>
-   </div>
-   
-  </div>
-</div>  
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-<h1 style="text-align: center">Technology</h1>
-</div>
-  
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row">
-    <div class="col-md-4 wblock wblock3">
-      <div class="wiblock wiblock1">
-      <h2>Direct memory access</h2>
-      <p>
-    Each record is stored as an array (N-tuple) of integers: configurable as either 32 or 64 bits. 
-    The integers in the tuple encode values directly or as pointers. Columns have no type: any encoded
-    value can be stored to any field.
-    <p>
-    You can always get a direct pointer to a record, store it into a field of a record 
-    or use it in your own program directly. A record pointer can thus be used as an automatically
-    assigned id of the record which requires no search at all to access the record.
-    <p>
-    To search for a record, either scan the chain of all records, scan a sublist/tree you
-    have built yourself or perform an index search on an indexed field.
-      </div>
-    </div>
-    <div class="col-md-4 wblock wblock3">
-      <div class="wiblock wiblock2">
-      <h2>Data encoding</h2>      
-      <p>
-      The low bits of an integer in a record indicate the type of data. Anything which does not fit into the
-      remainining bits is allocated separately and pointed to by the same integer. 
-      <p>
-      The datatypes are null, record(pointer), integer, double, string, 
-      xml literal, uri, blob,  char, date, time, pointer to record. 
-      <p>
-      Long strings are allocated uniquely, i.e. using the same string in many fields does not
-      take up additional space and allows fast string equality check.    
-      <p>      
-      A record pointer is a persistent offset of the record, usable
-      as an automatic id of the record. Pointers allow 
-      <a href="http://en.wikipedia.org/wiki/Graph_database">fast traversal of
-      complex data</a> without search.
-      </div>
-    </div>
-    <div class="col-md-4 wblock wblock3">
-      <div class="wiblock wiblock3">
-      <h2>Allocation and garbage collection</h2>
-      <p>
-      Conventional 
-      <a href="http://en.wikipedia.org/wiki/C_dynamic_memory_allocation">malloc</a> 
-      does not function in shared memory, since we have to use offsets instead
-      of conventional pointers. Hence WhiteDB uses its own implementation of malloc for 
-      <a href="http://en.wikipedia.org/wiki/Shared_memory">shared memory</a>.
-      <p>
-      A record and a uniquely kept long string can be pointed to 
-      from several fields.
-      Hence we use 
-      <a href="http://en.wikipedia.org/wiki/Reference_counting">reference counting garbage collection</a>
-      embedded into
-      our allocation algorithm when deleting records and long strings. 
-      Reference counting is incremental and does not cause long
-      pauses.      
-      </div>
-   </div>
-   
-  </div>
-</div>  
+<!-- help popup end -->
 
-<div class="container" style="margin-top: 10px;">
-</div>
+<!-- about popup start --> 
 
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row">
-    <div class="col-md-4 wblock wblock3">
-      <div class="wiblock wiblock1">
-      <h2>Locking</h2>
-      <p>
-  We use a database level lock implemented via a task-fair 
-  atomic <a href="http://en.wikipedia.org/wiki/Spinlock">spinlock</a> queue for concurrency control,
-  but alternative faster and simpler preference policies can be configured: either a  
-  reader-preference or a writer-preference spinlock.
-  <p>  
-  Generally, a database level lock is characterized by very low overhead but 
-  maximum possible contention. 
-  This means that processes should spend as little time between 
-  acquiring a lock and releasing it, as possible.
-  <p>
-  We provide safe atomic updates of simple values without taking a write lock.
+<div class="modal fade" id="aboutModal" style="margin-top: 20px;  border-radius: 0px;">
+  <div class="modal-dialog" style="border-radius: 0px;">
+    <div class="modal-content" style="border-radius: 0px;">
+      <div class="modal-header" style="background-color: #f8f8f8">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Andmejälgija rakendus</h4>
       </div>
-    </div>
-    <div class="col-md-4 wblock wblock3">
-      <div class="wiblock wiblock2">
-      <h2>Indexes</h2>
-      <p>
-      The simplest index provided is a <a href="http://en.wikipedia.org/wiki/T-tree">T-tree index</a> on any field containing
-      any mixture of objects (integers, strings, etc). The index is automatically maintained when records
-      are added, deleted or changed.
-      <p>
-      The efficiency of indexing can be greatly enhanced by using template indexes, which
-      create an index only for records having a given value in a given field. For example,         
-      create an index on column 0 that only contains records where the 2-nd column is equal to 6.
-      <p>
-      Deduplicating storage of long strings, xml literals and uri-s uses hash indexes internally.
+      <div class="modal-body">      
+        Selle veebilehe abil saad uurida oma asutuse isikuandmete saatmise logi.
+        Siit leitav informatsioon ei ole avalik: avalikult saavad isikud leida
+        ainult nende oma andmete liikumise logikirjeid portaali eesti.ee kaudu.        
+      </div>      
+      <div class="modal-footer" style="border-radius: 0px;">
+        <button type="button" class="btn btn-primary" 
+          onclick="$('#aboutModal').modal('hide'); $('#helpModal').modal('show');">Loe juhendit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
       </div>
-    </div>
-    <div class="col-md-4 wblock wblock3">
-      <div class="wiblock wiblock3">
-      <h2>Persistent storage</h2>
-      <p>
-     Two mechanisms are available for storing the shared memory database to disk. First, the whole
-    database can be dumped and restored. Since the database uses offsets instead of conventional
-    pointers, the absolute adress locations are not important.
-    <p>
-    Second, all inserts, deletions and updates can be logged to a file. The compact log thus created can be played 
-    back to restore the contents of the database (normally after the last dump). Logging can be switched
-    on and off, depending on the data criticality/performance requirements.    
-      </div>
-   </div>
-   
-  </div>
-</div>  
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
+<!-- about popup end -->
 
+<!-- record popup start --> 
+
+<div class="modal" id="recordModal" style="margin-top: 20px;  border-radius: 0px;">
+  <div class="modal-dialog" style="border-radius: 0px;">
+    <div class="modal-content" style="border-radius: 0px;">
+      <div class="modal-header" style="background-color: #f8f8f8">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Üks kirje</h4>
+      </div>
+      <div class="modal-body">
+        <p id="recordcontents"></p>
+      </div>
+      <div class="modal-footer" style="border-radius: 0px;">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- error popup start --> 
+
+<div class="modal fade" id="errorModal" style="margin-top: 20px;  border-radius: 0px;">
+  <div class="modal-dialog" style="border-radius: 0px;">
+    <div class="modal-content" style="border-radius: 0px;">
+      <div class="modal-header" style="background-color: #f8f8f8">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="color: red;">Sideprobleem</h4>
+      </div>
+      <div class="modal-body">
+        <p id="errorcontents">Andmeid ei õnnestunud lugeda: palun proovi hiljem uuesti.</p>
+      </div>
+      <div class="modal-footer" style="border-radius: 0px;">
+           <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- error popup end -->
 
 <!-- footer -->
 
-<div class="ofooter">  
- <div class="col-md-12 container ifooter">
-  <div id="team">
-    <a href="contact.html" style="color: #666666; font-family: 'Roboto'; font-size: 16px;">WhiteDB team 2013</a>
-  </div>    
-  <p> 
-  <div id="gplusone">
-    <div class="g-plusone" data-annotation="none" data-size="large" data-expandTo="right"
-        data-href="http://www.whitedb.org">
-    </div>
-  </div>
-  <p>
-  <div id="twitter">
-    <div>
-    <a href="https://twitter.com/share" class="twitter-share-button" 
-         data-url="http://www.whitedb.org" data-hashtags="whitedb"
-         data-text="a fast database library in shared memory">Tweet</a>
-    </div>
-  </div>
-  <div id="facebook">
-    <div class="fb-like" data-href="http://www.whitedb.org" 
-        data-colorscheme="light" 
-        data-layout="box-count" data-action="like" 
-        data-show-faces="true" data-send="true">
-    </div>
-  </div>
-  
-  </div>  
-</div> 
+<div style="height: 60px;"></div>
+
+<!-- footer end -->
 
 <!-- at-end-scripts -->
 
-<!-- Bootstrap core JavaScript -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/aj.js"></script>
 
-<script src="js/bootstrap.min.js"></script>
-
-<!-- social scripts -->
-
-<script>
-// facebook
-
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=168856549986981";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-// google+ 
-
-(function() {
-   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-   po.src = 'https://apis.google.com/js/client:plusone.js?onload=gplus_render';
-   //po.src = 'https://apis.google.com/js/plusone.js?';
-   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
- })();
-
-// twitter 
-
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-  if(!d.getElementById(id)){js=d.createElement(s);js.id=id;
-  js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);
-  }}(document, 'script', 'twitter-wjs');
-    
-// google analytics
-
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-44786402-1', 'whitedb.org');
-  ga('send', 'pageview');
-
-</script>  
-  
 </body>
 </html>
+ 
+
+

@@ -21,9 +21,9 @@ public class Store extends HttpServlet {
 
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {"personcode","action",
-     "sender","receiver","restrictions",
-     "sendercode","receivercode","actioncode",
-     "xroadrequestid","xroadservice","usercode"};
+      "sender","receiver","restrictions",
+      "sendercode","receivercode","actioncode",
+      "xroadrequestid","xroadservice","usercode"};
   
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) 

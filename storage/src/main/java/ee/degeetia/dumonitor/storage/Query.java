@@ -24,7 +24,8 @@ public class Query extends HttpServlet {
      "sender","receiver","restrictions",
      "sendercode","receivercode","actioncode",
      "xroadrequestid","xroadservice","usercode",
-     "offset","limit","from_date","to_date"};
+     "offset","limit","from_date","to_date",
+     "callback"};
   
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
@@ -97,7 +98,11 @@ public class Query extends HttpServlet {
     // create filters
     
     for(int i=0;i<inKeys.length;i++) {
-      if (inKeys[i].equals("offset") || inKeys[i].equals("limit")) continue;
+      // ignore non-sql parameters
+      if (inKeys[i].equals("offset") || 
+          inKeys[i].equals("limit") ||
+          inKeys[i].equals("callback") ) continue;
+      // here we have only sql parameters
       if (context.inParams.get(inKeys[i])!=null) {
         if (inKeys[i].equals("personcode")) {
           where=where+" and "+inKeys[i]+"=? ";           
@@ -112,7 +117,7 @@ public class Query extends HttpServlet {
         paramnr++;        
       }
     }
-    
+       
     //context.os.println("paramnr: "+paramnr);
     //context.os.println("where: "+where);
     
@@ -155,8 +160,14 @@ public class Query extends HttpServlet {
         }
         array.put(obj);        
       }
+      // handle potential javascript callback parameter
+      if (context.inParams.get("callback")!=null) {
+        context.os.println(context.inParams.get("callback")+"(");
+      }
       context.os.println(array.toString(1));      
-     
+      if (context.inParams.get("callback")!=null) {
+        context.os.println(");");
+      }
           
     } catch(Exception e) {
       Util.showError(context, 5, "database query error: "+e.getMessage());

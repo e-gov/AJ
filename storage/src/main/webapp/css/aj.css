@@ -1,0 +1,310 @@
+/* 
+ * aj.css for Andmejälgija
+ *
+ */
+
+
+body {  
+  padding-bottom: 0px;
+  color: rgb(51, 51, 51) ;
+  background-color:	#e5e5e5 ;
+  overflow-y:scroll;
+  font-family: 'Open Sans Light',Arial,Helvetica,sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+  line-height: 1.1;
+  color: rgb(51, 51, 51);
+}
+
+.navbar-logo-text {
+  font-size: 16px; 	
+  font-weight: bold;
+  color: white !important;
+}
+
+.navbar-btn-link {
+  color: #ddd;
+}
+
+.navbar .nav > li > a {
+    float: none;
+    color: #fff;
+    border-radius: 0px;
+}
+
+.navbar .nav > li > a:hover {
+    float: none;
+    color: #fff;
+    background-color: #555;
+}
+
+
+
+
+.stdblock {
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e0e0e0;
+  padding: 20px;  
+}
+
+.ofooter {
+  height: 240px;
+  margin-top: 65px;
+  background-color: #f0f0f0;  
+  color: #333333;  
+  text-align: center:
+}
+
+.ifooter {
+  padding-top: 40px;
+}
+
+#team {
+  position: relative;
+  left: 10px;
+  top: 200px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* **** buttons **** */
+
+
+.btn {
+   font-size:15px !important
+   font-family: "Open Sans", arial, helvetica, sans-serif !important;
+   color: #333333;
+   background-color: #eeeeee;
+   border-top: 0px;
+   border-left: 0px;
+   border-right: 0px;
+   border-bottom: 2px solid #3FB618;
+   padding-bottom: 2px;
+   padding-top: 2px;   
+   border-radius: 0px 0px 0px 0px;
+   box-shadow:none !important;
+   -webkit-border-radius: 0 !important;
+   -moz-border-radius: 0 !important;
+   border-radius: 0 !important;
+}
+
+.btnhov {
+  color: white !important; 
+  background-color: #3FB618;
+  cursor: pointer;  
+}	
+
+.btnshow {
+}
+
+.btnhide {
+  display: none;
+}
+
+
+/* *********  tables ******** */
+
+table {
+  width: 100%;
+   line-height: 180%;	border-spacing: 2px;
+}
+
+table.tr {
+  width: 100%;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding: 5px;
+}
+
+.filters {  
+  color: #333333;  
+  font-family: "Open Sans", arial, helvetica,sans-serif;
+  margin-bottom: 10px;
+  padding:0; 
+}	
+
+.filterselect {  
+  color: #333333;  
+  background-color: #ffffff; 
+  font-family: "Open Sans",arial, helvetica,sans-serif;
+  padding:0; 
+  background:#F7F7F7;
+  display:inline;
+  border: 1px solid #CCCCCC;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333333;
+}	
+
+.filterfld {          
+  border:1px solid #aaa;
+  padding:3px;
+  margin-right:10px;
+  font-family:"Open Sans",arial,helvetica,sans-serif,sans-serif;
+  font-size: small;
+  height: 26px;
+  width: 150px;
+}
+
+.filterlabel {            
+  padding:3px;
+  width: 200px; 
+}
+
+.filtercomp {            
+  padding:3px;
+  width: 100px;
+}
+
+.tabletop {
+  font-size:18px;
+  color: #333333;  
+  font-family: "Open Sans", arial, helvetica,sans-serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding:0; 
+}	
+
+.colheader {
+  background-color: #EEEEEE;  
+  border-style:solid;
+  border-color:#EEEEEE;
+  border-width:1px;
+  padding-left: 1px;
+}
+
+.colheader_nosort {
+  cursor: auto !important;
+  background-color: #EEEEEE !important;  
+  border-style:solid;
+  border-color:#EEEEEE;
+  border-width:1px;
+  padding-left: 1px;
+}
+
+.colheader_nosort :hover {
+  cursor: auto;
+  background-color: #EEEEEE;
+}
+
+.sortmark {
+  width:40px;
+  padding:0;
+  font-weight:900;
+  font-size:14px;
+  color: #ff3333;  
+}
+
+.clearsortmark {
+  width:40px;
+  padding:0;
+  font-weight:bold;
+  font-size:14px;
+  color: #ff3333;
+  visibility: hidden;  
+}
+
+.sortlink {
+  color: #333333;  
+}
+
+.rowselect {
+  margin-left: 0px;
+  padding-left: 2px !IMPORTANT;
+  text-align:left;  
+}
+
+.rowselectbox {
+  margin-left: 0px;
+  padding-left: 2px !IMPORTANT;
+  text-align:left;  
+}
+
+table.datatable {
+  border-collapse:collapse;
+}
+
+.datatable th {
+  font-size: 13px;
+}
+
+.datatable td {
+  border-top:1px solid #dddddd;
+  font-size: 13px;
+}
+
+tr.datarow {
+  font-family:"Open Sans",arial,helvetica,sans-serif;   
+}
+
+tr.datarow :hover {
+  cursor: pointer;
+}
+
+tr.datarow:hover td {
+  background-color: #DDDDDD; 
+}
+
+/*
+tr.headerrow :hover {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #DDDDDD;
+}
+*/
+
+.buttonbar {
+  font-size:18px;
+  color: #333333;  
+  font-family: "Open Sans",arial, helvetica;
+  margin-bottom: 15px;  
+  padding:0; 
+}
+
+.recordkey {
+	white-space: nowrap;
+	padding-right: 10px;
+}
+
+.recordvalue {
+	width: 100%;
+	color: black;
+}
+
+td.widelistcol {
+  display: none;
+}
+
+th.widelistcol {
+  display: none;
+}
+
+
+@media screen and (min-width:700px ) {
+    
+  td.widelistcol {
+  	display: table-cell !important;
+  }	
+  
+  th.widelistcol {
+  	display: table-cell !important;
+  }	
+}  
+
+/* Customize container */
+
+@media (min-width:768px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+
+
+
