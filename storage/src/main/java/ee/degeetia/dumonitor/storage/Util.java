@@ -201,8 +201,7 @@ public class Util  {
       return false;      
     } 
     xml=jb.toString();     
-    context.os.println("|"+xml+"|");    
-    
+    //context.os.println("|"+xml+"|");    
     DocumentBuilder db;                
     try {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -285,7 +284,7 @@ public class Util  {
       } else {
         // Normal error: pass request, insert header
         String err=Strs.xroadErr.replace("{header}",createSoapHeader(context));
-        err=Strs.xroadErr.replace("{producerns}",Property.XROAD_PRODUCERNS.getString());
+        err=err.replace("{producerns}",Property.XROAD_PRODUCERNS.getString());
         err=err.replace("{request}",context.xrdRequest);
         err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanErrMsg(msg));
         context.os.println(err);
