@@ -141,9 +141,8 @@ public class Xroad extends HttpServlet {
       PreparedStatement preparedStatement = conn.prepareStatement(sql);  
       preparedStatement.setString(1, personcode);  
       preparedStatement.setInt(2, limit);
-      preparedStatement.setInt(3, offset);
-      
-      context.os.println(preparedStatement.toString());
+      preparedStatement.setInt(3, offset);      
+      //context.os.println(preparedStatement.toString());
       
       // execute select SQL stetement   
       ResultSet rs = preparedStatement.executeQuery();
