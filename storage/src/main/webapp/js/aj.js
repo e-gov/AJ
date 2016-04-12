@@ -2,22 +2,14 @@
 
 "use strict";
 
-/*
-var imageUrl="";
-var infoWindow;
-var sendrequest;
-var successflag=false;
-var cancelflag=false;
-var messagefilter=false;
-*/
-
 /* Global conf set in html, commented out from here */
 
 /*
-var queryURL = "http://localhost:8080/dumonitor-storage-1.0-SNAPSHOT/query"; // url to query from
-var pageLength = 5; // maximal number of rows shown on a page
+var queryURL = "query"; // url to query from: this here is a relative url
+//var queryURL = "http://localhost:8080/dumonitor-storage-1.0-SNAPSHOT/query"; // use either relative or full path   
+var pageLength = 50; // maximal number of rows shown on a page
 var ajaxTimeout = 5000; // milliseconds until the data query timeouts
-var debugging=false; // set to true for some console logging
+var debugging=true; // set to true for some console logging
 */
 
 /* specific conf not set in html */
@@ -116,10 +108,14 @@ function makeParams() {
 
 function handleAjaxSuccess(response) {
   var html;
-  debug(response);
+  debug(response);  
   data=response; // store to global var
-  html=makeTable(response);
   $("#maintable tr:gt(0)").remove();
+  if (response && ! $.isArray(response)) {
+    handleDataError(response);
+    return;
+  }  
+  html=makeTable(response);
   $("#maintable > tbody:last-child").append(html);
   $("#firstrownr").html(getFirstRowNr()+1);
   $("#lastrownr").html(getLastRowNr()+1);  
@@ -138,6 +134,20 @@ function handleAjaxError(response) {
   $("#errorModal").modal('show');
   debug(errmsg); 
 }  
+
+function handleDataError(response) {
+  var errmsg="",tmp="";
+  if (response && has(response,"errmessage")) {
+    tmp=response["errmessage"].replace("database query error: ERROR:", 
+                                       "päringu viga: ");
+    errmsg=errmsg+encodeHtml(tmp);
+  } else {
+    errmsg=errmsg+encodeHtml(" "+response);
+  }    
+  $("#dataerrorcontents").html(errmsg);
+  $("#dataerrorModal").modal('show');
+  debug(errmsg); 
+} 
 
 /* prepare data list table contents from data */
 

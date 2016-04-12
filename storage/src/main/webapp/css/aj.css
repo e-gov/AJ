@@ -1,5 +1,5 @@
 /* 
- * aj.css for Andmej‰lgija
+ * aj.css for Andmej√§lgija
  *
  */
 
@@ -18,6 +18,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: rgb(51, 51, 51);
 }
 
+.ajnavbar {
+  background-color: #222 !important;"
+}
 .navbar-logo-text {
   font-size: 16px; 	
   font-weight: bold;
@@ -41,7 +44,22 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 
+.ajmodal {
+  margin-top: 20px !important;  
+  border-radius: 0px !important;"
+}
 
+.aj-modal-header {
+  background-color: #f8f8f8 !important;
+}
+
+.redtext {
+  color: red !important;	
+}
+
+.noround {
+  border-radius: 0px !important;	
+}
 
 .stdblock {
   background-color: white;
@@ -51,30 +69,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   padding: 20px;  
 }
 
-.ofooter {
-  height: 240px;
-  margin-top: 65px;
-  background-color: #f0f0f0;  
-  color: #333333;  
-  text-align: center:
-}
-
-.ifooter {
-  padding-top: 40px;
-}
-
-#team {
-  position: relative;
-  left: 10px;
-  top: 200px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+.ajfooter {
+  height: 60px;
+} 
 
 /* **** buttons **** */
 
+.buttonbar {
+  font-size:18px;
+  color: #333333;  
+  font-family: "Open Sans",arial, helvetica;
+  margin-bottom: 15px;  
+  padding:0; 
+}
 
 .btn {
    font-size:15px !important
@@ -107,20 +114,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   display: none;
 }
 
-
-/* *********  tables ******** */
-
-table {
-  width: 100%;
-   line-height: 180%;	border-spacing: 2px;
-}
-
-table.tr {
-  width: 100%;
-  margin-bottom: 2px;
-  margin-top: 2px;
-  padding: 5px;
-}
+/* **** filters ***** */
 
 .filters {  
   color: #333333;  
@@ -160,6 +154,30 @@ table.tr {
 .filtercomp {            
   padding:3px;
   width: 100px;
+}
+
+.recordkey {
+	white-space: nowrap;
+	padding-right: 10px;
+}
+
+.recordvalue {
+	width: 100%;
+	color: black;
+}
+
+/* *********  tables ******** */
+
+table {
+  width: 100%;
+   line-height: 180%;	border-spacing: 2px;
+}
+
+table.tr {
+  width: 100%;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding: 5px;
 }
 
 .tabletop {
@@ -258,24 +276,6 @@ tr.headerrow :hover {
   background-color: #DDDDDD;
 }
 */
-
-.buttonbar {
-  font-size:18px;
-  color: #333333;  
-  font-family: "Open Sans",arial, helvetica;
-  margin-bottom: 15px;  
-  padding:0; 
-}
-
-.recordkey {
-	white-space: nowrap;
-	padding-right: 10px;
-}
-
-.recordvalue {
-	width: 100%;
-	color: black;
-}
 
 td.widelistcol {
   display: none;

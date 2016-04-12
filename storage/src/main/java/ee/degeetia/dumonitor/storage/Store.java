@@ -18,7 +18,8 @@ import org.json.*;
 public class Store extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-
+  static private Context context; // global vars are here
+  
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {"personcode","action",
       "sender","receiver","restrictions",
@@ -28,53 +29,35 @@ public class Store extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
   throws ServletException, IOException {    
-    Util.processGet(req, resp, "handleStoreParams", inKeys);  
+    handleRequest(req, resp, false);
   }
   
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
   throws ServletException, IOException {
-    Util.processPost(req, resp, "handleStoreParams", inKeys);   
-  }   
-     
+    handleRequest(req, resp, true);    
+  }
+  
+  private void handleRequest(HttpServletRequest req, HttpServletResponse resp, boolean isPost)
+  throws ServletException, IOException {
+    context=Util.initRequest(req,resp,"application/json",Store.class);
+    if (context==null) return;
+    boolean ok=Util.parseInput(req, resp, context, inKeys, isPost); 
+    if (!ok || context.inParams==null) return;      
+    handleStoreParams(); 
+    context.os.flush();
+    context.os.close();
+  }    
   
   /*
    *  Store parsed parameters passed as hashmap  
    */
   
-  public static void handleStoreParams(Context context) 
+  public static void handleStoreParams() 
   throws ServletException, IOException {                        
     
-    // check whether the driver present
-    try {
-      Class.forName("org.postgresql.Driver");
-    } catch (ClassNotFoundException e) {
-      Util.showError(context, 3, "failed to find the PostgreSQL JDBC Driver");
-      return;
-    }
-    
-    // create db connection
-    
-    /*
-    String url = "jdbc:postgresql://localhost/test";
-    Properties props = new Properties();
-    props.setProperty("user","fred");
-    props.setProperty("password","secret");
-    props.setProperty("ssl","true");
-    Connection conn = DriverManager.getConnection(url, props);
-    String url = "jdbc:postgresql://localhost/test?user=fred&password=secret&ssl=true";
-    Connection conn = DriverManager.getConnection(url);
-    */
-    Connection conn=null;
-    try {
-      conn = DriverManager.getConnection(
-         Property.DATABASE_CONNECTSTRING.getString(),
-         Property.DATABASE_USER.getString(),
-         Property.DATABASE_PASSWORD.getString());
-    } catch(Exception e) {
-      Util.showError(context, 4, "failed to connect to the database");
-      return;
-    }  
+    Connection conn = Util.createDbConnection(context);
+    if (conn==null) return;       
     
     // insert data
     
@@ -97,13 +80,13 @@ public class Store extends HttpServlet {
       // execute insert SQL stetement
       int n = preparedStatement.executeUpdate();      
       if (n!=1) {
-        Util.showError(context, 6, "record not stored");
+        Util.showError(context, 11, "record not stored");
       } else {
         Util.showOK(context);
       }
           
     } catch(Exception e) {
-      Util.showError(context, 5, "database storage error: "+e.getMessage());
+      Util.showError(context, 10, "database storage error: "+e.getMessage());
       return;    
     } finally {
         //It's important to close the connection when you are done with it

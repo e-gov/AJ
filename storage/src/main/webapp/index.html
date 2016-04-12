@@ -19,7 +19,8 @@
 <script>
 // configuration used by aj.js javascript functions
 
-var queryURL = "http://localhost:8080/dumonitor-storage-1.0-SNAPSHOT/query"; // url to query from
+//var queryURL = "query"; // url to query from: this here is a relative url
+var queryURL = "http://localhost:8080/dumonitor-storage-1.0-SNAPSHOT/query"; // use either relative or full path   
 var pageLength = 50; // maximal number of rows shown on a page
 var ajaxTimeout = 5000; // milliseconds until the data query timeouts
 var debugging=true; // set to true for some console logging
@@ -31,7 +32,7 @@ var debugging=true; // set to true for some console logging
 
 <!-- titlebar -->
 
-<div class="navbar navbar-inverse navbar-static-top" style="background-color: #222;">
+<div class="navbar navbar-inverse navbar-static-top ajnavbar">
   <div class="container">
     <div class="navbar-header"> 
        <button type="button" class="navbar-toggle" 
@@ -66,9 +67,7 @@ var debugging=true; // set to true for some console logging
 
 <div class="container">
   <div class="row">
-    <div class="col-md-16 stdblock">
-              
-    
+    <div class="col-md-16 stdblock">                  
 
       <div id="maincontent">
       <!-- <form name="mainform" id="mainform" action="?" method="post"> -->
@@ -211,7 +210,6 @@ var debugging=true; // set to true for some console logging
             </table>            
           </div>
         </div>
-
           
     </div>
           
@@ -288,28 +286,33 @@ var debugging=true; // set to true for some console logging
 
 <!-- help popup start --> 
 
-<div class="modal fade" id="helpModal" style="margin-top: 20px;  border-radius: 0px;">
-  <div class="modal-dialog" style="border-radius: 0px;">
-    <div class="modal-content" style="border-radius: 0px;">
-      <div class="modal-header" style="background-color: #f8f8f8">
+<div class="modal fade ajmodal" id="helpModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Abiks kasutamisel</h4>
       </div>
       <div class="modal-body">           
-        Selle veebilehe kaudu saad uurida oma asutuse isikuandmete saatmise
+        Selle veebilehe kaudu saad uurida oma asutuse isikuandmete X-tee kaudu saatmise
         logi. Vaikimisi kuvatakse kõige uuemaid kirjeid. Noolenuppudega saad liikuda
-        lehekülgede kaupa edasi ja tagasi. 
+        lehekülgede kaupa edasi ja tagasi.                 
         <p>
         Otsinguks täida lihtsalt filtriväljad: enamus neist töötab teksti sisalduvuse
-        põhimõttel, seejuures väike- ja suurtähed on erinevad, Isikukoodi väli töötab täpse
-        otsingu põhimõttel.
+        põhimõttel, seejuures väike- ja suurtähed on erinevad. 
+        Isikukoodi väli töötab täpse otsingu põhimõttel. 
+        Tühje väljasid ignoreeritakse.
+        <p>
+        Kuupäevaväljasid ei pea täitma sekundi täpsusega: piisab ka ainult kuu või kuupäeva või
+        kuupäev + tunnid täpsusest.
         <p>
         Kui logis on piiratud ligipääsuga kirjeid, siis nende piirangu välja väärtuseks on P:
         väärtuse puudumine või A tähendab, et piirangut ei ole.
       </div>
-      <div class="modal-footer" style="border-radius: 0px;">      
-        <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+      <div class="modal-footer noround">      
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+          onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -319,10 +322,10 @@ var debugging=true; // set to true for some console logging
 
 <!-- about popup start --> 
 
-<div class="modal fade" id="aboutModal" style="margin-top: 20px;  border-radius: 0px;">
-  <div class="modal-dialog" style="border-radius: 0px;">
-    <div class="modal-content" style="border-radius: 0px;">
-      <div class="modal-header" style="background-color: #f8f8f8">
+<div class="modal fade ajmodal" id="aboutModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Andmejälgija rakendus</h4>
@@ -332,10 +335,12 @@ var debugging=true; // set to true for some console logging
         Siit leitav informatsioon ei ole avalik: avalikult saavad isikud leida
         ainult nende oma andmete liikumise logikirjeid portaali eesti.ee kaudu.        
       </div>      
-      <div class="modal-footer" style="border-radius: 0px;">
-        <button type="button" class="btn btn-primary" 
-          onclick="$('#aboutModal').modal('hide'); $('#helpModal').modal('show');">Loe juhendit</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+      <div class="modal-footer noround">
+        <button type="button" class="btn btn-default" 
+          onclick="$('#aboutModal').modal('hide'); $('#helpModal').modal('show');"
+          onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Loe juhendit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+          onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -345,10 +350,10 @@ var debugging=true; // set to true for some console logging
 
 <!-- record popup start --> 
 
-<div class="modal" id="recordModal" style="margin-top: 20px;  border-radius: 0px;">
-  <div class="modal-dialog" style="border-radius: 0px;">
-    <div class="modal-content" style="border-radius: 0px;">
-      <div class="modal-header" style="background-color: #f8f8f8">
+<div class="modal ajmodal" id="recordModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Üks kirje</h4>
@@ -356,8 +361,9 @@ var debugging=true; // set to true for some console logging
       <div class="modal-body">
         <p id="recordcontents"></p>
       </div>
-      <div class="modal-footer" style="border-radius: 0px;">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+      <div class="modal-footer noround">
+           <button type="button" class="btn btn-default" data-dismiss="modal"
+             onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -365,19 +371,41 @@ var debugging=true; // set to true for some console logging
 
 <!-- error popup start --> 
 
-<div class="modal fade" id="errorModal" style="margin-top: 20px;  border-radius: 0px;">
-  <div class="modal-dialog" style="border-radius: 0px;">
-    <div class="modal-content" style="border-radius: 0px;">
-      <div class="modal-header" style="background-color: #f8f8f8">
+<div class="modal fade ajmodal" id="errorModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" style="color: red;">Sideprobleem</h4>
+        <h4 class="modal-title redtext">Sideprobleem</h4>
       </div>
       <div class="modal-body">
         <p id="errorcontents">Andmeid ei õnnestunud lugeda: palun proovi hiljem uuesti.</p>
       </div>
-      <div class="modal-footer" style="border-radius: 0px;">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+      <div class="modal-footer noround">
+           <button type="button" class="btn btn-default" data-dismiss="modal"
+             onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- data error popup start --> 
+
+<div class="modal fade ajmodal" id="dataerrorModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title redtext">Viga</h4>
+      </div>
+      <div class="modal-body">
+        <p id="dataerrorcontents">Päringu viga.</p>
+      </div>
+      <div class="modal-footer noround">
+           <button type="button" class="btn btn-default" data-dismiss="modal"
+             onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -387,7 +415,7 @@ var debugging=true; // set to true for some console logging
 
 <!-- footer -->
 
-<div style="height: 60px;"></div>
+<div class="ajfooter"></div>
 
 <!-- footer end -->
 
