@@ -38,4 +38,15 @@ public class Strs {
     + "  </SOAP-ENV:Body>\n"
     + "</SOAP-ENV:Envelope>";
     
+  public static String xroadMessage = 
+      "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+    + "  {header}"
+    + "  <SOAP-ENV:Body>\n"
+    + "    <m:paringResponse xmlns:m=\"{producerns}\">\n"
+    + "      {request}\n"
+    + "      {response}\n"
+    + "    </m:paringResponse>\n"
+    + "  </SOAP-ENV:Body>\n"
+    + "</SOAP-ENV:Envelope>";  
+    
 }

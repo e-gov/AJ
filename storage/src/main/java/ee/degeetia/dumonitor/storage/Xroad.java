@@ -53,9 +53,7 @@ public class Xroad extends HttpServlet {
       if (!ok || context.inParams==null) return;      
       handleXroad(); 
     } catch (Exception e) {
-      Util.showError(context,9,"unknown error: "+e.getMessage()); 
-      context.os.flush();
-      context.os.close();
+      Util.showError(context,9,"unexpected error: "+e.getMessage()); 
     }     
     context.os.flush();
     context.os.close();
@@ -96,10 +94,14 @@ public class Xroad extends HttpServlet {
       if (personcode==null || personcode.equals("")) {
         Util.showError(context,12,"Message personcode was empty");
         return;
-      }  
+      }
       String result=fetchData(personcode);
-      result="<result>\n"+result+"</result>";    
-      context.os.println(result);   
+      result="<response>\n"+result+"</response>"; 
+      String envelope=Strs.xroadMessage.replace("{header}",Util.createSoapHeader(context));
+      envelope=envelope.replace("{producerns}",Property.XROAD_PRODUCERNS.getString());
+      envelope=envelope.replace("{request}",requestStr);
+      envelope=envelope.replace("{response}",result);     
+      context.os.println(envelope);   
       context.os.flush();
       context.os.close();
     } catch (java.lang.NullPointerException e) {
@@ -146,19 +148,21 @@ public class Xroad extends HttpServlet {
       // execute select SQL stetement   
       ResultSet rs = preparedStatement.executeQuery();
       ResultSetMetaData rsmd = rs.getMetaData();      
-      result="<data>\n";
+      result="";
       while ( rs.next() ) {
         int numColumns = rs.getMetaData().getColumnCount();
-        String row="<row>";
+        String row="<item>";
         for ( int i = 1 ; i <= numColumns ; i++ ) {
           // Column numbers start at 1.
-          row+="<fld name=\""+rsmd.getColumnName(i)+"\">";
-          row+=rs.getObject(i)+"</fld>";          
+          row+="<"+rsmd.getColumnName(i)+">";
+          if (rs.getObject(i)!=null) {
+            row+=Util.cleanXmlStr(rs.getObject(i)+"");
+          }  
+          row+="</"+rsmd.getColumnName(i)+">";          
         }
-        row+="</row>\n";
+        row+="</item>\n";
         result+=row;        
-      }
-      result+="</data>\n";           
+      }                
     } catch(Exception e) {
       Util.showError(context, 10, "database query error: "+e.getMessage());
       return null;    

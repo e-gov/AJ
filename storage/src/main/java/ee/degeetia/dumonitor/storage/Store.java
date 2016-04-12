@@ -40,13 +40,17 @@ public class Store extends HttpServlet {
   
   private void handleRequest(HttpServletRequest req, HttpServletResponse resp, boolean isPost)
   throws ServletException, IOException {
-    context=Util.initRequest(req,resp,"application/json",Store.class);
-    if (context==null) return;
-    boolean ok=Util.parseInput(req, resp, context, inKeys, isPost); 
-    if (!ok || context.inParams==null) return;      
-    handleStoreParams(); 
+    try {
+      context=Util.initRequest(req,resp,"application/json",Store.class);
+      if (context==null) return;
+      boolean ok=Util.parseInput(req, resp, context, inKeys, isPost); 
+      if (!ok || context.inParams==null) return;      
+      handleStoreParams();
+    } catch (Exception e) {
+      Util.showError(context,9,"unexpected error: "+e.getMessage()); 
+    }     
     context.os.flush();
-    context.os.close();
+    context.os.close(); 
   }    
   
   /*
@@ -54,8 +58,7 @@ public class Store extends HttpServlet {
    */
   
   public static void handleStoreParams() 
-  throws ServletException, IOException {                        
-    
+  throws ServletException, IOException { 
     Connection conn = Util.createDbConnection(context);
     if (conn==null) return;       
     

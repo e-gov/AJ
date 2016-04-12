@@ -279,14 +279,14 @@ public class Util  {
       if (code<10) {
         // Technical error: no request obtained or used, no header inserted
         String err=Strs.xroadTechErr;
-        err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanErrMsg(msg));
+        err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanXmlStr(msg));
         context.os.println(err);
       } else {
         // Normal error: pass request, insert header
         String err=Strs.xroadErr.replace("{header}",createSoapHeader(context));
         err=err.replace("{producerns}",Property.XROAD_PRODUCERNS.getString());
         err=err.replace("{request}",context.xrdRequest);
-        err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanErrMsg(msg));
+        err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanXmlStr(msg));
         context.os.println(err);
       };        
     }
@@ -294,11 +294,12 @@ public class Util  {
     context.os.close();          
   }
   
-  public static String cleanErrMsg(String msg) {
+  public static String cleanXmlStr(String msg) {
     if (msg==null || msg.equals("")) return msg;
     msg=msg.replace("<"," ").replace(">"," ").replace("&"," ").replace("\"","'");
     return msg;
   }
+  
   /*
    *  Output trivial OK message
    */
