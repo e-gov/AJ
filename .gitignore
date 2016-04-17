@@ -21,3 +21,5 @@ bin/
 .*.md.html
 
 /tmp/
+/storage/
+/test/
