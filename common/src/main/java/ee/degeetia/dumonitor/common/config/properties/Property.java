@@ -21,8 +21,12 @@ public enum Property {
   
   DATABASE_CONNECTSTRING("dumonitor.storage.database.connectstring"),
   DATABASE_USER("dumonitor.storage.database.user"),
-  DATABASE_PASSWORD("dumonitor.storage.database.password");
+  DATABASE_PASSWORD("dumonitor.storage.database.password"),
 
+  XROAD_PRODUCER("dumonitor.storage.xroad.producer"),
+  XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
+  XROAD_USERID("dumonitor.storage.xroad.userId"),
+  XROAD_SERVICE("dumonitor.storage.xroad.service");   
 
   private String key;
   private String value;

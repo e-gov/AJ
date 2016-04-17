@@ -18,62 +18,51 @@ import org.json.*;
 public class Query extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-
+  private static Context context; // global vars are here
+  
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {"personcode","action",
      "sender","receiver","restrictions",
      "sendercode","receivercode","actioncode",
      "xroadrequestid","xroadservice","usercode",
-     "offset","limit","from_date","to_date"};
+     "offset","limit","from_date","to_date",
+     "callback"};
   
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
   throws ServletException, IOException {    
-    Util.processGet(req, resp, "handleQueryParams", inKeys);  
+    handleRequest(req, resp, false);
   }
   
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
   throws ServletException, IOException {
-    Util.processPost(req, resp, "handleQueryParams", inKeys);   
+    handleRequest(req, resp, true);    
   }
+  
+  private void handleRequest(HttpServletRequest req, HttpServletResponse resp, boolean isPost)
+  throws ServletException, IOException {
+    try {
+      context=Util.initRequest(req,resp,"application/json",Query.class);
+      if (context==null) return;
+      boolean ok=Util.parseInput(req, resp, context, inKeys, isPost); 
+      if (!ok || context.inParams==null) return;      
+      handleQueryParams(); 
+    } catch (Exception e) {
+      Util.showError(context,9,"unexpected error: "+e.getMessage()); 
+    }     
+    context.os.flush();
+    context.os.close();  
+  }  
   
   /*
    *  Store parsed parameters passed as hashmap  
    */
   
-  public static void handleQueryParams(Context context) 
-  throws ServletException, IOException {                        
-    
-    // check whether the driver present
-    try {
-      Class.forName("org.postgresql.Driver");
-    } catch (ClassNotFoundException e) {
-      Util.showError(context, 3, "failed to find the PostgreSQL JDBC Driver");
-      return;
-    }
-    
-    // create db connection    
-    /*
-    String url = "jdbc:postgresql://localhost/test";
-    Properties props = new Properties();
-    props.setProperty("user","fred");
-    props.setProperty("password","secret");
-    props.setProperty("ssl","true");
-    Connection conn = DriverManager.getConnection(url, props);
-    String url = "jdbc:postgresql://localhost/test?user=fred&password=secret&ssl=true";
-    Connection conn = DriverManager.getConnection(url);
-    */
-    Connection conn=null;
-    try {
-      conn = DriverManager.getConnection(
-         Property.DATABASE_CONNECTSTRING.getString(),
-         Property.DATABASE_USER.getString(),
-         Property.DATABASE_PASSWORD.getString());
-    } catch(Exception e) {
-      Util.showError(context, 4, "failed to connect to the database");
-      return;
-    }  
+  public static void handleQueryParams() 
+  throws ServletException, IOException {            
+    Connection conn = Util.createDbConnection(context);
+    if (conn==null) return;
     
     // set pagination values
     
@@ -97,7 +86,11 @@ public class Query extends HttpServlet {
     // create filters
     
     for(int i=0;i<inKeys.length;i++) {
-      if (inKeys[i].equals("offset") || inKeys[i].equals("limit")) continue;
+      // ignore non-sql parameters
+      if (inKeys[i].equals("offset") || 
+          inKeys[i].equals("limit") ||
+          inKeys[i].equals("callback") ) continue;
+      // here we have only sql parameters
       if (context.inParams.get(inKeys[i])!=null) {
         if (inKeys[i].equals("personcode")) {
           where=where+" and "+inKeys[i]+"=? ";           
@@ -112,10 +105,7 @@ public class Query extends HttpServlet {
         paramnr++;        
       }
     }
-    
-    //context.os.println("paramnr: "+paramnr);
-    //context.os.println("where: "+where);
-    
+
     // query data
     
     try {                  
@@ -155,11 +145,17 @@ public class Query extends HttpServlet {
         }
         array.put(obj);        
       }
+      // handle potential javascript callback parameter
+      if (context.inParams.get("callback")!=null) {
+        context.os.println(context.inParams.get("callback")+"(");
+      }
       context.os.println(array.toString(1));      
-     
+      if (context.inParams.get("callback")!=null) {
+        context.os.println(");");
+      }
           
     } catch(Exception e) {
-      Util.showError(context, 5, "database query error: "+e.getMessage());
+      Util.showError(context, 10, "database query error: "+e.getMessage());
       return;    
     } finally {
         //It's important to close the connection when you are done with it
