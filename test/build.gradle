@@ -7,6 +7,9 @@ buildscript {
 	    }
 	}
 	dependencies {
+		
+		classpath 'org.postgresql:postgresql:9.4.1208.jre6'
+		
 		classpath ("gradle.plugin.net.foragerr.jmeter:jmeter-gradle-plugin:1.0.3-2.13") {
 			exclude group: 'xml-apis' 
 		}
@@ -17,9 +20,48 @@ buildscript {
 apply plugin: 'net.foragerr.jmeter'
 
 jmeter {
-	excludes = ["load-test.jmx"]
+	excludes = ["*.jmx"]
+	
+	jmTestFiles = [];
+	project.gradle.startParameter.taskNames.each { name ->
+			File f = file("src/test/jmeter/" + (name - "jmRun_") + ".jmx");
+			if (f.exists()) jmTestFiles.add(f);
+	}
+	if (jmTestFiles.size() == 0) jmTestFiles = [file("src/test/jmeter/integration-test.jmx")];
 	// jmTestFiles = [file("src/test/jmeter/test2.jmx")] //if jmx file is not in the default location
 	// jmUserProperties = [file("src/test/jmeter/user.properties")] //to add additional user properties
+	jmUserProperties = [
+		"testakUrl=http://aj04.ci.kit:8080/testak/soap",
+		"filterUrl=http://aj02.ci.kit:8080/dumonitor-filter/testak",
+		"dbUrl=jdbc:postgresql://aj03.ci.kit/aj",
+		"dbUser=ajuser",
+		"dbPassword=aj22p",
+		"storageHost=aj03.ci.kit",
+		"storagePort=8080",
+		"storageStorePath=/dumonitor-storage/store",
+		"storageQueryPath=/dumonitor-storage/query",
+		"storageXroadQueryPath=/dumonitor-storage/xroad",
+		// Load test parameters:
+		"parallelRequests=50",
+		"rampUpPeriod=10",
+		"loopCount=10",
+		// Mitu kirjet logi päringu koormustestiga loetakse:
+		"logRecordCount=10"
+	]
 	enableExtendedReports = true //produce Graphical and CSV reports
 }
 
+tasks.addRule("Pattern: jmRun_<filename>") {
+	String taskName ->
+	if (taskName.startsWith("jmRun_")) {
+		task (taskName, type: net.foragerr.jmeter.gradle.plugins.TaskJMRun, dependsOn: ['copyPostgreLib','jmInit']) << {
+		}
+	}
+}
+
+task copyPostgreLib(type: Copy) {
+	from(buildscript.configurations.classpath) {
+   		include '**/postgresql*.jar'
+   	}
+   into 'build/jmeter/lib'
+}

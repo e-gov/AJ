@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Filtri komponent: päringu ja vastuse logimine" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">true</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="filterUrl" elementType="Argument">
+            <stringProp name="Argument.name">filterUrl</stringProp>
+            <stringProp name="Argument.value">http://aj02.ci.kit:8080/dumonitor-filter/testak</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dbUrl" elementType="Argument">
+            <stringProp name="Argument.name">dbUrl</stringProp>
+            <stringProp name="Argument.value">jdbc:postgresql://aj03.ci.kit/aj</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dbUser" elementType="Argument">
+            <stringProp name="Argument.name">dbUser</stringProp>
+            <stringProp name="Argument.value">ajuser</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dbPassword" elementType="Argument">
+            <stringProp name="Argument.name">dbPassword</stringProp>
+            <stringProp name="Argument.value">aj22p</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="true">
+        <boolProp name="autocommit">true</boolProp>
+        <stringProp name="checkQuery">Select 1</stringProp>
+        <stringProp name="connectionAge">5000</stringProp>
+        <stringProp name="dataSource">dbpool</stringProp>
+        <stringProp name="dbUrl">${dbUrl}</stringProp>
+        <stringProp name="driver">org.postgresql.Driver</stringProp>
+        <boolProp name="keepAlive">true</boolProp>
+        <stringProp name="password">${dbPassword}</stringProp>
+        <stringProp name="poolMax">10</stringProp>
+        <stringProp name="timeout">10000</stringProp>
+        <stringProp name="transactionIsolation">DEFAULT</stringProp>
+        <stringProp name="trimInterval">60000</stringProp>
+        <stringProp name="username">${dbUser}</stringProp>
+      </JDBCDataSource>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="JMeter Users" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1375525852000</longProp>
+        <longProp name="ThreadGroup.end_time">1375525852000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
+          <stringProp name="TestPlan.comments">Kasutatakse selleks, et oleks võimalik eristada erinevaid päringuid omavahel</stringProp>
+          <stringProp name="maximumValue">1000000</stringProp>
+          <stringProp name="minimumValue">1</stringProp>
+          <stringProp name="outputFormat">000000</stringProp>
+          <boolProp name="perThread">true</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">uuid</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="filterLogging" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${filterUrl}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope 
+	xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; 
+	xmlns:xro=&quot;http://x-road.eu/xsd/xroad.xsd&quot; 
+	xmlns:iden=&quot;http://x-road.eu/xsd/identifiers&quot; 
+	xmlns:prod=&quot;http://producer.x-road.eu&quot;&gt;
+   &lt;soapenv:Header&gt;
+      &lt;xro:protocolVersion&gt;4.0&lt;/xro:protocolVersion&gt;
+      &lt;xro:id&gt;4894e35d-bf0f-44a6-867a-123456${uuid}&lt;/xro:id&gt;
+      &lt;xro:userId&gt;EE12345678901&lt;/xro:userId&gt;
+      &lt;xro:service iden:objectType=&quot;SERVICE&quot;&gt;
+         &lt;iden:xRoadInstance&gt;CI&lt;/iden:xRoadInstance&gt;
+         &lt;iden:memberClass&gt;GOV&lt;/iden:memberClass&gt;
+         &lt;iden:memberCode&gt;20000001&lt;/iden:memberCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:subsystemCode&gt;AJ&lt;/iden:subsystemCode&gt;
+         &lt;iden:serviceCode&gt;getPersonData&lt;/iden:serviceCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:serviceVersion&gt;v1&lt;/iden:serviceVersion&gt;
+      &lt;/xro:service&gt;
+      &lt;xro:client iden:objectType=&quot;MEMBER&quot;&gt;
+         &lt;iden:xRoadInstance&gt;CI&lt;/iden:xRoadInstance&gt;
+         &lt;iden:memberClass&gt;GOV&lt;/iden:memberClass&gt;
+         &lt;iden:memberCode&gt;10000001&lt;/iden:memberCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:subsystemCode&gt;Center&lt;/iden:subsystemCode&gt;
+      &lt;/xro:client&gt;
+   &lt;/soapenv:Header&gt;
+   &lt;soapenv:Body&gt;
+      &lt;prod:getPersonData&gt;
+         &lt;request&gt;
+            &lt;personCode&gt;47101010033&lt;/personCode&gt;
+         &lt;/request&gt;
+      &lt;/prod:getPersonData&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - protocolVersion" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:protocolVersion = &apos;4.0&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+            <boolProp name="XPath.quiet">false</boolProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - id" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:id = &apos;4894e35d-bf0f-44a6-867a-8e51f1daa7e0&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - userId" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:userId = &apos;EE12345678901&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - xRoadInstance" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:service/iden:xRoadInstance = &apos;CI&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - memberClass" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:service/iden:memberClass = &apos;GOV&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - memberCode" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:service/iden:memberCode = &apos;20000001&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - subsystemCode" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:service/iden:subsystemCode = &apos;AJ&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - serviceCode" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:service/iden:serviceCode = &apos;getPersonData&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - serviceVersion" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:service/iden:serviceVersion = &apos;v1&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - client objectType" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:client/@iden:objectType = &apos;MEMBER&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - client xRoadInstance" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:client/iden:xRoadInstance = &apos;CI&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - client memberClass" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:client/iden:memberClass = &apos;GOV&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - client memberCode" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:client/iden:memberCode = &apos;10000001&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - client subsystemCode" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:client/iden:subsystemCode = &apos;Center&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - response personCode" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/personCode = &apos;47101010033&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - response firstName" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/firstName = &apos;MARI-LIIS&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - response lastName" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/lastName = &apos;MÄNNIK&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - response attachment" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/attachment/@href = &apos;cid:att&apos;</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - response attachment content" enabled="true">
+            <boolProp name="XPath.negate">false</boolProp>
+            <stringProp name="XPath.xpath">boolean(string(/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/attachment)) = false</stringProp>
+            <boolProp name="XPath.validate">false</boolProp>
+            <boolProp name="XPath.whitespace">false</boolProp>
+            <boolProp name="XPath.tolerant">false</boolProp>
+            <boolProp name="XPath.namespace">true</boolProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </XPathAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion - multipart mime" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-743639980">Content-Type: multipart/related</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion - attachment id" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-979418460">Content-ID: &lt;att&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+            <stringProp name="Assertion.scope">children</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="TestPlan.comments">Ootame veidi, et filter jõuaks päringu maha logida</stringProp>
+          <stringProp name="ConstantTimer.delay">2000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
+          <stringProp name="dataSource">dbpool</stringProp>
+          <stringProp name="query">select * from ajlog where xroadrequestid = ? order by actioncode</stringProp>
+          <stringProp name="queryArguments">4894e35d-bf0f-44a6-867a-123456${uuid}</stringProp>
+          <stringProp name="queryArgumentsTypes">VARCHAR</stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Prepared Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as Object</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames">id, personcode, logtime, action, sender, receiver, restrictions, sendercode, receivercode, actioncode, xroadrequestid, xroadservice, usercode</stringProp>
+        </JDBCSampler>
+        <hashTree>
+          <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="true">
+            <stringProp name="BeanShellAssertion.query">Failure = true;
+FailureMessage = &quot;Assertion script error&quot;;
+try {
+	log.debug(&quot;xroadrequestid_#: &quot; + vars.get(&quot;xroadrequestid_#&quot;));
+	if (!&quot;2&quot;.equals(vars.get(&quot;xroadrequestid_#&quot;))) throw new Exception(&quot;Logimise viga: andmebaasikirjete arv ei ole 2&quot;);
+	log.debug(&quot;actioncode_1: &quot; + vars.get(&quot;actioncode_1&quot;));
+	if (!&quot;REQ:getPersonData.v1&quot;.equals(vars.get(&quot;actioncode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;actioncode&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;actioncode_2: &quot; + vars.get(&quot;actioncode_2&quot;));
+	if (!&quot;RESP:getPersonData.v1&quot;.equals(vars.get(&quot;actioncode_2&quot;))) throw new Exception(&quot;Logimise viga: &apos;actioncode&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;action_1: &quot; + vars.get(&quot;action_1&quot;));
+	if (!&quot;Get Person Data&quot;.equals(vars.get(&quot;action_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;action&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;personcode_1: &quot; + vars.get(&quot;personcode_1&quot;));
+	if (!&quot;47101010033&quot;.equals(vars.get(&quot;personcode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;personcode&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;receiver_1: &quot; + vars.get(&quot;receiver_1&quot;));
+	if (!&quot;Test receiver&quot;.equals(vars.get(&quot;receiver_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;receiver&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;receivercode_1: &quot; + vars.get(&quot;receivercode_1&quot;));
+	if (!&quot;10000001&quot;.equals(vars.get(&quot;receivercode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;receivercode&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;restrictions_1: &quot; + vars.get(&quot;restrictions_1&quot;));
+	if (!&quot;A&quot;.equals(vars.get(&quot;restrictions_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;restrictions&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;sender_1: &quot; + vars.get(&quot;sender_1&quot;));
+	if (!&quot;Test AK&quot;.equals(vars.get(&quot;sender_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;sender&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;sendercode_1: &quot; + vars.get(&quot;sendercode_1&quot;));
+	if (!&quot;20000001&quot;.equals(vars.get(&quot;sendercode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;sendercode&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;usercode_1: &quot; + vars.get(&quot;usercode_1&quot;));
+	if (!&quot;EE12345678901&quot;.equals(vars.get(&quot;usercode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;usercode&apos; välja väärtus on vale&quot;);
+	log.debug(&quot;xroadservice_1: &quot; + vars.get(&quot;xroadservice_1&quot;));
+	if (!&quot;getPersonData&quot;.equals(vars.get(&quot;xroadservice_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;xroadservice&apos; välja väärtus on vale&quot;);
+	Failure = false;
+	FailureMessage = &quot;&quot;;
+	log.debug(&quot;Logimine OK&quot;);
+} catch (Exception e) {
+	FailureMessage = e.getMessage();
+} catch (Throwable t) {
+	log.warn(&quot;Error: &quot;, t);
+}
+</stringProp>
+            <stringProp name="BeanShellAssertion.filename"></stringProp>
+            <stringProp name="BeanShellAssertion.parameters"></stringProp>
+            <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+          </BeanShellAssertion>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>true</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+          </value>
+        </objProp>
+        <stringProp name="filename">build/jmeter-report/results.jtl</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>true</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+          </value>
+        </objProp>
+        <stringProp name="filename">build/jmeter-report/graph.jtl</stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

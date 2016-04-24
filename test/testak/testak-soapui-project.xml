@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="5a1aefa9-8016-4c77-b2ad-a233975e4299" activeEnvironment="Default" name="testak" resourceRoot="${projectDir}" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="50c2cad9-b0d1-4439-83c6-1fc8b30b268d" wsaVersion="NONE" name="getPersonDataPortSoap11" type="wsdl" bindingName="{http://producer.x-road.eu}getPersonDataPortSoap11" soapVersion="1_1" anonymous="optional" definition="testak.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ivo/git/AJ/testak/testak.wsdl"><con:part><con:url>file:/Users/ivo/git/AJ/testak/testak.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://producer.x-road.eu" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://producer.x-road.eu" xmlns:xrd="http://x-road.eu/xsd/xroad.xsd" xmlns:id="http://x-road.eu/xsd/identifiers" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<con:soapui-project id="314a6a83-b7ea-4be2-9458-1f0b84317f1e" activeEnvironment="Default" name="testak" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="12c86db2-4900-44b7-a5f7-dc6fa7d12df9" wsaVersion="NONE" name="getPersonDataPortSoap11" type="wsdl" bindingName="{http://producer.x-road.eu}getPersonDataPortSoap11" soapVersion="1_1" anonymous="optional" definition="file:/Users/ivo/git/AJ/test/testak/testak.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ivo/git/AJ/test/testak/testak.wsdl"><con:part><con:url>file:/Users/ivo/git/AJ/test/testak/testak.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://producer.x-road.eu" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://producer.x-road.eu" xmlns:xrd="http://x-road.eu/xsd/xroad.xsd" xmlns:id="http://x-road.eu/xsd/identifiers" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
     <xs:schema targetNamespace="http://producer.x-road.eu" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:import namespace="http://x-road.eu/xsd/xroad.xsd" schemaLocation="http://x-road.eu/xsd/xroad.xsd"/>
@@ -101,7 +101,7 @@
   </wsdl:binding>
   <wsdl:service name="producerPortService">
     <wsdl:port name="getPersonDataPortSoap11" binding="tns:getPersonDataPortSoap11">
-      <soap:address location="http://aj04.ci.kit/testak"/>
+      <soap:address location="http://aj04.ci.kit:8080/testak/soap"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://x-road.eu/xsd/xroad.xsd</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://x-road.eu/xsd/xroad.xsd" xmlns="http://x-road.eu/xsd/xroad.xsd" xmlns:id="http://x-road.eu/xsd/identifiers" xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -627,7 +627,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj04.ci.kit/testak</con:endpoint><con:endpoint>http://localhost:8080/testak/testak</con:endpoint><con:endpoint>http://localhost:8088/testak/testak</con:endpoint></con:endpoints><con:operation id="992c11b6-de23-4bd7-907b-d8b4d9f69541" isOneWay="false" action="" name="getPersonData" bindingOperationName="getPersonData" type="Request-Response" outputName="getPersonDataResponse" inputName="getPersonData" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c4e65602-8b8c-439f-8a9b-65e3e2d415c6" name="AK1 - internal"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj04.ci.kit:8080/testak/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj04.ci.kit:8080/testak/soap</con:endpoint><con:endpoint>http://sky.local:8080/soap</con:endpoint></con:endpoints><con:operation id="d7710ac2-66e7-4faa-9748-a0ca8315ccfd" isOneWay="false" action="" name="getPersonData" bindingOperationName="getPersonData" type="Request-Response" outputName="getPersonDataResponse" inputName="getPersonData" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ba6334ed-9bca-4130-907f-07b12560ef82" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj04.ci.kit:8080/testak/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
 	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
 	xmlns:iden="http://x-road.eu/xsd/identifiers" 
@@ -661,89 +661,7 @@
          </request>
       </prod:getPersonData>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonData"/><con:wsrmConfig version="1.2"/></con:call><con:call id="474a3f48-7858-4ae6-a891-856f413b3626" name="AK1 - through TS1 and ER"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj09.ci.kit/</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
-	xmlns:iden="http://x-road.eu/xsd/identifiers" 
-	xmlns:prod="http://producer.x-road.eu">
-   <soapenv:Header>
-      <xro:protocolVersion>4.0</xro:protocolVersion>
-      <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
-      <xro:userId>EE12345678901</xro:userId>
-      <xro:service iden:objectType="SERVICE">
-         <iden:xRoadInstance>CI</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>20000001</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>AJ</iden:subsystemCode>
-         <iden:serviceCode>getPersonData</iden:serviceCode>
-         <!--Optional:-->
-         <iden:serviceVersion>v1</iden:serviceVersion>
-      </xro:service>
-      <xro:client iden:objectType="MEMBER">
-         <iden:xRoadInstance>CI</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>10000001</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>Center</iden:subsystemCode>
-      </xro:client>
-   </soapenv:Header>
-   <soapenv:Body>
-      <prod:getPersonData>
-         <request>
-            <personCode>47101010033</personCode>
-         </request>
-      </prod:getPersonData>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonData"/><con:wsrmConfig version="1.2"/></con:call><con:call id="700b5060-9967-4474-a292-b92905414d21" name="AK1 - through ER"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj02.ci.kit:8080/dumonitor-filter/testak</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
-	xmlns:iden="http://x-road.eu/xsd/identifiers" 
-	xmlns:prod="http://producer.x-road.eu">
-   <soapenv:Header>
-      <xro:protocolVersion>4.0</xro:protocolVersion>
-      <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
-      <xro:userId>EE12345678901</xro:userId>
-      <xro:service iden:objectType="SERVICE">
-         <iden:xRoadInstance>CI</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>20000001</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>AJ</iden:subsystemCode>
-         <iden:serviceCode>getPersonData</iden:serviceCode>
-         <!--Optional:-->
-         <iden:serviceVersion>v1</iden:serviceVersion>
-      </xro:service>
-      <xro:client iden:objectType="MEMBER">
-         <iden:xRoadInstance>CI</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>10000001</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>Center</iden:subsystemCode>
-      </xro:client>
-   </soapenv:Header>
-   <soapenv:Body>
-      <prod:getPersonData>
-         <request>
-            <personCode>47101010033</personCode>
-         </request>
-      </prod:getPersonData>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonData"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" id="5b55ea4a-fc9c-4127-9e7c-83cd4595433e" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="Rest" path="" id="cf2c930f-df87-4ef7-a247-888979f58868"><con:settings/><con:parameters/><con:method name="Rest" id="4b926b53-844f-47bf-a923-177fe7071a54" method="POST"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>500</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>text/html; charset=iso-8859-1</con:mediaType><con:status>200</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/plain</con:mediaType><con:status>400</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=ISO-8859-1</con:mediaType><con:status>404</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="FAULT"><con:mediaType xsi:nil="true"/><con:status>405</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>text/plain</con:mediaType><con:status>200</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:log="http://localhost/testak/rest/log">log:Response</con:element></con:representation><con:request name="AK1 - test log" id="9a6952d9-0cd1-4d5a-ba89-154b2ff0b815" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/store</con:endpoint><con:request>{
-	"personcode": "47101010033",
-	"logtime": "2016-02-26T22:23:00",
-	"action": "Get Person Data",
-	"sender": "Test AK",
-	"receiver": "Test receiver",
-	"restrictions": "A",
-	"sendercode": "MEMBER1",
-	"receivercode": "MEMBER2",
-	"actioncode": "getPersonData",
-	"xroadrequestid": "4894e35d-bf0f-44a6-867a-8e51f1daa7e1",
-	"xroadservice": "getPersonData",
-	"usercode": "EE12345678901"
-}
-</con:request><con:originalUri>http://localhost/testak/rest/log</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:WsdlInterface" id="00f546c3-495a-4f7e-a930-6c77f0f5b1e9" wsaVersion="NONE" name="dumonitor-storage" type="wsdl" bindingName="{http://dumonitor.x-road.eu/producer}dumonitorBinding" soapVersion="1_1" anonymous="optional" definition="../../tmp/dumonitor.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ivo/git/AJ/tmp/dumonitor.wsdl"><con:part><con:url>file:/Users/ivo/git/AJ/tmp/dumonitor.wsdl</con:url><con:content><![CDATA[<!--dumonitor.wsdl
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonData"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="5f0eacae-40a6-4601-abcc-33e20febcaf1" wsaVersion="NONE" name="dumonitorBinding" type="wsdl" bindingName="{http://dumonitor.x-road.eu/producer}dumonitorBinding" soapVersion="1_1" anonymous="optional" definition="file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl"><con:part><con:url>file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl</con:url><con:content><![CDATA[<!--dumonitor.wsdl
 X-tee andmejälgija analüüs ja disain
 
 Versioon 1.2, 07.01.2016
@@ -765,28 +683,92 @@ Versioon	Kuupäev		Autor		Märkused
       <xsd:import namespace="http://x-road.eu/xsd/xroad.xsd" schemaLocation="http://x-road.eu/xsd/xroad.xsd"/>
       <xsd:complexType name="LoggableFields">
         <xsd:sequence>
-          <xsd:element type="xsd:dateTime" name="logtime" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="personcode" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="action" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="sender" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="receiver" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="restrictions" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="sendercode" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="receivercode" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="actioncode" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="xroadrequestid" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="xroadservice" minOccurs="0" maxOccurs="1"/>
-          <xsd:element type="xsd:string" name="usercode" minOccurs="0" maxOccurs="1"/>
+          <xsd:element type="xsd:dateTime" name="logtime" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Isikuandmete töötlemise aeg</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="personcode" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Isikukood, kelle isikuandmeid töödeldi</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="action" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Tegevus</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="sender" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Isikuandmeid edastanud osapool</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="receiver" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Isikuandmeid vastu võtnud osapool</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="restrictions" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Logiinfo juurdepääsupiirang</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="sendercode" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Isikuandmeid edastanud osapoole kood</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="receivercode" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Isikuandmeid vastu võtnud osapoole kood</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="actioncode" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>Tegevuse kood</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="xroadrequestid" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>X-tee päringu ID</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="xroadservice" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>X-tee teenuse nimi</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element type="xsd:string" name="usercode" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xrd:title>X-tee päringu sooritanud ametniku isikukood</xrd:title>
+            </xsd:annotation>
+          </xsd:element>
         </xsd:sequence>
       </xsd:complexType>
       <xsd:complexType name="QueryFields">
         <xsd:complexContent>
           <xsd:extension base="tns:LoggableFields">
             <xsd:sequence>
-              <xsd:element type="xsd:dateTime" name="from_date" minOccurs="0" maxOccurs="1"/>
-              <xsd:element type="xsd:dateTime" name="to_date" minOccurs="0" maxOccurs="1"/>
-              <xsd:element type="xsd:integer" name="offset" minOccurs="0" maxOccurs="1"/>
-              <xsd:element type="xsd:integer" name="limit" minOccurs="0" maxOccurs="1"/>
+              <xsd:element type="xsd:dateTime" name="from_date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                  <xrd:title>Alates kuupäevast</xrd:title>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element type="xsd:dateTime" name="to_date" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                  <xrd:title>Kuni kuupäevani</xrd:title>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element type="xsd:integer" name="offset" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                  <xrd:title>Esimese tagastatava kirje jrknr</xrd:title>
+                </xsd:annotation>
+              </xsd:element>
+              <xsd:element type="xsd:integer" name="limit" minOccurs="0" maxOccurs="1">
+                <xsd:annotation>
+                  <xrd:title>Tagastatavate kirjete arv</xrd:title>
+                </xsd:annotation>
+              </xsd:element>
             </xsd:sequence>
           </xsd:extension>
         </xsd:complexContent>
@@ -819,7 +801,7 @@ Versioon	Kuupäev		Autor		Märkused
   <wsdl:portType name="dumonitorPortType">
     <wsdl:operation name="findUsage">
       <wsdl:documentation>
-        <xrd:title>Find personal information request records</xrd:title>
+        <xrd:title>Päring andmekogust isikuandmete töötlemise kohta</xrd:title>
       </wsdl:documentation>
       <wsdl:input message="tns:findUsage"/>
       <wsdl:output message="tns:findUsageResponse"/>
@@ -1379,7 +1361,7 @@ Versioon	Kuupäev		Autor		Märkused
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/xroad</con:endpoint><con:endpoint>http://sky.local:8088/dumonitor-storage</con:endpoint></con:endpoints><con:operation id="aba101bf-92ee-4dd7-bebe-04694673530f" isOneWay="false" action="" name="findUsage" bindingOperationName="findUsage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ff301e2f-b142-4a8f-b509-5ce0965ef424" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/xroad</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://dumonitor.x-road.eu/producer">
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/xroad</con:endpoint><con:endpoint>http://sky.local:8080/dumonitor</con:endpoint></con:endpoints><con:operation id="a27e5fb6-1806-47d7-84e3-e80991af2a84" isOneWay="false" action="" name="findUsage" bindingOperationName="findUsage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a52ce99b-2edc-4908-a1bb-f533d54c045e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj04.ci.kit:8080/testak/dumonitor</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://dumonitor.x-road.eu/producer">
    <soapenv:Header>
       <xro:protocolVersion>4.0</xro:protocolVersion>
       <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
@@ -1388,211 +1370,38 @@ Versioon	Kuupäev		Autor		Märkused
          <iden:xRoadInstance>CI</iden:xRoadInstance>
          <iden:memberClass>GOV</iden:memberClass>
          <iden:memberCode>20000001</iden:memberCode>
+         <!--Optional:-->
          <iden:subsystemCode>AJ</iden:subsystemCode>
          <iden:serviceCode>findUsage</iden:serviceCode>
+         <!--Optional:-->
          <iden:serviceVersion>v1</iden:serviceVersion>
       </xro:service>
       <xro:client iden:objectType="MEMBER">
          <iden:xRoadInstance>CI</iden:xRoadInstance>
          <iden:memberClass>GOV</iden:memberClass>
          <iden:memberCode>10000001</iden:memberCode>
+         <!--Optional:-->
          <iden:subsystemCode>Center</iden:subsystemCode>
       </xro:client>
    </soapenv:Header>
    <soapenv:Body>
       <prod:findUsage>
-         <personcode>?</personcode>
-         <action>?</action>
-         <sender>?</sender>
-         <receiver>?</receiver>
-         <restrictions>?</restrictions>
-         <sendercode>?</sendercode>
-         <receivercode>?</receivercode>
-         <actioncode>?</actioncode>
-         <xroadrequestid>?</xroadrequestid>
-         <xroadservice>?</xroadservice>
-         <usercode>?</usercode>
-         <from_date>?</from_date>
-         <to_date>?</to_date>
-         <offset>?</offset>
-         <limit>?</limit>
+         <from_date>2016-01-01</from_date>
+         <to_date>2016-04-22</to_date>
+         <offset>0</offset>
+         <limit>10</limit>
       </prod:findUsage>
    </soapenv:Body>
-</soapenv:Envelope>
-]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://dumonitor.x-road.eu/producer/dumonitorPortType/findUsageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="d18832f5-0999-4e02-8631-4164f429795e" name="SOAP Person Service TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="818b4542-ab6a-4f33-bcd9-7e441fa40f85" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="getPersonData TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="dd9defc5-918a-40c9-8f33-e8412877aa0c" name="getPersonData"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>getPersonDataPortSoap11</con:interface><con:operation>getPersonData</con:operation><con:request name="getPersonData" id="ea61565d-4423-4c25-8184-29ae600f70a6"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/testak/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://dumonitor.x-road.eu/producer/dumonitorPortType/findUsageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="f4b9f87e-9627-4d3f-9c03-6cc398ace903" port="8080" path="/soap" host="sky.local" name="getPersonDataPortSoap11 MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getPersonData" id="9205d368-d8b9-4bf8-981e-5f0ccd0340fe" interface="getPersonDataPortSoap11" operation="getPersonData"><con:settings/><con:defaultResponse>Response ERR</con:defaultResponse><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:response name="Response OK" id="ad0ade73-4cd3-4482-9acd-d8f8c9aea17e" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>def holder = new com.eviware.soapui.support.XmlHolder(mockRequest.requestContent);
+context.id = holder["/*:Envelope/*:Header/*:id"];
+</con:script><con:responseContent><![CDATA[<soapenv:Envelope 
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
 	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
 	xmlns:iden="http://x-road.eu/xsd/identifiers" 
 	xmlns:prod="http://producer.x-road.eu">
    <soapenv:Header>
       <xro:protocolVersion>4.0</xro:protocolVersion>
-      <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
-      <xro:userId>EE12345678901</xro:userId>
-      <xro:service iden:objectType="SERVICE">
-         <iden:xRoadInstance>EE</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>MEMBER1</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>SUBSYSTEM1</iden:subsystemCode>
-         <iden:serviceCode>getPersonData</iden:serviceCode>
-         <!--Optional:-->
-         <iden:serviceVersion>v1</iden:serviceVersion>
-      </xro:service>
-      <xro:client iden:objectType="MEMBER">
-         <iden:xRoadInstance>EE</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>MEMBER2</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>SUBSYSTEM2</iden:subsystemCode>
-      </xro:client>
-   </soapenv:Header>
-   <soapenv:Body>
-      <prod:getPersonData>
-         <request>
-            <personCode>47101010033</personCode>
-         </request>
-      </prod:getPersonData>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="719f6083-8a74-42e8-9de1-13a6c063158e" name="SOAP Response"/><con:assertion type="XPath Match" id="1de10b6b-9f10-425e-8adb-daed0a009ff4" name="XPath Match protocolVersion"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:protocolVersion</path><content>4.0</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="abb9ec65-c19a-492f-b3bc-a23b678f5618" name="XPath Match userId"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:userId</path><content>EE12345678901</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="f41c6ff0-6728-48f9-b571-a95c66192311" name="XPath Match xRoadInstance"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:service/iden:xRoadInstance</path><content>EE</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="cc09a3fd-4aaa-4ec8-9ea8-95fe64d7c383" name="XPath Match memberClass"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:service/iden:memberClass</path><content>GOV</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="907da5f6-6347-4f1e-a717-d148629b4b3e" name="XPath Match memberCode"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:service/iden:memberCode</path><content>MEMBER1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="823725c0-abde-4edd-9802-fd3620c29fbd" name="XPath Match subsystemCode"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:service/iden:subsystemCode</path><content>SUBSYSTEM1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="cada47e8-b9c5-42bc-8ce9-fdb43bb8cc24" name="XPath Match serviceCode"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:service/iden:serviceCode</path><content>getPersonData</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="80a924e4-7273-447a-9a7c-76811e95d14d" name="XPath Match serviceVersion"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:service/iden:serviceVersion</path><content>v1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="2fe3fcc2-a254-4b58-985f-d418091a6aa8" name="XPath Match client objectType"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:client/@iden:objectType</path><content>MEMBER</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="8bc2bc91-8678-4032-9ce3-5e3229788c84" name="XPath Match client xRoadInstance"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:client/iden:xRoadInstance</path><content>EE</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="b977a0ae-38c1-4c2a-9518-99918dcd261c" name="XPath Match client memberClass"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:client/iden:memberClass</path><content>GOV</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="6d585091-6aa1-4ed3-86b0-d62499d71d03" name="XPath Match client memberCode"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:client/iden:memberCode</path><content>MEMBER2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="697fb874-8c06-4289-b2b2-7632d51981b0" name="XPath Match client subsystemCode"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Header/xro:client/iden:subsystemCode</path><content>SUBSYSTEM2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="78b840c9-93d2-4b60-b247-335d031c521f" name="XPath Match response personCode"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/personCode</path><content>47101010033</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="3170a1fd-8863-4e39-9221-91ece427004c" name="XPath Match response firstName"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/firstName</path><content>MARI-LIIS</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="78c7b6e5-923f-405f-87c7-fc55c325ec69" name="XPath Match response lastName"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/lastName</path><content>MÄNNIK</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="1e997e14-37c2-43e0-938b-2d7f5eb74df9" name="XPath Match response attachment"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/attachment/@href</path><content>cid:att</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="XPath Match" id="d18bcdca-928e-4821-884d-a4d292457e4c" name="XPath Match attachment content"><con:configuration><path>declare namespace iden='http://x-road.eu/xsd/identifiers';
-declare namespace prod='http://producer.x-road.eu';
-declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
-declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
-boolean(string(/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/response/attachment))</path><content>false</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://producer.x-road.eu/getPersonDataPort/getPersonData" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:loadTest id="c53935df-e564-4303-9dbc-fd2f28e8baf7" name="LoadTest 1"><con:settings/><con:threadCount>10</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="78d38953-86b1-48e6-96f4-23c8e814f5cd" name="REST Logging Service TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="a58f6126-47e6-4074-a64e-06753ada93da" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="POST log TestCase" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:properties/></con:testCase><con:properties/></con:testSuite><con:testSuite id="f2793366-5ce8-43ca-97e3-804105f7cd2a" name="dumonitor-storage TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="329e43e9-302c-4b45-ab12-d84ec4169eb6" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="findUsage TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="8d5ad46d-dd48-4f2e-87ef-127981de7f51" name="findUsage"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>dumonitor-storage</con:interface><con:operation>findUsage</con:operation><con:request name="findUsage" id="9874305b-e715-43e4-b73c-8e2e8a042d54"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/xroad</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://dumonitor.x-road.eu/producer">
-   <soapenv:Header>
-      <xro:protocolVersion>?</xro:protocolVersion>
-      <xro:issue>?</xro:issue>
-      <xro:userId>?</xro:userId>
-      <xro:id>?</xro:id>
-      <xro:service iden:objectType="SERVICE">
-         <iden:xRoadInstance>?</iden:xRoadInstance>
-         <iden:memberClass>?</iden:memberClass>
-         <iden:memberCode>?</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>?</iden:subsystemCode>
-         <iden:serviceCode>?</iden:serviceCode>
-         <!--Optional:-->
-         <iden:serviceVersion>?</iden:serviceVersion>
-      </xro:service>
-      <xro:client iden:objectType="?">
-         <iden:xRoadInstance>?</iden:xRoadInstance>
-         <iden:memberClass>?</iden:memberClass>
-         <iden:memberCode>?</iden:memberCode>
-         <!--Optional:-->
-         <iden:subsystemCode>?</iden:subsystemCode>
-      </xro:client>
-   </soapenv:Header>
-   <soapenv:Body>
-      <prod:findUsage>
-         <!--Optional:-->
-         <logtime>?</logtime>
-         <!--Optional:-->
-         <personcode>?</personcode>
-         <!--Optional:-->
-         <action>?</action>
-         <!--Optional:-->
-         <sender>?</sender>
-         <!--Optional:-->
-         <receiver>?</receiver>
-         <!--Optional:-->
-         <restrictions>?</restrictions>
-         <!--Optional:-->
-         <sendercode>?</sendercode>
-         <!--Optional:-->
-         <receivercode>?</receivercode>
-         <!--Optional:-->
-         <actioncode>?</actioncode>
-         <!--Optional:-->
-         <xroadrequestid>?</xroadrequestid>
-         <!--Optional:-->
-         <xroadservice>?</xroadservice>
-         <!--Optional:-->
-         <usercode>?</usercode>
-         <!--Optional:-->
-         <from_date>?</from_date>
-         <!--Optional:-->
-         <to_date>?</to_date>
-         <!--Optional:-->
-         <offset>?</offset>
-         <!--Optional:-->
-         <limit>?</limit>
-      </prod:findUsage>
-   </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig action="http://dumonitor.x-road.eu/producer/dumonitorPortType/findUsageRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService id="42f95ee5-0657-4268-aec5-c399f83cbe2e" port="8080" path="/soap" host="aj10.ci.kit" name="SOAP Person Service" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getPersonData" id="d402bbd1-6e7c-4369-a25e-c8c0a1956626" interface="getPersonDataPortSoap11" operation="getPersonData"><con:settings/><con:defaultResponse>Response ERR</con:defaultResponse><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:response name="Response OK" id="fa839b55-7a48-496b-b94a-c7ff049dd471" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope 
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
-	xmlns:iden="http://x-road.eu/xsd/identifiers" 
-	xmlns:prod="http://producer.x-road.eu">
-   <soapenv:Header>
-      <xro:protocolVersion>4.0</xro:protocolVersion>
-      <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
+      <xro:id>${id}</xro:id>
       <xro:userId>EE12345678901</xro:userId>
       <xro:service iden:objectType="SERVICE">
          <iden:xRoadInstance>CI</iden:xRoadInstance>
@@ -1622,7 +1431,7 @@ boolean(string(/soapenv:Envelope/soapenv:Body/prod:getPersonDataResponse/respons
          </response>
       </prod:getPersonDataResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:attachment><con:name>test123.bdoc</con:name><con:contentType>application/octet-stream</con:contentType><con:size>734</con:size><con:contentId>att</con:contentId><con:part xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:data>UEsDBBQACAgIAGaLeUgAAAAAAAAAAAAAAAAMAAAAdGVzdDEyMy5iZG9jC/BmZhFhYOBgYPCorvToUvzpKs/AwADCQCGG3Mzc1JLKgtTEgoKczOTEksz8PP2yvBS91JLiTL3E4sxk3VTtqsyCAKghHGBDDqQd5zkG1FzCyMAgCqR9XUMcdT393PRzE/My01KLS/QqcnOmTnD0O2LA4/rd1vWJrtfpA2yuvunHOR8whD1q9OgUvvouo+3y5EiH1hsHzv379ev97c8fgzZZXtZauan9cAV/m8WVGT/OHn59enMtk3KXjGG4Gn/MQZnpiXonXrosepdtYNvxtPrrhrVvtLyEjkd4zGELly5ck6h95FXdr7u8e3mOvTm5fMrJsudVpru3Pc2RfrW7nbNsZ4BPxtdbVc45ussbbvHPOifjHuSZ/F5Q527tErbL+zVufT98+PEK8b/M69lUty7STtzZ+Ozl9fnTHgojPG4E9LipxZQ8LmjIcYMCAOhXQyNjvZKKEm1PXT1DE6NnTAwB3oxMDAy4g9ycARnAIqAwJTM9MyU/OTknMzWvRN9Yz9BIzwBooomxgoZvYrKCf7CCIZBvqGeioGFmol9hYRZvZqKpibAMe9SALGMEW+SKK6KoYDO2sEHYbMeIElJk28fKBjKNGQjDgSYWgg0HAFBLBwiYg5/YzwEAAN4CAABQSwECFAAUAAgICABmi3lImIOf2M8BAADeAgAADAAAAAAAAAAAAAAAAAAAAAAAdGVzdDEyMy5iZG9jUEsFBgAAAAABAAEAOgAAAAkCAAAAAA==</con:data><con:id>8bcf8878-e228-44f5-80b5-833d93f98765</con:id></con:attachment><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonDataResponse"/></con:response><con:response name="Response ERR" id="e1d5e290-d727-49da-983e-9d57bce42dae" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<SOAP-ENV:Envelope
+</soapenv:Envelope>]]></con:responseContent><con:attachment><con:name>test123.bdoc</con:name><con:contentType>application/octet-stream</con:contentType><con:size>734</con:size><con:contentId>att</con:contentId><con:data>UEsDBBQACAgIAF2klkgAAAAAAAAAAAAAAAAMAAAAdGVzdDEyMy5iZG9jC/BmZhFhYOBgYPCorvToUvzpKs/AwADCQCGG3Mzc1JLKgtTEgoKczOTEksz8PP2yvBS91JLiTL3E4sxk3VTtqsyCAKghHGBDDqQd5zkG1FzCyMAgCqR9XUMcdT393PRzE/My01KLS/QqcnOmTnD0O2LA4/rd1vWJrtfpA2yuvunHOR8whD1q9OgUvvouo+3y5EiH1hsHzv379ev97c8fgzZZXtZauan9cAV/m8WVGT/OHn59enMtk3KXjGG4Gn/MQZnpiXonXrosepdtYNvxtPrrhrVvtLyEjkd4zGELly5ck6h95FXdr7u8e3mOvTm5fMrJsudVpru3Pc2RfrW7nbNsZ4BPxtdbVc45ussbbvHPOifjHuSZ/F5Q527tErbL+zVufT98+PEK8b/M69lUty7STtzZ+Ozl9fnTHgojPG4E9LipxZQ8LmjIcYMCAOhXQyNjvZKKEm1PXT1DE6NnTAwB3oxMDAy4g9ycARnAIqAwJTM9MyU/OTknMzWvRN9Yz9BIzwBooomxgoZvYrKCf7CCIZBvqGeioGFmol9hYRZvZqKpibAMe9SALGMEW+SKK6KoYDO2sEHYbMeIElJk28fKBjKNGQjDgSYWgg0HAFBLBwiYg5/YzwEAAN4CAABQSwECFAAUAAgICABdpJZImIOf2M8BAADeAgAADAAAAAAAAAAAAAAAAAAAAAAAdGVzdDEyMy5iZG9jUEsFBgAAAAABAAEAOgAAAAkCAAAAAA==</con:data><con:id>43fb1ccf-8f10-423b-9e8d-5d5e546aace0</con:id></con:attachment><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonDataResponse"/></con:response><con:response name="Response ERR" id="d2c4d7e4-e73f-40ab-a537-7eff1630ac43" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<SOAP-ENV:Envelope
         xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:xrd="http://x-road.eu/xsd/xroad.xsd">
    <SOAP-ENV:Body>
@@ -1639,7 +1448,6 @@ declare namespace xro='http://x-road.eu/xsd/xroad.xsd';
 declare namespace soapenv='http://schemas.xmlsoap.org/soap/envelope/';
 concat(
 /soapenv:Envelope/soapenv:Header/xro:protocolVersion, '|', 
-/soapenv:Envelope/soapenv:Header/xro:id,'|',
 /soapenv:Envelope/soapenv:Header/xro:userId,'|',
 /soapenv:Envelope/soapenv:Header/xro:service/@iden:objectType,'|',
 /soapenv:Envelope/soapenv:Header/xro:service/iden:xRoadInstance,'|',
@@ -1653,11 +1461,12 @@ concat(
 /soapenv:Envelope/soapenv:Header/xro:client/iden:memberClass,'|',
 /soapenv:Envelope/soapenv:Header/xro:client/iden:memberCode,'|',
 /soapenv:Envelope/soapenv:Header/xro:client/iden:subsystemCode,'|',
-/soapenv:Envelope/soapenv:Body/prod:getPersonData/request/personCode)</con:query><con:match>4.0|4894e35d-bf0f-44a6-867a-8e51f1daa7e0|EE12345678901|SERVICE|CI|GOV|20000001|AJ|getPersonData|v1|MEMBER|CI|GOV|10000001|Center|47101010033</con:match><con:response>Response OK</con:response></con:query></con:dispatchConfig></con:mockOperation></con:mockService><con:mockService id="284f61fe-de30-473e-9e10-8c9ebbaf4595" port="8088" path="/dumonitor-storage" host="sky.local" name="dumonitor-storage MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="findUsage" id="7fe2716b-8c7f-4393-b990-50d6863e6293" interface="dumonitorBinding" operation="findUsage"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="313063b2-c614-475e-8355-4578e2bee05f" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" 
-xmlns:prod="http://dumonitor.x-road.eu/producer">
+/soapenv:Envelope/soapenv:Body/prod:getPersonData/request/personCode)</con:query><con:match>4.0|EE12345678901|SERVICE|CI|GOV|20000001|AJ|getPersonData|v1|MEMBER|CI|GOV|10000001|Center|47101010033</con:match><con:response>Response OK</con:response></con:query></con:dispatchConfig></con:mockOperation></con:mockService><con:mockService id="542f3edd-1648-4e55-a148-64dfeaab7fea" port="8080" path="/dumonitor" host="sky.local" name="dumonitorBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="findUsage" id="ad1f9a46-88d4-4729-9e9d-48c05ba763f4" interface="dumonitorBinding" operation="findUsage"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="e2a30f6c-b641-4442-95bf-d8ce188037e2" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>def holder = new com.eviware.soapui.support.XmlHolder(mockRequest.requestContent);
+context.id = holder["/*:Envelope/*:Header/*:id"];
+</con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://dumonitor.x-road.eu/producer">
    <soapenv:Header>
       <xro:protocolVersion>4.0</xro:protocolVersion>
-      <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
+      <xro:id>${id}</xro:id>
       <xro:userId>EE12345678901</xro:userId>
       <xro:service iden:objectType="SERVICE">
          <iden:xRoadInstance>CI</iden:xRoadInstance>
@@ -1679,117 +1488,48 @@ xmlns:prod="http://dumonitor.x-road.eu/producer">
    </soapenv:Header>
    <soapenv:Body>
       <prod:findUsageResponse>
-         <!--Zero or more repetitions:-->
          <usage>
-            <!--Optional:-->
-            <logtime>?</logtime>
-            <!--Optional:-->
-            <personcode>?</personcode>
-            <!--Optional:-->
-            <action>?</action>
-            <!--Optional:-->
-            <sender>?</sender>
-            <!--Optional:-->
-            <receiver>?</receiver>
-            <!--Optional:-->
-            <restrictions>?</restrictions>
-            <!--Optional:-->
-            <sendercode>?</sendercode>
-            <!--Optional:-->
-            <receivercode>?</receivercode>
-            <!--Optional:-->
-            <actioncode>?</actioncode>
-            <!--Optional:-->
-            <xroadrequestid>?</xroadrequestid>
-            <!--Optional:-->
-            <xroadservice>?</xroadservice>
-            <!--Optional:-->
-            <usercode>?</usercode>
+            <logtime>2016-04-22T15:40:15</logtime>
+            <personcode>47101010033</personcode>
+            <action>Get Person Data</action>
+            <sender>Test AK</sender>
+            <receiver>Test receiver</receiver>
+            <restrictions>A</restrictions>
+            <sendercode>20000001</sendercode>
+            <receivercode>10000001</receivercode>
+            <actioncode>getPersonData</actioncode>
+            <xroadrequestid>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xroadrequestid>
+            <xroadservice>getPersonData.v1</xroadservice>
+            <usercode>EE12345678901</usercode>
          </usage>
          <usage>
-            <!--Optional:-->
-            <logtime>?</logtime>
-            <!--Optional:-->
-            <personcode>?</personcode>
-            <!--Optional:-->
-            <action>?</action>
-            <!--Optional:-->
-            <sender>?</sender>
-            <!--Optional:-->
-            <receiver>?</receiver>
-            <!--Optional:-->
-            <restrictions>?</restrictions>
-            <!--Optional:-->
-            <sendercode>?</sendercode>
-            <!--Optional:-->
-            <receivercode>?</receivercode>
-            <!--Optional:-->
-            <actioncode>?</actioncode>
-            <!--Optional:-->
-            <xroadrequestid>?</xroadrequestid>
-            <!--Optional:-->
-            <xroadservice>?</xroadservice>
-            <!--Optional:-->
-            <usercode>?</usercode>
+            <logtime>2016-04-22T14:40:15</logtime>
+            <personcode>47101010033</personcode>
+            <action>Get Person Data</action>
+            <sender>Test AK</sender>
+            <receiver>Test receiver</receiver>
+            <restrictions>A</restrictions>
+            <sendercode>20000001</sendercode>
+            <receivercode>10000001</receivercode>
+            <actioncode>getPersonData</actioncode>
+            <xroadrequestid>4894e35d-bf0f-44a6-867a-123456534543</xroadrequestid>
+            <xroadservice>getPersonData.v1</xroadservice>
+            <usercode>EE12345678901</usercode>
+         </usage>
+         <usage>
+            <logtime>2016-04-22T13:40:15</logtime>
+            <personcode>47101010033</personcode>
+            <action>Get Person Data</action>
+            <sender>Test AK</sender>
+            <receiver>Test receiver</receiver>
+            <restrictions>A</restrictions>
+            <sendercode>20000001</sendercode>
+            <receivercode>10000001</receivercode>
+            <actioncode>getPersonData</actioncode>
+            <xroadrequestid>4894e35d-bf0f-44a6-867a-123456645644</xroadrequestid>
+            <xroadservice>getPersonData.v1</xroadservice>
+            <usercode>EE12345678901</usercode>
          </usage>
       </prod:findUsageResponse>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://dumonitor.x-road.eu/producer/dumonitorPortType/findUsageResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:restMockService id="e47d4766-579a-40ae-82cb-aee26bcd5b20" port="8080" path="/rest" host="aj10.ci.kit" name="REST Logging Service" docroot=""><con:settings/><con:properties/><con:restMockAction name="POST Log Entry" method="POST" resourcePath="/log" id="cd54d34b-c73c-43df-b2d4-e1a1612f61c2"><con:settings/><con:defaultResponse>ERROR</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath><![CDATA[import groovy.json.JsonSlurper;
-
-// Match based on header
-def contentType = mockRequest.getRequestHeaders().get("Content-Type");
-log.info "Content-Type Header: " + contentType;
-
-if (!contentType.contains("application/json")) {
-	log.error "Invalid Content-Type";
-	return "ERROR";
-}
-
-// Match based on body
-def requestBody = mockRequest.getRequestContent();
-log.info "Request body: " + requestBody;
-
-def requestJson = new JsonSlurper().parseText(requestBody);
-
-if (!(requestJson instanceof Map)) {
-	log.error "Invalid request body";
-	return "ERROR";
-}
-if (!(
-	requestJson.containsKey('personcode') &&
-	requestJson.containsKey('logtime') &&
-	requestJson.containsKey('action') &&
-	requestJson.containsKey('sender') &&
-	requestJson.containsKey('receiver') &&
-	requestJson.containsKey('restrictions') &&
-	requestJson.containsKey('sendercode') &&
-	requestJson.containsKey('receivercode') &&
-	requestJson.containsKey('actioncode') &&
-	requestJson.containsKey('xroadrequestid') &&
-	requestJson.containsKey('xroadservice') &&
-	requestJson.containsKey('usercode')
-	)) {
-		log.error "Missing field";
-		return "ERROR";
-	}
-if (
-	requestJson.personcode != "47101010033" ||
-	!requestJson.logtime.matches(/^2016-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$/) ||
-	requestJson.action != "Get Person Data" ||
-	requestJson.sender != "Test AK" ||
-	requestJson.receiver != "Test receiver" ||
-	requestJson.restrictions != "A" ||
-	requestJson.sendercode != "20000001" ||
-	requestJson.receivercode != "10000001" ||
-	requestJson.actioncode != "getPersonData" ||
-	!requestJson.xroadrequestid.matches(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/) ||
-	requestJson.xroadservice != "getPersonData" ||
-	requestJson.usercode != "EE12345678901"
-	) {
-		log.error "Invalid data";
-		return "ERRDATA";
-	}
-
-
-return "OK";
-]]></con:dispatchPath><con:response name="OK" id="9bf398c5-c892-40c0-ab94-ddacf50e00d5" httpResponseStatus="204" mediaType="application/json"><con:settings/><con:responseContent/></con:response><con:response name="ERROR" id="89e3da67-b416-469d-8f13-c678a5cc3f79" httpResponseStatus="400" mediaType="text/plain"><con:settings/><con:responseContent>Invalid request</con:responseContent></con:response><con:response name="ERRDATA" id="04d23509-f941-4dd6-b221-08f0782601fb" httpResponseStatus="400" mediaType="text/plain"><con:settings/><con:responseContent>Invalid data</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://dumonitor.x-road.eu/producer/dumonitorPortType/findUsageResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
