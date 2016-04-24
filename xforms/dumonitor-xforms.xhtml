@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+tracker.wsdl
+X-tee andmejälgija analüüs ja disain
+
+Versioon 1.2, 07.01.2016
+
+Tellija: Riigi Infosüsteemi Amet
+Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
+
+http://www.struktuurifondid.ee/public/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg
+
+Dokumendi ajalugu:
+Versioon        Kuupäev         Autor           Märkused
+1.0             20.12.2015      Tanel Tammet    Esimene versioon
+1.1				29.12.2015		Ivo Mehide		Jäetud alles ainult findUsage instants ja parandatud kooditabel
+1.2				07.01.2015		Ivo Mehide		Viidud vastavusse X-tee v6-ga
+1.3             22.04.2016      Ivo Mehide      Kohandatud töötama MISP2 all
+
+-->
+<xhtml:html xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+            xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+            xmlns:xhtml="http://www.w3.org/1999/xhtml"
+            xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+            xmlns:xforms="http://www.w3.org/2002/xforms"
+            xmlns:chiba="http://chiba.sourceforge.net/xforms"
+            xmlns:events="http://www.w3.org/2001/xml-events"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xtee="http://x-tee.riik.ee/xsd/xtee.xsd"
+            xmlns:xrd="http://x-road.eu/xsd/xroad.xsd"
+            xmlns:iden="http://x-road.eu/xsd/identifiers"
+            xmlns:tns="http://dumonitor.x-road.eu/producer">
+   <xhtml:head>
+      <xforms:model>
+         <xforms:instance id="findUsage.input">
+            <SOAP-ENV:Envelope>
+               <SOAP-ENV:Header>
+                  <xrd:protocolVersion>4.0</xrd:protocolVersion>
+                  <xrd:id/>
+                  <xrd:userId>EE</xrd:userId>
+                  <xrd:service iden:objectType="SERVICE">
+                     <iden:xRoadInstance>ee-dev</iden:xRoadInstance>
+                     <iden:memberClass>GOV</iden:memberClass>
+                     <iden:memberCode>20000001</iden:memberCode>
+                     <iden:subsystemCode>AJ</iden:subsystemCode>
+                     <iden:serviceCode>findUsage</iden:serviceCode>
+                     <iden:serviceVersion>v1</iden:serviceVersion>
+                  </xrd:service>
+                  <xrd:client iden:objectType="MEMBER">
+                     <iden:xRoadInstance>ee-dev</iden:xRoadInstance>
+                     <iden:memberClass/>
+                     <iden:memberCode/>
+                     <iden:subsystemCode/>
+                  </xrd:client>
+               </SOAP-ENV:Header>
+               <SOAP-ENV:Body>
+                  <ns5:findUsage xmlns:ns5="http://dumonitor.x-road.eu/producer">
+                     <logtime/>
+                     <personcode/>
+                     <action/>
+                     <sender/>
+                     <receiver/>
+                     <restrictions/>
+                     <sendercode/>
+                     <receivercode/>
+                     <actioncode/>
+                     <xroadrequestid/>
+                     <xroadservice/>
+                     <usercode/>
+                     <from_date/>
+                     <to_date/>
+                     <offset/>
+                     <limit/>
+                  </ns5:findUsage>
+               </SOAP-ENV:Body>
+            </SOAP-ENV:Envelope>
+         </xforms:instance>
+         <xforms:instance id="findUsage.output">
+            <dummy/>
+         </xforms:instance>
+         <xforms:bind nodeset="instance('findUsage.input')/SOAP-ENV:Body">
+            <xforms:bind nodeset="tns:findUsage">
+               <xforms:bind nodeset="logtime"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:dateTime"/>
+               <xforms:bind nodeset="personcode"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="action"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="sender"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="receiver"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="restrictions"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="sendercode"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="receivercode"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="actioncode"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="xroadrequestid"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="xroadservice"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="usercode"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:string"/>
+               <xforms:bind nodeset="from_date"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:dateTime"/>
+               <xforms:bind nodeset="to_date"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:dateTime"/>
+               <xforms:bind nodeset="offset"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:integer"/>
+               <xforms:bind nodeset="limit"
+                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
+                            type="xforms:integer"/>
+            </xforms:bind>
+         </xforms:bind>
+         <xforms:bind nodeset="instance('findUsage.output')/SOAP-ENV:Body">
+            <xforms:bind nodeset="tns:findUsageResponse">
+               <xforms:bind nodeset="usage">
+                  <xforms:bind nodeset="logtime" type="xforms:dateTime"/>
+                  <xforms:bind nodeset="personcode" type="xforms:string"/>
+                  <xforms:bind nodeset="action" type="xforms:string"/>
+                  <xforms:bind nodeset="sender" type="xforms:string"/>
+                  <xforms:bind nodeset="receiver" type="xforms:string"/>
+                  <xforms:bind nodeset="restrictions" type="xforms:string"/>
+                  <xforms:bind nodeset="sendercode" type="xforms:string"/>
+                  <xforms:bind nodeset="receivercode" type="xforms:string"/>
+                  <xforms:bind nodeset="actioncode" type="xforms:string"/>
+                  <xforms:bind nodeset="xroadrequestid" type="xforms:string"/>
+                  <xforms:bind nodeset="xroadservice" type="xforms:string"/>
+                  <xforms:bind nodeset="usercode" type="xforms:string"/>
+               </xforms:bind>
+            </xforms:bind>
+         </xforms:bind>
+         <xforms:submission id="findUsage.submission"
+                            action="http://aj03.ci.kit:8080/dumonitor-storage/xroad"
+                            mediatype="application/soap+xml; charset=UTF-8; action="
+                            encoding="UTF-8"
+                            ref="instance('findUsage.input')"
+                            method="post"
+                            replace="instance"
+                            instance="findUsage.output">
+            <xforms:setvalue ref="instance('temp')/relevant"
+                             value="false()"
+                             events:event="xforms-submit"/>
+            <xforms:setvalue ref="instance('findUsage.input')/SOAP-ENV:Header/*:id"
+                             value="digest(string(random()), 'SHA-1', 'hex')"
+                             events:event="xforms-submit"/>
+            <xforms:toggle case="findUsage.response" events:event="xforms-submit-done"/>
+            <xforms:setvalue ref="instance('temp')/relevant"
+                             value="true()"
+                             events:event="xforms-submit-done"/>
+            <xforms:setvalue ref="instance('temp')/relevant"
+                             value="true()"
+                             events:event="xforms-submit-error"/>
+            <xforms:message level="modal" events:event="xforms-submit-error">
+               <xforms:output xml:lang="et"
+                              value="if (event('error-type') = 'submission-in-progress') then 'Üks päring juba käib!'        else if (event('error-type') = 'no-data') then 'Pole andmeid, mida saata!'        else if (event('error-type') = 'validation-error') then 'Valideerimise viga!'        else if (event('error-type') = 'parse-error') then 'Viga vastuse töötlemisel!'        else if (event('error-type') = 'resource-error') then 'Päringu vastus ei ole XML!'        else if (event('error-type') = 'target-error') then 'Sihtkoha viga!'        else 'Sisemine viga!'"/>
+               <xforms:output xml:lang="en"
+                              value="if (event('error-type') = 'submission-in-progress') then 'Submission already started!'        else if (event('error-type') = 'no-data') then 'No data to submit!'        else if (event('error-type') = 'validation-error') then 'Validation error!'        else if (event('error-type') = 'parse-error') then 'Error parsing response!'        else if (event('error-type') = 'resource-error') then 'Response is not XML!'        else if (event('error-type') = 'target-error') then 'Target error!'        else 'Internal error!'"/>
+            </xforms:message>
+         </xforms:submission>
+         <xforms:instance id="temp">
+            <temp>
+               <relevant xsi:type="boolean">true</relevant>
+            </temp>
+         </xforms:instance>
+         <xforms:dispatch targetid="findUsage.request"
+                          name="xforms-select"
+                          events:event="xforms-ready"/>
+      </xforms:model>
+   </xhtml:head>
+   <xhtml:body>
+      <xhtml:div class="form_row">
+         <xforms:switch>
+            <xforms:case id="findUsage.request">
+               <xforms:send submission="findUsage.submission" events:event="xforms-select"/>
+               <xforms:group class="actions">
+                  <xhtml:div class="form_row">
+                     <xforms:submit submission="findUsage.submission" id="xf-62" class="xforms-control xforms-submit" type="button">
+                        <span><strong class="xforms-label">Esita päring</strong></span>
+                     </xforms:submit>
+                  </xhtml:div>
+               </xforms:group>
+            </xforms:case>
+            <xforms:case id="findUsage.response">
+               <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Header">
+                  <xforms:output ref="xrd:id" class="serviceid">
+                     <xforms:label>Päringu id</xforms:label>
+                  </xforms:output>
+               </xforms:group>
+               <xhtml:div class="form_row">
+                  <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/tns:findUsageResponse">
+                  <xforms:repeat nodeset="usage" id="findUsage_output_tns_findUsageResponse_usage">
+                     <xforms:output ref="logtime">
+                        <xforms:label xml:lang="et">Kuupäev</xforms:label>
+                     </xforms:output>
+                     <xforms:output ref="action">
+                        <xforms:label xml:lang="et">Kirjeldus</xforms:label>
+                     </xforms:output>
+                     <xforms:output ref="receiver">
+                        <xforms:label xml:lang="et">Päringu sooritanud asutus</xforms:label>
+                     </xforms:output>
+                  </xforms:repeat>
+                  </xforms:group>
+               </xhtml:div>
+               <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/tns:findUsageResponse[not(usage/*)]"
+                             class="info">
+                  <xforms:output ref="instance('texts')/no_data"/>
+               </xforms:group>
+               <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/tns:findUsageResponse/faultString"
+                             class="info">
+                  <xforms:output ref="."/>
+               </xforms:group>
+               <xhtml:div class="form_row">
+                  <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/SOAP-ENV:Fault" class="fault">
+                     <xforms:output ref="faultstring"/>
+                  </xforms:group>
+               </xhtml:div>
+               <xhtml:div class="form_row">
+                  <xforms:group class="actions">
+                     <xhtml:div class="form_row">
+                        <xforms:trigger>
+                           <xforms:label>Uuesti</xforms:label>
+                           <xforms:toggle events:event="DOMActivate" case="findUsage.request"/>
+                        </xforms:trigger>
+                     </xhtml:div>
+                  </xforms:group>
+               </xhtml:div>
+            </xforms:case>
+         </xforms:switch>
+      </xhtml:div>
+   </xhtml:body>
+</xhtml:html>
