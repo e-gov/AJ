@@ -1,4 +1,4 @@
-# Testiplaan ja testilood
+# Testiplaan
 
 **DUMonitor**
 
@@ -7,6 +7,8 @@ Versioon 1.0, 17.04.2016
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ
+
+![EL struktuurifondid](EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
 
 ## Dokumendi ajalugu
 
@@ -17,480 +19,68 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 
 ## Sissejuhatus
 
-Käesolev dokument kirjeldab DUMonitor tarkvara arendmise käigus läbiviidavaid testimistegevusi ja testide tulemuste mõõtmist.
+Käesolev dokument kirjeldab DUMonitor tarkvara testimise plaani. Plaanis leiab käsitlemist:
 
-## Testitav funktsionaalsus
+* Testitavad komponendid
+* Testimise põhimõtted
+* Osapooled
+* Testimistegevuste tulemid
 
-Testimise käigus veendutakse järgmise funktsionaalsuse toimimises:
+## Skoop
 
-* Filtri komponent:
- * Päringu vahendamine andmekogusse ning vastuse vahendamine tagasi
- * Päringu ja päringu vastuse logimine
- * Andmejälgimise alustamise ja lõpetamise teadete edastamine
-* Andmesalvestaja komponent:
- * Andmete lisamise päringu vastuvõtmine ja vastuvõetud andmete salvestamine
- * Andmete otsimine REST liidese kaudu
- * Andmete otsimine veebiliidese kaudu
- * Ajahorisondi info tagastamine X-tee liidese kaudu
- * Andmete otsimine X-tee liidese kaudu
-* Esitamise testrakenduse komponent:
- * Andmete otsimine
+Testiplaan kirjeldab DUMonitor tarkvaraga läbi viidavad integratsiooni- ja koormustestid. Testiplaanis eeldatakse, et tarkvara ühiktestid on testimise hetkeks juba realiseeritud ning läbi viidud tarkvara arendajate poolt.
 
-## Testimisviisid
+Automaatsete integratsioonitestidega testitakse järgmised tarkvara suhtlusliidesed:
 
-Testitava funktsionaalsuse kohta realiseeritakse ühiktestid, mille abil veendutakse funktsionaalsuse põhimõttelises toimimises. 
-Ühiktestid käivitatakse automaatselt tarkvarakoodi kompileerimise käigus.
+* Filtri komponendi päringute vahendusliides
+* Andmesalvestaja komponendi REST kasutusteabe logimise liides
+* Andmesalvestaja komponendi REST päringuliides
+* Andmesalvestaja komponendi X-tee päringuliides
+
+Käsitsi läbi viidavate integratsioonitestidega testitakse järgmised tarkvara suhtlusliidesed:
+
+* Andmesalvestaja komponendi sisekasutuse veebiliides
+* Esitamise testrakenduse veebiliides
+* Eesti.ee komponendi xforms liides
+
+Koormustestidega testitakse järgmised tarkvara suhtlusliidesed:
+
+* Filtri komponendi päringute vahendusliides
+* Andmesalvestaja komponendi REST kasutusteabe logimise liides
+* Andmesalvestaja komponendi REST päringuliides
+* Andmesalvestaja komponendi X-tee päringuliides
+
+## Osapooled
+
+Testimistegevustes osalevad järgmised isikud:
+
+* Täitja projektijuht - integratsiooni- ja koormustestide skriptide loomine, testimise läbiviimise korraldamine, testidokumentatsiooni koostamine
+* Täitja tarkvaraarendajad - ühiktesteide arendamine ning läbiviimine
+* Tellija testijuht - testiplaani ja testilugude kooskõlastamine
+
+## Testimiseks vajalik keskkond
+
+Testide läbiviimiseks kasutatakse Tellija juurde paigaldatud spetsiaalselt antud projekti jaoks loodud CI-keskkonda.
 
 Liideste toimimise testimine toimub integratsioonitestide abil. Integratsioonitestide läbiviimiseks realiseeritakse vajalikud makettrakendused ning testiskriptid. Lisaks luuakse vajalikud virtuaalmasinad ning paigaldatakse neisse testimiseks vajalik tarkvara. Pidevintegratsioonikeskkonna kaudu toimub arendatud tarkvarakoodi atomaatne paigaldamine testimiseks kasutatavatesse virtuaalmasinatesse ning testid käivitatakse automaatselt vastavate skriptide abil.
 
 Koormustestide läbiviimseks kasutatakse integratsioonitestide jaoks üles seatud keskkonda. Koormustestideks koostatakse vastavad testskriptid.
 
-## Testilood
+## Loodavad tulemid
 
-### Testilugude koond
+Testimise tegevuste käigus luuakse järgmised tulemid:
 
-#### Integratsioonitestid
+* Testistrateegia dokument
+* Testiplaan
+* Testilood
+* Testiskriptid
+* Testandmed (kirjeldatuna testilugudes)
+* Testimiseks vajalikud makettrakendused (test andmekogu makettrakendus)
+* Testide paigaldamise, käivitamise ja täiendamise juhend
+* Testiraport
 
-* Filtri komponent:
- * Päringu vastuvõtmine
- * Päringu edastamine
- * Päringu logimine
- * Päringu vastuse vastuvõtmine
- * Päringu vastuse tagastamine
- * Päringu vastuse logimine
- * Andmejälgimise alustamise teate saatmine
- * Andmejälgimise lõpetamise teate saatmine
-* Andmesalvestaja komponent:
- * REST liidese kaudu kasutusteabe andmete lisamine
- * REST liidese kaudu andmejälgimise alustamise teate lisamine
- * REST liidese kaudu andmejälgimise lõpetamise teate lisamine
- * X-tee liidese kaudu kasutusteabe andmete otsimine
- * X-tee liidese kaudu kasutusteabe andmete otsingutulemuse tagastamine
- * X-tee liidese kaudu ajahorisondi teenuse päringu vastuvõtmine
- * X-tee liidese kaudu ajahorisondi teenuse vastuse tagastamine
- * Sisekasutuse REST liidese kaudu andmete otsimine
- * Sisekasutuse REST liidese kaudu tulemuse tagastamine
- * Sisekasutuse veebiliidese kaudu andmete otsimine
- * Sisekasutuse veebiliidese kaudu tulemuse tagastamine
-* Esitamise testrakenduse komponent:
- * Andmete otsimine
- * Tulemuse tagastamine
+## Ajaplaan
 
-#### Koormustestid
- 
-* Filtri komponendi koormustest
-* Andmesalvestaja REST liidese koormustest
-* Andmesalvestaja X-tee liidese koormustest
-* Andmesalvestaja veebiliidese koormustest
+* Testistrateegia, testiplaan, testilood, testandmed, makettrakendused valmivad 25.04.2016
+* Testide paigaldamise käivitamise ja täiendamise juhend luuakse, testid viiakse läbi ning testiraport koostatakse perioodil 25.04.2016 - 09.05.2016
 
-### Testilugude kirjeldused
-
-#### Integratsioonitestid
-
-##### Filtri komponent
-
-###### Päringu vastuvõtmine
-
-* Testiloo nimetus: Filtri komponendi poolt päringu vastuvõtmine
-* Testiloo indeks: 1
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Päringu edastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Päringu logimine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Päringu vastuse vastuvõtmine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Päringu vastuse tagastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Päringu vastuse logimine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Andmejälgimise alustamise teate edastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Andmejälgimise lõpetamise teate edastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-##### Andmesalvestaja komponent
-
-###### REST liidese kaudu kasutusteabe andmete lisamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### REST liidese kaudu andmejälgimise alustamise teate lisamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### REST liidese kaudu andmejälgimise lõpetamise teate lisamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### X-tee liidese kaudu kasutusteabe andmete otsimine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### X-tee liidese kaudu kasutusteabe andmete otsingutulemuse tagastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### X-tee liidese kaudu ajahorisondi teenuse päringu vastuvõtmine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### X-tee liidese kaudu ajahorisondi teenuse vastuse tagastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Sisekasutuse REST liidese kaudu andmete otsimine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Sisekasutuse REST liidese kaudu tulemuse tagastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Sisekasutuse veebiliidese kaudu andmete otsimine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Sisekasutuse veebiliidese kaudu tulemuse tagastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-##### Esitamise testrakenduse komponent
-
-###### Andmete otsimine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-###### Tulemuse tagastamine
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-#### Koormustestid
- 
-##### Filtri komponendi koormustest
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-##### Andmesalvestaja REST liidese koormustest
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-##### Andmesalvestaja X-tee liidese koormustest
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:
-
-##### Andmesalvestaja veebiliidese koormustest
-
-* Testiloo nimetus:
-* Testiloo indeks:
-* Viide kasutusloole:
-* Lühikirjeldus: 
-* Omadused, mida testitakse:
-* Omadused, mida ei testita:
-* Lähtetingimused:
-* Oletatavad vead:
-* Testi jada kirjeldus:
-* Käivitamise ja läbiviimise skript:
-* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
-* Testi läbiviimise meetodi kirjeldus:

@@ -2,17 +2,19 @@
 
 **DUMonitor**
 
-Versioon 1.0, 17.04.2016
+Versioon 1.0, 24.04.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ
 
+![EL struktuurifondid](EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+
 ## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor      | Märkused
 |----------|------------|------------|----------------------------------------------
-| 1.0      | 17.04.2016 | Ivo Mehide | Esimene versioon
+| 1.0      | 24.04.2016 | Ivo Mehide | Esimene versioon
 
 ## Mõisted
 
@@ -21,9 +23,9 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 
 ## Sissejuhatus
 
-DUMonitor on tarkvara hõlbustamaks andmekogudel registreerida isikuandmete kasutamist. 
+DUMonitor on tarkvara, mis hõlbustab andmekogudel isikuandmete kasutamise registreerimist. 
 
-DUMonitor testistrateegia dokument kirjeldab üldise strateegia DUMonitor arenduse käigus tarkvara testide läbiviimisel ja testimistulemuste hindamisel. Testimisega kaetakse järgmist tüüpi testid:
+DUMonitor testistrateegia dokument kirjeldab üldise strateegia DUMonitor arenduse käigus tarkvara testide läbiviimisel ja testimistulemuste hindamisel. Testimine viiakse läbi järgmist tüüpi testidega:
 
 * Ühiktestid
 * Integratsioonitestid
@@ -47,6 +49,22 @@ Koormustestide abil veendutakse tarkvara võimes töötada ettenähtud koormusel
 
 ## Testkeskkond
 
+Integratsioonitestide ja koormustestide läbiviimiseks luuakse spetsiaalne CI keskkond, kuhu paigaldatakse erinevad tarkvara komponendid ning testimiseks vajalikud lahendused.
+
+Testkeskkond koosneb järgmistest komponentidest:
+
+* CI tarvara - testide automaatse läbiviimise vahend
+* DUMonitori eraldusfilter
+* DUMonitori andmesalvestaja
+* Test andmekogu - eraldusfiltri testimiseks kasutatav andmekogu
+* MISP - eraldusfiltri eesti.ee keskkonna jaoks tehtud xforms lahenduse testimiseks
+* Esitaja testrakendus - lihtne rakendus DUMonitori andmesalvestajale päringute tegemiseks
+* X-tee keskserver - testkeskkonna jaoks loodud eraldiseisva X-tee instantsi tekitamiseks
+* X-tee turvaserver, mis teenindab test andmekogu (läbi DUMonitor eraldusfiltri)
+* X-tee turvaserver, mis teenindab test andmekogu kliente (MISP, esitaja testrakendus ja CI tarkvara poolt käivitatavad klientpäringud) ning X-tee keskserverit
+
+Testkeskkonna paigaldamise täpne kirjeldus on toodud eraldiseisvas dokumendis [Testide paigaldamise, käivitamise ja täiendamise juhend](Testide_paigaldamine.md)
+
 ### Riistvara ja baastarkvara
 
 Testide läbiviimiseks on vajalik järgmise infotehnoloogilise kompleksi paigaldamine:
@@ -55,49 +73,31 @@ Testide läbiviimiseks on vajalik järgmise infotehnoloogilise kompleksi paigald
  * Opsüsteem: Ubuntu 14.04 LTS
  * Jenkins CI tarkvara, sellel paigaldatud "Git", "Publish Over SSH" moodulid
  * openjdk-7
-* Eraldusfiltri virtuaalmasin (aj-02.ci.kit):
+* Eraldusfiltri virtuaalmasin (aj02.ci.kit):
  * Opsüsteem: Ubuntu 14.04 LTS
  * Jetty 8 rakendusserver
  * openjdk-6
-* Andmesalvestaja virtuaalmasin (aj-03.ci.kit):
+* Andmesalvestaja virtuaalmasin (aj03.ci.kit):
  * Opsüsteem: Ubuntu 14.04 LTS
  * Jetty 8 rakendusserver
  * openjdk-6
-* Test andmekogu virtuaalmasin (aj-04.ci.kit):
+* Test andmekogu virtuaalmasin (aj04.ci.kit):
  * Opsüsteem: Ubuntu 14.04 LTS
  * Jetty 8 rakendusserver
  * openjdk-7
-* Sisekontrollija testrakenduse virtuaalmasin (aj-06.ci.kit):
- * Opsüsteem: Ubuntu 14.04 LTS
- * Jetty 8 rakendusserver
- * openjdk-7
-* MISP ja esitaja testrakenduse virtuaalmasin (aj-07.ci.kit):
+* MISP ja esitaja testrakenduse virtuaalmasin (aj07.ci.kit):
  * Opsüsteem: Ubuntu 14.04 LTS
  * Jetty 8 rakendusserver
  * openjdk-7
 * X-tee keskserveri virtuaalmasin (aj08.ci.kit):
  * Opsüsteem: Ubuntu 14.04 LTS
  * X-tee keskserveri tarkvara
-* X-tee keskserverit, MISPi, esitaja testrakendust ja integratsioonitestide klientrakendust teenindav X-tee turvaserveri virtuaalmasin (aj-09.ci.kit):
+* X-tee keskserverit, MISPi, esitaja testrakendust ja integratsioonitestide klientrakendust teenindav X-tee turvaserveri virtuaalmasin (aj09.ci.kit):
  * Opsüsteem: Ubuntu 14.04 LTS
  * X-tee turvaserveri tarkvara
-* Test andmekogu teenindav X-tee turvaserveri virtuaalmasin (aj-10.ci.kit):
+* Test andmekogu teenindav X-tee turvaserveri virtuaalmasin (aj10.ci.kit):
  * Opsüsteem: Ubuntu 14.04 LTS
  * X-tee turvaserveri tarkvara
-
-### Testkeskkonna konfiguratsioon
-
-Testide läbiviimiseks on vajalik järgmise konfiguratsiooni paigaldamine
-
-* CI server:
- * Häälestatud laadima DUmonitor tarkvara lähtekoodi Githubi repositooriumist
- * Koodi kompileerimine
- * Kompileeritud tarkvarakoodi paigaldamine:
-  * DUMonitor filtri komponent - aj-02.ci.kit serverisse
-  * DUmonitor andmesalvestaja komponent - aj-03.ci.kit serverisse
-  * Test andmekogu komponent - aj-04.ci.kit serverisse
-  * Sisekontrollija testrakendus - aj-07.ci.kit serverisse
-
 
 ## Rollid
 
