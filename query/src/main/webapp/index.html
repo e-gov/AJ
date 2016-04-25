@@ -1,0 +1,433 @@
+<!DOCTYPE html> 
+<html lang="et">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="description" content="Andmejälgija siserakendus ainult asutuse jaoks">
+<meta name="author" content="Tanel Tammet, Ivo Mehide">
+
+<title id="title">Andmejälgija esitamise testrakendus</title>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/aj.css">
+
+<script>
+// configuration used by aj.js javascript functions
+
+//var queryURL = "query"; // url to query from: this here is a relative url
+var queryURL = window.location.href.replace(/index\.html$/, "") + "query";
+//var queryURL = "http://localhost:8080/dumonitor-storage-1.0-SNAPSHOT/query"; // use either relative or full path   
+var pageLength = 50; // maximal number of rows shown on a page
+var ajaxTimeout = 5000; // milliseconds until the data query timeouts
+var debugging=true; // set to true for some console logging
+
+</script>
+
+</head> 
+<body>
+
+<!-- titlebar -->
+
+<div class="navbar navbar-inverse navbar-static-top ajnavbar">
+  <div class="container">
+    <div class="navbar-header"> 
+       <button type="button" class="navbar-toggle" 
+               data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>    
+      <a href="#" class="navbar-brand navbar-logo-text"
+         data-target="#aboutModal" data-toggle="modal">Andmejälgija esitamise testrakendus</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">        
+        <li class="dummy navbar-button">
+          <a href="#" class="navbar-btn-link" 
+             data-target="#helpModal" data-toggle="modal">Abi</a>
+        </li>               
+      </ul>
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dummy navbar-button">
+          <a href="#" class="navbar-btn-link" 
+             data-target="#helpModal" data-toggle="modal">Abi</a>
+        </li>   
+      </ul>
+      -->
+    </div>
+  </div>
+</div>
+
+<!-- content after titlebar -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-16 stdblock">                  
+
+      <div id="maincontent">
+      <!-- <form name="mainform" id="mainform" action="?" method="post"> -->
+      <div class='tabletop'>
+      Kirjed <span id='firstrownr'>0</span>...<span id='lastrownr'>0</span></div>
+      
+      <div class="filters">
+        <div class="row">
+          <div class="col-md-6">
+            <table>
+              <tbody>
+              
+              <tr>
+              <td class="filterlabel">Isikukood</td>
+              <td class="filtercomp">võrdub</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_personcode_value"
+                autocomplete="off" placeholder="EE47101010033">
+              </td>
+              </tr>
+
+              <tr>
+              <td class="filterlabel">Tegevuse avalik nimi	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_action_value"
+                autocomplete="off">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">Saaja avalik nimi	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_receiver_value"
+                autocomplete="off">
+              </td>
+              </tr>
+
+              
+              <tr>
+              <td class="filterlabel">Saatja avalik nimi	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_sender_value"
+                autocomplete="off">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">X-tee päringu id</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_xroadrequestid_value"
+                autocomplete="off">
+              </td>
+              </tr>
+     
+              <tr>
+              <td class="filterlabel">Salvestamisaeg</td>
+              <td class="filtercomp">suurem kui</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_from_date_value"
+                autocomplete="off" placeholder="2016-06-30 14:20:55">
+              </td>
+              </tr>
+              
+              </tbody>
+            </table>            
+          </div>  
+
+          <div class="col-md-6">
+            <table>
+              <tbody>
+              
+              <tr>
+              <td class="filterlabel">Tegevuse tehniline kood	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_actioncode_value"
+                autocomplete="off">
+              </td>
+              </tr>
+
+              <tr>
+              <td class="filterlabel">Saaja tehniline kood	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_receivercode_value"
+                autocomplete="off">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">Saatja tehniline kood	</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_sendercode_value"
+                autocomplete="off">
+              </td>
+              </tr>
+
+              <tr>
+              <td class="filterlabel">Töötleja isikukood</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_usercode_value"
+                autocomplete="off" placeholder="EE47101010033">
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">X-tee teenuse nimetus</td>
+              <td class="filtercomp">sisaldab</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_xroadservice_value"
+                autocomplete="off">
+              </td>
+              </tr>
+     
+              <tr>
+              <td class="filterlabel">Salvestamisaeg</td>
+              <td class="filtercomp">väiksem kui</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_to_date_value"
+                autocomplete="off" placeholder="2016-06-30 14:20:55">              
+              </td>
+              </tr>
+              
+              <tr>
+              <td class="filterlabel">Piirangud</td>
+              <td class="filtercomp">võrdub</td>
+              <td> 
+              <input type="text" size="27" value="" class="filterfld" id="flt_restrictions_value"
+                autocomplete="off" placeholder="täht P: piiratud">
+              </td>
+              </tr>
+              
+              </tbody>
+            </table>            
+          </div>
+        </div>
+          
+    </div>
+          
+    <div class="buttonbar" id="listbuttonbar">
+
+      <button class="btn" name="left" onclick=" 
+      previousPage(); return false;" 
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'"> 
+      <font id="leftscrollbutton">&lt;&lt;</font>
+      </button>
+
+      <button class="btn" name="refresh" onclick="
+      askData(); return false;" 
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">   
+      Uuenda
+      </button>
+
+      <button class="btn" name="clear" onclick="     
+      clearFilters();" 
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">
+      Tühjenda filtrid 
+      </button>
+
+      <button class="btn" name="right" onclick="
+      nextPage(); return false;"       
+      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">            
+      <font id="rightscrollbutton">&gt;&gt;</font>
+      </button>
+      
+    </div>     
+     
+    <table id="maintable" class="datatable">
+    <tbody>
+
+      <tr class="headerrow">
+      <th onclick="sortcol('personcode'); return false;" class="colheader">
+      <span class="clearsortmark">?</span>
+      Isik
+      </th>
+      <th class="colheader">
+      <span class="clearsortmark">?</span>
+      Aeg
+      </th>
+      <th onclick="sortcol('actioncode'); return false;" class="colheader">
+      <span class="clearsortmark">?</span>
+      Tegevus
+      </th>
+      <th onclick="sortcol('receivercode'); return false;" class="colheader widelistcol">
+      <span class="clearsortmark">?</span>
+      Saaja
+      </th>
+      <th onclick="sortcol('sendercode'); return false;" class="colheader widelistcol">
+      <span class="clearsortmark">?</span>
+      Saatja
+      </th>
+      <th onclick="sortcol('usercode'); return false;" class="colheader">
+      <span class="clearsortmark">?</span>
+      Töötleja
+      </th>
+      <th onclick="sortcol('restrictions'); return false;" class="colheader widelistcol">
+      <span class="clearsortmark">?</span>
+      Piirang
+      </th>
+      </tr>
+      
+    <!-- here are the data rows inserted -->
+    
+    </tbody>
+    </table>
+
+  </form>
+  </div>   
+</div>
+
+<!-- help popup start --> 
+
+<div class="modal fade ajmodal" id="helpModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Abiks kasutamisel</h4>
+      </div>
+      <div class="modal-body">           
+        Selle veebilehe kaudu saad uurida oma asutuse isikuandmete X-tee kaudu saatmise
+        logi. Vaikimisi kuvatakse kõige uuemaid kirjeid. Noolenuppudega saad liikuda
+        lehekülgede kaupa edasi ja tagasi.                 
+        <p>
+        Otsinguks täida lihtsalt filtriväljad: enamus neist töötab teksti sisalduvuse
+        põhimõttel, seejuures väike- ja suurtähed on erinevad. 
+        Isikukoodi väli töötab täpse otsingu põhimõttel. 
+        Tühje väljasid ignoreeritakse.
+        <p>
+        Kuupäevaväljasid ei pea täitma sekundi täpsusega: piisab ka ainult kuu või kuupäeva või
+        kuupäev + tunnid täpsusest.
+        <p>
+        Kui logis on piiratud ligipääsuga kirjeid, siis nende piirangu välja väärtuseks on P:
+        väärtuse puudumine või A tähendab, et piirangut ei ole.
+      </div>
+      <div class="modal-footer noround">      
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+          onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- help popup end -->
+
+<!-- about popup start --> 
+
+<div class="modal fade ajmodal" id="aboutModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Andmejälgija rakendus</h4>
+      </div>
+      <div class="modal-body">      
+        Selle veebilehe abil saad uurida oma asutuse isikuandmete saatmise logi.
+        Siit leitav informatsioon ei ole avalik: avalikult saavad isikud leida
+        ainult nende oma andmete liikumise logikirjeid portaali eesti.ee kaudu.        
+      </div>      
+      <div class="modal-footer noround">
+        <button type="button" class="btn btn-default" 
+          onclick="$('#aboutModal').modal('hide'); $('#helpModal').modal('show');"
+          onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Loe juhendit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"
+          onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- about popup end -->
+
+<!-- record popup start --> 
+
+<div class="modal ajmodal" id="recordModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Üks kirje</h4>
+      </div>
+      <div class="modal-body">
+        <p id="recordcontents"></p>
+      </div>
+      <div class="modal-footer noround">
+           <button type="button" class="btn btn-default" data-dismiss="modal"
+             onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- error popup start --> 
+
+<div class="modal fade ajmodal" id="errorModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title redtext">Sideprobleem</h4>
+      </div>
+      <div class="modal-body">
+        <p id="errorcontents">Andmeid ei õnnestunud lugeda: palun proovi hiljem uuesti.</p>
+      </div>
+      <div class="modal-footer noround">
+           <button type="button" class="btn btn-default" data-dismiss="modal"
+             onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- data error popup start --> 
+
+<div class="modal fade ajmodal" id="dataerrorModal">
+  <div class="modal-dialog noround">
+    <div class="modal-content noround">
+      <div class="modal-header aj-modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title redtext">Viga</h4>
+      </div>
+      <div class="modal-body">
+        <p id="dataerrorcontents">Päringu viga.</p>
+      </div>
+      <div class="modal-footer noround">
+           <button type="button" class="btn btn-default" data-dismiss="modal"
+             onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">Sulge</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- error popup end -->
+
+<!-- footer -->
+
+<div class="ajfooter"></div>
+
+<!-- footer end -->
+
+<!-- at-end-scripts -->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/aj.js"></script>
+
+</body>
+</html>
+ 
+
+
