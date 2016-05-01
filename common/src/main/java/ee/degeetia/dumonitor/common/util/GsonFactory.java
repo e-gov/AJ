@@ -1,8 +1,7 @@
-package ee.degeetia.dumonitor.filter.http;
+package ee.degeetia.dumonitor.common.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import ee.degeetia.dumonitor.common.util.DateUtil;
 
 /**
  * Factory class for creating Gson instances.

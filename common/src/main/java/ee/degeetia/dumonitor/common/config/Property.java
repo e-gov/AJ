@@ -23,7 +23,7 @@ public enum Property implements PropertyHolder {
   DATABASE_CONNECTSTRING("dumonitor.storage.database.connectstring"),
   DATABASE_USER("dumonitor.storage.database.user"),
   DATABASE_PASSWORD("dumonitor.storage.database.password"),
-  
+
   XROAD_PRODUCER("dumonitor.storage.xroad.producer"),
   XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
   XROAD_USERID("dumonitor.storage.xroad.userId"),

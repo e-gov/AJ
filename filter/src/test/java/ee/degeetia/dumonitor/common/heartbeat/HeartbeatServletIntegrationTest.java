@@ -1,5 +1,6 @@
-package ee.degeetia.dumonitor.filter.heartbeat;
+package ee.degeetia.dumonitor.common.heartbeat;
 
+import ee.degeetia.dumonitor.common.heartbeat.Heartbeat;
 import ee.degeetia.dumonitor.filter.http.HttpClient;
 import ee.degeetia.dumonitor.filter.http.HttpResponse;
 import ee.degeetia.testutils.jetty.EmbeddedJettyHttpServer;

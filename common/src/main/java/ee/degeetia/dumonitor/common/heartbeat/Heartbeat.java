@@ -1,4 +1,4 @@
-package ee.degeetia.dumonitor.filter.heartbeat;
+package ee.degeetia.dumonitor.common.heartbeat;
 
 import java.util.Date;
 

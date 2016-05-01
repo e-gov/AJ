@@ -1,6 +1,8 @@
 package ee.degeetia.dumonitor.filter.http;
 
 import com.google.gson.Gson;
+
+import ee.degeetia.dumonitor.common.util.GsonFactory;
 import ee.degeetia.dumonitor.common.util.HttpUtil;
 import ee.degeetia.dumonitor.common.util.IOUtil;
 import org.slf4j.Logger;

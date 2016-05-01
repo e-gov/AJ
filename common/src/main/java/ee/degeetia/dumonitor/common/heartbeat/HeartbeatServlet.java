@@ -1,10 +1,10 @@
-package ee.degeetia.dumonitor.filter.heartbeat;
+package ee.degeetia.dumonitor.common.heartbeat;
 
 import com.google.gson.Gson;
 import ee.degeetia.dumonitor.common.config.BuildProperty;
 import ee.degeetia.dumonitor.common.config.RuntimeProperty;
+import ee.degeetia.dumonitor.common.util.GsonFactory;
 import ee.degeetia.dumonitor.common.util.IOUtil;
-import ee.degeetia.dumonitor.filter.http.GsonFactory;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
