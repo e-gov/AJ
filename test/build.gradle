@@ -28,8 +28,7 @@ jmeter {
 			if (f.exists()) jmTestFiles.add(f);
 	}
 	if (jmTestFiles.size() == 0) jmTestFiles = [file("src/test/jmeter/integration-test.jmx")];
-	// jmTestFiles = [file("src/test/jmeter/test2.jmx")] //if jmx file is not in the default location
-	// jmUserProperties = [file("src/test/jmeter/user.properties")] //to add additional user properties
+	// jMeter testide parameetrid
 	jmUserProperties = [
 		"testakUrl=http://aj04.ci.kit:8080/testak/soap",
 		"filterUrl=http://aj02.ci.kit:8080/dumonitor-filter/testak",

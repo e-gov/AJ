@@ -29,13 +29,26 @@
 			<xpath>
 				/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'getPersonData' and 
 				/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'v1' and
+				/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonData
+			</xpath>
+			<loggableFields>
+				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonData/request/personCode</personcode>
+				<action>'Get Person Data'</action>
+				<restrictions>'A'</restrictions>
+				<actioncode>'REQ:getPersonData.v1'</actioncode>
+			</loggableFields>
+		</filter>
+		<filter>
+			<xpath>
+				/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'getPersonData' and 
+				/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'v1' and
 				/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonDataResponse
 			</xpath>
 			<loggableFields>
 				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonDataResponse/response/personCode</personcode>
 				<action>'Get Person Data'</action>
 				<restrictions>'A'</restrictions>
-				<actioncode>'getPersonData.v1'</actioncode>
+				<actioncode>'RESP:getPersonData.v1'</actioncode>
 			</loggableFields>
 		</filter>
 	</filters>
