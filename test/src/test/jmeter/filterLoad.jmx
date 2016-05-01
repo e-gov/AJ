@@ -37,6 +37,116 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="Warm-up Thread Group" enabled="true">
+        <stringProp name="TestPlan.comments">Esmalt tehakse päringud ilma aega mõõtmata, et osalevatel komponentidel oleks kood juba cache laetud</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1461649352000</longProp>
+        <longProp name="ThreadGroup.end_time">1461649352000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </SetupThreadGroup>
+      <hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="testakLoadRequest-warmup" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${testakUrl}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope 
+	xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; 
+	xmlns:xro=&quot;http://x-road.eu/xsd/xroad.xsd&quot; 
+	xmlns:iden=&quot;http://x-road.eu/xsd/identifiers&quot; 
+	xmlns:prod=&quot;http://producer.x-road.eu&quot;&gt;
+   &lt;soapenv:Header&gt;
+      &lt;xro:protocolVersion&gt;4.0&lt;/xro:protocolVersion&gt;
+      &lt;xro:id&gt;4894e35d-bf0f-44a6-867a-8e51f1daa7e0&lt;/xro:id&gt;
+      &lt;xro:userId&gt;EE12345678901&lt;/xro:userId&gt;
+      &lt;xro:service iden:objectType=&quot;SERVICE&quot;&gt;
+         &lt;iden:xRoadInstance&gt;CI&lt;/iden:xRoadInstance&gt;
+         &lt;iden:memberClass&gt;GOV&lt;/iden:memberClass&gt;
+         &lt;iden:memberCode&gt;20000001&lt;/iden:memberCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:subsystemCode&gt;AJ&lt;/iden:subsystemCode&gt;
+         &lt;iden:serviceCode&gt;getPersonData&lt;/iden:serviceCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:serviceVersion&gt;v1&lt;/iden:serviceVersion&gt;
+      &lt;/xro:service&gt;
+      &lt;xro:client iden:objectType=&quot;MEMBER&quot;&gt;
+         &lt;iden:xRoadInstance&gt;CI&lt;/iden:xRoadInstance&gt;
+         &lt;iden:memberClass&gt;GOV&lt;/iden:memberClass&gt;
+         &lt;iden:memberCode&gt;10000001&lt;/iden:memberCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:subsystemCode&gt;Center&lt;/iden:subsystemCode&gt;
+      &lt;/xro:client&gt;
+   &lt;/soapenv:Header&gt;
+   &lt;soapenv:Body&gt;
+      &lt;prod:getPersonData&gt;
+         &lt;request&gt;
+            &lt;personCode&gt;47101010033&lt;/personCode&gt;
+         &lt;/request&gt;
+      &lt;/prod:getPersonData&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <stringProp name="TestPlan.comments">Otse vastu testandmekogu tehtud päringud, et saada teada, palju kulub aega otsepäringute jaoks (lahutatakse maha filtri päringute ajast, et saada teada, palju filter ise aega kulutas)</stringProp>
+        </SoapSampler>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="filterLoadRequest-warmup" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${filterUrl}</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;soapenv:Envelope 
+	xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; 
+	xmlns:xro=&quot;http://x-road.eu/xsd/xroad.xsd&quot; 
+	xmlns:iden=&quot;http://x-road.eu/xsd/identifiers&quot; 
+	xmlns:prod=&quot;http://producer.x-road.eu&quot;&gt;
+   &lt;soapenv:Header&gt;
+      &lt;xro:protocolVersion&gt;4.0&lt;/xro:protocolVersion&gt;
+      &lt;xro:id&gt;4894e35d-bf0f-44a6-867a-8e51f1daa7e0&lt;/xro:id&gt;
+      &lt;xro:userId&gt;EE12345678901&lt;/xro:userId&gt;
+      &lt;xro:service iden:objectType=&quot;SERVICE&quot;&gt;
+         &lt;iden:xRoadInstance&gt;CI&lt;/iden:xRoadInstance&gt;
+         &lt;iden:memberClass&gt;GOV&lt;/iden:memberClass&gt;
+         &lt;iden:memberCode&gt;20000001&lt;/iden:memberCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:subsystemCode&gt;AJ&lt;/iden:subsystemCode&gt;
+         &lt;iden:serviceCode&gt;getPersonData&lt;/iden:serviceCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:serviceVersion&gt;v1&lt;/iden:serviceVersion&gt;
+      &lt;/xro:service&gt;
+      &lt;xro:client iden:objectType=&quot;MEMBER&quot;&gt;
+         &lt;iden:xRoadInstance&gt;CI&lt;/iden:xRoadInstance&gt;
+         &lt;iden:memberClass&gt;GOV&lt;/iden:memberClass&gt;
+         &lt;iden:memberCode&gt;10000001&lt;/iden:memberCode&gt;
+         &lt;!--Optional:--&gt;
+         &lt;iden:subsystemCode&gt;Center&lt;/iden:subsystemCode&gt;
+      &lt;/xro:client&gt;
+   &lt;/soapenv:Header&gt;
+   &lt;soapenv:Body&gt;
+      &lt;prod:getPersonData&gt;
+         &lt;request&gt;
+            &lt;personCode&gt;47101010033&lt;/personCode&gt;
+         &lt;/request&gt;
+      &lt;/prod:getPersonData&gt;
+   &lt;/soapenv:Body&gt;
+&lt;/soapenv:Envelope&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+        </SoapSampler>
+        <hashTree/>
+      </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="JMeter Users" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">

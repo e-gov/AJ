@@ -21,6 +21,8 @@ public final class ObjectUtil {
   }
 
   /**
+   * Null safe equals method.
+   *
    * @param object  the object on which to call equals
    * @param options array of objects to use as parameters to equals
    * @return true if any of the options is equal to the object

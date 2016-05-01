@@ -18,7 +18,7 @@ public class ObjectMapperTest {
     properties.put("testInteger", 123);
     TestObject object = mapper.map(properties);
     assertEquals("test", object.getTestString());
-    assertEquals(new Integer(123), object.getTestInteger());
+    assertEquals(Integer.valueOf(123), object.getTestInteger());
   }
 
   @Test

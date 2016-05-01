@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <con:soapui-project id="314a6a83-b7ea-4be2-9458-1f0b84317f1e" activeEnvironment="Default" name="testak" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="12c86db2-4900-44b7-a5f7-dc6fa7d12df9" wsaVersion="NONE" name="getPersonDataPortSoap11" type="wsdl" bindingName="{http://producer.x-road.eu}getPersonDataPortSoap11" soapVersion="1_1" anonymous="optional" definition="file:/Users/ivo/git/AJ/test/testak/testak.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ivo/git/AJ/test/testak/testak.wsdl"><con:part><con:url>file:/Users/ivo/git/AJ/test/testak/testak.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://producer.x-road.eu" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://producer.x-road.eu" xmlns:xrd="http://x-road.eu/xsd/xroad.xsd" xmlns:id="http://x-road.eu/xsd/identifiers" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-    <xs:schema targetNamespace="http://producer.x-road.eu" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema targetNamespace="http://producer.x-road.eu" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
       <xs:import namespace="http://x-road.eu/xsd/xroad.xsd" schemaLocation="http://x-road.eu/xsd/xroad.xsd"/>
       <xs:element name="getPersonData">
         <xs:complexType>
@@ -52,13 +52,60 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="getPersonDataMtom">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="request">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="personCode" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xrd:title>PersonData input</xrd:title>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPersonDataMtomResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="response">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="personCode" type="xs:string">
+                    <xs:annotation>
+                      <xs:appinfo>
+                        <xrd:title>PersonData response</xrd:title>
+                      </xs:appinfo>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="firstName" type="xs:string"></xs:element>
+                  <xs:element name="lastName" type="xs:string"></xs:element>
+                  <xs:element name="attachment" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="getPersonDataResponse">
     <wsdl:part name="getPersonDataResponse" element="tns:getPersonDataResponse"/>
   </wsdl:message>
+  <wsdl:message name="getPersonDataMtomResponse">
+    <wsdl:part name="getPersonDataMtomResponse" element="tns:getPersonDataMtomResponse"/>
+  </wsdl:message>
   <wsdl:message name="getPersonData">
     <wsdl:part name="getPersonData" element="tns:getPersonData"/>
+  </wsdl:message>
+  <wsdl:message name="getPersonDataMtom">
+    <wsdl:part name="getPersonDataMtom" element="tns:getPersonDataMtom"/>
   </wsdl:message>
   <wsdl:message name="requestheader">
     <wsdl:part name="client" element="xrd:client"/>
@@ -75,6 +122,13 @@
       <wsdl:input name="getPersonData" message="tns:getPersonData"/>
       <wsdl:output name="getPersonDataResponse" message="tns:getPersonDataResponse"/>
     </wsdl:operation>
+    <wsdl:operation name="getPersonDataMtom">
+      <wsdl:documentation>
+        <xrd:title>getPersonDataMtom</xrd:title>
+      </wsdl:documentation>
+      <wsdl:input name="getPersonDataMtom" message="tns:getPersonDataMtom"/>
+      <wsdl:output name="getPersonDataMtomResponse" message="tns:getPersonDataMtomResponse"/>
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="getPersonDataPortSoap11" type="tns:getPersonDataPort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -90,6 +144,26 @@
         <soap:header message="tns:requestheader" part="protocolVersion" use="literal"/>
       </wsdl:input>
       <wsdl:output name="getPersonDataResponse">
+        <soap:body use="literal"/>
+        <soap:header message="tns:requestheader" part="client" use="literal"/>
+        <soap:header message="tns:requestheader" part="service" use="literal"/>
+        <soap:header message="tns:requestheader" part="userId" use="literal"/>
+        <soap:header message="tns:requestheader" part="id" use="literal"/>
+        <soap:header message="tns:requestheader" part="protocolVersion" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPersonDataMtom">
+      <soap:operation soapAction=""/>
+      <xrd:version>v1</xrd:version>
+      <wsdl:input name="getPersonDataMtom">
+        <soap:body use="literal"/>
+        <soap:header message="tns:requestheader" part="client" use="literal"/>
+        <soap:header message="tns:requestheader" part="service" use="literal"/>
+        <soap:header message="tns:requestheader" part="userId" use="literal"/>
+        <soap:header message="tns:requestheader" part="id" use="literal"/>
+        <soap:header message="tns:requestheader" part="protocolVersion" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPersonDataMtomResponse">
         <soap:body use="literal"/>
         <soap:header message="tns:requestheader" part="client" use="literal"/>
         <soap:header message="tns:requestheader" part="service" use="literal"/>
@@ -661,7 +735,37 @@
          </request>
       </prod:getPersonData>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonData"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="5f0eacae-40a6-4601-abcc-33e20febcaf1" wsaVersion="NONE" name="dumonitorBinding" type="wsdl" bindingName="{http://dumonitor.x-road.eu/producer}dumonitorBinding" soapVersion="1_1" anonymous="optional" definition="file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl"><con:part><con:url>file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl</con:url><con:content><![CDATA[<!--dumonitor.wsdl
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonData"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="6948dcf5-f458-40b9-9c68-c87fb07c0e76" isOneWay="false" action="" name="getPersonDataMtom" bindingOperationName="getPersonDataMtom" type="Request-Response" outputName="getPersonDataMtomResponse" inputName="getPersonDataMtom" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="11bd515e-7790-435c-b55f-320c3cbf40c5" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj04.ci.kit:8080/testak/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://producer.x-road.eu">
+   <soapenv:Header>
+      <xro:protocolVersion>?</xro:protocolVersion>
+      <xro:id>?</xro:id>
+      <xro:userId>?</xro:userId>
+      <xro:service iden:objectType="SERVICE">
+         <iden:xRoadInstance>?</iden:xRoadInstance>
+         <iden:memberClass>?</iden:memberClass>
+         <iden:memberCode>?</iden:memberCode>
+         <!--Optional:-->
+         <iden:subsystemCode>?</iden:subsystemCode>
+         <iden:serviceCode>?</iden:serviceCode>
+         <!--Optional:-->
+         <iden:serviceVersion>?</iden:serviceVersion>
+      </xro:service>
+      <xro:client iden:objectType="?">
+         <iden:xRoadInstance>?</iden:xRoadInstance>
+         <iden:memberClass>?</iden:memberClass>
+         <iden:memberCode>?</iden:memberCode>
+         <!--Optional:-->
+         <iden:subsystemCode>?</iden:subsystemCode>
+      </xro:client>
+   </soapenv:Header>
+   <soapenv:Body>
+      <prod:getPersonDataMtom>
+         <request>
+            <personCode>?</personCode>
+         </request>
+      </prod:getPersonDataMtom>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonDataMtom"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="5f0eacae-40a6-4601-abcc-33e20febcaf1" wsaVersion="NONE" name="dumonitorBinding" type="wsdl" bindingName="{http://dumonitor.x-road.eu/producer}dumonitorBinding" soapVersion="1_1" anonymous="optional" definition="file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl"><con:part><con:url>file:/Users/ivo/git/AJ/test/testak/dumonitor.wsdl</con:url><con:content><![CDATA[<!--dumonitor.wsdl
 X-tee andmejälgija analüüs ja disain
 
 Versioon 1.2, 07.01.2016
@@ -1461,7 +1565,47 @@ concat(
 /soapenv:Envelope/soapenv:Header/xro:client/iden:memberClass,'|',
 /soapenv:Envelope/soapenv:Header/xro:client/iden:memberCode,'|',
 /soapenv:Envelope/soapenv:Header/xro:client/iden:subsystemCode,'|',
-/soapenv:Envelope/soapenv:Body/prod:getPersonData/request/personCode)</con:query><con:match>4.0|EE12345678901|SERVICE|CI|GOV|20000001|AJ|getPersonData|v1|MEMBER|CI|GOV|10000001|Center|47101010033</con:match><con:response>Response OK</con:response></con:query></con:dispatchConfig></con:mockOperation></con:mockService><con:mockService id="542f3edd-1648-4e55-a148-64dfeaab7fea" port="8080" path="/dumonitor" host="sky.local" name="dumonitorBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="findUsage" id="ad1f9a46-88d4-4729-9e9d-48c05ba763f4" interface="dumonitorBinding" operation="findUsage"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="e2a30f6c-b641-4442-95bf-d8ce188037e2" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>def holder = new com.eviware.soapui.support.XmlHolder(mockRequest.requestContent);
+/soapenv:Envelope/soapenv:Body/prod:getPersonData/request/personCode)</con:query><con:match>4.0|EE12345678901|SERVICE|CI|GOV|20000001|AJ|getPersonData|v1|MEMBER|CI|GOV|10000001|Center|47101010033</con:match><con:response>Response OK</con:response></con:query></con:dispatchConfig></con:mockOperation><con:mockOperation name="getPersonDataMtom" id="7ff3eea6-e0fe-4cbf-ac77-ecd8659a82bb" interface="getPersonDataPortSoap11" operation="getPersonDataMtom"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="972b7804-6e82-4ba3-a899-475bd94e7256" httpResponseStatus="200" encoding="UTF-8"><con:settings><con:setting id="WsdlSettings@enable-mtom">true</con:setting><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockResponse@force_mtom">false</con:setting></con:settings><con:script>def holder = new com.eviware.soapui.support.XmlHolder(mockRequest.requestContent);
+context.id = holder["/*:Envelope/*:Header/*:id"];
+</con:script><con:responseContent><![CDATA[<soapenv:Envelope 
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
+	xmlns:iden="http://x-road.eu/xsd/identifiers" 
+	xmlns:prod="http://producer.x-road.eu">
+   <soapenv:Header>
+      <xro:protocolVersion>4.0</xro:protocolVersion>
+      <xro:id>${id}</xro:id>
+      <xro:userId>EE12345678901</xro:userId>
+      <xro:service iden:objectType="SERVICE">
+         <iden:xRoadInstance>CI</iden:xRoadInstance>
+         <iden:memberClass>GOV</iden:memberClass>
+         <iden:memberCode>20000001</iden:memberCode>
+         <!--Optional:-->
+         <iden:subsystemCode>AJ</iden:subsystemCode>
+         <iden:serviceCode>getPersonData</iden:serviceCode>
+         <!--Optional:-->
+         <iden:serviceVersion>v1</iden:serviceVersion>
+      </xro:service>
+      <xro:client iden:objectType="MEMBER">
+         <iden:xRoadInstance>CI</iden:xRoadInstance>
+         <iden:memberClass>GOV</iden:memberClass>
+         <iden:memberCode>10000001</iden:memberCode>
+         <!--Optional:-->
+         <iden:subsystemCode>Center</iden:subsystemCode>
+      </xro:client>
+   </soapenv:Header>
+   <soapenv:Body>
+      <prod:getPersonDataResponse>
+         <response>
+            <personCode>47101010033</personCode>
+            <firstName>MARI-LIIS</firstName>
+            <lastName>MÄNNIK</lastName>
+            <attachment>cid:att</attachment>
+         </response>
+      </prod:getPersonDataResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+]]></con:responseContent><con:attachment><con:name>test123.bdoc</con:name><con:contentType>application/octet-stream</con:contentType><con:size>734</con:size><con:contentId>att</con:contentId><con:data>UEsDBBQACAgIABlNmkgAAAAAAAAAAAAAAAAMAAAAdGVzdDEyMy5iZG9jC/BmZhFhYOBgYPCorvToUvzpKs/AwADCQCGG3Mzc1JLKgtTEgoKczOTEksz8PP2yvBS91JLiTL3E4sxk3VTtqsyCAKghHGBDDqQd5zkG1FzCyMAgCqR9XUMcdT393PRzE/My01KLS/QqcnOmTnD0O2LA4/rd1vWJrtfpA2yuvunHOR8whD1q9OgUvvouo+3y5EiH1hsHzv379ev97c8fgzZZXtZauan9cAV/m8WVGT/OHn59enMtk3KXjGG4Gn/MQZnpiXonXrosepdtYNvxtPrrhrVvtLyEjkd4zGELly5ck6h95FXdr7u8e3mOvTm5fMrJsudVpru3Pc2RfrW7nbNsZ4BPxtdbVc45ussbbvHPOifjHuSZ/F5Q527tErbL+zVufT98+PEK8b/M69lUty7STtzZ+Ozl9fnTHgojPG4E9LipxZQ8LmjIcYMCAOhXQyNjvZKKEm1PXT1DE6NnTAwB3oxMDAy4g9ycARnAIqAwJTM9MyU/OTknMzWvRN9Yz9BIzwBooomxgoZvYrKCf7CCIZBvqGeioGFmol9hYRZvZqKpibAMe9SALGMEW+SKK6KoYDO2sEHYbMeIElJk28fKBjKNGQjDgSYWgg0HAFBLBwiYg5/YzwEAAN4CAABQSwECFAAUAAgICAAZTZpImIOf2M8BAADeAgAADAAAAAAAAAAAAAAAAAAAAAAAdGVzdDEyMy5iZG9jUEsFBgAAAAABAAEAOgAAAAkCAAAAAA==</con:data><con:id>70c3ef0d-c15e-42d0-9c03-87a9082c7d5e</con:id></con:attachment><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://producer.x-road.eu/getPersonDataPort/getPersonDataMtomResponse"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:mockService id="542f3edd-1648-4e55-a148-64dfeaab7fea" port="8080" path="/dumonitor" host="sky.local" name="dumonitorBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="findUsage" id="ad1f9a46-88d4-4729-9e9d-48c05ba763f4" interface="dumonitorBinding" operation="findUsage"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="e2a30f6c-b641-4442-95bf-d8ce188037e2" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>def holder = new com.eviware.soapui.support.XmlHolder(mockRequest.requestContent);
 context.id = holder["/*:Envelope/*:Header/*:id"];
 </con:script><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://dumonitor.x-road.eu/producer">
    <soapenv:Header>

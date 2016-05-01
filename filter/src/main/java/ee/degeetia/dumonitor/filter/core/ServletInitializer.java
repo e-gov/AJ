@@ -1,7 +1,8 @@
 package ee.degeetia.dumonitor.filter.core;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
@@ -11,7 +12,7 @@ import javax.servlet.ServletContext;
  */
 public class ServletInitializer {
 
-  private static final Logger LOG = LogManager.getLogger(ServletInitializer.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ServletInitializer.class);
 
   private final ServletContext servletContext;
 

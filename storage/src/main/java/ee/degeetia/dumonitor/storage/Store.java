@@ -1,6 +1,6 @@
 package ee.degeetia.dumonitor.storage;
 
-import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.config.Property;
 
 import java.io.IOException;
 import java.io.Reader;

@@ -1,6 +1,6 @@
 package ee.degeetia.dumonitor.filter;
 
-import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.config.Property;
 import ee.degeetia.dumonitor.common.util.ResourceUtil;
 import ee.degeetia.testutils.jetty.EmbeddedJettyHttpServer;
 import ee.degeetia.testutils.jetty.EmbeddedJettyIntegrationTest;
@@ -33,29 +33,11 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
     super(new EmbeddedJettyHttpServer());
   }
 
-  @BeforeClass
-  public static void setProperties() {
-    Property.ANDMEKOGU_INTERCEPTOR_PATH.setValue("/filter/andmekogu");
-    Property.TURVASERVER_INTERCEPTOR_PATH.setValue("/filter/turvaserver");
-  }
-
-  @AfterClass
-  public static void clearProperties() {
-    Property.clearAll();
-  }
-
   @Before
   public void setUp() throws Exception {
-    setRuntimeProperties();
     createAndmekoguServlet();
     createLoggerServlet();
     createConnection();
-  }
-
-  private void setRuntimeProperties() {
-    Property.ANDMEKOGU_URL.setValue(getApplicationUrl() + "/andmekogu");
-    Property.TURVASERVER_URL.setValue(getApplicationUrl() + "/turvaserver");
-    Property.LOGGER_REST_URL.setValue(getApplicationUrl() + "/logger");
   }
 
   private void createAndmekoguServlet() {
@@ -183,7 +165,7 @@ public class XRoadInterceptorServletIntegrationTest extends EmbeddedJettyIntegra
   }
 
   private String getTestWsUrl() {
-    return getApplicationUrl() + Property.ANDMEKOGU_INTERCEPTOR_PATH.getString();
+    return getApplicationUrl() + Property.ANDMEKOGU_INTERCEPTOR_PATH.getValue();
   }
 
 }

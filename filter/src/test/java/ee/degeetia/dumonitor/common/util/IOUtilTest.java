@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 
 public class IOUtilTest {
 
-  public static final String TEST_STRING = "test ^ ` ´ ~ ˇ õäöü";
-  public static final byte[] TEST_BYTES = TEST_STRING.getBytes(IOUtil.UTF_8);
+  private static final String TEST_STRING = "test ^ ` ´ ~ ˇ õäöü";
+  private static final byte[] TEST_BYTES = TEST_STRING.getBytes(IOUtil.UTF_8);
 
   @Test
   public void testPipe() throws IOException {
@@ -68,7 +68,7 @@ public class IOUtilTest {
     assertTrue(inputStream.isClosed());
   }
 
-  private class TestInputStream extends ByteArrayInputStream {
+  private static class TestInputStream extends ByteArrayInputStream {
     private boolean closed;
 
     public TestInputStream(byte[] bytes) {
@@ -86,7 +86,7 @@ public class IOUtilTest {
     }
   }
 
-  private class TestOutputStream extends ByteArrayOutputStream {
+  private static class TestOutputStream extends ByteArrayOutputStream {
     private boolean closed;
 
     @Override

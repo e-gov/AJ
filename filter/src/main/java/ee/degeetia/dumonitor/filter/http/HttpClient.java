@@ -1,13 +1,10 @@
 package ee.degeetia.dumonitor.filter.http;
 
 import com.google.gson.Gson;
-
-import com.google.gson.GsonBuilder;
 import ee.degeetia.dumonitor.common.util.HttpUtil;
 import ee.degeetia.dumonitor.common.util.IOUtil;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,9 +17,22 @@ import java.net.URL;
  */
 public class HttpClient {
 
-  private static final Logger LOG = LogManager.getLogger(HttpClient.class);
+  private static final Logger LOG = LoggerFactory.getLogger(HttpClient.class);
 
-  private final Gson gson = createGson();
+  private final Gson gson = GsonFactory.createGson();
+
+  /**
+   * Sends an HTTP GET request to the specified URL.
+   *
+   * @param url          the URL to which to send the request
+   * @param responseType the type of response to expect
+   * @param <T>          the type of response to expect
+   * @return a {@link HttpResponse} object containing the response status and response body
+   * @throws HttpException if something goes wrong when performing the request
+   */
+  public <T> HttpResponse<T> get(URL url, Class<T> responseType) throws HttpException {
+    return execute(url, null, "GET", responseType);
+  }
 
   /**
    * Sends an HTTP POST request to the specified URL.
@@ -55,9 +65,11 @@ public class HttpClient {
     try {
       connection = HttpUtil.openConnection(url);
 
-      String json = gson.toJson(body);
-      sendHeaders(connection, method, "application/json", json.length());
-      sendBody(connection, json);
+      if (body != null) {
+        String json = gson.toJson(body);
+        sendHeaders(connection, method, "application/json", json.length());
+        sendBody(connection, json);
+      }
 
       return getResponse(connection, responseType);
     } catch (Exception e) {
@@ -113,12 +125,6 @@ public class HttpClient {
       LOG.error("Response status is {}: {}", status.getCode(), status.getMessage());
     }
     return status;
-  }
-
-  private Gson createGson() {
-    GsonBuilder builder = new GsonBuilder();
-    builder.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-    return builder.create();
   }
 
 }

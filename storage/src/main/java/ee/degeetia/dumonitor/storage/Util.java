@@ -1,8 +1,8 @@
 package ee.degeetia.dumonitor.storage;
 
-import ee.degeetia.dumonitor.common.config.properties.Property;
-import ee.degeetia.dumonitor.common.config.properties.RuntimeProperty;
-import ee.degeetia.dumonitor.common.config.properties.PropertyLoader;
+import ee.degeetia.dumonitor.common.config.Property;
+import ee.degeetia.dumonitor.common.config.RuntimeProperty;
+import ee.degeetia.dumonitor.common.config.PropertyLoader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -74,10 +74,10 @@ public class Util  {
   throws ServletException, IOException {
     PropertyLoader propertyLoader = new PropertyLoader();
     try {
-      propertyLoader.loadProperties("dumonitor.properties", "test.properties", "default.properties");
-      if (Property.DATABASE_CONNECTSTRING.getString()==null ||
-          Property.DATABASE_USER.getString()==null ||
-          Property.DATABASE_PASSWORD.getString()==null) {
+      propertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
+      if (Property.DATABASE_CONNECTSTRING.getValue()==null ||
+          Property.DATABASE_USER.getValue()==null ||
+          Property.DATABASE_PASSWORD.getValue()==null) {
         showError(context,1,
                  "failed to load database connect string, user or password configuration properties");    
         return false;    
@@ -243,9 +243,9 @@ public class Util  {
     Connection conn=null;
     try {
       conn = DriverManager.getConnection(
-         Property.DATABASE_CONNECTSTRING.getString(),
-         Property.DATABASE_USER.getString(),
-         Property.DATABASE_PASSWORD.getString());
+         Property.DATABASE_CONNECTSTRING.getValue(),
+         Property.DATABASE_USER.getValue(),
+         Property.DATABASE_PASSWORD.getValue());
     } catch(Exception e) {
       Util.showError(context, 8, "failed to connect to the database");
       return null;
@@ -284,7 +284,7 @@ public class Util  {
       } else {
         // Normal error: pass request, insert header
         String err=Strs.xroadErr.replace("{header}",createSoapHeader(context));
-        err=err.replace("{producerns}",Property.XROAD_PRODUCERNS.getString());
+        err=err.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());
         err=err.replace("{request}",context.xrdRequest);
         err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanXmlStr(msg));
         context.os.println(err);
@@ -424,9 +424,9 @@ public class Util  {
     header=header.replace("{consumer}",context.xrdProducer);
     header=header.replace("{id}",context.xrdId);    
     // our values from configuration
-    header=header.replace("{producer}",Property.XROAD_PRODUCER.getString());
-    header=header.replace("{userId}",Property.XROAD_USERID.getString());
-    header=header.replace("{service}",Property.XROAD_SERVICE.getString());    
-    return header;        
+    header=header.replace("{producer}",Property.XROAD_PRODUCER.getValue());
+    header=header.replace("{userId}",Property.XROAD_USERID.getValue());
+    header=header.replace("{service}",Property.XROAD_SERVICE.getValue());
+    return header;
   }
 }

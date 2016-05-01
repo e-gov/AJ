@@ -1,6 +1,7 @@
 package ee.degeetia.dumonitor.common.util;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSocketFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -60,7 +61,9 @@ public final class HttpUtil {
     }
     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
     if (httpURLConnection instanceof HttpsURLConnection) {
-      // TODO
+      HttpsURLConnection httpsURLConnection = (HttpsURLConnection) httpURLConnection;
+      SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+      httpsURLConnection.setSSLSocketFactory(sslSocketFactory);
     }
     return httpURLConnection;
   }

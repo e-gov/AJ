@@ -1,16 +1,16 @@
 package ee.degeetia.dumonitor.filter.http;
 
-import ee.degeetia.dumonitor.common.config.properties.Property;
 import ee.degeetia.testutils.jetty.EmbeddedJettyHttpServer;
 import ee.degeetia.testutils.jetty.EmbeddedJettyIntegrationTest;
 import ee.degeetia.testutils.servlet.MirroringServlet;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -23,17 +23,6 @@ public class HttpClientIntegrationTest extends EmbeddedJettyIntegrationTest {
 
   public HttpClientIntegrationTest() {
     super(new EmbeddedJettyHttpServer());
-  }
-
-  @BeforeClass
-  public static void setProperties() {
-    Property.ANDMEKOGU_INTERCEPTOR_PATH.setValue("/filter/andmekogu");
-    Property.TURVASERVER_INTERCEPTOR_PATH.setValue("/filter/turvaserver");
-  }
-
-  @AfterClass
-  public static void clearProperties() {
-    Property.clearAll();
   }
 
   @Before

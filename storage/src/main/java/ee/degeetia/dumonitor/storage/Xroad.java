@@ -1,6 +1,6 @@
 package ee.degeetia.dumonitor.storage;
 
-import ee.degeetia.dumonitor.common.config.properties.Property;
+import ee.degeetia.dumonitor.common.config.Property;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -98,7 +98,7 @@ public class Xroad extends HttpServlet {
       String result=fetchData(personcode);
       result="<response>\n"+result+"</response>"; 
       String envelope=Strs.xroadMessage.replace("{header}",Util.createSoapHeader(context));
-      envelope=envelope.replace("{producerns}",Property.XROAD_PRODUCERNS.getString());
+      envelope=envelope.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());
       envelope=envelope.replace("{request}",requestStr);
       envelope=envelope.replace("{response}",result);     
       context.os.println(envelope);   

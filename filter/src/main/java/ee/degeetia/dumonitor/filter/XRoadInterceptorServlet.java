@@ -1,14 +1,13 @@
 package ee.degeetia.dumonitor.filter;
 
-import ee.degeetia.dumonitor.common.config.properties.Property;
-import ee.degeetia.dumonitor.common.config.properties.RuntimeProperty;
+import ee.degeetia.dumonitor.common.config.Property;
+import ee.degeetia.dumonitor.common.config.RuntimeProperty;
 import ee.degeetia.dumonitor.common.util.HttpUtil;
 import ee.degeetia.dumonitor.common.util.IOUtil;
 import ee.degeetia.dumonitor.common.util.URLUtil;
 import ee.degeetia.dumonitor.filter.processor.MessageProcessorQueue;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,14 +26,14 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class XRoadInterceptorServlet extends HttpServlet {
 
-  private static final Logger LOG = LogManager.getLogger(XRoadInterceptorServlet.class);
+  private static final Logger LOG = LoggerFactory.getLogger(XRoadInterceptorServlet.class);
 
   // Request path -> Target WS URL
   private static final Map<String, URL> URL_MAPPINGS = new ConcurrentHashMap<String, URL>();
 
   static {
-    URL_MAPPINGS.put(Property.ANDMEKOGU_INTERCEPTOR_PATH.getString(), Property.ANDMEKOGU_URL.getURL());
-    URL_MAPPINGS.put(Property.TURVASERVER_INTERCEPTOR_PATH.getString(), Property.TURVASERVER_URL.getURL());
+    URL_MAPPINGS.put(Property.ANDMEKOGU_INTERCEPTOR_PATH.getValue(), Property.ANDMEKOGU_URL.getURL());
+    URL_MAPPINGS.put(Property.TURVASERVER_INTERCEPTOR_PATH.getValue(), Property.TURVASERVER_URL.getURL());
   }
 
   private final MessageProcessorQueue queue = new MessageProcessorQueue();
