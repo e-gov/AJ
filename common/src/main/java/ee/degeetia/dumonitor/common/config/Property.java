@@ -27,7 +27,9 @@ public enum Property implements PropertyHolder {
   XROAD_PRODUCER("dumonitor.storage.xroad.producer"),
   XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
   XROAD_USERID("dumonitor.storage.xroad.userId"),
-  XROAD_SERVICE("dumonitor.storage.xroad.service");
+  XROAD_SERVICE("dumonitor.storage.xroad.service"),
+  
+  QUERY_TURVASERVER_URL("dumonitor.query.xroad.url");
 
   private String key;
   private String value;
