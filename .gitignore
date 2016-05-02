@@ -19,5 +19,7 @@ bin/
 
 ### GFM View
 .*.md.html
+
 /tmp/
 /jmeter.log
+build.properties
