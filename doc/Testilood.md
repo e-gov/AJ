@@ -1,20 +1,46 @@
-# Testilood
+Testilood
+=========
 
 **DUMonitor**
 
-Versioon 1.0, 24.04.2016
+Versioon 1.0, 09.05.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ
 
-![EL struktuurifondid](EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL struktuurifondid](img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
 
 ## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor      | Märkused
 |----------|------------|------------|----------------------------------------------
-| 1.0      | 24.04.2016 | Ivo Mehide | Esimene versioon
+| 1.0      | 09.05.2016 | Ivo Mehide | Esimene versioon
+
+## Sisukord
+
+  * [Sissejuhatus](#sissejuhatus)
+  * [Testilood](#testilood-1)
+    * [Testilugude koond](#testilugude-koond)
+      * [Integratsioonitestid](#integratsioonitestid)
+      * [Koormustestid](#koormustestid)
+    * [Testilugude kirjeldused](#testilugude-kirjeldused)
+      * [1\. Filtri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- korrektne päring](#1-filtri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---korrektne-p%C3%A4ring)
+      * [2\. Filtri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- korrektne MTOM päring](#2-filtri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---korrektne-mtom-p%C3%A4ring)
+      * [3\. Filtri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- vigane päring](#3-filtri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---vigane-p%C3%A4ring)
+      * [4\. Filtri komponent: päringu ja vastuse logimine](#4-filtri-komponent-p%C3%A4ringu-ja-vastuse-logimine)
+      * [5\. Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine](#5-andmesalvestaja-komponent-url-kaudu-kasutusteabe-logimise-s%C3%B5numi-vastuv%C3%B5tmine-ja-salvestamine)
+      * [6\. Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine](#6-andmesalvestaja-komponent-rest-liidese-kaudu-kasutusteabe-logimise-s%C3%B5numi-vastuv%C3%B5tmine-ja-salvestamine)
+      * [7\. Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine](#7-andmesalvestaja-komponent-rest-liidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
+      * [8\. Andmesalvestaja komponent: X\-tee liidese kaudu logist otsimine ja tulemuse tagastamine](#8-andmesalvestaja-komponent-x-tee-liidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
+      * [9\. Andmesalvestaja komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine](#9-andmesalvestaja-komponent-veebiliidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
+      * [10\. Esitamise testrakenduse komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine](#10-esitamise-testrakenduse-komponent-veebiliidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
+      * [11\. Eesti\.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine](#11-eestiee-komponent-misp2-veebiliidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
+      * [12\. Filtri komponendi koormustest](#12-filtri-komponendi-koormustest)
+      * [13\. Andmesalvestaja komponendi REST logimisliidese koormustest](#13-andmesalvestaja-komponendi-rest-logimisliidese-koormustest)
+      * [14\. Andmesalvestaja komponendi REST päringuliidese koormustest](#14-andmesalvestaja-komponendi-rest-p%C3%A4ringuliidese-koormustest)
+      * [15\. Andmesalvestaja komponendi X\-tee päringuliidese koormustest](#15-andmesalvestaja-komponendi-x-tee-p%C3%A4ringuliidese-koormustest)
+
 
 ## Sissejuhatus
 
@@ -29,6 +55,7 @@ Käesolevas dokumendis kirjeldaatkse DUMonitor tarkvara integratsiooni- ja koorm
 Automaatsed testid:
 
 * Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring
+* Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
 * Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
 * Filtri komponent: päringu ja vastuse logimine
 * Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
@@ -56,7 +83,6 @@ Käsitsi läbi viidavad testid:
 
 * Testiloo nimetus:	Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring
 * Testiloo indeks:	1
-* Viide kasutusloole:	
 * Lühikirjeldus: 	Tehakse päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse saadud vastuse korrektsuses.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi päringu vahendamine
 * Omadused, mida ei testita:	Eraldusfiltri komponendi päringu logimine
@@ -82,11 +108,38 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 2. Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
+#### 2. Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
+
+* Testiloo nimetus:	Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
+* Testiloo indeks:	2
+* Lühikirjeldus: 	Tehakse päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse saadud vastuse korrektsuses.
+* Omadused, mida testitakse:	Eraldusfiltri komponendi päringu vahendamine
+* Omadused, mida ei testita:	Eraldusfiltri komponendi päringu logimine
+* Lähtetingimused:	-
+* Oletatavad vead:
+  1. Päring edastatakse andmekogule vigaselt või ei edastata üldse
+  2. Andmekogu poolt tagastatud päringu vastus tagastatakse vigaselt või ei tagastata üldse
+* Testi jada kirjeldus:	
+  1. Tehakse test andmekogu teenuse getPersonDataMtom päring filtri komponendi andmekogu teenust vahendavale URLile.
+  2. Filter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule.
+  3. Testandmekogu kontrollib saabunud päringu sisu korrektsust (kõikide väljade vastavust algses päringus toodule) ning tagastab selle baasilt kas korrektse päringu vastuse või veavastuse.
+  4. Filter loeb päringu vastuse sisse ja tagastab selle.
+  6. Testiskript veendub et tegemist pole veavastusega ning et vastuses toodud andmeväljade sisu vastab test andmekogu poolt saadetule.
+* Käivitamise ja läbiviimise skript:	filterReqRespMtom
+* Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
+* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
+  Test loetakse positiivseks, kui:
+  - Testandmekogu poolt vastuvõetud päring on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku päringus esitatutega.
+  - Filtri poolt tagastatud vastus on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku testandmekogu poolt tagastatutega.
+  - Filtri poolt tagastatud vastus on ""multipart/related"" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
+  - Filtri poolt tagastatud vastuse sisus toodud andmeväljade väärtused langevad kokku testandmekogu poolt tagastatutele
+  Kõigil muudel juhtudel loetakse test ebaõnnestunuks.
+* Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
+
+#### 3. Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
 
 * Testiloo nimetus:	Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
-* Testiloo indeks:	2
-* Viide kasutusloole:	
+* Testiloo indeks:	3
 * Lühikirjeldus: 	Tehakse vigaseid andmeis sisaldav päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse vastuseks saadud SOAP exceptioni korrektsuses. Eesmärgiks on veenduda, et andmekogu poolt tagastatav SOAP exception jõuab muutmatult läbi filtri päringu tegijale.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi päringu vahendamine
 * Omadused, mida ei testita:	Eraldusfiltri komponendi päringu logimine
@@ -108,11 +161,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 3. Filtri komponent: päringu ja vastuse logimine
+#### 4. Filtri komponent: päringu ja vastuse logimine
 
 * Testiloo nimetus:	Filtri komponent: päringu ja vastuse logimine
-* Testiloo indeks:	3
-* Viide kasutusloole:	
+* Testiloo indeks:	4
 * Lühikirjeldus: 	Tehakse päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse päringu ja selle vastuse logimises andmesalvestaja komponenti.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi päringu logimine
 * Omadused, mida ei testita:	Eraldusfiltri komponendi päringu vahendamine
@@ -137,11 +189,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 4. Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
+#### 5. Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
 
 * Testiloo nimetus:	Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
-* Testiloo indeks:	4
-* Viide kasutusloole:	
+* Testiloo indeks:	5
 * Lühikirjeldus: 	Tehakse HTTP GET päring andmesalvestaja komponendi REST logimisliidesele, kus logitav info on URLi parameetrites, ning veendutakse päringu logimises.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi REST logimisliidese GET-päringutega logimine
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST logimisliidese POST-päringutega logimine
@@ -161,11 +212,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 5. Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
+#### 6. Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
 
 * Testiloo nimetus:	Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
-* Testiloo indeks:	5
-* Viide kasutusloole:	
+* Testiloo indeks:	6
 * Lühikirjeldus: 	Tehakse HTTP POST päring andmesalvestaja komponendi REST logimisliidesele, kus logitav info on päringu kehas JSON struktuuris, ning veendutakse päringu logimises.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi REST logimisliidese POST-päringutega logimine
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST logimisliidese GET-päringutega logimine
@@ -185,11 +235,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 6. Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine
+#### 7. Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine
 
 * Testiloo nimetus:	Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine
-* Testiloo indeks:	6
-* Viide kasutusloole:	
+* Testiloo indeks:	7
 * Lühikirjeldus: 	Andemsalvestaja komponendi REST logimisliidese abil salvestatakse logikirje ning seejärel otsitakse seda andmesalvestaja REST otsinguliidese kaudu. Veendutakse kirje leidumises.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi REST otsinguliidese toimimine
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST logimisliidese toimimine
@@ -209,11 +258,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 7. Andmesalvestaja komponent: X-tee liidese kaudu logist otsimine ja tulemuse tagastamine
+#### 8. Andmesalvestaja komponent: X-tee liidese kaudu logist otsimine ja tulemuse tagastamine
 
 * Testiloo nimetus:	Andmesalvestaja komponent: X-tee liidese kaudu logist otsimine ja tulemuse tagastamine
-* Testiloo indeks:	7
-* Viide kasutusloole:	
+* Testiloo indeks:	8
 * Lühikirjeldus: 	Andemsalvestaja komponendi REST logimisliidese abil salvestatakse logikirje ning seejärel otsitakse seda andmesalvestaja X-tee otsinguliidese kaudu. Veendutakse kirje leidumises.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi X-tee otsinguliidese toimimine
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST logimise liidese toimimine
@@ -233,11 +281,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 8. Andmesalvestaja komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
+#### 9. Andmesalvestaja komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
 
 * Testiloo nimetus:	Andmesalvestaja komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
-* Testiloo indeks:	8
-* Viide kasutusloole:	
+* Testiloo indeks:	9
 * Lühikirjeldus: 	Otsitakse andmesalvestaja veebiliidese kaudu logikirjet, mis lisati testi nr 7 täitmise käigus. Veendutakse kirje leidumises.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi sisekasutuse veebiliidese toimimine
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST otsinguliidese toimimine
@@ -268,11 +315,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Käsitsi läbiviidav test.
 
 
-#### 9. Esitamise testrakenduse komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
+#### 10. Esitamise testrakenduse komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
 
 * Testiloo nimetus:	Esitamise testrakenduse komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
-* Testiloo indeks:	9
-* Viide kasutusloole:	
+* Testiloo indeks:	10
 * Lühikirjeldus: 	Otsitakse esitamise testrakenduse kaudu logikirjet, mis lisati testi nr 7 täitmise käigus. Veendutakse kirje leidumises.
 * Omadused, mida testitakse:	Esitamise testrakenduse veebiliidese toimimine
 * Omadused, mida ei testita:	
@@ -303,11 +349,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Käsitsi läbiviidav test.
 
 
-#### 10. Eesti.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
+#### 11. Eesti.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
 
 * Testiloo nimetus:	Eesti.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
-* Testiloo indeks:	10
-* Viide kasutusloole:	
+* Testiloo indeks:	11
 * Lühikirjeldus: 	Otsitakse esitamise testrakenduse kaudu logikirjet, mis lisati testi nr 7 täitmise käigus. Veendutakse kirje leidumises.
 * Omadused, mida testitakse:	Eesti.ee xforms rakenduse toimimine
 * Omadused, mida ei testita:	
@@ -330,11 +375,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Käsitsi läbiviidav test.
 
 
-#### 11. Filtri komponendi koormustest
+#### 12. Filtri komponendi koormustest
 
 * Testiloo nimetus:	Filtri komponendi koormustest
-* Testiloo indeks:	11
-* Viide kasutusloole:	
+* Testiloo indeks:	12
 * Lühikirjeldus: 	Tehakse paralleelsed päringud test andmekogu teenusele ja peale seda eraldusfiltri komponendi andmekogu teenust vahendavale URLile. Saadud tulemuste baasilt leitakse keskmised päringuajad otse test andmekogu teenuse vastu ning filtri vastu. Päringuaegade vahe annab filtri poolt kulutatava täiendava keskmise aja.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi jõudlus
 * Omadused, mida ei testita:	Eraldusfiltri logimise funktsionaalsuse jõudlus
@@ -353,11 +397,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 12. Andmesalvestaja komponendi REST logimisliidese koormustest
+#### 13. Andmesalvestaja komponendi REST logimisliidese koormustest
 
 * Testiloo nimetus:	Andmesalvestaja komponendi REST logimisliidese koormustest
-* Testiloo indeks:	12
-* Viide kasutusloole:	
+* Testiloo indeks:	13
 * Lühikirjeldus: 	Tehakse paralleelsed päringud andmesalvestaja komponendi REST logimisliidesele ja fikseeritakse nende keskmine täitmise aeg.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi REST logimisliidese jõudlus
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST logimisliidese GET päringute jõudlus
@@ -374,11 +417,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 13. Andmesalvestaja komponendi REST päringuliidese koormustest
+#### 14. Andmesalvestaja komponendi REST päringuliidese koormustest
 
 * Testiloo nimetus:	Andmesalvestaja komponendi REST päringuliidese koormustest
-* Testiloo indeks:	13
-* Viide kasutusloole:	
+* Testiloo indeks:	14
 * Lühikirjeldus: 	Tehakse paralleelsed päringud andmesalvestaja komponendi REST päringuliidesele ja fikseeritakse nende keskmine täitmise aeg.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi REST päringuliidese jõudlus
 * Omadused, mida ei testita:	-
@@ -395,11 +437,10 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 14. Andmesalvestaja komponendi X-tee päringuliidese koormustest
+#### 15. Andmesalvestaja komponendi X-tee päringuliidese koormustest
 
 * Testiloo nimetus:	Andmesalvestaja komponendi X-tee päringuliidese koormustest
-* Testiloo indeks:	14
-* Viide kasutusloole:	
+* Testiloo indeks:	15
 * Lühikirjeldus: 	Tehakse paralleelsed päringud andmesalvestaja komponendi X-tee päringuliidesele ja fikseeritakse nende keskmine täitmise aeg.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi X-tee päringuliidese jõudlus
 * Omadused, mida ei testita:	-

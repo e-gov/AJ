@@ -2,19 +2,32 @@
 
 **DUMonitor**
 
-Versioon 1.0, 24.04.2016
+Versioon 1.0, 09.05.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ
 
-![EL struktuurifondid](EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL struktuurifondid](img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
 
 ## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor      | Märkused
 |----------|------------|------------|----------------------------------------------
-| 1.0      | 24.04.2016 | Ivo Mehide | Esimene versioon
+| 1.0      | 09.05.2016 | Ivo Mehide | Esimene versioon
+
+## Sisukord
+
+  * [Mõisted](#m%C3%B5isted)
+  * [Sissejuhatus](#sissejuhatus)
+  * [Testide läbiviimise põhimõtted](#testide-l%C3%A4biviimise-p%C3%B5him%C3%B5tted)
+    * [Ühiktestid](#%C3%9Chiktestid)
+    * [Integratsioonitestid](#integratsioonitestid)
+    * [Koormustestid](#koormustestid)
+  * [Testkeskkond](#testkeskkond)
+    * [Riistvara ja baastarkvara](#riistvara-ja-baastarkvara)
+  * [Rollid](#rollid)
+
 
 ## Mõisted
 
