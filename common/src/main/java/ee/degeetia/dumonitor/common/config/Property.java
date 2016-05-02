@@ -1,3 +1,25 @@
+/**
+ * MIT License
+ * Copyright (c) 2016 Estonian Information System Authority (RIA)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package ee.degeetia.dumonitor.common.config;
 
 import java.net.URL;
@@ -20,30 +42,16 @@ public enum Property implements PropertyHolder {
   EXECUTOR_QUEUE_CAPACITY("dumonitor.filter.executor.queue.capacity"),
   EXECUTOR_SHUTDOWN_TIMEOUT_SECONDS("dumonitor.filter.executor.shutdown.timeout.seconds"),
 
+  BLACKLIST("dumonitor.blacklist"),
+
   DATABASE_CONNECTSTRING("dumonitor.storage.database.connectstring"),
   DATABASE_USER("dumonitor.storage.database.user"),
   DATABASE_PASSWORD("dumonitor.storage.database.password"),
-  
-  // common xroad configuration
-  XROAD_USERID("dumonitor.storage.xroad.userId"),
-  XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
-  
-  // old xroad configuration
+
   XROAD_PRODUCER("dumonitor.storage.xroad.producer"),
+  XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
+  XROAD_USERID("dumonitor.storage.xroad.userId"),
   XROAD_SERVICE("dumonitor.storage.xroad.service"),
-    
-  // new xroad configuration
-  XROAD_MEMBER_XROAD_INSTANCE("dumonitor.storage.xroad.member.xroadinstance"),
-  XROAD_MEMBER_MEMBER_CLASS("dumonitor.storage.xroad.member.memberclass"),
-  XROAD_MEMBER_MEMBER_CODE("dumonitor.storage.xroad.member.membercode"),
-  XROAD_MEMBER_MEMBER_SUBSYSTEM_CODE("dumonitor.storage.xroad.member.subsystemcode"),
-  
-  XROAD_SERVICE_XROAD_INSTANCE("dumonitor.storage.xroad.service.xroadinstance"),
-  XROAD_SERVICE_MEMBER_CLASS("dumonitor.storage.xroad.service.memberclass"),
-  XROAD_SERVICE_MEMBER_CODE("dumonitor.storage.xroad.service.membercode"),
-  XROAD_SERVICE_MEMBER_SUBSYSTEM_CODE("dumonitor.storage.xroad.service.subsystemcode"),
-  XROAD_SERVICE_SERVICE_CODE("dumonitor.storage.xroad.service.servicecode"),
-  XROAD_SERVICE_SERVICE_VERSION("dumonitor.storage.xroad.service.serviceversion"),
   
   QUERY_TURVASERVER_URL("dumonitor.query.xroad.url");
 
@@ -76,6 +84,10 @@ public enum Property implements PropertyHolder {
 
   public URL getURL() {
     return PropertyConverter.toURL(this);
+  }
+
+  public String[] getArray() {
+    return PropertyConverter.toArray(this);
   }
 
 }

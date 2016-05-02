@@ -1,14 +1,12 @@
 package ee.degeetia.dumonitor.storage;
 
 import ee.degeetia.dumonitor.common.config.Property;
-import ee.degeetia.dumonitor.common.config.RuntimeProperty;
 import ee.degeetia.dumonitor.common.config.PropertyLoader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.io.BufferedReader;
 import java.io.StringReader;
 
@@ -16,7 +14,6 @@ import java.io.StringWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,8 +22,6 @@ import java.util.Map;
 import java.util.Iterator;
 import java.util.Set;
 
-import java.io.StringReader;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -34,9 +29,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.CharacterData;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -72,9 +65,8 @@ public class Util  {
   
   public static boolean loadProperties(Context context) 
   throws ServletException, IOException {
-    PropertyLoader propertyLoader = new PropertyLoader();
     try {
-      propertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
+    	PropertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
       if (Property.DATABASE_CONNECTSTRING.getValue()==null ||
           Property.DATABASE_USER.getValue()==null ||
           Property.DATABASE_PASSWORD.getValue()==null) {

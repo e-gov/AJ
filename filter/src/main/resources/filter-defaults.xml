@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<filterConfiguration xmlns="http://x-road.eu/xsd/dumonitor.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://x-road.eu/xsd/dumonitor.xsd dumonitor.xsd">
-    <namespaces>
-        <namespace>
-            <prefix>SOAP-ENV</prefix>
-            <uri>http://schemas.xmlsoap.org/soap/envelope/</uri>
-        </namespace>
-        <namespace>
-            <prefix>xrd</prefix>
-            <uri>http://x-road.eu/xsd/xroad.xsd</uri>
-        </namespace>
-        <namespace>
-            <prefix>id</prefix>
-            <uri>http://x-road.eu/xsd/identifiers</uri>
-        </namespace>
-    </namespaces>
-    <defaults>
-        <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender>
-        <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver>
-        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sendercode>
-        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receivercode>
-        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id</xroadrequestid>
-        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode</xroadservice>
-        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId</usercode>
-    </defaults>
-</filterConfiguration>
+<du:filterConfiguration xmlns:du="http://x-road.eu/xsd/dumonitor.xsd"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://x-road.eu/xsd/dumonitor.xsd dumonitor.xsd">
+    <du:namespaces>
+        <du:namespace>
+            <du:prefix>du</du:prefix>
+            <du:uri>http://x-road.eu/xsd/dumonitor.xsd</du:uri>
+        </du:namespace>
+        <du:namespace>
+            <du:prefix>SOAP-ENV</du:prefix>
+            <du:uri>http://schemas.xmlsoap.org/soap/envelope/</du:uri>
+        </du:namespace>
+        <du:namespace>
+            <du:prefix>xrd</du:prefix>
+            <du:uri>http://x-road.eu/xsd/xroad.xsd</du:uri>
+        </du:namespace>
+        <du:namespace>
+            <du:prefix>id</du:prefix>
+            <du:uri>http://x-road.eu/xsd/identifiers</du:uri>
+        </du:namespace>
+    </du:namespaces>
+    <du:exclusions>
+        <du:exclusion>du:inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode)</du:exclusion>
+        <du:exclusion>du:inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode)</du:exclusion>
+    </du:exclusions>
+    <du:defaults>
+        <du:sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</du:sender>
+        <du:receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</du:receiver>
+        <du:sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</du:sendercode>
+        <du:receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</du:receivercode>
+        <du:xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id</du:xroadrequestid>
+        <du:xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode</du:xroadservice>
+        <du:usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId</du:usercode>
+    </du:defaults>
+</du:filterConfiguration>

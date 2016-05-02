@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filterConfiguration xmlns="http://x-road.eu/xsd/dumonitor.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <namespaces>
+        <namespace>
+            <prefix>SOAP-ENV</prefix>
+            <uri>http://schemas.xmlsoap.org/soap/envelope/</uri>
+        </namespace>
+        <namespace>
+            <prefix>xrd</prefix>
+            <uri>http://x-road.eu/xsd/xroad.xsd</uri>
+        </namespace>
+        <namespace>
+            <prefix>id</prefix>
+            <uri>http://x-road.eu/xsd/identifiers</uri>
+        </namespace>
+    </namespaces>
+    <defaults>
+    	<!-- Uncomment and fill in with human readable sender name: -->
+        <!--  <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender> -->
+    	<!-- Uncomment and fill in with human readable receiver name: -->
+        <!--  <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver> -->
+    </defaults>
+    <filters>
+    	<!-- Describe filters here: -->
+    	<!--
+		<filter>
+		<xpath>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'replaceWithServiceCode' and /SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'replaceWithServiceVersion'</xpath>
+			<loggableFields>
+				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse/replaceWithXPathToPersonCode</personcode>
+				<action>'Human readable action name'</action>
+				<restrictions>'A'</restrictions>
+				<actioncode>'technicalActionCode'</actioncode>
+			</loggableFields>
+		</filter>
+		-->
+    </filters>
+</filterConfiguration>

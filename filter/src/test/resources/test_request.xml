@@ -1,35 +1,35 @@
-<soapenv:Envelope 
-	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
-	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
-	xmlns:iden="http://x-road.eu/xsd/identifiers" 
-	xmlns:prod="http://producer.x-road.eu">
-   <soapenv:Header>
-      <xro:protocolVersion>4.0</xro:protocolVersion>
-      <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
-      <xro:userId>EE12345678901</xro:userId>
-      <xro:service iden:objectType="SERVICE">
-         <iden:xRoadInstance>EE</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>MEMBER1</iden:memberCode>
+<SOAP-ENV:Envelope
+	xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:xrd="http://x-road.eu/xsd/xroad.xsd"
+	xmlns:id="http://x-road.eu/xsd/identifiers"
+	xmlns:pr="http://producer.x-road.eu">
+   <SOAP-ENV:Header>
+      <xrd:protocolVersion>4.0</xrd:protocolVersion>
+      <xrd:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xrd:id>
+      <xrd:userId>EE12345678901</xrd:userId>
+      <xrd:service id:objectType="SERVICE">
+         <id:xRoadInstance>EE</id:xRoadInstance>
+         <id:memberClass>GOV</id:memberClass>
+         <id:memberCode>MEMBER1</id:memberCode>
          <!--Optional:-->
-         <iden:subsystemCode>SUBSYSTEM1</iden:subsystemCode>
-         <iden:serviceCode>getPersonData</iden:serviceCode>
+         <id:subsystemCode>SUBSYSTEM1</id:subsystemCode>
+         <id:serviceCode>getPersonData</id:serviceCode>
          <!--Optional:-->
-         <iden:serviceVersion>v1</iden:serviceVersion>
-      </xro:service>
-      <xro:client iden:objectType="MEMBER">
-         <iden:xRoadInstance>EE</iden:xRoadInstance>
-         <iden:memberClass>GOV</iden:memberClass>
-         <iden:memberCode>MEMBER2</iden:memberCode>
+         <id:serviceVersion>v1</id:serviceVersion>
+      </xrd:service>
+      <xrd:client id:objectType="MEMBER">
+         <id:xRoadInstance>EE</id:xRoadInstance>
+         <id:memberClass>GOV</id:memberClass>
+         <id:memberCode>MEMBER2</id:memberCode>
          <!--Optional:-->
-         <iden:subsystemCode>SUBSYSTEM2</iden:subsystemCode>
-      </xro:client>
-   </soapenv:Header>
-   <soapenv:Body>
-      <prod:getPersonData>
+         <id:subsystemCode>SUBSYSTEM2</id:subsystemCode>
+      </xrd:client>
+   </SOAP-ENV:Header>
+   <SOAP-ENV:Body>
+      <pr:getPersonData>
          <request>
             <personCode>47101010033</personCode>
          </request>
-      </prod:getPersonData>
-   </soapenv:Body>
-</soapenv:Envelope>
+      </pr:getPersonData>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
