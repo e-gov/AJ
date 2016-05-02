@@ -23,13 +23,17 @@ public class Context {
     // xroad globals
     public Document xmldoc; // parsed xml stored here for xroad  
     public String xrdRequest="";  // converted to str from parsed request 
-    // these come from the request SOAP xrd header:
+    public String xrdVersion="old"; // for new this will be set to "4.0"
+    // these come from the request SOAP xrd header for both versions:
+    public String xrdUserId="";
+    public String xrdId="";  
+    // these come from the request SOAP xrd header for old version:
     public String xrdConsumer=""; 
     public String xrdProducer="";
-    public String xrdUserId="";
-    public String xrdId="";
     public String xrdService="";
     public String xrdIssue=""; 
+    // these come from the request SOAP xrd header for new version:
+    public String xrdClientMemberCode="";    
   
     public Context(HttpServletRequest req, HttpServletResponse resp,
         ServletOutputStream os, Logger log,  

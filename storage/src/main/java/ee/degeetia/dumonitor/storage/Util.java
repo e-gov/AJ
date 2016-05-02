@@ -378,7 +378,8 @@ public class Util  {
   
   public static boolean parseXroadHeader(Context context, Node node) 
   throws ServletException, IOException {  
-    String xrdns="http://x-road.ee/xsd/x-road.xsd";
+    String xrdns="http://x-road.ee/xsd/x-road.xsd"; // both old and new versions      
+    String idns="http://x-road.eu/xsd/identifiers"; // used by new version
     if (node==null) {
       showError(context,9,"xml message was empty");
       return false;
@@ -389,28 +390,58 @@ public class Util  {
       showError(context,9,"Message Header tag not found");
       return false;
     }
-    String consumer=getTagText(context, headerNode, "consumer", xrdns);
-    String producer=getTagText(context, headerNode, "producer", xrdns);
-    String userId=getTagText(context, headerNode, "userId", xrdns);
-    String id=getTagText(context, headerNode, "id", xrdns);
-    String service=getTagText(context, headerNode, "service", xrdns);
-    String issue=getTagText(context, headerNode, "issue", xrdns);
-    if (producer==null) {
-      showError(context,9,"Message header producer not found");
-      return false;
+    // determine xroad version
+    String version=getTagText(context, headerNode, "protocolVersion", xrdns);
+    if (version==null || !version.equals("4.0")) {
+      context.xrdVersion="old"; // 2.0, 3.0, 3.1
+      // parse old xroad version header            
+      String consumer=getTagText(context, headerNode, "consumer", xrdns);
+      String producer=getTagText(context, headerNode, "producer", xrdns);
+      String userId=getTagText(context, headerNode, "userId", xrdns);
+      String id=getTagText(context, headerNode, "id", xrdns);
+      String service=getTagText(context, headerNode, "service", xrdns);
+      String issue=getTagText(context, headerNode, "issue", xrdns);
+      if (producer==null) {
+        showError(context,9,"Message header producer not found");
+        return false;
+      }
+      if (id==null) {
+        showError(context,9,"Message header id not found");
+        return false;
+      } 
+      context.xrdConsumer=consumer;
+      context.xrdProducer=producer;
+      context.xrdUserId=userId;
+      context.xrdId=id;
+      context.xrdService=service;
+      context.xrdIssue=issue;    
+      return true;
+    } else {      
+      // new xroad version
+      context.xrdVersion="4.0";
+      // parse new xroad version header                
+      String userId=getTagText(context, headerNode, "userId", xrdns);
+      String id=getTagText(context, headerNode, "id", xrdns);
+      if (id==null) {
+        showError(context,9,"Message header id not found");
+        return false;
+      }       
+      Node headerClientNode=getTag(context, headerNode, "client", xrdns);    
+      if (headerClientNode==null) {
+        showError(context,9,"Message client tag not found in header");
+        return false;
+      }      
+      String memberCode=getTagText(context, headerClientNode, "memberCode", idns);
+      if (memberCode==null) {
+        showError(context,9,"Message header client memberCode not found");
+        return false;
+      }
+      context.xrdUserId=userId;
+      context.xrdId=id;
+      context.xrdClientMemberCode=memberCode;  
+      return true;    
     }
-    if (id==null) {
-      showError(context,9,"Message header id not found");
-      return false;
-    } 
-    context.xrdConsumer=consumer;
-    context.xrdProducer=producer;
-    context.xrdUserId=userId;
-    context.xrdId=id;
-    context.xrdService=service;
-    context.xrdIssue=issue;    
-    return true;
-  }  
+  }      
   
    /*
    * Composing SOAP messages
@@ -418,15 +449,30 @@ public class Util  {
    */
   
   public static String createSoapHeader(Context context) {
-    String header=Strs.xroadHeader;
-    // from request    
-    header=header.replace("{consumer}",context.xrdProducer);
-    header=header.replace("{consumer}",context.xrdProducer);
-    header=header.replace("{id}",context.xrdId);    
-    // our values from configuration
-    header=header.replace("{producer}",Property.XROAD_PRODUCER.getValue());
-    header=header.replace("{userId}",Property.XROAD_USERID.getValue());
-    header=header.replace("{service}",Property.XROAD_SERVICE.getValue());
+    String header;
+    if (context.xrdVersion.equals("4.0")) {
+      // new xroad
+      header=Strs.xroad40Header;
+      // from request    
+      header=header.replace("{consumer}",context.xrdProducer);
+      header=header.replace("{consumer}",context.xrdProducer);
+      header=header.replace("{id}",context.xrdId);    
+      // our values from configuration
+      header=header.replace("{producer}",Property.XROAD_PRODUCER.getValue());
+      header=header.replace("{userId}",Property.XROAD_USERID.getValue());
+      header=header.replace("{service}",Property.XROAD_SERVICE.getValue());
+    } else {
+      // old xroad
+      header=Strs.xroadHeader;
+      // from request    
+      header=header.replace("{consumer}",context.xrdProducer);
+      header=header.replace("{consumer}",context.xrdProducer);
+      header=header.replace("{id}",context.xrdId);    
+      // our values from configuration
+      header=header.replace("{producer}",Property.XROAD_PRODUCER.getValue());
+      header=header.replace("{userId}",Property.XROAD_USERID.getValue());
+      header=header.replace("{service}",Property.XROAD_SERVICE.getValue());
+    }  
     return header;
   }
 }
