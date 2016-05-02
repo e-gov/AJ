@@ -31,62 +31,86 @@ Versioon	Kuupäev		Autor		Märkused
         <xsd:sequence>
 			<xsd:element type="xsd:dateTime" name="logtime" minOccurs="0" maxOccurs="1">
 				<xsd:annotation>
-					<xrd:title>Isikuandmete töötlemise aeg</xrd:title>
+					<xsd:appinfo>
+						<xrd:title>Isikuandmete töötlemise aeg</xrd:title>
+					</xsd:appinfo>
 				</xsd:annotation>
 			</xsd:element>
             <xsd:element type="xsd:string" name="personcode" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Isikukood, kelle isikuandmeid töödeldi</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Isikukood, kelle isikuandmeid töödeldi</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="action" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Tegevus</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Tegevus</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="sender" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Isikuandmeid edastanud osapool</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Isikuandmeid edastanud osapool</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="receiver" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Isikuandmeid vastu võtnud osapool</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Isikuandmeid vastu võtnud osapool</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="restrictions" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Logiinfo juurdepääsupiirang</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Logiinfo juurdepääsupiirang</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="sendercode" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Isikuandmeid edastanud osapoole kood</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Isikuandmeid edastanud osapoole kood</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="receivercode" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Isikuandmeid vastu võtnud osapoole kood</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Isikuandmeid vastu võtnud osapoole kood</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="actioncode" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>Tegevuse kood</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>Tegevuse kood</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="xroadrequestid" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>X-tee päringu ID</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>X-tee päringu ID</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="xroadservice" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>X-tee teenuse nimi</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>X-tee teenuse nimi</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
             <xsd:element type="xsd:string" name="usercode" minOccurs="0" maxOccurs="1">
             	<xsd:annotation>
-					<xrd:title>X-tee päringu sooritanud ametniku isikukood</xrd:title>
+            		<xsd:appinfo>
+						<xrd:title>X-tee päringu sooritanud ametniku isikukood</xrd:title>
+            		</xsd:appinfo>
             	</xsd:annotation>
             </xsd:element>
         </xsd:sequence>
@@ -98,22 +122,30 @@ Versioon	Kuupäev		Autor		Märkused
     			<xsd:sequence>
 					<xsd:element type="xsd:dateTime" name="from_date" minOccurs="0" maxOccurs="1">
 						<xsd:annotation>
-						<xrd:title>Alates kuupäevast</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Alates kuupäevast</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element type="xsd:dateTime" name="to_date" minOccurs="0" maxOccurs="1">
 						<xsd:annotation>
-							<xrd:title>Kuni kuupäevani</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Kuni kuupäevani</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element type="xsd:integer" name="offset" minOccurs="0" maxOccurs="1">
 						<xsd:annotation>
-							<xrd:title>Esimese tagastatava kirje jrknr</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Esimese tagastatava kirje jrknr</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
 					<xsd:element type="xsd:integer" name="limit" minOccurs="0" maxOccurs="1">
 						<xsd:annotation>
-							<xrd:title>Tagastatavate kirjete arv</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Tagastatavate kirjete arv</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
     			</xsd:sequence>

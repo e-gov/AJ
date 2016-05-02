@@ -106,6 +106,10 @@ Paigaldada X-tee turvaserveri tarkvara vastavalt selle paigaldamise juhendile. R
 #### aj10.ci.kit
 
 Paigaldada X-tee turvaserveri tarkvara vastavalt selle paigaldamise juhendile. Registreerida turvaserver X-tee liikme "Member 1" turvaserverina.
+Laadida turvaserverisse "Member 1" alla kaks teenuste WSDL:
+
+* http://aj04.ci.kit:8080/testak.wsdl
+* http://aj04.ci.kit:8080/dumonitor.wsdl
 
 #### aj07.ci.kit
 
