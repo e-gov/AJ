@@ -23,11 +23,27 @@ public enum Property implements PropertyHolder {
   DATABASE_CONNECTSTRING("dumonitor.storage.database.connectstring"),
   DATABASE_USER("dumonitor.storage.database.user"),
   DATABASE_PASSWORD("dumonitor.storage.database.password"),
-
-  XROAD_PRODUCER("dumonitor.storage.xroad.producer"),
-  XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
+  
+  // common xroad configuration
   XROAD_USERID("dumonitor.storage.xroad.userId"),
+  XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
+  
+  // old xroad configuration
+  XROAD_PRODUCER("dumonitor.storage.xroad.producer"),
   XROAD_SERVICE("dumonitor.storage.xroad.service"),
+    
+  // new xroad configuration
+  XROAD_MEMBER_XROAD_INSTANCE("dumonitor.storage.xroad.member.xroadinstance"),
+  XROAD_MEMBER_MEMBER_CLASS("dumonitor.storage.xroad.member.memberclass"),
+  XROAD_MEMBER_MEMBER_CODE("dumonitor.storage.xroad.member.membercode"),
+  XROAD_MEMBER_MEMBER_SUBSYSTEM_CODE("dumonitor.storage.xroad.member.subsystemcode"),
+  
+  XROAD_SERVICE_XROAD_INSTANCE("dumonitor.storage.xroad.service.xroadinstance"),
+  XROAD_SERVICE_MEMBER_CLASS("dumonitor.storage.xroad.service.memberclass"),
+  XROAD_SERVICE_MEMBER_CODE("dumonitor.storage.xroad.service.membercode"),
+  XROAD_SERVICE_MEMBER_SUBSYSTEM_CODE("dumonitor.storage.xroad.service.subsystemcode"),
+  XROAD_SERVICE_SERVICE_CODE("dumonitor.storage.xroad.service.servicecode"),
+  XROAD_SERVICE_SERVICE_VERSION("dumonitor.storage.xroad.service.serviceversion"),
   
   QUERY_TURVASERVER_URL("dumonitor.query.xroad.url");
 
