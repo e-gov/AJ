@@ -2,6 +2,16 @@ if ! grep "module=resources" /etc/xroad/jetty/start.ini > /dev/null; then
 	echo "--module=resources" >> /etc/xroad/jetty/start.ini
 fi
 
+if [ ! -f /usr/share/xroad/jetty9/resources/dumonitor.properties ]; then
+	cp -f /usr/share/dumonitor/filter/dumonitor.properties /usr/share/xroad/jetty9/resources
+fi
+if [ ! -f /usr/share/xroad/jetty9/resources/dumonitor-filter.xml ]; then
+	cp -f /usr/share/dumonitor/filter/dumonitor-filter.xml /usr/share/xroad/jetty9/resources 
+fi
+if [ ! -f /etc/nginx/sites-enabled/dumonitor ]; then
+	cp -f /usr/share/dumonitor/filter/dumonitor /etc/nginx/sites-enabled 
+fi
+
 perl -pi -e 's{<Set name="extractWars">false</Set>}{<Set name="extractWars">true</Set>}i' /etc/xroad/jetty/jetty-public.xml
 
 if initctl status xroad-jetty | grep process > /dev/null; then

@@ -1,3 +1,8 @@
 ../build/libs/dumonitor-storage.war /etc/xroad/jetty/contexts-public
-dumonitor.properties /usr/share/xroad/jetty9/resources
-dumonitor /etc/nginx/sites-enabled
+dumonitor.properties /usr/share/dumonitor/storage
+dumonitor /usr/share/dumonitor/storage
+../database/aj_tables.sql /usr/share/dumonitor/storage/database
+../database/aj_privileges.sql /usr/share/dumonitor/storage/database
+../database/createdb.sh /usr/share/dumonitor/storage/database
+../database/createschema.sh /usr/share/dumonitor/storage/database
+../database/privileges.sh /usr/share/dumonitor/storage/database

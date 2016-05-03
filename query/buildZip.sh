@@ -21,6 +21,9 @@ fi
 
 # Kopeerime vajalikud failid:
 cp -f "build/libs/$projectName.war" etc/dumonitor*.* "build/zip/$projectName-$version" || exit 4
+if [ -d database ]; then
+	cp -rf database "build/zip/$projectName-$version" || exit 4
+fi
 
 # Tekitame ZIP:
 (cd build/zip; zip -r "$projectName-$version.zip" "$projectName-$version" || exit 5)

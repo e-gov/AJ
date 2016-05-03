@@ -1,16 +1,3 @@
-
---- drop all indexes
-
-drop index ajlog_personcode_logtime_idx;
-
---- drop all tables
-
-drop table ajlog cascade;
-
---- drop all sequences
-
-drop sequence ajlog_id_seq;
-
 --- create sequences
 
 create sequence ajlog_id_seq start with 1000;
@@ -39,14 +26,14 @@ create table ajlog (
   sendercode varchar(10), -- Asutuse voi andmekogu registrikood/sisekasutuse nimi, 
                           -- kellelt andmed saadi. Kohustuslik juhul, kui logikirje
 			  -- vastab andmete saabumisele X-tee kaudu.
-  receivercode varchar(10), -- Asutuse või andmekogu registrikood/sisekasutuse nimi, 
+  receivercode varchar(10), -- Asutuse vï¿½i andmekogu registrikood/sisekasutuse nimi, 
                             -- kellele andmeid edastatakse. Kohustuslik juhul, kui 
 			    --- logikirje vastab andmete valjasaatmisele X-tee kaudu.
   actioncode varchar(50), -- Menetluse/tegevuse sisekasutuseks ettenahtud nimi. 
                           -- Voib olla X-tee paringu nimi, andmeteenuse voi andmekogu nimi vms.
   xroadrequestid varchar(50), -- X-tee paringu identifikaator.
   xroadservice varchar(50), -- Isikuandmete kasutuse paringu teenuse nimetus.
-  usercode varchar(13) -- X-tee kaudu andmeid parinud isiku või asutusesisese tootleva
+  usercode varchar(13) -- X-tee kaudu andmeid parinud isiku vï¿½i asutusesisese tootleva
                        -- isiku isikukood. Vaartuse esinemisel peab algama riigi prefiksiga "EE".
 );
 
