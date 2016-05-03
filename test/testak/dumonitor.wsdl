@@ -3,7 +3,7 @@
 dumonitor.wsdl
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.2, 07.01.2016
+Versioon 1.3, 09.05.2016
 
 Tellija: Riigi Infosüsteemi Amet
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
@@ -15,120 +15,75 @@ Versioon	Kuupäev		Autor		Märkused
 1.0		20.12.2015	Ivo Mehide	Esimene versioon
 1.1		29.12.2015	Ivo Mehide	Jäetud alles ainult teenus findUsage
 1.2		07.01.2016	Ivo Mehide	Eemaldatud mittekasutatud schema elemendid
-1.3		18.04.2016  Ivo Mehide  Muudetud vastavaks dumonitor tarkvarale
+1.3		09.05.2016  Ivo Mehide  Muudetud vastavaks dumonitor tarkvarale
 
 -->
 <wsdl:definitions name="dumonitor"
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xrd="http://x-road.eu/xsd/xroad.xsd"
-	targetNamespace="http://dumonitor.x-road.eu/producer" xmlns:tns="http://dumonitor.x-road.eu/producer"
-	>
+	targetNamespace="http://dumonitor.x-road.eu/producer" xmlns:tns="http://dumonitor.x-road.eu/producer">
 	<wsdl:types>
 		<xsd:schema targetNamespace="http://dumonitor.x-road.eu/producer">
 			<xsd:import namespace="http://x-road.eu/xsd/xroad.xsd"
 				schemaLocation="http://x-road.eu/xsd/xroad.xsd" />
-    <xsd:complexType name="LoggableFields">
-        <xsd:sequence>
-			<xsd:element type="xsd:dateTime" name="logtime" minOccurs="0" maxOccurs="1">
-				<xsd:annotation>
-					<xrd:title>Isikuandmete töötlemise aeg</xrd:title>
-				</xsd:annotation>
-			</xsd:element>
-            <xsd:element type="xsd:string" name="personcode" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Isikukood, kelle isikuandmeid töödeldi</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="action" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Tegevus</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="sender" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Isikuandmeid edastanud osapool</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="receiver" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Isikuandmeid vastu võtnud osapool</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="restrictions" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Logiinfo juurdepääsupiirang</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="sendercode" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Isikuandmeid edastanud osapoole kood</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="receivercode" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Isikuandmeid vastu võtnud osapoole kood</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="actioncode" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>Tegevuse kood</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="xroadrequestid" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>X-tee päringu ID</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="xroadservice" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>X-tee teenuse nimi</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-            <xsd:element type="xsd:string" name="usercode" minOccurs="0" maxOccurs="1">
-            	<xsd:annotation>
-					<xrd:title>X-tee päringu sooritanud ametniku isikukood</xrd:title>
-            	</xsd:annotation>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-
-    <xsd:complexType name="QueryFields">
-    	<xsd:complexContent>
-    		<xsd:extension base="tns:LoggableFields">
-    			<xsd:sequence>
-					<xsd:element type="xsd:dateTime" name="from_date" minOccurs="0" maxOccurs="1">
+			<xsd:complexType name="ResponseFields">
+				<xsd:sequence>
+					<xsd:element type="xsd:dateTime" name="logtime"
+						minOccurs="0" maxOccurs="1">
 						<xsd:annotation>
-						<xrd:title>Alates kuupäevast</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Isikuandmete töötlemise aeg</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
-					<xsd:element type="xsd:dateTime" name="to_date" minOccurs="0" maxOccurs="1">
+					<xsd:element type="xsd:string" name="action" minOccurs="0"
+						maxOccurs="1">
 						<xsd:annotation>
-							<xrd:title>Kuni kuupäevani</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Tegevus</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
-					<xsd:element type="xsd:integer" name="offset" minOccurs="0" maxOccurs="1">
+					<xsd:element type="xsd:string" name="receiver"
+						minOccurs="0" maxOccurs="1">
 						<xsd:annotation>
-							<xrd:title>Esimese tagastatava kirje jrknr</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Isikuandmeid vastu võtnud osapool</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
-					<xsd:element type="xsd:integer" name="limit" minOccurs="0" maxOccurs="1">
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="QueryFields">
+				<xsd:sequence>
+					<xsd:element type="xsd:integer" name="offset"
+						minOccurs="0" maxOccurs="1">
 						<xsd:annotation>
-							<xrd:title>Tagastatavate kirjete arv</xrd:title>
+							<xsd:appinfo>
+								<xrd:title>Esimese tagastatava kirje jrknr</xrd:title>
+							</xsd:appinfo>
 						</xsd:annotation>
 					</xsd:element>
-    			</xsd:sequence>
-    		</xsd:extension>
-    	</xsd:complexContent>
-    </xsd:complexType>
-			<xsd:element name="findUsage" type="tns:QueryFields"/>
+					<xsd:element type="xsd:integer" name="limit" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:appinfo>
+								<xrd:title>Tagastatavate kirjete arv</xrd:title>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="findUsage" type="tns:QueryFields" />
 			<xsd:element name="findUsageResponse">
 				<xsd:complexType>
 					<xsd:sequence>
-						<xsd:element name="usage" type="tns:LoggableFields" maxOccurs="unbounded" minOccurs="0"/>
+						<xsd:element name="usage" type="tns:ResponseFields"
+							maxOccurs="unbounded" minOccurs="0" />
 					</xsd:sequence>
 				</xsd:complexType>
 			</xsd:element>
-        </xsd:schema>
+		</xsd:schema>
 	</wsdl:types>
 
 	<wsdl:message name="requestHeader">
@@ -151,7 +106,8 @@ Versioon	Kuupäev		Autor		Märkused
 	<wsdl:portType name="dumonitorPortType">
 		<wsdl:operation name="findUsage">
 			<wsdl:documentation>
-				<xrd:title>Päring andmekogust isikuandmete töötlemise kohta</xrd:title>
+				<xrd:title>Päring andmekogust isikuandmete töötlemise kohta
+				</xrd:title>
 			</wsdl:documentation>
 			<wsdl:input message="tns:findUsage" />
 			<wsdl:output message="tns:findUsageResponse" />

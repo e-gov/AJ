@@ -57,20 +57,6 @@ Versioon        Kuupäev         Autor           Märkused
                </SOAP-ENV:Header>
                <SOAP-ENV:Body>
                   <ns5:findUsage xmlns:ns5="http://dumonitor.x-road.eu/producer">
-                     <logtime/>
-                     <personcode/>
-                     <action/>
-                     <sender/>
-                     <receiver/>
-                     <restrictions/>
-                     <sendercode/>
-                     <receivercode/>
-                     <actioncode/>
-                     <xroadrequestid/>
-                     <xroadservice/>
-                     <usercode/>
-                     <from_date/>
-                     <to_date/>
                      <offset/>
                      <limit/>
                   </ns5:findUsage>
@@ -82,48 +68,6 @@ Versioon        Kuupäev         Autor           Märkused
          </xforms:instance>
          <xforms:bind nodeset="instance('findUsage.input')/SOAP-ENV:Body">
             <xforms:bind nodeset="tns:findUsage">
-               <xforms:bind nodeset="logtime"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:dateTime"/>
-               <xforms:bind nodeset="personcode"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="action"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="sender"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="receiver"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="restrictions"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="sendercode"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="receivercode"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="actioncode"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="xroadrequestid"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="xroadservice"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="usercode"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:string"/>
-               <xforms:bind nodeset="from_date"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:dateTime"/>
-               <xforms:bind nodeset="to_date"
-                            relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
-                            type="xforms:dateTime"/>
                <xforms:bind nodeset="offset"
                             relevant="(. != '' or boolean-from-string(instance('temp')/relevant))"
                             type="xforms:integer"/>
@@ -136,17 +80,8 @@ Versioon        Kuupäev         Autor           Märkused
             <xforms:bind nodeset="tns:findUsageResponse">
                <xforms:bind nodeset="usage">
                   <xforms:bind nodeset="logtime" type="xforms:dateTime"/>
-                  <xforms:bind nodeset="personcode" type="xforms:string"/>
                   <xforms:bind nodeset="action" type="xforms:string"/>
-                  <xforms:bind nodeset="sender" type="xforms:string"/>
                   <xforms:bind nodeset="receiver" type="xforms:string"/>
-                  <xforms:bind nodeset="restrictions" type="xforms:string"/>
-                  <xforms:bind nodeset="sendercode" type="xforms:string"/>
-                  <xforms:bind nodeset="receivercode" type="xforms:string"/>
-                  <xforms:bind nodeset="actioncode" type="xforms:string"/>
-                  <xforms:bind nodeset="xroadrequestid" type="xforms:string"/>
-                  <xforms:bind nodeset="xroadservice" type="xforms:string"/>
-                  <xforms:bind nodeset="usercode" type="xforms:string"/>
                </xforms:bind>
             </xforms:bind>
          </xforms:bind>

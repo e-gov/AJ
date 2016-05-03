@@ -1,6 +1,5 @@
 package ee.degeetia.dumonitor.query;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 
@@ -32,12 +31,7 @@ public class Proxy extends ProxyServlet {
 	}
 
 	protected void loadProperties() {
-		PropertyLoader propertyLoader = new PropertyLoader();
-		try {
-			propertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
-		} catch (IOException e) {
-			ExceptionUtil.uncheck("Failed to load properties", e);
-		}
+		PropertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
 		try {
 			proxyServer = URI.create(Property.QUERY_TURVASERVER_URL.getValue());
 		} catch (IllegalArgumentException e) {

@@ -24,3 +24,15 @@ dependencies {
     
     compile project(':dumonitor-common')
 }
+
+task createBaseNameWar(type:Copy, dependsOn: 'war') {
+        from(war.destinationDir)
+        into(war.destinationDir)
+	include(war.archiveName)
+        rename(war.archiveName, rootProject.name + '.war')
+}
+
+task buildDeb (type: Exec, dependsOn: 'createBaseNameWar') {
+        description 'Build deb packages'
+        commandLine './buildDeb.sh', rootProject.name
+}

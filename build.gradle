@@ -31,4 +31,12 @@ subprojects {
 			false
 		}
 	}
+	
+	tasks.withType(War) {
+    	ant.propertyfile(file: 'src/main/resources/build.properties') {
+        	entry(key: 'name', value: project.name)
+        	entry(key: 'version', value: project.version)
+        	entry(key: 'buildDate', value: new Date().format('yyyy-MM-dd\'T\'HH:mm:ssZ'))
+    	}
+	}
 }
