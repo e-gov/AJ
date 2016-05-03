@@ -90,9 +90,9 @@ public final class PropertyLoader {
       }
     }
 
-    if (!missingProperties.isEmpty()) {
-      throw new IllegalStateException("Missing properties: " + StringUtil.join(missingProperties, ", "));
-    }
+    //if (!missingProperties.isEmpty()) {
+    //  throw new IllegalStateException("Missing properties: " + StringUtil.join(missingProperties, ", "));
+    //}
 
     for (String propertyName : properties.stringPropertyNames()) {
       if (!definedProperties.contains(propertyName)) {
