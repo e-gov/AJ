@@ -12,10 +12,12 @@ import java.io.StringReader;
 
 import java.io.StringWriter;
 
+import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -223,25 +225,32 @@ public class Util  {
    */
   
   public static Connection createDbConnection(Context context) 
-  throws ServletException, IOException {  
-    // check whether the driver present
-    try {
-      Class.forName("org.postgresql.Driver");
-    } catch (ClassNotFoundException e) {
-      Util.showError(context, 7, "failed to find the PostgreSQL JDBC Driver");
-      return null;
-    }    
-    // create db connection    
+  throws ServletException, IOException {
     Connection conn=null;
-    try {
-      conn = DriverManager.getConnection(
-         Property.DATABASE_CONNECTSTRING.getValue(),
-         Property.DATABASE_USER.getValue(),
-         Property.DATABASE_PASSWORD.getValue());
-    } catch(Exception e) {
-      Util.showError(context, 8, "failed to connect to the database");
-      return null;
-    }  
+
+    // check if there is JNDI context in use for datasource:
+	if (Property.DATABASE_JNDI.getValue() != null && Property.DATABASE_JNDI.getValue().length() > 0) {
+		try {
+			InitialContext ctx = new InitialContext();
+			DataSource ds = (DataSource)ctx.lookup("java:/comp/env/"+Property.DATABASE_JNDI.getValue());
+			if (ds == null) throw new Exception("No data source");
+			conn = ds.getConnection();
+		} catch (Exception e) {
+		    Util.showError(context, 7, "Failed to connect to JNDI data source");
+		    return null;
+		}
+	} else {
+	    // create db connection    
+	    try {
+	      conn = DriverManager.getConnection(
+	         Property.DATABASE_CONNECTSTRING.getValue(),
+	         Property.DATABASE_USER.getValue(),
+	         Property.DATABASE_PASSWORD.getValue());
+	    } catch(Exception e) {
+	      Util.showError(context, 8, "failed to connect to the database");
+	      return null;
+	    }  
+	}
     return conn;
   }
     
