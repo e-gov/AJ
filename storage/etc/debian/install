@@ -1,0 +1,3 @@
+../build/libs/dumonitor-storage.war /etc/xroad/jetty/contexts-public
+dumonitor.properties /usr/share/xroad/jetty9/resources
+dumonitor /etc/nginx/sites-enabled

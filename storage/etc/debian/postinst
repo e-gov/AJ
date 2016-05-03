@@ -1,0 +1,12 @@
+if ! grep "module=resources" /etc/xroad/jetty/start.ini > /dev/null; then
+	echo "--module=resources" >> /etc/xroad/jetty/start.ini
+fi
+
+perl -pi -e 's{<Set name="extractWars">false</Set>}{<Set name="extractWars">true</Set>}i' /etc/xroad/jetty/jetty-public.xml
+
+if initctl status xroad-jetty | grep process > /dev/null; then
+	initctl restart xroad-jetty
+fi
+if initctl status nginx | grep process > /dev/null; then
+	initctl restart nginx
+fi
