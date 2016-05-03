@@ -1,11 +1,12 @@
 #!/bin/bash
 #
 # Kasutamine:
-#    buildDeb.sh {projectName}
+#    buildDeb.sh {projectName} {version}
 
 projectName="$1"
-if [ -z "$projectName" ]; then
-	echo "Kasutamine: $0 {projectName}"
+version="$2"
+if [ -z "$projectName" -o -z "$version" ]; then
+	echo "Kasutamine: $0 {projectName} {version}"
 	exit 1
 fi
 
@@ -13,6 +14,10 @@ if [ ! -f "build/libs/$projectName.war" ]; then
 	echo "WAR faili ei leitud: 'build/libs/$projectName.war'"
 	exit 2
 fi
+
+# Uuendame debian-i kirjeldusfailides versiooninumbri info:
+perl -pi -e 's{^('"$projectName"'\s+)\([^)]+\)(\s+unstable;)}{$1('"$version"'-1)$2}' etc/debian/changelog
+
 
 (cd etc ; debuild --no-tgz-check -us -uc || exit $?)
 

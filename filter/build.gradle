@@ -34,5 +34,10 @@ task createBaseNameWar(type:Copy, dependsOn: 'war') {
 
 task buildDeb (type: Exec, dependsOn: 'createBaseNameWar') {
         description 'Build deb packages'
-        commandLine './buildDeb.sh', project.name
+        commandLine './buildDeb.sh', project.name, project.version
+}
+
+task buildZip (type: Exec, dependsOn: 'createBaseNameWar') {
+        description 'Build zip packages'
+        commandLine './buildZip.sh', project.name, project.version
 }
