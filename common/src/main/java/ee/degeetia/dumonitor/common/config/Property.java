@@ -44,6 +44,7 @@ public enum Property implements PropertyHolder {
 
   BLACKLIST("dumonitor.blacklist"),
 
+  DATABASE_JNDI("dumonitor.storage.database.jndi"),
   DATABASE_CONNECTSTRING("dumonitor.storage.database.connectstring"),
   DATABASE_USER("dumonitor.storage.database.user"),
   DATABASE_PASSWORD("dumonitor.storage.database.password"),
