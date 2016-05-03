@@ -74,7 +74,8 @@ public class Util  {
   throws ServletException, IOException {
     PropertyLoader propertyLoader = new PropertyLoader();
     try {
-      propertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
+      //propertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");      
+      propertyLoader.loadProperties(Property.class, "default.properties");
       if (Property.DATABASE_CONNECTSTRING.getValue()==null ||
           Property.DATABASE_USER.getValue()==null ||
           Property.DATABASE_PASSWORD.getValue()==null) {
@@ -85,7 +86,7 @@ public class Util  {
       //propertyLoader.loadProperties("asas");
       return true;
     } catch (Exception e) {
-      showError(context, 1,"failed to load configuration properties");
+      showError(context, 1,"failed to load configuration properties: "+e.getMessage());
       return false;
     }
   }
@@ -201,6 +202,7 @@ public class Util  {
       return false;      
     } 
     xml=jb.toString();     
+    context.xmlstr=xml;
     //context.os.println("|"+xml+"|");    
     DocumentBuilder db;                
     try {
@@ -222,8 +224,7 @@ public class Util  {
     }      
     context.xmldoc=doc;
     return true;    
-  }  
-   
+  }      
   
   /*
    * Create database connection 
@@ -262,6 +263,7 @@ public class Util  {
   public static void showError(Context context, int code, String msg)  
   throws ServletException, IOException {
     //resp.sendError(resp.SC_BAD_REQUEST, msg); // possible alternative to json output
+    String err;
     context.log.error("errcode {} errmessage {}", code, msg);
     if (context.contentType.contains("json")) {
       // json error format
@@ -278,15 +280,21 @@ public class Util  {
       // xml error format for xroad
       if (code<10) {
         // Technical error: no request obtained or used, no header inserted
-        String err=Strs.xroadTechErr;
+        err=Strs.xroadTechErr;
         err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanXmlStr(msg));
         context.os.println(err);
-      } else {
+      } else {        
         // Normal error: pass request, insert header
-        String err=Strs.xroadErr.replace("{header}",createSoapHeader(context));
-        err=err.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());
-        err=err.replace("{request}",context.xrdRequest);
-        err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanXmlStr(msg));
+        if (context.xrdVersion.equals("old")) {            
+          err=Strs.xroadErr.replace("{header}",createSoapHeader(context));
+          err=err.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());
+          err=err.replace("{request}",context.xrdRequest);
+          err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanXmlStr(msg));
+        } else {      
+          err=Strs.xroad40Err.replace("{header}",Util.nodeToString(context.xmlheader));
+          err=err.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());          
+          err=err.replace("{faultCode}",""+code).replace("{faultString}",cleanXmlStr(msg));
+        }
         context.os.println(err);
       };        
     }
@@ -378,7 +386,8 @@ public class Util  {
   
   public static boolean parseXroadHeader(Context context, Node node) 
   throws ServletException, IOException {  
-    String xrdns="http://x-road.ee/xsd/x-road.xsd"; // both old and new versions      
+    String xrdns="http://x-road.ee/xsd/x-road.xsd"; // old version      
+    String newxrdns="http://x-road.eu/xsd/xroad.xsd"; // new version
     String idns="http://x-road.eu/xsd/identifiers"; // used by new version
     if (node==null) {
       showError(context,9,"xml message was empty");
@@ -390,8 +399,9 @@ public class Util  {
       showError(context,9,"Message Header tag not found");
       return false;
     }
+    context.xmlheader=headerNode;
     // determine xroad version
-    String version=getTagText(context, headerNode, "protocolVersion", xrdns);
+    String version=getTagText(context, headerNode, "protocolVersion", newxrdns);
     if (version==null || !version.equals("4.0")) {
       context.xrdVersion="old"; // 2.0, 3.0, 3.1
       // parse old xroad version header            
@@ -420,13 +430,13 @@ public class Util  {
       // new xroad version
       context.xrdVersion="4.0";
       // parse new xroad version header                
-      String userId=getTagText(context, headerNode, "userId", xrdns);
-      String id=getTagText(context, headerNode, "id", xrdns);
+      String userId=getTagText(context, headerNode, "userId", newxrdns);
+      String id=getTagText(context, headerNode, "id", newxrdns);
       if (id==null) {
         showError(context,9,"Message header id not found");
         return false;
       }       
-      Node headerClientNode=getTag(context, headerNode, "client", xrdns);    
+      Node headerClientNode=getTag(context, headerNode, "client", newxrdns);    
       if (headerClientNode==null) {
         showError(context,9,"Message client tag not found in header");
         return false;
@@ -448,19 +458,13 @@ public class Util  {
    *
    */
   
-  public static String createSoapHeader(Context context) {
+  public static String createSoapHeader(Context context) 
+  throws ServletException, IOException {  
     String header;
     if (context.xrdVersion.equals("4.0")) {
       // new xroad
-      header=Strs.xroad40Header;
-      // from request    
-      header=header.replace("{consumer}",context.xrdProducer);
-      header=header.replace("{consumer}",context.xrdProducer);
-      header=header.replace("{id}",context.xrdId);    
-      // our values from configuration
-      header=header.replace("{producer}",Property.XROAD_PRODUCER.getValue());
-      header=header.replace("{userId}",Property.XROAD_USERID.getValue());
-      header=header.replace("{service}",Property.XROAD_SERVICE.getValue());
+      showError(context,9,"Err in code: should not create header for new xroad");
+      return "";      
     } else {
       // old xroad
       header=Strs.xroadHeader;

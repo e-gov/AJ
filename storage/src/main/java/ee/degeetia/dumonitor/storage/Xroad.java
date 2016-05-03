@@ -73,7 +73,8 @@ public class Xroad extends HttpServlet {
       if (body==null) {
         Util.showError(context,9,"message Body tag not found");
         return;
-      }   
+      }         
+      
       Node request=Util.getTag(context, doc, "request", null);
       if (body==null) {
         Util.showError(context,9,"message request tag not found");
@@ -83,24 +84,54 @@ public class Xroad extends HttpServlet {
       if (requestStr==null) {
         Util.showError(context,9,"failed to convert message request to string");
         return;
-      } 
+      }       
       context.xrdRequest=requestStr;
-      String personcode=Util.getTagText(context, body, "personcode", null);        
+      
+      String offsets=Util.getTagText(context, body, "offset", null);
+      String limits=Util.getTagText(context, body, "limit", null);         
+      int offset=0;
+      int limit=1000;      
+      try {
+        offset=Math.abs(Integer.parseInt(offsets));
+      } catch (Exception e) {} 
+      try {
+        limit=Math.abs(Integer.parseInt(limits));
+      } catch (Exception e) {}  
+      if (limit>1000) limit=1000;  
+           
+      String personcode=context.xrdUserId;
       if (personcode==null) {
-        Util.showError(context,11,"Message personcode not found");
+        Util.showError(context,11,"Message userId not found");
         return;
       }
       personcode=personcode.trim();
       if (personcode==null || personcode.equals("")) {
-        Util.showError(context,12,"Message personcode was empty");
+        Util.showError(context,12,"Message userId was empty");
         return;
       }
-      String result=fetchData(personcode);
-      result="<response>\n"+result+"</response>"; 
-      String envelope=Strs.xroadMessage.replace("{header}",Util.createSoapHeader(context));
-      envelope=envelope.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());
-      envelope=envelope.replace("{request}",requestStr);
-      envelope=envelope.replace("{response}",result);     
+      
+      String result=fetchData(personcode,offset,limit);
+      String resns=Property.XROAD_PRODUCERNS.getValue();      
+      String restag;
+      if (context.xrdVersion.equals("old")) restag="response";
+      else restag="findUsageResponse";
+      if (resns!=null && !resns.equals("") && !context.xrdVersion.equals("old")) {
+        result="<"+restag+" xmlns=\""+resns.trim()+"\">\n"+result;
+      } else {
+        result="<"+restag+">\n"+result;
+      }        
+      result+="</"+restag+">"; 
+      String envelope;
+      if (context.xrdVersion.equals("old")) {            
+        envelope=Strs.xroadMessage.replace("{header}",Util.createSoapHeader(context));
+        envelope=envelope.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());
+        envelope=envelope.replace("{request}",requestStr);
+        envelope=envelope.replace("{response}",result);   
+      } else {      
+        envelope=Strs.xroad40Message.replace("{header}",Util.nodeToString(context.xmlheader));
+        envelope=envelope.replace("{producerns}",Property.XROAD_PRODUCERNS.getValue());       
+        envelope=envelope.replace("{response}",result); 
+      }
       context.os.println(envelope);   
       context.os.flush();
       context.os.close();
@@ -116,24 +147,19 @@ public class Xroad extends HttpServlet {
    *  be wrapped in the soap envelope later
    */
   
-  public static String fetchData(String personcode) 
+  public static String fetchData(String personcode, int offset, int limit) 
   throws ServletException, IOException {                        
     String result=null;
           
     Connection conn = Util.createDbConnection(context);
-    if (conn==null) return null;    
-    
-    // set pagination values
-    
-    int offset=0;
-    int limit=100;  
+    if (conn==null) return null;        
     
     // query data
     
     try {                  
+      // show just logtime, action, receiver
       String sql = "select "
-      + "personcode,to_char(logtime,'YYYY-MM-DD HH24:MI:SS') as logtime,action,"
-      + "sender,receiver,restrictions,sendercode,receivercode "     
+      + "to_char(logtime,'YYYY-MM-DDTHH24:MI:SS') as logtime,action,receiver"  
       + " from ajlog "
       + " where personcode=? "
       + " and ((restrictions is null) or restrictions!='P') "
@@ -150,7 +176,7 @@ public class Xroad extends HttpServlet {
       result="";
       while ( rs.next() ) {
         int numColumns = rs.getMetaData().getColumnCount();
-        String row="<item>";
+        String row="<usage>";
         for ( int i = 1 ; i <= numColumns ; i++ ) {
           // Column numbers start at 1.
           row+="<"+rsmd.getColumnName(i)+">";
@@ -159,9 +185,9 @@ public class Xroad extends HttpServlet {
           }  
           row+="</"+rsmd.getColumnName(i)+">";          
         }
-        row+="</item>\n";
+        row+="</usage>\n";
         result+=row;        
-      }                
+      }                      
     } catch(Exception e) {
       Util.showError(context, 10, "database query error: "+e.getMessage());
       return null;    

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 public class Context {
     // general globals
@@ -21,7 +22,9 @@ public class Context {
     public Map<String, String> inParams; // parsed params stored here   
   
     // xroad globals
+    public String xmlstr; // xml request string stored here for xroad  
     public Document xmldoc; // parsed xml stored here for xroad  
+    public Node xmlheader; // parsed request header stored here for xroad 
     public String xrdRequest="";  // converted to str from parsed request 
     public String xrdVersion="old"; // for new this will be set to "4.0"
     // these come from the request SOAP xrd header for both versions:
