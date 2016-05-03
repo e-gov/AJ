@@ -43,13 +43,31 @@ import java.util.Date;
 public class ApplicationLifecycleListener implements ServletContextListener {
 
   private static final Logger LOG = LoggerFactory.getLogger(ApplicationLifecycleListener.class);
+  
+  private static final Property[] requiredProperties = {
+    Property.FILTER_CONFIGURATION_FILE,
+    Property.TURVASERVER_URL,
+    Property.ANDMEKOGU_URL,
+    Property.TURVASERVER_INTERCEPTOR_PATH,
+    Property.ANDMEKOGU_INTERCEPTOR_PATH,
+    Property.LOGGER_REST_URL,
+    Property.HEARTBEAT_PATH
+  };
+  
+  private static final BuildProperty[] requiredBuildProperties = {
+    BuildProperty.BUILD_DATE,
+    BuildProperty.NAME,
+    BuildProperty.VERSION
+  };
 
   @Override
   public void contextInitialized(ServletContextEvent sce) {
     RuntimeProperty.APPLICATION_STARTUP_TIME.setValue(new Date());
 
     PropertyLoader.loadProperties(Property.class, "default.properties", "dumonitor.properties");
+    PropertyLoader.requireProperties(requiredProperties);
     PropertyLoader.loadProperties(BuildProperty.class, "build.properties");
+    PropertyLoader.requireProperties(requiredBuildProperties);
 
     ConfigurationLoader.loadConfiguration("filter-defaults.xml", Property.FILTER_CONFIGURATION_FILE.getValue());
 
