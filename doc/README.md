@@ -9,5 +9,5 @@
  * [Testilood](Testilood.md)
  * Testiraport
 * Tarkvara
- * Tarkvara ehitusjuhend
- * Tarkvara rakendusjuhend
+ * [Tarkvara ehitusjuhend](Ehitusjuhend.md)
+ * [Tarkvara rakendusjuhend](Rakendusjuhend.md)
