@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  * Copyright (c) 2016 Estonian Information System Authority (RIA)
  *
@@ -93,14 +93,14 @@ public final class PropertyLoader {
       }
     }
   }
-  
+
   /**
    * Verifies that all given properties contain nonempty value.
    * @param properties properties to test
    */
-  public static <T extends Enum<T> & PropertyHolder> void requireProperties(T[] properties) {
+  public static void requireProperties(PropertyHolder[] properties) {
     Set<String> missingProperties = new HashSet<String>();
-    for (T property : properties) {
+    for (PropertyHolder property : properties) {
       if (StringUtil.isEmpty(property.getValue())) {
         missingProperties.add(property.getKey());
       }

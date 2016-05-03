@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  * Copyright (c) 2016 Estonian Information System Authority (RIA)
  *
@@ -22,10 +22,7 @@
  */
 package ee.degeetia.dumonitor.filter.core;
 
-import ee.degeetia.dumonitor.common.config.BuildProperty;
-import ee.degeetia.dumonitor.common.config.Property;
-import ee.degeetia.dumonitor.common.config.PropertyLoader;
-import ee.degeetia.dumonitor.common.config.RuntimeProperty;
+import ee.degeetia.dumonitor.common.config.*;
 import ee.degeetia.dumonitor.common.heartbeat.HeartbeatServlet;
 import ee.degeetia.dumonitor.filter.XRoadInterceptorServlet;
 import ee.degeetia.dumonitor.filter.config.ConfigurationLoader;
@@ -43,21 +40,18 @@ import java.util.Date;
 public class ApplicationLifecycleListener implements ServletContextListener {
 
   private static final Logger LOG = LoggerFactory.getLogger(ApplicationLifecycleListener.class);
-  
-  private static final Property[] requiredProperties = {
-    Property.FILTER_CONFIGURATION_FILE,
-    Property.TURVASERVER_URL,
-    Property.ANDMEKOGU_URL,
-    Property.TURVASERVER_INTERCEPTOR_PATH,
-    Property.ANDMEKOGU_INTERCEPTOR_PATH,
-    Property.LOGGER_REST_URL,
-    Property.HEARTBEAT_PATH
-  };
-  
-  private static final BuildProperty[] requiredBuildProperties = {
-    BuildProperty.BUILD_DATE,
-    BuildProperty.NAME,
-    BuildProperty.VERSION
+
+  private static final PropertyHolder[] requiredProperties = {
+      Property.FILTER_CONFIGURATION_FILE,
+      Property.TURVASERVER_URL,
+      Property.ANDMEKOGU_URL,
+      Property.TURVASERVER_INTERCEPTOR_PATH,
+      Property.ANDMEKOGU_INTERCEPTOR_PATH,
+      Property.LOGGER_REST_URL,
+      Property.HEARTBEAT_PATH,
+      BuildProperty.BUILD_DATE,
+      BuildProperty.NAME,
+      BuildProperty.VERSION
   };
 
   @Override
@@ -65,9 +59,8 @@ public class ApplicationLifecycleListener implements ServletContextListener {
     RuntimeProperty.APPLICATION_STARTUP_TIME.setValue(new Date());
 
     PropertyLoader.loadProperties(Property.class, "default.properties", "dumonitor.properties");
-    PropertyLoader.requireProperties(requiredProperties);
     PropertyLoader.loadProperties(BuildProperty.class, "build.properties");
-    PropertyLoader.requireProperties(requiredBuildProperties);
+    PropertyLoader.requireProperties(requiredProperties);
 
     ConfigurationLoader.loadConfiguration("filter-defaults.xml", Property.FILTER_CONFIGURATION_FILE.getValue());
 

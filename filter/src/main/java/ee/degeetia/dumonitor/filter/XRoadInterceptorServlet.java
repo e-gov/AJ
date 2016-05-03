@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  * Copyright (c) 2016 Estonian Information System Authority (RIA)
  *
@@ -66,8 +66,8 @@ public class XRoadInterceptorServlet extends HttpServlet {
 
     HttpURLConnection connection = openConnection(URL_MAPPINGS.get(request.getServletPath()));
 
-    forwardRequest(request, connection, processRequest(request));
-    forwardResponse(response, connection, processResponse(connection));
+    forwardRequest(request, connection);
+    forwardResponse(connection, response);
   }
 
   private HttpURLConnection openConnection(URL url) throws IOException {
@@ -83,28 +83,24 @@ public class XRoadInterceptorServlet extends HttpServlet {
     }
   }
 
-  private byte[] processRequest(HttpServletRequest request) throws IOException {
-    return processMessage(request.getInputStream(), request.getContentType());
+  private void forwardRequest(HttpServletRequest req, HttpURLConnection con) throws IOException {
+    HttpUtil.copyRequestHeaders(req, con);
+    byte[] data = processMessage(req.getInputStream(), req.getContentType());
+    IOUtil.writeBytes(data, con.getOutputStream());
   }
 
-  private byte[] processResponse(HttpURLConnection connection) throws IOException {
-    return processMessage(connection.getInputStream(), connection.getContentType());
+  private void forwardResponse(HttpURLConnection con, HttpServletResponse resp) throws IOException {
+    HttpUtil.copyResponseHeaders(con, resp);
+    // TODO: checkstyle "magic number"; automaattest
+    InputStream stream = con.getResponseCode() >= 400 ? con.getErrorStream() : con.getInputStream();
+    byte[] data = processMessage(stream, con.getContentType());
+    IOUtil.writeBytes(data, resp.getOutputStream());
   }
 
   private byte[] processMessage(InputStream inputStream, String contentType) throws IOException {
     byte[] content = IOUtil.readBytes(inputStream);
     queue.submit(content, contentType);
     return content;
-  }
-
-  private void forwardRequest(HttpServletRequest req, HttpURLConnection con, byte[] data) throws IOException {
-    HttpUtil.copyRequestHeaders(req, con);
-    IOUtil.writeBytes(data, con.getOutputStream());
-  }
-
-  private void forwardResponse(HttpServletResponse resp, HttpURLConnection con, byte[] data) throws IOException {
-    HttpUtil.copyResponseHeaders(con, resp);
-    IOUtil.writeBytes(data, resp.getOutputStream());
   }
 
   private void setRuntimeProperties(HttpServletRequest request) throws IOException {

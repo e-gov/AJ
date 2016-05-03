@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  * Copyright (c) 2016 Estonian Information System Authority (RIA)
  *
@@ -22,10 +22,9 @@
  */
 package ee.degeetia.testutils.soap;
 
-import javax.xml.soap.*;
-
 import ee.degeetia.dumonitor.common.util.IOUtil;
 
+import javax.xml.soap.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
