@@ -27,13 +27,15 @@ jmeter {
 			File f = file("src/test/jmeter/" + (name - "jmRun_") + ".jmx");
 			if (f.exists()) jmTestFiles.add(f);
 	}
-	if (jmTestFiles.size() == 0) jmTestFiles = [file("src/test/jmeter/integration-test.jmx")];
+	// if (jmTestFiles.size() == 0) jmTestFiles = [file("src/test/jmeter/integration-test.jmx")];
 	// jMeter testide parameetrid
 	jmUserProperties = [
+		// Fail tuleb anda jmeter.workDir suhtes, see on vaikimisi "build/jmeter"
+		"xpath.namespace.config=../../src/test/jmeter/jmeter.namespaces",
 		"testakUrl=http://aj04.ci.kit:8080/testak/soap",
 		"filterUrl=http://aj02.ci.kit:8080/dumonitor-filter/testak",
-		"dbUrl=jdbc:postgresql://aj03.ci.kit/aj",
-		"dbUser=ajuser",
+		"dbUrl=jdbc:postgresql://aj03.ci.kit/dumonitor",
+		"dbUser=dumonitor_app",
 		"dbPassword=aj22p",
 		"storageHost=aj03.ci.kit",
 		"storagePort=8080",
