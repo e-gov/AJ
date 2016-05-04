@@ -154,7 +154,7 @@ Versioon	Kuupäev		Autor		Märkused
 	</wsdl:binding>
 	<wsdl:service name="dumonitorService">
 		<wsdl:port binding="tns:dumonitorBinding" name="dumonitorServicePort">
-			<soap:address location="http://aj03.ci.kit:8080/dumonitor-storage/xroad" />
+			<soap:address location="http://TURVASERVER/dumonitor-storage/xroad" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
