@@ -116,11 +116,10 @@ public class Xroad extends HttpServlet {
       if (context.xrdVersion.equals("old")) restag="response";
       else restag="findUsageResponse";
       if (resns!=null && !resns.equals("") && !context.xrdVersion.equals("old")) {
-        result="<"+restag+" xmlns=\""+resns.trim()+"\">\n"+result;
+        result="<p:"+restag+" xmlns:p=\""+resns.trim()+"\">\n"+result+"</p:"+restag+">";
       } else {
-        result="<"+restag+">\n"+result;
+        result="<"+restag+">\n"+result+"</"+restag+">";
       }        
-      result+="</"+restag+">"; 
       String envelope;
       if (context.xrdVersion.equals("old")) {            
         envelope=Strs.xroadMessage.replace("{header}",Util.createSoapHeader(context));
