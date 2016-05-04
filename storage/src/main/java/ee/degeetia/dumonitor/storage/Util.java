@@ -68,7 +68,7 @@ public class Util  {
   public static boolean loadProperties(Context context) 
   throws ServletException, IOException {
     try {  
-      PropertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
+      PropertyLoader.loadProperties(Property.class, "default.properties", "dumonitor.properties");
       if (Property.DATABASE_CONNECTSTRING.getValue()==null ||
           Property.DATABASE_USER.getValue()==null ||
           Property.DATABASE_PASSWORD.getValue()==null) {
