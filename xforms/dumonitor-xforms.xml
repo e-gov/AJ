@@ -15,7 +15,7 @@ Versioon        Kuupäev         Autor           Märkused
 1.0             20.12.2015      Tanel Tammet    Esimene versioon
 1.1				29.12.2015		Ivo Mehide		Jäetud alles ainult findUsage instants ja parandatud kooditabel
 1.2				07.01.2015		Ivo Mehide		Viidud vastavusse X-tee v6-ga
-1.3             22.04.2016      Ivo Mehide      Kohandatud töötama MISP2 all
+1.3             09.05.2016      Ivo Mehide      Kohandatud töötama MISP2 all
 
 -->
 <xhtml:html xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
