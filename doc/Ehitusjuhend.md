@@ -43,9 +43,7 @@ Tarkvara ehitamine peab toimuma Ubuntu 14.04 LTS operatsioonisüsteemiga arvutis
 
 * openjdk-7-jdk
 * dh-make
-* debhelper
 * devscripts
-* fakeroot
 * zip
 * git
 
@@ -64,6 +62,13 @@ git clone git@github.com:e-gov/AJ.git
 ```
 
 Käsu eduka täitmise tulemusena tekib alamkataloog "AJ", mille sees asub tarkvara lähtekood. Kõikide edasiste sammude sooritamiseks tuleb liikuda selle kataloogi sisse.
+
+Juhul, kui soovitakse ehitada tarkvara arendusversiooni (pole soovitatav, kuna pole garanteeritud, et see õnnestub), tuleb anda eelpool toodud käsu
+asemel käsk:
+
+```sh
+git clone -b develop git@github.com:e-gov/AJ.git
+```
 
 ### 2. Tarkvara kompileerimine ja ühiktestide käivitamine
 
@@ -85,7 +90,7 @@ BUILD SUCCESSFUL
 Juhul, kui käsu täitmisel juhtus mingi viga, siis kuvatakse teade:
 
 ```
-BULD FAILED
+BUILD FAILED
 ```
 
 
@@ -118,14 +123,15 @@ ZIP paigalduspakette kasutatakse komponentide Java rakendusserverile paigaldamis
 
 Peale tarkvara edukat ehitamist tekivad järgmised väljundid (väljundi nimes esinev {v} tähistab tarkvara versiooninumbrit):
 
-| Väljund                   | Asukohakataloog   | Kirjeldus                                                             |
-|---------------------------|-------------------|-----------------------------------------------------------------------|
-| dumonitor-filter_{v}.deb  | filter/build/deb  | Eraldusfiltri komponendi Ubuntu paigalduspakett                       |
-| dumonitor-storage_{v}.deb | storage/build/deb | Andmesalvestaja komponendi Ubuntu paigalduspakett                     |
-| dumonitor-query_{v}.deb   | query/build/deb   | Esitamise testrakenduse komponendi Ubuntu paigalduspakett             |
-| dumonitor-filter-{v}.zip  | filter/build/zip  | Eraldusfiltri komponendi Java rakenduse ZIP paigalduspakett           |
-| dumonitor-storage-{v}.zip | storage/build/zip | Andmesalvestaja komponendi Java rakenduse ZIP paigalduspakett         |
-| dumonitor-query-{v}.zip   | query/build/zip   | Esitamise testrakenduse komponendi Java rakenduse ZIP paigalduspakett |
+| Väljund                   | Asukohakataloog   | Kirjeldus                                                 |
+|---------------------------|-------------------|-----------------------------------------------------------|
+| dumonitor-filter_{v}.deb  | filter/build/deb  | Eraldusfiltri komponendi Ubuntu paigalduspakett           |
+| dumonitor-storage_{v}.deb | storage/build/deb | Andmesalvestaja komponendi Ubuntu paigalduspakett         |
+| dumonitor-query_{v}.deb   | query/build/deb   | Esitamise testrakenduse komponendi Ubuntu paigalduspakett |
+| dumonitor-filter-{v}.zip  | filter/build/zip  | Eraldusfiltri komponendi Java paigalduspakett             |
+| dumonitor-storage-{v}.zip | storage/build/zip | Andmesalvestaja komponendi Java paigalduspakett           |
+| dumonitor-query-{v}.zip   | query/build/zip   | Esitamise testrakenduse komponendi Java paigalduspakett   |
+| dumonitor-xforms.xml      | xforms            | X-Forms komponent MISP2 ja eesti.ee keskkonna jaoks       |
 
 ## Paigaldamine
 
