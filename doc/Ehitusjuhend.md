@@ -19,6 +19,18 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 
 ## Sisukord
 
+  * [Dokumendi ajalugu](#dokumendi-ajalugu)
+  * [Sisukord](#sisukord)
+  * [Sihtrühm](#sihtr%C3%BChm)
+  * [Ehitamise sisendid](#ehitamise-sisendid)
+  * [Ehituskeskkonna ettevalmistamine](#ehituskeskkonna-ettevalmistamine)
+  * [Ehitamine](#ehitamine)
+    * [1\. Lähtekoodi allalaadimine](#1-l%C3%A4htekoodi-allalaadimine)
+    * [2\. Tarkvara kompileerimine ja ühiktestide käivitamine](#2-tarkvara-kompileerimine-ja-%C3%BChiktestide-k%C3%A4ivitamine)
+    * [3\. Tarkvara Ubuntu paigalduspakettide koostamine](#3-tarkvara-ubuntu-paigalduspakettide-koostamine)
+    * [4\. Tarkvara ZIP paigalduspakettide koostamine](#4-tarkvara-zip-paigalduspakettide-koostamine)
+  * [Ehitamise väljund](#ehitamise-v%C3%A4ljund)
+  * [Paigaldamine](#paigaldamine)
 
 
 ## Sihtrühm
