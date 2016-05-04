@@ -10,5 +10,6 @@ password="postgres"
 #PGHOST=localhost PGUSER=postgres PGPASSWORD=$password createdb -O dumonitor -E 'UTF8' -T template0 dumonitor # create database dumonitor
 
 # should be run as a user postgres
+PGHOST=localhost PGUSER=postgres PGPASSWORD=$password psql dumonitor -f $CURDIR/aj_tables_drop.sql
 PGHOST=localhost PGUSER=postgres PGPASSWORD=$password psql dumonitor -f $CURDIR/aj_tables.sql
 PGHOST=localhost PGUSER=postgres PGPASSWORD=$password psql dumonitor -f $CURDIR/aj_privileges.sql
