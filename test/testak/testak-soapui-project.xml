@@ -701,7 +701,7 @@
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj02.ci.kit:8080/dumonitor-filter/testak</con:endpoint><con:endpoint>http://aj04.ci.kit:8080/testak/soap</con:endpoint><con:endpoint>http://sky.local:8080/soap</con:endpoint></con:endpoints><con:operation id="d7710ac2-66e7-4faa-9748-a0ca8315ccfd" isOneWay="false" action="" name="getPersonData" bindingOperationName="getPersonData" type="Request-Response" outputName="getPersonDataResponse" inputName="getPersonData" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ba6334ed-9bca-4130-907f-07b12560ef82" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj04.ci.kit:8080/testak/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj02.ci.kit:8080/dumonitor-filter/testak</con:endpoint><con:endpoint>http://aj04.ci.kit:8080/testak/soap</con:endpoint><con:endpoint>http://sky.local:8080/soap</con:endpoint></con:endpoints><con:operation id="d7710ac2-66e7-4faa-9748-a0ca8315ccfd" isOneWay="false" action="" name="getPersonData" bindingOperationName="getPersonData" type="Request-Response" outputName="getPersonDataResponse" inputName="getPersonData" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ba6334ed-9bca-4130-907f-07b12560ef82" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj02.ci.kit:8080/dumonitor-filter/testak</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
 	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
 	xmlns:xro="http://x-road.eu/xsd/xroad.xsd" 
 	xmlns:iden="http://x-road.eu/xsd/identifiers" 
@@ -1465,11 +1465,11 @@ Versioon	Kuupäev		Autor		Märkused
       </xs:restriction>
     </xs:complexContent>
   </xs:complexType>
-</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/xroad</con:endpoint><con:endpoint>http://sky.local:8080/dumonitor</con:endpoint></con:endpoints><con:operation id="a27e5fb6-1806-47d7-84e3-e80991af2a84" isOneWay="false" action="" name="findUsage" bindingOperationName="findUsage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a52ce99b-2edc-4908-a1bb-f533d54c045e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj05.ci.kit:8080/dumonitor-query/proxy</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://dumonitor.x-road.eu/producer">
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/xroad</con:endpoint><con:endpoint>http://sky.local:8080/dumonitor</con:endpoint></con:endpoints><con:operation id="a27e5fb6-1806-47d7-84e3-e80991af2a84" isOneWay="false" action="" name="findUsage" bindingOperationName="findUsage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a52ce99b-2edc-4908-a1bb-f533d54c045e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://aj03.ci.kit:8080/dumonitor-storage/xroad</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xro="http://x-road.eu/xsd/xroad.xsd" xmlns:iden="http://x-road.eu/xsd/identifiers" xmlns:prod="http://dumonitor.x-road.eu/producer">
    <soapenv:Header>
       <xro:protocolVersion>4.0</xro:protocolVersion>
       <xro:id>4894e35d-bf0f-44a6-867a-8e51f1daa7e0</xro:id>
-      <xro:userId>EE12345678901</xro:userId>
+      <xro:userId>EE47101010033</xro:userId>
       <xro:service iden:objectType="SERVICE">
          <iden:xRoadInstance>CI</iden:xRoadInstance>
          <iden:memberClass>GOV</iden:memberClass>
@@ -1491,7 +1491,7 @@ Versioon	Kuupäev		Autor		Märkused
    <soapenv:Body>
       <prod:findUsage>
          <offset>0</offset>
-         <limit>10</limit>
+         <limit>1</limit>
       </prod:findUsage>
    </soapenv:Body>
 </soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://dumonitor.x-road.eu/producer/dumonitorPortType/findUsageRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="f4b9f87e-9627-4d3f-9c03-6cc398ace903" port="8080" path="/soap" host="sky.local" name="getPersonDataPortSoap11 MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="getPersonData" id="9205d368-d8b9-4bf8-981e-5f0ccd0340fe" interface="getPersonDataPortSoap11" operation="getPersonData"><con:settings/><con:defaultResponse>Response ERR</con:defaultResponse><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:response name="Response OK" id="ad0ade73-4cd3-4482-9acd-d8f8c9aea17e" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:script>def holder = new com.eviware.soapui.support.XmlHolder(mockRequest.requestContent);
