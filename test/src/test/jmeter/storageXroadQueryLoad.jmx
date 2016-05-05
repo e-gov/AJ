@@ -62,15 +62,6 @@
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
     <hashTree>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-        <collectionProp name="HeaderManager.headers">
-          <elementProp name="" elementType="Header">
-            <stringProp name="Header.name">Content-Type</stringProp>
-            <stringProp name="Header.value">application/json</stringProp>
-          </elementProp>
-        </collectionProp>
-      </HeaderManager>
-      <hashTree/>
       <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
         <stringProp name="filename"></stringProp>
         <stringProp name="parameters"></stringProp>
@@ -149,6 +140,15 @@ vars.put(&quot;logtime1&quot;,formattedTime);
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion - ok status" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
@@ -237,7 +237,17 @@ vars.put(&quot;logtime1&quot;,formattedTime);
           <stringProp name="SoapSampler.SEND_SOAP_ACTION">true</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
         </SoapSampler>
-        <hashTree/>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">text/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+        </hashTree>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="JMeter Users" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -294,19 +304,6 @@ vars.put(&quot;logtime1&quot;,formattedTime);
    &lt;/soapenv:Header&gt;
    &lt;soapenv:Body&gt;
       &lt;prod:findUsage&gt;
-	&lt;from_date&gt;${logtime1}&lt;/from_date&gt;
-	&lt;to_date&gt;${logtime2}&lt;/to_date&gt;
-	&lt;actioncode&gt;REQ:getPersonData.v1&lt;/actioncode&gt;
-	&lt;action&gt;Get Person Data&lt;/action&gt;
-	&lt;personcode&gt;47101010033&lt;/personcode&gt;
-	&lt;receiver&gt;Test receiver&lt;/receiver&gt;
-	&lt;receivercode&gt;10000001&lt;/receivercode&gt;
-	&lt;restrictions&gt;A&lt;/restrictions&gt;
-	&lt;sender&gt;Test AK&lt;/sender&gt;
-	&lt;sendercode&gt;20000001&lt;/sendercode&gt;
-	&lt;usercode&gt;EE12345678901&lt;/usercode&gt;
-	&lt;xroadservice&gt;getPersonData&lt;/xroadservice&gt;
-	&lt;xroadrequestid&gt;4894e35d-bf0f-44a6-867a-123456${uuid}&lt;/xroadrequestid&gt;
 	&lt;offset&gt;0&lt;/offset&gt;
 	&lt;limit&gt;${logRecordCount}&lt;/limit&gt;
       &lt;/prod:findUsage&gt;
@@ -318,6 +315,15 @@ vars.put(&quot;logtime1&quot;,formattedTime);
           <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
         </SoapSampler>
         <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">text/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion - ok status" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
@@ -329,30 +335,20 @@ vars.put(&quot;logtime1&quot;,formattedTime);
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion - soap response" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="-1180250012">Content-Type: application/xml</stringProp>
+              <stringProp name="909915177">Content-Type: text/xml</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - id" enabled="true">
+          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - response element count" enabled="true">
             <boolProp name="XPath.negate">false</boolProp>
-            <stringProp name="XPath.xpath">/soapenv:Envelope/soapenv:Header/xro:id = &apos;4894e35d-bf0f-44a6-867a-123456${uuidQuery}&apos;</stringProp>
+            <stringProp name="XPath.xpath">count(/SOAP-ENV:Envelope/SOAP-ENV:Body/prod:findUsageResponse/usage) = ${logRecordCount}</stringProp>
             <boolProp name="XPath.validate">false</boolProp>
             <boolProp name="XPath.whitespace">false</boolProp>
             <boolProp name="XPath.tolerant">false</boolProp>
             <boolProp name="XPath.namespace">true</boolProp>
-            <stringProp name="Assertion.scope">children</stringProp>
-          </XPathAssertion>
-          <hashTree/>
-          <XPathAssertion guiclass="XPathAssertionGui" testclass="XPathAssertion" testname="XPath Assertion - response element count" enabled="true">
-            <boolProp name="XPath.negate">false</boolProp>
-            <stringProp name="XPath.xpath">count(/soapenv:Envelope/soapenv:Body/prod:findUsageResponse/usage) = ${logRecordCount}</stringProp>
-            <boolProp name="XPath.validate">false</boolProp>
-            <boolProp name="XPath.whitespace">false</boolProp>
-            <boolProp name="XPath.tolerant">false</boolProp>
-            <boolProp name="XPath.namespace">false</boolProp>
           </XPathAssertion>
           <hashTree/>
         </hashTree>

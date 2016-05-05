@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  * Copyright (c) 2016 Estonian Information System Authority (RIA)
  *

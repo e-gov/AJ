@@ -1,0 +1,3 @@
+../build/libs/dumonitor-query.war /etc/xroad/jetty/contexts-public
+dumonitor.properties /usr/share/dumonitor/query
+dumonitor /usr/share/dumonitor/query

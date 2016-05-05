@@ -68,7 +68,7 @@ public class Util  {
   public static boolean loadProperties(Context context) 
   throws ServletException, IOException {
     try {  
-      PropertyLoader.loadProperties(Property.class, "default.properties");
+      PropertyLoader.loadProperties(Property.class, "default.properties", "dumonitor.properties");
       if (Property.DATABASE_CONNECTSTRING.getValue()==null ||
           Property.DATABASE_USER.getValue()==null ||
           Property.DATABASE_PASSWORD.getValue()==null) {
@@ -240,6 +240,13 @@ public class Util  {
 		    return null;
 		}
 	} else {
+		// check whether the driver present
+	    try {
+	      Class.forName("org.postgresql.Driver");
+	    } catch (ClassNotFoundException e) {
+	      Util.showError(context, 7, "failed to find the PostgreSQL JDBC Driver");
+	      return null;
+	    }
 	    // create db connection    
 	    try {
 	      conn = DriverManager.getConnection(

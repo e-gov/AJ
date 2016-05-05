@@ -20,3 +20,20 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 	testCompile 'org.mockito:mockito-all:1.10.18'
 }
+
+task createBaseNameWar(type:Copy, dependsOn: 'war') {
+        from(war.destinationDir)
+        into(war.destinationDir)
+	include(war.archiveName)
+        rename(war.archiveName, project.name + '.war')
+}
+
+task buildDeb (type: Exec, dependsOn: 'createBaseNameWar') {
+        description 'Build deb packages'
+        commandLine './buildDeb.sh', project.name, project.version
+}
+
+task buildZip (type: Exec, dependsOn: 'createBaseNameWar') {
+        description 'Build zip packages'
+        commandLine './buildZip.sh', project.name, project.version
+}

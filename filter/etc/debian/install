@@ -1,4 +1,4 @@
 ../build/libs/dumonitor-filter.war /etc/xroad/jetty/contexts-public
-dumonitor-filter.xml /usr/share/xroad/jetty9/resources
-dumonitor.properties /usr/share/xroad/jetty9/resources
-dumonitor-filter /etc/nginx/sites-enabled
+dumonitor-filter.xml /usr/share/dumonitor/filter
+dumonitor.properties /usr/share/dumonitor/filter
+dumonitor /usr/share/dumonitor/filter

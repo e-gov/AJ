@@ -1,4 +1,4 @@
-/**
+/*
  * MIT License
  * Copyright (c) 2016 Estonian Information System Authority (RIA)
  *
@@ -62,7 +62,6 @@ public final class PropertyLoader {
   public static <T extends Enum<T> & PropertyHolder> void loadProperties(Class<T> propertyClass, String... filenames) {
     Properties properties = new Properties();
     Set<String> definedProperties = new HashSet<String>();
-    Set<String> missingProperties = new HashSet<String>();
 
     for (String filename : filenames) {
       InputStream propertiesFile = ResourceUtil.getClasspathResourceAsStream(filename);
@@ -82,17 +81,11 @@ public final class PropertyLoader {
     for (T property : propertyClass.getEnumConstants()) {
       definedProperties.add(property.getKey());
       String value = properties.getProperty(property.getKey());
-      if (StringUtil.isEmpty(value)) {
-        missingProperties.add(property.getKey());
-      } else {
+      if (!StringUtil.isEmpty(value)) {
         LOG.info("Loaded property {} = {}", property.getKey(), value);
         property.setValue(value);
       }
     }
-
-    //if (!missingProperties.isEmpty()) {
-    //  throw new IllegalStateException("Missing properties: " + StringUtil.join(missingProperties, ", "));
-    //}
 
     for (String propertyName : properties.stringPropertyNames()) {
       if (!definedProperties.contains(propertyName)) {
@@ -101,4 +94,20 @@ public final class PropertyLoader {
     }
   }
 
+  /**
+   * Verifies that all given properties contain nonempty value.
+   * @param properties properties to test
+   */
+  public static void requireProperties(PropertyHolder[] properties) {
+    Set<String> missingProperties = new HashSet<String>();
+    for (PropertyHolder property : properties) {
+      if (StringUtil.isEmpty(property.getValue())) {
+        missingProperties.add(property.getKey());
+      }
+    }
+
+    if (!missingProperties.isEmpty()) {
+      throw new IllegalStateException("Missing properties: " + StringUtil.join(missingProperties, ", "));
+    }
+  }
 }

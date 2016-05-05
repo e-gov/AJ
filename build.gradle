@@ -1,5 +1,9 @@
 // build.gradle
 
+plugins {
+	id "com.github.hierynomus.license" version "0.12.1"
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'
 }
@@ -14,10 +18,14 @@ allprojects {
 }
 
 subprojects {
-
 	dependencies {
 	}
 
+	license {
+		header project.file('LICENSE.txt')
+		include '**/*.java'
+	}
+	
 	tasks.withType(JavaCompile) {
 		sourceCompatibility = JavaVersion.VERSION_1_6
 		targetCompatibility = JavaVersion.VERSION_1_6

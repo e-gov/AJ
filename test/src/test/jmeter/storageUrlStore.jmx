@@ -9,12 +9,12 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="dbUrl" elementType="Argument">
             <stringProp name="Argument.name">dbUrl</stringProp>
-            <stringProp name="Argument.value">jdbc:postgresql://aj03.ci.kit/aj</stringProp>
+            <stringProp name="Argument.value">jdbc:postgresql://aj03.ci.kit/dumonitor</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="dbUser" elementType="Argument">
             <stringProp name="Argument.name">dbUser</stringProp>
-            <stringProp name="Argument.value">ajuser</stringProp>
+            <stringProp name="Argument.value">dumonitor_app</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="dbPassword" elementType="Argument">

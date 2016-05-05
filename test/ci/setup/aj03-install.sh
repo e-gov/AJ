@@ -15,8 +15,9 @@ password="postgres"
 sudo -u postgres psql -c "alter user postgres password '$password';"
 
 # Tekitame andmejälgija kasutaja ja andmebaasi:
-PGPASSWORD=$password psql -U postgres postgresql://localhost -c "CREATE ROLE ajuser PASSWORD 'md545a9c580a300097b2636906348056c60' NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN;"
-PGHOST=localhost PGUSER=postgres PGPASSWORD=$password createdb -O ajuser -E 'UTF8' -T template0 aj # create database aj
+PGPASSWORD=$password psql -U postgres postgresql://localhost -c "CREATE ROLE dumonitor PASSWORD 'aj22p' NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN;"
+PGHOST=localhost PGUSER=postgres PGPASSWORD=$password createdb -O dumonitor -E 'UTF8' -T template0 dumonitor # create database dumonitor
+PGPASSWORD=$password psql -U postgres postgresql://localhost -d dumonitor -c "CREATE ROLE dumonitor_app PASSWORD 'aj22p' NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN;"
 
 # Lubame üle võrgu MD5 autentimist:
 perl -pi -e 's{^(\s*host\s+all\s+all\s+)127.0.0.1/32(\s+md5\s)}{$1 0.0.0.0/0 $2}' /etc/postgresql/9.3/main/pg_hba.conf

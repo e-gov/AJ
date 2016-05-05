@@ -4,14 +4,11 @@ Priority: extra
 Maintainer: Ivo Mehide <ivo@degeetia.ee>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
-Homepage: http://github.com/e-gov/AJ/
-#Vcs-Git: git://git.debian.org/collab-maint/dumonitor-filter.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/dumonitor-filter.git;a=summary
+Homepage: https://github.com/e-gov/AJ/
 
 Package: dumonitor-filter
 Architecture: all
 Depends: nginx-common, xroad-jetty9
-Description: X-Road personal data usage monitor
- This package monitors queries between X-Road security server and producer
- and logs all personal data from the messages into personal data logging
- service.
+Description: X-tee andmejälgija filtri komponent
+ Komponent vahendab päringuid X-tee turvaserveri ja andmekogu vahel ning 
+ logib päringutes leiduvad isikuandmed andmesalvestajasse.

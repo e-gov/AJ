@@ -105,7 +105,7 @@ Analoogiliselt peab saama ka andmesalvestaja paigaldada mitmel eri moel (täpsem
 
 Komponentide üldpilt on alljärgnev:
 
-![Komponentdiagramm](komponentdiagramm.png)
+![Komponentdiagramm](../img/komponentdiagramm.png)
 
 _Andmesalvestaja_ on andmejälgija paigaldamisel kohustuslik komponent, mis koosneb kahest osast:
 

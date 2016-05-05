@@ -32,7 +32,7 @@
 				/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonData
 			</xpath>
 			<loggableFields>
-				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonData/request/personCode</personcode>
+				<personcode>concat('EE',/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonData/request/personCode)</personcode>
 				<action>'Get Person Data'</action>
 				<restrictions>'A'</restrictions>
 				<actioncode>'REQ:getPersonData.v1'</actioncode>
@@ -45,7 +45,7 @@
 				/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonDataResponse
 			</xpath>
 			<loggableFields>
-				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonDataResponse/response/personCode</personcode>
+				<personcode>concat('EE', /SOAP-ENV:Envelope/SOAP-ENV:Body/pr:getPersonDataResponse/response/personCode)</personcode>
 				<action>'Get Person Data'</action>
 				<restrictions>'A'</restrictions>
 				<actioncode>'RESP:getPersonData.v1'</actioncode>

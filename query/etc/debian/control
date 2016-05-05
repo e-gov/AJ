@@ -1,0 +1,13 @@
+Source: dumonitor-query
+Section: X-Road
+Priority: extra
+Maintainer: Ivo Mehide <ivo@degeetia.ee>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: https://github.com/e-gov/AJ/
+
+Package: dumonitor-query
+Architecture: all
+Depends: nginx-common, xroad-jetty9
+Description: X-tee andmejälgija esitamise testrakendus
+ Komponendi abil on võimalik teha päringuid andmejälgija andmesalvestaja logiliidesele.

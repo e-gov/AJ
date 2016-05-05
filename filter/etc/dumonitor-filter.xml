@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <filterConfiguration xmlns="http://x-road.eu/xsd/dumonitor.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- Elemendi "namespaces" all kirjeldatakse ära XML nimeruumide prefiksid, mida järgnevas XPath avaldistes kasutatakse.
+		 Prefiksid ei pea langema kokku andmejälgija filtri komponendist läbi liikuvates päringutes kasutatavatega, 
+		 tegelik XPath avaldiste rakendamine toimub nimeruumide baasilt. 
+		 Alljärgnevas on toodud levinumate X-tee päringutes kasutatavate nimeruumide prefiksite kirjeldused. -->
     <namespaces>
         <namespace>
             <prefix>SOAP-ENV</prefix>
@@ -15,17 +19,54 @@
             <uri>http://x-road.eu/xsd/identifiers</uri>
         </namespace>
     </namespaces>
+    <!-- Elemendi "exclusions" all saab kirjeldada sõnumi väljad, mille väärtuse leidumine dumonitor.properties 
+         blacklist väljal välistab antud päringu logimise filtri poolt.
+         Alljärgnevas on toodud tarkvara vaikeväärtus -->
+    <!--  exclusions>
+        <exclusion>inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode)</exclusion>
+        <exclusion>inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode)</exclusion>
+    </exclusions -->
+    <!-- Elemendi "defaults" abil kirjeldatakse logiväljade vaikeväärtused, mida kasutatakse juhul, kui filtris vastavat väärtust ei määratleta. 
+         Väljade loetelu saab siin olla sama, mis filtris elemendi "loggableFields" all. Alljärgnevas on toodud nendele tarkvara poolt
+         automaatselt omistatavad väärtused. -->
     <defaults>
-    	<!-- Uncomment and fill in with human readable sender name: -->
-        <!--  <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender> -->
-    	<!-- Uncomment and fill in with human readable receiver name: -->
-        <!--  <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver> -->
+    	<!--
+        <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender>
+        <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver>
+        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode<sendercode>
+        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode<receivercode>
+        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id<xroadrequestid>
+        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode<xroadservice>
+        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId<usercode>
+        -->
     </defaults>
+    <!-- Elemendi "filters" all kirjeldatakse sõnumitele rakendatavad filtrid. -->
     <filters>
-    	<!-- Describe filters here: -->
+    	<!-- Iga filter esitatakse eraldi "filter" elemendi sees (neid võib olla üksteise järel mitu).
+    	
+    	     Filtri esimene element peab olema "xpath" - selle väärtus määrab XPath avaldise, mis rakendatakse andmejälgijat läbivale sõnumile.
+    	     Kui selle avaldise väärtuse teisendus tõeväärtuseks annab tulemuseks "true", siis seda filtrit rakendatakse (ja  järgmisi filtreid enam ei vaadata)
+    	     päringu logimiseks, vastasel korral vaadatakse nimekirjas järgmist filtrit.
+    	     
+    	     Filtri teine element peab olema "loggableFields" ning selles kirjeldatakse päringu logimisel logitava info väärtused. Iga selle elemendi all oleva elemendi
+    	     nimi vastab vastavale logiväljale ning elemendi väärtuseks peab olema XPath avaldis, mille abil arvutatakse logitava välja väärtus.
+    	     Elemendid saavad olla järgmised:
+    	     
+    	     personcode - Isikukood, kelle isikuinfot antud päringuga edastati
+    	     action - Isikuandmete tegevusele omistatud inimloetav nimi
+    	     sender - Isikuandmeid saatva osapoole inimloetav nimi
+    	     receiver - Isikuandmeid vastuvõtva osapoole inimloetav nimi
+    	     restrictions - Kui väärtuseks on 'A', siis on logikirje nähtav andmesalvestaja vastava X-tee teenuse kaudu, vastasel korral mitte
+    	     sendercode - Isikuandmeid saatava osapoole X-tee kood
+    	     receivercode - Isikuandmeid vastuvõtva osapoole X-tee kood
+    	     actioncode - Isikuandmete tegevusele omistatud sisemine masintöödeldav nimi
+    	     xroadrequestid - Isikuandmeid edastava päringu X-tee ID
+    	     xroadservice - Isikuandmeid edastava päringu X-tee teenuse nimi
+    	     usercode - Isikuandmeid küsinud osapoole päringut sooritanud ametniku isikukood
+    	  -->
     	<!--
 		<filter>
-		<xpath>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'replaceWithServiceCode' and /SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'replaceWithServiceVersion'</xpath>
+			<xpath>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'replaceWithServiceCode' and /SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'replaceWithServiceVersion'</xpath>
 			<loggableFields>
 				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse/replaceWithXPathToPersonCode</personcode>
 				<action>'Human readable action name'</action>
