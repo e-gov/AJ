@@ -1,4 +1,5 @@
 GRADLE_FILTERS=1.0-projectRelativePath-matches-false-false-filter,1.0-projectRelativePath-matches-false-false-salvestaja,1.0-projectRelativePath-matches-false-false-build,1.0-projectRelativePath-matches-false-false-.gradle
+build.commands=org.eclipse.jdt.core.javabuilder
 connection.arguments=
 connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
 connection.gradle.user.home=null
@@ -8,4 +9,5 @@ connection.project.dir=
 derived.resources=.gradle,build,common,filter,query,storage,test
 eclipse.preferences.version=1
 filters=1.0-projectRelativePath-matches-false-false-common,1.0-projectRelativePath-matches-false-false-testak
+natures=org.eclipse.jdt.core.javanature
 project.path=\:

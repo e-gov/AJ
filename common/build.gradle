@@ -1,11 +1,13 @@
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-// apply plugin: 'checkstyle'
+apply plugin: 'checkstyle'
 
-//checkstyle {
-//	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
-//}
+checkstyle {
+	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+    sourceSets = [project.sourceSets.main]
+    ignoreFailures = true
+}
 
 dependencies {
     compileOnly 'javax.servlet:javax.servlet-api:3.0.1'

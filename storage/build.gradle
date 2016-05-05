@@ -1,13 +1,15 @@
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-// apply plugin: 'checkstyle'
+apply plugin: 'checkstyle'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 
-//checkstyle {
-//	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
-//}
+checkstyle {
+	configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+    sourceSets = [project.sourceSets.main]
+    ignoreFailures = true
+}
 
 dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
