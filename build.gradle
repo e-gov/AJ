@@ -1,7 +1,7 @@
 // build.gradle
 
 plugins {
-	id "com.github.hierynomus.license" version "0.12.1"
+    id 'com.github.hierynomus.license' version '0.11.0'
 }
 
 task wrapper(type: Wrapper) {
@@ -24,11 +24,18 @@ subprojects {
 	license {
 		header project.file('LICENSE.txt')
 		include '**/*.java'
+    	mapping 'java', 'SLASHSTAR_STYLE'
 	}
+	
+	apply plugin: 'license'
 	
 	tasks.withType(JavaCompile) {
 		sourceCompatibility = JavaVersion.VERSION_1_6
 		targetCompatibility = JavaVersion.VERSION_1_6
+	}
+
+	tasks.withType(Checkstyle) {
+    	exclude '**/generated/**'
 	}
 
 	tasks.withType(Test) {

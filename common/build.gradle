@@ -15,3 +15,9 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-core:2.3'
     compile 'com.google.code.gson:gson:2.6.2'
 }
+
+license {
+	header project.file('LICENSE.txt')
+	include '**/*.java'
+   	mapping 'java', 'SLASHSTAR_STYLE'
+}

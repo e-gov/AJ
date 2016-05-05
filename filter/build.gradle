@@ -25,6 +25,12 @@ dependencies {
     compile project(':dumonitor-common')
 }
 
+license {
+	header project.file('LICENSE.txt')
+	include '**/*.java'
+   	mapping 'java', 'SLASHSTAR_STYLE'
+}
+
 task createBaseNameWar(type:Copy, dependsOn: 'war') {
         from(war.destinationDir)
         into(war.destinationDir)

@@ -21,6 +21,12 @@ dependencies {
 	testCompile 'org.mockito:mockito-all:1.10.18'
 }
 
+license {
+	header project.file('LICENSE.txt')
+	include '**/*.java'
+   	mapping 'java', 'SLASHSTAR_STYLE'
+}
+
 task createBaseNameWar(type:Copy, dependsOn: 'war') {
         from(war.destinationDir)
         into(war.destinationDir)
