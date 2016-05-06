@@ -22,11 +22,16 @@
  */
 package ee.degeetia.dumonitor.storage;
 
-public class Strs {
-   
+
+/**
+ * String templates for xroad: version 4 has some differences from older
+ *
+ */
+public final class Strs {
+
   // first old xroad version
-  
-  public static String xroadHeader =    
+
+  public static String xroadHeader =
       "<SOAP-ENV:Header xmlns:xrd=\"http://x-road.ee/xsd/x-road.xsd\">\n"
     + "    <xrd:consumer>{consumer}</xrd:consumer>\n"
     + "    <xrd:producer>{producer}</xrd:producer>\n"
@@ -36,8 +41,8 @@ public class Strs {
     + "    <xrd:issue/>\n"
     + "  </SOAP-ENV:Header>\n";
     
-   public static String xroadTechErr =  
-      "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" 
+   public static String xroadTechErr =
+      "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
     + "  <SOAP-ENV:Body>\n"
     + "    <SOAP-ENV:Fault>\n"
     + "      <faultcode>{faultCode}</faultcode>\n"
@@ -47,8 +52,8 @@ public class Strs {
     + "   </SOAP-ENV:Fault>\n"
     + "  </SOAP-ENV:Body>\n"
     + "</SOAP-ENV:Envelope>";
-  
-  public static String xroadErr = 
+
+  public static String xroadErr =
       "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
     + "  {header}"
     + "  <SOAP-ENV:Body>\n"
@@ -61,8 +66,8 @@ public class Strs {
     + "    </m:findUsageResponse>\n"
     + "  </SOAP-ENV:Body>\n"
     + "</SOAP-ENV:Envelope>";
-    
-  public static String xroadMessage = 
+
+  public static String xroadMessage =
       "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
     + "  {header}"
     + "  <SOAP-ENV:Body>\n"
@@ -71,15 +76,15 @@ public class Strs {
     + "      {response}\n"
     + "    </m:findUsageResponse>\n"
     + "  </SOAP-ENV:Body>\n"
-    + "</SOAP-ENV:Envelope>";  
-    
-  // next new xroad version      
-  
-  public static String xroad40Err = 
+    + "</SOAP-ENV:Envelope>";
+
+  // next new xroad version
+
+  public static String xroad40Err =
         "<SOAP-ENV:Envelope \n"
     + "    xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"\n"
-    + "    xmlns:xrd=\"http://x-road.eu/xsd/xroad.xsd\"\n" 
-    + "    xmlns:id=\"http://x-road.eu/xsd/identifiers\"\n" 
+    + "    xmlns:xrd=\"http://x-road.eu/xsd/xroad.xsd\"\n"
+    + "    xmlns:id=\"http://x-road.eu/xsd/identifiers\"\n"
     + "    xmlns:prod=\"{producerns}\">\n"
     + "  {header}"
     + "  <SOAP-ENV:Body>\n"
@@ -88,18 +93,24 @@ public class Strs {
     + "      <faultString>{faultString}</faultString>\n"
     + "    </m:findUsageResponse>\n"
     + "  </SOAP-ENV:Body>\n"
-    + "</SOAP-ENV:Envelope>";  
-    
-  public static String xroad40Message = 
+    + "</SOAP-ENV:Envelope>";
+
+  public static String xroad40Message =
       "<SOAP-ENV:Envelope \n"
     + "    xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"\n"
-    + "    xmlns:xrd=\"http://x-road.eu/xsd/xroad.xsd\"\n" 
-    + "    xmlns:id=\"http://x-road.eu/xsd/identifiers\"\n" 
+    + "    xmlns:xrd=\"http://x-road.eu/xsd/xroad.xsd\"\n"
+    + "    xmlns:id=\"http://x-road.eu/xsd/identifiers\"\n"
     + "    xmlns:prod=\"{producerns}\">\n"
     + "  {header}"
     + "  <SOAP-ENV:Body>\n"
     + "     {response}\n"
     + "  </SOAP-ENV:Body>\n"
-    + "</SOAP-ENV:Envelope>";    
-    
+    + "</SOAP-ENV:Envelope>";
+
+  /**
+   * Class with only static methods - no instantiation is allowed.
+   */
+  private Strs() {
+    //not called
+  }
 }

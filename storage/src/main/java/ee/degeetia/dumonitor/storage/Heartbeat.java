@@ -29,24 +29,25 @@ import ee.degeetia.dumonitor.common.config.PropertyLoader;
 import ee.degeetia.dumonitor.common.heartbeat.HeartbeatServlet;
 
 /**
- * Klass realiseerib andmesalvestaja nn. heartbeat teenuse, mis tagastab lihtsa JSON struktuuri teenuse põhiinfoga.
- * Täpsemalt vt vanemklassi kirjeldust.
+ * Implements the heartbeat service returning simple json with the main data of service;
+ * See the description of the parent class.
  */
 public class Heartbeat extends HeartbeatServlet {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * Servleti initsialiseerimine. Lotakse sisse teenuse konfiguratsioon failist build.properties
-	 */
-	@Override
-	public void init() throws ServletException {
-		loadProperties();
-	}
+  /**
+   * Initialize servlet, read the configuration from the file build.properties
+   * @throws ServletException when property loading fails
+  */
+  @Override
+  public void init() throws ServletException {
+    loadProperties();
+  }
 
-	protected void loadProperties() {
-		if (BuildProperty.NAME.getValue() == null) {
-			PropertyLoader.loadProperties(BuildProperty.class, "build.properties");
-		}
-	}
+  protected void loadProperties() {
+    if (BuildProperty.NAME.getValue() == null) {
+      PropertyLoader.loadProperties(BuildProperty.class, "build.properties");
+    }
+  }
 }

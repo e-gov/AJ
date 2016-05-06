@@ -77,8 +77,8 @@ public class Store extends HttpServlet {
 
   /**
    * Store parsed parameters passed as hashmap
-   * @throws ServletException
-   * @throws IOException
+   * @throws ServletException generic catchall
+   * @throws IOException  generic catchall
    */
   public static void handleStoreParams() throws ServletException, IOException {
     Connection conn = Util.createDbConnection(context);
@@ -115,10 +115,8 @@ public class Store extends HttpServlet {
       try {
         conn.close();
       } catch (Throwable ignore) {
-        /*
-         * Propagate the original exception instead of this one that you may
-         * want just logged
-         */ }
+        Util.showError(context, ERRCODE_9, "cannot close database ");
+      }
     }
   }
 

@@ -36,16 +36,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- *
+ * Query is a REST service used by the internal use webpage for searching from the log database:
+ * cgi or json parameters, json output
  */
 public class Query extends HttpServlet {
 
-  private static final int ERRCODE_10 = 10;
+  private static final int ERRCODE_9 = 9; // technical error
+  private static final int ERRCODE_10 = 10; // nontechnical error
+  
   private static final int MAX_PARAMS = 20;
   private static final int LIMIT_MAX = 1000;
   private static final int LIMIT_DEFAULT = 100;
-  private static final int ERRCODE_9 = 9;
   private static final long serialVersionUID = 1L;
+  
   private static Context context; // global vars are here
 
   // acceptable keys: identical to settable database fields
@@ -64,8 +67,16 @@ public class Query extends HttpServlet {
     handleRequest(req, resp, true);
   }
 
+  /**
+   * First function to handle the request, wrapping all the action:
+   * parse input, call handler, flush and close connection
+   * 
+   * @param req http Request object from servlet
+   * @param resp http Response object from servlet
+   * @param isPost true iff a post request, false iff get
+   */
   private void handleRequest(HttpServletRequest req, HttpServletResponse resp, boolean isPost)
-      throws ServletException, IOException {
+  throws ServletException, IOException {
     try {
       context = Util.initRequest(req, resp, "application/json", Query.class);
       if (context == null)
@@ -84,8 +95,8 @@ public class Query extends HttpServlet {
   /**
    * Store parsed parameters passed as hashmap
    * 
-   * @throws ServletException
-   * @throws IOException
+   * @throws ServletException generic catchall
+   * @throws IOException generic catchall
    */
   public static void handleQueryParams() throws ServletException, IOException {
     Connection conn = Util.createDbConnection(context);
@@ -100,10 +111,12 @@ public class Query extends HttpServlet {
     try {
       offset = Math.abs(Integer.parseInt(context.inParams.get("offset")));
     } catch (Exception e) {
+      offset = 0;
     }
     try {
       limit = Math.abs(Integer.parseInt(context.inParams.get("limit")));
     } catch (Exception e) {
+      limit = LIMIT_DEFAULT;
     }
     if (limit > LIMIT_MAX)
       limit = LIMIT_MAX;
@@ -188,10 +201,8 @@ public class Query extends HttpServlet {
       try {
         conn.close();
       } catch (Throwable ignore) {
-        /*
-         * Propagate the original exception instead of this one that you may
-         * want just logged
-         */ }
+        Util.showError(context, ERRCODE_9, "cannot close database ");
+      }
     }
   }
 

@@ -43,16 +43,18 @@ import ee.degeetia.dumonitor.common.config.Property;
  */
 public class Xroad extends HttpServlet {
 
+  private static final int ERRCODE_9 = 9;
   private static final int ERRCODE_10 = 10;
+  private static final int ERRCODE_11 = 11;
+  private static final int ERRCODE_12 = 12;
+  
   private static final int ARGPOS_1 = 1;
   private static final int ARGPOS_2 = 2;
   private static final int ARGPOS_3 = 3;
-  private static final int ERRCODE_12 = 12;
-  private static final int ERRCODE_11 = 11;
   private static final int LIMIT_MAX = 1000;
   private static final int LIMIT_DEFAULT = 1000;
-  private static final int ERRCODE_9 = 9;
   private static final long serialVersionUID = 1L;
+  
   private static Context context; // global vars are here
 
   // acceptable keys: identical to settable database fields
@@ -72,6 +74,13 @@ public class Xroad extends HttpServlet {
     handleRequest(req, resp, true);
   }
 
+  /**
+   * First function to handle the request, wrapping all the action
+   * 
+   * @param req http Request object from servlet
+   * @param resp http Response object from servlet
+   * @param isPost true iff a post request, false iff get
+   */
   private void handleRequest(HttpServletRequest req, HttpServletResponse resp, boolean isPost)
       throws ServletException, IOException {
     try {
@@ -90,9 +99,10 @@ public class Xroad extends HttpServlet {
   }
 
   /**
-   * Main handler
-   * @throws ServletException
-   * @throws IOException
+   * Main handler: parse the query, call fetchData, wrap result into envelope
+   *
+   * @throws ServletException generic catchall
+   * @throws IOException generic catchall
    */
   public static void handleXroad() throws ServletException, IOException {
     Document doc = context.xmldoc;
@@ -124,10 +134,12 @@ public class Xroad extends HttpServlet {
       try {
         offset = Math.abs(Integer.parseInt(offsets));
       } catch (Exception e) {
+        offset = 0;
       }
       try {
         limit = Math.abs(Integer.parseInt(limits));
       } catch (Exception e) {
+        limit = LIMIT_DEFAULT;
       }
       if (limit > LIMIT_MAX)
         limit = LIMIT_MAX;
@@ -179,12 +191,13 @@ public class Xroad extends HttpServlet {
   /**
    * Query the database and build a partial result to be wrapped in the soap
    * envelope later
-   * @param personcode
-   * @param offset
-   * @param limit
-   * @return
-   * @throws ServletException
-   * @throws IOException
+   *
+   * @param personcode person to search for from logs
+   * @param offset resultset starts from here (0,1,...)
+   * @param limit max size of resultset
+   * @return String result xml to be wrapped into envelope later
+   * @throws ServletException generic catchall
+   * @throws IOException generic catchall
    */
   public static String fetchData(String personcode, int offset, int limit) throws ServletException, IOException {
     String result = null;
@@ -232,10 +245,8 @@ public class Xroad extends HttpServlet {
       try {
         conn.close();
       } catch (Throwable ignore) {
-        /*
-         * Propagate the original exception instead of this one that you may
-         * want just logged
-         */ }
+        Util.showError(context, ERRCODE_9, "cannot close database ");
+      }
     }
     return result;
   }

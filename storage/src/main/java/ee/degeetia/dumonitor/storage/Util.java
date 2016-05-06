@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.naming.InitialContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,20 +55,20 @@ import ee.degeetia.dumonitor.common.config.Property;
 import ee.degeetia.dumonitor.common.config.PropertyLoader;
 
 /**
- *
+ * Generic utilities for servlets: query parsing, database handling, xml parsing, errors etc
  *
  */
 public final class Util {
 
-  private static final int ERRCODE_9 = 9;
-  private static final int ERRCODE_6 = 6;
-  private static final int MAX_TECH_ERROR = 10;
-  private static final int ERRCODE_8 = 8;
-  private static final int ERRCODE_7 = 7;
-  private static final int ERRCODE_5 = 5;
-  private static final int ERRCODE_4 = 4;
   private static final int ERRCODE_2 = 2;
   private static final int ERRCODE_3 = 3;
+  private static final int ERRCODE_4 = 4;
+  private static final int ERRCODE_5 = 5;
+  private static final int ERRCODE_6 = 6;
+  private static final int ERRCODE_7 = 7;
+  private static final int ERRCODE_8 = 8;
+  private static final int ERRCODE_9 = 9;
+  private static final int MAX_TECH_ERROR = 10;
   
   /**
    * Class with only static methods - no instantiation is allowed.
@@ -80,11 +79,11 @@ public final class Util {
   /**
    * Initialize request handling
    *
-   * @param req Request object
-   * @param resp Response object
-   * @param contentType Response content type
+   * @param req http Request object from servlet
+   * @param resp http Response object from servlet
+   * @param contentType http request content type
    * @param classObject Caller class object - used for logging
-   * @return Context object
+   * @return Context global vars
    * @throws IOException In case there was error when opening output stream
    */
   public static Context initRequest(HttpServletRequest req, HttpServletResponse resp, String contentType,
@@ -106,9 +105,9 @@ public final class Util {
   /**
    * Use the general configuration file loading methods in common
    *
-   * @param context
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @return true if loading ok, false if fails
+   * @throws IOException generic catchall
    */
   public static boolean loadProperties(Context context) throws IOException {
     try {
@@ -118,7 +117,6 @@ public final class Util {
         showError(context, 1, "failed to load database connect string, user or password configuration properties");
         return false;
       }
-      // propertyLoader.loadProperties("asas");
       return true;
     } catch (Exception e) {
       showError(context, 1, "failed to load configuration properties: " + e.getMessage());
@@ -127,16 +125,15 @@ public final class Util {
   }
 
   /**
-   * Universal request input parser, data stored to context
+   * Universal request input parser (cgi,json or xml) data stored to context
    *
-   * @param req
-   * @param resp
-   * @param context
-   * @param inKeys
-   * @param isPost
-   * @return
-   * @throws ServletException
-   * @throws IOException
+   * @param req http Request object from servlet
+   * @param resp http Response object from servlet
+   * @param context global vars
+   * @param inKeys string array of possible input params
+   * @param isPost true iff a post request, false iff get
+   * @return boolean true if input parsing succeeded, false otherwise
+   * @throws IOException generic catchall
    */
   public static boolean parseInput(HttpServletRequest req, HttpServletResponse resp, Context context, String[] inKeys,
       boolean isPost) throws IOException {
@@ -168,10 +165,10 @@ public final class Util {
   /**
    * Parse input as cgi key=value parameters
    *
-   * @param context
-   * @param inKeys
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @param inKeys string array of possible input params
+   * @return boolean always true for now
+   * @throws IOException generic catchall
    */
   public static boolean parseCgi(Context context, String[] inKeys) throws IOException {
     String key, inp;
@@ -188,10 +185,10 @@ public final class Util {
   /**
    * Parse input as json {"key":"value"} parameters
    *
-   * @param context
-   * @param inKeys
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @param inKeys string array of possible input params
+   * @return boolean true if input parsing succeeded, false otherwise
+   * @throws IOException generic catchall
    */
   public static boolean parseJson(Context context, String[] inKeys) throws IOException {
     String inp, key;
@@ -235,10 +232,10 @@ public final class Util {
   /**
    * Parse input as XML (normally from xroad)
    * 
-   * @param context
-   * @param inKeys
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @param inKeys string array of possible input params
+   * @return boolean true if input parsing succeeded, false otherwise
+   * @throws IOException generic catchall
    */
   public static boolean parseXml(Context context, String[] inKeys) throws IOException {
     String xml;
@@ -281,9 +278,9 @@ public final class Util {
   /**
    * Create database connection
    * 
-   * @param context
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @return Connection db connection object if ok, null if fails
+   * @throws IOException generic catchall
    */
   public static Connection createDbConnection(Context context) throws IOException {
     Connection conn = null;
@@ -325,10 +322,10 @@ public final class Util {
    *
    * For XML, errors with code < 10 are considered technical
    * 
-   * @param context
-   * @param code
-   * @param msg
-   * @throws IOException
+   * @param context globals
+   * @param code numeric errcode
+   * @param msg string errmessage
+   * @throws IOException generic catchall
    */
   public static void showError(Context context, int code, String msg) throws IOException {
     // resp.sendError(resp.SC_BAD_REQUEST, msg); // possible alternative to json
@@ -371,9 +368,10 @@ public final class Util {
   }
 
   /**
+   * Remove <,>,&," from (xml) string: used mostly for errmessages
    *
-   * @param msg
-   * @return
+   * @param msg input string message
+   * @return String cleaned string
    */
   public static String cleanXmlStr(String msg) {
     if (msg == null || msg.equals(""))
@@ -385,8 +383,8 @@ public final class Util {
   /**
    * Output trivial OK message
    * 
-   * @param context
-   * @throws IOException
+   * @param context globals
+   * @throws IOException generic catchall
    */
   public static void showOK(Context context) throws IOException {
     if (context.contentType.contains("json"))
@@ -397,15 +395,21 @@ public final class Util {
     context.os.close();
   }
 
+  /*
+   * ========== Parsed XML processing utils ===============
+   *
+  */
+
+ 
   /**
-   * Parsed XML processing utils
-   * 
-   * @param context
-   * @param node
-   * @param name
-   * @param ns
-   * @return
-   * @throws IOException
+   * Find and return the first instance of an internal node with a given tag and namespace
+   *
+   * @param context globals
+   * @param node xml doc node to search from
+   * @param name tag name
+   * @param ns tag namespace
+   * @return Node found node or null
+   * @throws IOException generic catchall
    */
   public static Node getTag(Context context, Node node, String name, String ns) throws IOException {
     if (node == null)
@@ -429,13 +433,15 @@ public final class Util {
   }
 
   /**
+   * Find and return the internal text from the first instance of an internal node
+   * with a given tag and namespace
    *
-   * @param context
-   * @param node
-   * @param name
-   * @param ns
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @param node xml doc  node to search from
+   * @param name tag name
+   * @param ns tag namespace
+   * @return Node found node or null
+   * @throws IOException generic catchall
    */
   public static String getTagText(Context context, Node node, String name, String ns)
       throws IOException {
@@ -447,11 +453,12 @@ public final class Util {
   }
 
   /**
+   * Check whether passed xml node has given tag name and namespace
    *
-   * @param node
-   * @param name
-   * @param ns
-   * @return
+   * @param node xml doc node to check
+   * @param name tag name
+   * @param ns tag namespace
+   * @return boolean true if has given tag name and namespace
    */
   public static boolean isNode(Node node, String name, String ns) {
     if (node == null)
@@ -472,10 +479,11 @@ public final class Util {
   }
 
   /**
+   * Convert given xml node to string
    *
-   * @param node
-   * @return
-   * @throws IOException
+   * @param node xml doc node to convert
+   * @return String textual form of the node
+   * @throws IOException generic catchall
    */
   public static String nodeToString(Node node) throws IOException {
     StringWriter sw = new StringWriter();
@@ -490,11 +498,13 @@ public final class Util {
   }
 
   /**
+   * Parse and check X-road header: values stored to context globals.
+   * While crucial for old x-road, not really important for the new xroad.
    *
-   * @param context
-   * @param node
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @param node xml node to search the head from
+   * @return boolean true if header was OK, false otherwise
+   * @throws IOException generic catchall
    */
   public static boolean parseXroadHeader(Context context, Node node) throws IOException {
     String xrdns = "http://x-road.ee/xsd/x-road.xsd"; // old version
@@ -564,11 +574,11 @@ public final class Util {
   }
 
   /**
-   * Composing SOAP messages
+   * Composing the SOAP header as string for the old x-road: not used for the new x-road
    * 
-   * @param context
-   * @return
-   * @throws IOException
+   * @param context globals
+   * @return String header string to be included in a template later
+   * @throws IOException generic catcall
    */
   public static String createSoapHeader(Context context) throws IOException {
     String header;

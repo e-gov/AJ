@@ -32,7 +32,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * 
+ * Contains globals: instance of context is passed from function to function
  *
  */
 public class Context {
@@ -62,13 +62,13 @@ public class Context {
   public String xrdClientMemberCode = "";
 
   /**
-   * 
-   * @param req
-   * @param resp
-   * @param os
-   * @param log
-   * @param contentType
-   * @param inParams
+   * Instantiate the Context object from Util.initRequest
+   * @param req http Request object
+   * @param resp http Response object
+   * @param os stream to print to
+   * @param log where to log
+   * @param contentType http request content type
+   * @param inParams cgi or json name/value params
    */
   public Context(HttpServletRequest req, HttpServletResponse resp, ServletOutputStream os, Logger log,
       String contentType, Map<String, String> inParams) {
