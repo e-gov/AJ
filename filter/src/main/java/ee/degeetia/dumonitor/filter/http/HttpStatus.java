@@ -41,7 +41,16 @@ public class HttpStatus {
   private final String message;
 
   /**
-   * Creates a new HttpStatus instance.
+   * Creates a new HttpStatus instance from the specified code.
+   *
+   * @param code the HTTP status code
+   */
+  public HttpStatus(int code) {
+    this(code, null);
+  }
+
+  /**
+   * Creates a new HttpStatus instance from the specified code and message.
    *
    * @param code    the HTTP status code
    * @param message the HTTP response message that goes along with the code
@@ -101,6 +110,13 @@ public class HttpStatus {
    */
   public boolean isServerError() {
     return SERVER_ERROR_CODES.contains(code);
+  }
+
+  /**
+   * @return true if the HTTP status code is 4XX (client error) or 5XX (server error)
+   */
+  public boolean isError() {
+    return isClientError() || isServerError();
   }
 
 }

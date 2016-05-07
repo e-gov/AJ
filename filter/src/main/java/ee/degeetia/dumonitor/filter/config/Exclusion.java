@@ -24,14 +24,25 @@ package ee.degeetia.dumonitor.filter.config;
 
 import javax.xml.xpath.XPathExpression;
 
+/**
+ * @see FilterConfig
+ */
 public class Exclusion {
 
   private final XPathExpression expression;
 
+  /**
+   * Creates a new Exclusion instance with the specified XPath expression
+   *
+   * @param expression the XPath expression that describes an exclusion
+   */
   public Exclusion(XPathExpression expression) {
     this.expression = expression;
   }
 
+  /**
+   * @return the XPath expression that describes this exclusion
+   */
   public XPathExpression getExpression() {
     return expression;
   }

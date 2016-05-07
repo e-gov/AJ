@@ -53,7 +53,7 @@ public enum Property implements PropertyHolder {
   XROAD_PRODUCERNS("dumonitor.storage.xroad.producerns"),
   XROAD_USERID("dumonitor.storage.xroad.userId"),
   XROAD_SERVICE("dumonitor.storage.xroad.service"),
-  
+
   QUERY_TURVASERVER_URL("dumonitor.query.xroad.url");
 
   private String key;
@@ -63,30 +63,37 @@ public enum Property implements PropertyHolder {
     this.key = key;
   }
 
+  @Override
   public String getKey() {
     return key;
   }
 
+  @Override
   public String getValue() {
     return value;
   }
 
+  @Override
   public void setValue(String value) {
     this.value = value;
   }
 
+  @Override
   public Integer getInteger() {
     return PropertyConverter.toInteger(this);
   }
 
+  @Override
   public Date getDate() {
     return PropertyConverter.toDate(this);
   }
 
+  @Override
   public URL getURL() {
     return PropertyConverter.toURL(this);
   }
 
+  @Override
   public String[] getArray() {
     return PropertyConverter.toArray(this);
   }

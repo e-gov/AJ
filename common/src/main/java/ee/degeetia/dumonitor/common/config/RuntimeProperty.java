@@ -34,22 +34,32 @@ public enum RuntimeProperty {
 
   private Object value;
 
-  public Object getValue() {
-    return value;
-  }
-
+  /**
+   * @return the value of this runtime property as a String
+   */
   public String getString() {
     return (String) value;
   }
 
+  /**
+   * @return the value of this runtime property as a Date
+   */
   public Date getDate() {
     return (Date) value;
   }
 
+  /**
+   * Sets the value of this runtime property.
+   *
+   * @param value the new value
+   */
   public void setValue(Object value) {
     this.value = value;
   }
 
+  /**
+   * @return true of this runtime property has a value, false otherwise
+   */
   public boolean isSet() {
     return value != null;
   }

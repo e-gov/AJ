@@ -25,20 +25,44 @@ package ee.degeetia.dumonitor.common.config;
 import java.net.URL;
 import java.util.Date;
 
+/**
+ * Enum classes containing application properties should implement this interface to be used with {@link PropertyLoader}
+ */
 public interface PropertyHolder {
 
+  /**
+   * @return the key of the property
+   */
   String getKey();
 
+  /**
+   * @return the string value of the property
+   */
   String getValue();
 
+  /**
+   * @param value the value of the property
+   */
   void setValue(String value);
 
+  /**
+   * @return the Integer value of the property
+   */
   Integer getInteger();
 
+  /**
+   * @return the Date value of the property
+   */
   Date getDate();
 
+  /**
+   * @return the URL value of the property
+   */
   URL getURL();
 
+  /**
+   * @return the values of the property as a String array
+   */
   String[] getArray();
 
 }

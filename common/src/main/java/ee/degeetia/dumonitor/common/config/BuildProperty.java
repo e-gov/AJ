@@ -25,6 +25,9 @@ package ee.degeetia.dumonitor.common.config;
 import java.net.URL;
 import java.util.Date;
 
+/**
+ * Properties from build.properties
+ */
 public enum BuildProperty implements PropertyHolder {
 
   NAME("name"),
@@ -38,30 +41,37 @@ public enum BuildProperty implements PropertyHolder {
     this.key = key;
   }
 
+  @Override
   public String getKey() {
     return key;
   }
 
+  @Override
   public String getValue() {
     return value;
   }
 
+  @Override
   public void setValue(String value) {
     this.value = value;
   }
 
+  @Override
   public Integer getInteger() {
     return PropertyConverter.toInteger(this);
   }
 
+  @Override
   public Date getDate() {
     return PropertyConverter.toDate(this);
   }
 
+  @Override
   public URL getURL() {
     return PropertyConverter.toURL(this);
   }
 
+  @Override
   public String[] getArray() {
     return PropertyConverter.toArray(this);
   }
