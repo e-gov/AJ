@@ -115,7 +115,13 @@ public class Xroad extends HttpServlet {
         return;
       }
 
-      Node request = Util.getTag(context, doc, "request", null);
+      String resns = Property.XROAD_PRODUCERNS.getValue();
+
+      Node request = null;
+      if (context.xrdVersion.equals("old"))
+        request = Util.getTag(context, doc, "request", null);
+      else
+        request = Util.getTag(context, doc, "findUsage", resns);
       if (request == null) {
         Util.showError(context, ERRCODE_9, "message request tag not found");
         return;
@@ -156,7 +162,6 @@ public class Xroad extends HttpServlet {
       }
 
       String result = fetchData(personcode, offset, limit);
-      String resns = Property.XROAD_PRODUCERNS.getValue();
       String restag;
       if (context.xrdVersion.equals("old"))
         restag = "response";
