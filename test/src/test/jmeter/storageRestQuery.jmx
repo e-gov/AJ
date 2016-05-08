@@ -98,13 +98,13 @@ vars.put(&quot;logtime1&quot;,formattedTime);
 	&quot;logtime&quot;: &quot;${logtime}&quot;,&#xd;
 	&quot;actioncode&quot;: &quot;REQ:getPersonData.v1&quot;,&#xd;
 	&quot;action&quot;: &quot;Get Person Data&quot;,&#xd;
-	&quot;personcode&quot;: &quot;47101010033&quot;,&#xd;
+	&quot;personcode&quot;: &quot;EE47101010033&quot;,&#xd;
 	&quot;receiver&quot;: &quot;Test receiver&quot;,&#xd;
 	&quot;receivercode&quot;: &quot;10000001&quot;,&#xd;
 	&quot;restrictions&quot;: &quot;A&quot;,&#xd;
 	&quot;sender&quot;: &quot;Test AK&quot;,&#xd;
 	&quot;sendercode&quot;: &quot;20000001&quot;,&#xd;
-	&quot;usercode&quot;: &quot;EE12345678901&quot;,&#xd;
+	&quot;usercode&quot;: &quot;EE47101010033&quot;,&#xd;
 	&quot;xroadservice&quot;: &quot;getPersonData&quot;,&#xd;
 	&quot;xroadrequestid&quot;: &quot;4894e35d-bf0f-44a6-867a-123456${uuid}&quot;&#xd;
 }&#xd;
@@ -181,7 +181,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
               </elementProp>
               <elementProp name="personcode" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">47101010033</stringProp>
+                <stringProp name="Argument.value">EE47101010033</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">personcode</stringProp>
@@ -223,7 +223,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
               </elementProp>
               <elementProp name="usercode" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">EE12345678901</stringProp>
+                <stringProp name="Argument.value">EE47101010033</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">usercode</stringProp>
@@ -307,7 +307,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
               <stringProp name="1866557071"> &quot;sendercode&quot;\s*:\s*&quot;20000001&quot;</stringProp>
               <stringProp name="-404244464"> &quot;restrictions&quot;\s*:\s*&quot;A&quot;</stringProp>
               <stringProp name="969496044"> &quot;receiver&quot;\s*:\s*&quot;Test receiver&quot;</stringProp>
-              <stringProp name="1758268902">&quot;personcode&quot;\s*:\s*&quot;47101010033&quot;</stringProp>
+              <stringProp name="-1618658938">&quot;personcode&quot;\s*:\s*&quot;EE47101010033&quot;</stringProp>
               <stringProp name="-566908056">&quot;receivercode&quot;\s*:\s*&quot;10000001&quot;</stringProp>
               <stringProp name="370318551">&quot;action&quot;\s*:\s*&quot;Get Person Data&quot;</stringProp>
             </collectionProp>
@@ -351,6 +351,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>
@@ -386,6 +387,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>

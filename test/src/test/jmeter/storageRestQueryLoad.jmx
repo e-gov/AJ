@@ -120,7 +120,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
 	&quot;logtime&quot;: &quot;${logtime}&quot;,&#xd;
 	&quot;actioncode&quot;: &quot;REQ:getPersonData.v1&quot;,&#xd;
 	&quot;action&quot;: &quot;Get Person Data&quot;,&#xd;
-	&quot;personcode&quot;: &quot;47101010033&quot;,&#xd;
+	&quot;personcode&quot;: &quot;EE47101010033&quot;,&#xd;
 	&quot;receiver&quot;: &quot;Test receiver&quot;,&#xd;
 	&quot;receivercode&quot;: &quot;10000001&quot;,&#xd;
 	&quot;restrictions&quot;: &quot;A&quot;,&#xd;
@@ -219,7 +219,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
               </elementProp>
               <elementProp name="personcode" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">47101010033</stringProp>
+                <stringProp name="Argument.value">EE47101010033</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">personcode</stringProp>
@@ -361,7 +361,7 @@ vars.put(&quot;logtime1&quot;,formattedTime);
               </elementProp>
               <elementProp name="personcode" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">47101010033</stringProp>
+                <stringProp name="Argument.value">EE47101010033</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">personcode</stringProp>
@@ -517,6 +517,7 @@ if (!body.matches(regex)) {
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>
@@ -552,6 +553,7 @@ if (!body.matches(regex)) {
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>

@@ -114,7 +114,7 @@
               </elementProp>
               <elementProp name="personcode" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">47101010033</stringProp>
+                <stringProp name="Argument.value">EE47101010033</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">personcode</stringProp>
@@ -235,7 +235,7 @@ try {
 	log.debug(&quot;action_1: &quot; + vars.get(&quot;action_1&quot;));
 	if (!&quot;Get Person Data&quot;.equals(vars.get(&quot;action_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;action&apos; välja väärtus on vale&quot;);
 	log.debug(&quot;personcode_1: &quot; + vars.get(&quot;personcode_1&quot;));
-	if (!&quot;47101010033&quot;.equals(vars.get(&quot;personcode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;personcode&apos; välja väärtus on vale&quot;);
+	if (!&quot;EE47101010033&quot;.equals(vars.get(&quot;personcode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;personcode&apos; välja väärtus on vale&quot;);
 	log.debug(&quot;receiver_1: &quot; + vars.get(&quot;receiver_1&quot;));
 	if (!&quot;Test receiver&quot;.equals(vars.get(&quot;receiver_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;receiver&apos; välja väärtus on vale&quot;);
 	log.debug(&quot;receivercode_1: &quot; + vars.get(&quot;receivercode_1&quot;));
@@ -299,6 +299,7 @@ try {
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>
@@ -334,6 +335,7 @@ try {
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>

@@ -107,7 +107,7 @@
 	&quot;logtime&quot;: &quot;${logtime}&quot;,&#xd;
 	&quot;actioncode&quot;: &quot;REQ:getPersonData.v1&quot;,&#xd;
 	&quot;action&quot;: &quot;Get Person Data&quot;,&#xd;
-	&quot;personcode&quot;: &quot;47101010033&quot;,&#xd;
+	&quot;personcode&quot;: &quot;EE47101010033&quot;,&#xd;
 	&quot;receiver&quot;: &quot;Test receiver&quot;,&#xd;
 	&quot;receivercode&quot;: &quot;10000001&quot;,&#xd;
 	&quot;restrictions&quot;: &quot;A&quot;,&#xd;
@@ -180,7 +180,7 @@ try {
 	log.debug(&quot;action_1: &quot; + vars.get(&quot;action_1&quot;));
 	if (!&quot;Get Person Data&quot;.equals(vars.get(&quot;action_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;action&apos; välja väärtus on vale&quot;);
 	log.debug(&quot;personcode_1: &quot; + vars.get(&quot;personcode_1&quot;));
-	if (!&quot;47101010033&quot;.equals(vars.get(&quot;personcode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;personcode&apos; välja väärtus on vale&quot;);
+	if (!&quot;EE47101010033&quot;.equals(vars.get(&quot;personcode_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;personcode&apos; välja väärtus on vale&quot;);
 	log.debug(&quot;receiver_1: &quot; + vars.get(&quot;receiver_1&quot;));
 	if (!&quot;Test receiver&quot;.equals(vars.get(&quot;receiver_1&quot;))) throw new Exception(&quot;Logimise viga: &apos;receiver&apos; välja väärtus on vale&quot;);
 	log.debug(&quot;receivercode_1: &quot; + vars.get(&quot;receivercode_1&quot;));
@@ -244,6 +244,7 @@ try {
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>
@@ -279,6 +280,7 @@ try {
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>

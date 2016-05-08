@@ -317,6 +317,7 @@
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>
@@ -352,6 +353,7 @@
             <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
             <assertionsResultsToSave>0</assertionsResultsToSave>
             <bytes>true</bytes>
+            <url>true</url>
             <hostname>true</hostname>
             <threadCounts>true</threadCounts>
             <sampleCount>true</sampleCount>
