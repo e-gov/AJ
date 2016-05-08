@@ -40,7 +40,6 @@ public class Store extends HttpServlet {
   private static final int ERRCODE_11 = 11;
   private static final int ERRCODE_9 = 9;
   private static final long serialVersionUID = 1L;
-  private Context context; // global vars are here
 
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {
@@ -60,6 +59,7 @@ public class Store extends HttpServlet {
 
   private void handleRequest(HttpServletRequest req, HttpServletResponse resp, boolean isPost)
       throws ServletException, IOException {
+    Context context = null;
     try {
       context = Util.initRequest(req, resp, "application/json", Store.class);
       if (context == null)
@@ -67,7 +67,7 @@ public class Store extends HttpServlet {
       boolean ok = Util.parseInput(req, resp, context, inKeys, isPost);
       if (!ok || context.inParams == null)
         return;
-      handleStoreParams();
+      handleStoreParams(context);
     } catch (Exception e) {
       Util.showError(context, ERRCODE_9, "unexpected error: " + e.getMessage());
     }
@@ -77,10 +77,11 @@ public class Store extends HttpServlet {
 
   /**
    * Store parsed parameters passed as hashmap
+   * @param context Request context
    * @throws ServletException generic catchall
    * @throws IOException  generic catchall
    */
-  public void handleStoreParams() throws ServletException, IOException {
+  public void handleStoreParams(Context context) throws ServletException, IOException {
     Connection conn = Util.createDbConnection(context);
     if (conn == null)
       return;
