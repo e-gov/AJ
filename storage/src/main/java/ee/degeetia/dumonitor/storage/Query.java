@@ -26,6 +26,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,7 @@ import org.json.JSONObject;
  * cgi or json parameters, json output
  */
 public class Query extends HttpServlet {
-
+  
   private static final int ERRCODE_9 = 9; // technical error
   private static final int ERRCODE_10 = 10; // nontechnical error
   
@@ -49,7 +50,7 @@ public class Query extends HttpServlet {
   private static final int LIMIT_DEFAULT = 100;
   private static final long serialVersionUID = 1L;
   
-  private static Context context; // global vars are here
+  private Context context; // global vars are here
 
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {
@@ -98,7 +99,7 @@ public class Query extends HttpServlet {
    * @throws ServletException generic catchall
    * @throws IOException generic catchall
    */
-  public static void handleQueryParams() throws ServletException, IOException {
+  public void handleQueryParams() throws ServletException, IOException {
     Connection conn = Util.createDbConnection(context);
     if (conn == null)
       return;
@@ -192,10 +193,10 @@ public class Query extends HttpServlet {
       if (context.inParams.get("callback") != null) {
         context.os.println(");");
       }
-
+    } catch (SQLException e) {
+      Util.showError(context, ERRCODE_10, "database error: " + e.getMessage());
     } catch (Exception e) {
       Util.showError(context, ERRCODE_10, "database query error: " + e.getMessage());
-      return;
     } finally {
       // It's important to close the connection when you are done with it
       try {
@@ -205,5 +206,4 @@ public class Query extends HttpServlet {
       }
     }
   }
-
 }

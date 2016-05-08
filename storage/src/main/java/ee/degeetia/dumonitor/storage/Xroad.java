@@ -55,7 +55,7 @@ public class Xroad extends HttpServlet {
   private static final int LIMIT_DEFAULT = 1000;
   private static final long serialVersionUID = 1L;
   
-  private static Context context; // global vars are here
+  private Context context; // global vars are here
 
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {
@@ -104,7 +104,7 @@ public class Xroad extends HttpServlet {
    * @throws ServletException generic catchall
    * @throws IOException generic catchall
    */
-  public static void handleXroad() throws ServletException, IOException {
+  public void handleXroad() throws ServletException, IOException {
     Document doc = context.xmldoc;
     try {
       if (!Util.parseXroadHeader(context, doc))
@@ -204,7 +204,7 @@ public class Xroad extends HttpServlet {
    * @throws ServletException generic catchall
    * @throws IOException generic catchall
    */
-  public static String fetchData(String personcode, int offset, int limit) throws ServletException, IOException {
+  public String fetchData(String personcode, int offset, int limit) throws ServletException, IOException {
     String result = null;
 
     Connection conn = Util.createDbConnection(context);

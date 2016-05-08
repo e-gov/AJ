@@ -40,7 +40,7 @@ public class Store extends HttpServlet {
   private static final int ERRCODE_11 = 11;
   private static final int ERRCODE_9 = 9;
   private static final long serialVersionUID = 1L;
-  private static Context context; // global vars are here
+  private Context context; // global vars are here
 
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {
@@ -80,7 +80,7 @@ public class Store extends HttpServlet {
    * @throws ServletException generic catchall
    * @throws IOException  generic catchall
    */
-  public static void handleStoreParams() throws ServletException, IOException {
+  public void handleStoreParams() throws ServletException, IOException {
     Connection conn = Util.createDbConnection(context);
     if (conn == null)
       return;
