@@ -75,7 +75,7 @@ public final class ExecutorManager {
       return;
     }
 
-    LOG.info("Shutting down {} thread pool executors", MANAGED_EXECUTORS.size());
+    LOG.debug("Shutting down {} thread pool executors", MANAGED_EXECUTORS.size());
 
     final Iterator<ExecutorService> iterator = MANAGED_EXECUTORS.iterator();
 

@@ -96,7 +96,7 @@ public final class ConfigurationLoader {
   }
 
   private static FilterConfiguration readConfigurationFile(String filename) throws JAXBException {
-    LOG.info("Parsing configuration file {}", filename);
+    LOG.debug("Parsing configuration file {}", filename);
     InputStream inputStream = ResourceUtil.getClasspathResourceAsStream(filename);
     try {
       return XmlUtil.unmarshal(inputStream, FilterConfiguration.class);
@@ -211,7 +211,7 @@ public final class ConfigurationLoader {
   }
 
   private static XPathExpression compile(String expression, NamespaceContext nsCtx) throws XPathExpressionException {
-    LOG.info("Compiling XPath expression: {}", expression);
+    LOG.debug("Compiling XPath expression: {}", expression);
     return XPathUtil.compile(expression, nsCtx);
   }
 
