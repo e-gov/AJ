@@ -18,21 +18,20 @@ Versioon        Kuupäev         Autor           Märkused
 1.3             09.05.2016      Ivo Mehide      Kohandatud töötama MISP2 all
 
 -->
-<xhtml:html xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-            xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
-            xmlns:xhtml="http://www.w3.org/1999/xhtml"
-            xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml"
             xmlns:xforms="http://www.w3.org/2002/xforms"
-            xmlns:chiba="http://chiba.sourceforge.net/xforms"
+            xmlns:xxforms="http://orbeon.org/oxf/xml/xforms"
             xmlns:events="http://www.w3.org/2001/xml-events"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+            xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
             xmlns:xtee="http://x-tee.riik.ee/xsd/xtee.xsd"
             xmlns:xrd="http://x-road.eu/xsd/xroad.xsd"
             xmlns:iden="http://x-road.eu/xsd/identifiers"
             xmlns:tns="http://dumonitor.x-road.eu/producer">
    <xhtml:head>
+      <xhtml:title xml:lang="et">Päring andmekogust isikuandmete töötlemise kohta</xhtml:title>
       <xforms:model>
          <xforms:instance id="findUsage.input">
             <SOAP-ENV:Envelope>
@@ -124,26 +123,36 @@ Versioon        Kuupäev         Autor           Märkused
       </xforms:model>
    </xhtml:head>
    <xhtml:body>
-      <xhtml:div class="form_row">
-         <xforms:switch>
-            <xforms:case id="findUsage.request">
-               <xforms:send submission="findUsage.submission" events:event="xforms-select"/>
-               <xforms:group class="actions">
-                  <xhtml:div class="form_row">
-                     <xforms:submit submission="findUsage.submission" id="xf-62" class="xforms-control xforms-submit" type="button">
-                        <span><strong class="xforms-label">Esita päring</strong></span>
-                     </xforms:submit>
-                  </xhtml:div>
+      <xhtml:h1 xml:lang="et">Päring andmekogust isikuandmete töötlemise kohta</xhtml:h1>
+      <xforms:switch>
+         <xforms:case id="findUsage.request">
+            <xforms:send submission="findUsage.submission" events:event="xforms-select"/>
+            <xforms:group ref="instance('findUsage.input')/SOAP-ENV:Body">
+               <xforms:group ref="tns:findUsage">
+                  <xforms:input ref="offset">
+                     <xforms:label xml:lang="et">Esimese tagastatava kirje jrknr</xforms:label>
+                  </xforms:input>
+                  <xforms:input ref="limit">
+                     <xforms:label xml:lang="et">Tagastatavate kirjete arv</xforms:label>
+                  </xforms:input>
                </xforms:group>
-            </xforms:case>
-            <xforms:case id="findUsage.response">
-               <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Header">
-                  <xforms:output ref="xrd:id" class="serviceid">
-                     <xforms:label>Päringu id</xforms:label>
-                  </xforms:output>
-               </xforms:group>
-               <xhtml:div class="form_row">
-                  <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/tns:findUsageResponse">
+            </xforms:group>
+            <xforms:group class="actions">
+               <xforms:submit submission="findUsage.submission">
+                  <xforms:label xml:lang="et">Esita päring</xforms:label>
+                  <xforms:label xml:lang="en">Submit</xforms:label>
+               </xforms:submit>
+            </xforms:group>
+         </xforms:case>
+         <xforms:case id="findUsage.response">
+            <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Header" class="serviceid">
+               <xforms:output ref="xrd:id">
+                  <xforms:label xml:lang="et">Päringu id</xforms:label>
+                  <xforms:label xml:lang="en">Query id</xforms:label>
+               </xforms:output>
+            </xforms:group>
+            <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body">
+               <xforms:group ref="tns:findUsageResponse">
                   <xforms:repeat nodeset="usage" id="findUsage_output_tns_findUsageResponse_usage">
                      <xforms:output ref="logtime">
                         <xforms:label xml:lang="et">Kuupäev</xforms:label>
@@ -155,33 +164,25 @@ Versioon        Kuupäev         Autor           Märkused
                         <xforms:label xml:lang="et">Päringu sooritanud asutus</xforms:label>
                      </xforms:output>
                   </xforms:repeat>
-                  </xforms:group>
-               </xhtml:div>
-               <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/tns:findUsageResponse[not(usage/*)]"
-                             class="info">
-                  <xforms:output ref="instance('texts')/no_data"/>
                </xforms:group>
-               <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/tns:findUsageResponse/faultString"
-                             class="info">
-                  <xforms:output ref="."/>
-               </xforms:group>
-               <xhtml:div class="form_row">
-                  <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/SOAP-ENV:Fault" class="fault">
-                     <xforms:output ref="faultstring"/>
-                  </xforms:group>
-               </xhtml:div>
-               <xhtml:div class="form_row">
-                  <xforms:group class="actions">
-                     <xhtml:div class="form_row">
-                        <xforms:trigger>
-                           <xforms:label>Uuesti</xforms:label>
-                           <xforms:toggle events:event="DOMActivate" case="findUsage.request"/>
-                        </xforms:trigger>
-                     </xhtml:div>
-                  </xforms:group>
-               </xhtml:div>
-            </xforms:case>
-         </xforms:switch>
-      </xhtml:div>
+            </xforms:group>
+            <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/tns:findUsageResponse[not(*)]"
+                          class="info">
+               <xhtml:span xml:lang="et">Andmeid ei tulnud.</xhtml:span>
+               <xhtml:span xml:lang="en">Service returned no data.</xhtml:span>
+            </xforms:group>
+            <xforms:group ref="instance('findUsage.output')/SOAP-ENV:Body/SOAP-ENV:Fault"
+                          class="fault">
+               <xforms:output ref="faultstring"/>
+            </xforms:group>
+            <xforms:group class="actions">
+               <xforms:trigger>
+                  <xforms:label xml:lang="et">Uuesti</xforms:label>
+                  <xforms:label xml:lang="en">Again</xforms:label>
+                  <xforms:toggle events:event="DOMActivate" case="findUsage.request"/>
+               </xforms:trigger>
+            </xforms:group>
+         </xforms:case>
+      </xforms:switch>
    </xhtml:body>
 </xhtml:html>
