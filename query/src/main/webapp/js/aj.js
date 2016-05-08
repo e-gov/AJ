@@ -194,7 +194,9 @@ function makeTable(data) {
         colstr="<td onclick='showRow("+i+")' class='widelistcol'>";
       else 
         colstr="<td onclick='showRow("+i+")'>";
-      if (has(row,key)) colstr+=encodeHtml(shortenStr(row[key],maxListStr));
+      var value = row[key];
+      if (key === "logtime") value = convertDate(value);
+      if (has(row,key)) colstr+=encodeHtml(shortenStr(value,maxListStr));
       colstr+="</td>";
       rowstr+=colstr;
     }
@@ -205,8 +207,15 @@ function makeTable(data) {
   return str;
 }
 
-/* show one record */
+/* convert ISO datetime to human readable datetime */
+function convertDate(value) {
+  var dateRegexp = /^([0-9]+)-([0-9]+)-([0-9]+)T([0-9:]+)/g;
+  var match = dateRegexp.exec(value);
+  if (match != null) return match[3] + "." + match[2] + "." + match[1] + " " + match[4];
+  return value;
+}
 
+/* show one record */
 function showRow(nr) {
   var obj=data[nr];
   if (!obj) return;
@@ -215,7 +224,9 @@ function showRow(nr) {
     var key=recordKeys[j];
     var rowstr="<tr>";    
     rowstr+="<td class='recordkey'>"+trans(key)+"</td><td class='recordvalue'>";
-    if (has(obj,key)) rowstr+=encodeHtml(shortenStr(obj[key],maxRecordStr));
+    var value = obj[key];
+    if (key === "logtime") value = convertDate(value);
+    if (has(obj,key)) rowstr+=encodeHtml(shortenStr(value,maxRecordStr));
     rowstr+="</td></tr>";
     str+=rowstr;
   }
