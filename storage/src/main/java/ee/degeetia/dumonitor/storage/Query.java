@@ -153,7 +153,8 @@ public class Query extends HttpServlet {
 
     try {
       String sql = "select " + "personcode,to_char(logtime,'YYYY-MM-DD HH24:MI:SS') as logtime,action,"
-          + "sender,receiver,restrictions,sendercode,receivercode " + " from ajlog " + where
+          + "sender,receiver,restrictions,sendercode,receivercode,actioncode,"
+          + "xroadrequestid,xroadservice,usercode " + " from ajlog " + where
           + " order by id desc limit ? offset ?";
       PreparedStatement preparedStatement = conn.prepareStatement(sql);
       for (int i = 1; i < paramnr; i++) {

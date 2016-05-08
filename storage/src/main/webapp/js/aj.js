@@ -25,7 +25,7 @@ var firstRowNr=0; // currently shown first row
 /* keys to show in the table */
 
 var listKeys=[
-  "personcode","logtime","actioncode",
+  "personcode","logtime","action",
   "receivercode","sendercode","usercode",
   "restrictions"];
   
