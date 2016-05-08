@@ -72,13 +72,15 @@ import java.util.Date;
 Date futureDate = new Date(); 
 Date pastDate = new Date();
 
-futureDate.setTime(futureDate.getTime()+10000000); 
-SimpleDateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd&apos;T&apos;HH:mm:ss&quot;); 
+// Päringu lõpp 1 ööpäev tulevikku
+futureDate.setTime(futureDate.getTime()+1000*24*60*60); 
+SimpleDateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;); 
 String formattedTime = df.format(futureDate); 
 vars.put(&quot;logtime2&quot;,formattedTime); 
 
-pastDate.setTime(pastDate.getTime()-10000); 
-df = new SimpleDateFormat(&quot;yyyy-MM-dd&apos;T&apos;HH:mm:ss&quot;); 
+// Päringu algus 1 tund minevikku
+pastDate.setTime(pastDate.getTime()-1000*60*60); 
+df = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;); 
 formattedTime = df.format(pastDate); 
 vars.put(&quot;logtime1&quot;,formattedTime); 
 </stringProp>
