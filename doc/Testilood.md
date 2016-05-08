@@ -290,7 +290,7 @@ Käsitsi läbi viidavad testid:
 * Lähtetingimused:	Vahetult enne testi peab olema sooritatud test nr 7
 * Oletatavad vead:	Otsing andmeatribuutide järgi ei toimi korrektselt - kirjeid ei leita.
 * Testi jada kirjeldus:	
-  1. Andmesalvestaja veebiliidese kaudu teostatakse otsing, näidates ära järgmised andmed (need langevad kokku testis nr 7 lisatud kirje andmetega):
+  1. Andmesalvestaja veebiliidese (http://aj03.ci.kit:8080/dumonitor-storage/) kaudu teostatakse otsing, näidates ära järgmised andmed (need langevad kokku testis nr 7 lisatud kirje andmetega):
     - Isikukood: EE47101010033
     - Tegevuse avalik nimi: Get Person Data
     - Saaja avalik nimi: Test receiver
