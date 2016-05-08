@@ -34,6 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -195,8 +196,12 @@ public class Query extends HttpServlet {
       }
     } catch (SQLException e) {
       Util.showError(context, ERRCODE_10, "database error: " + e.getMessage());
+    } catch (JSONException e) {
+      Util.showError(context, ERRCODE_10, "json formatting error: " + e.getMessage());
+    } catch (IOException e) {
+      Util.showError(context, ERRCODE_10, "response sending error: " + e.getMessage());
     } catch (Exception e) {
-      Util.showError(context, ERRCODE_10, "database query error: " + e.getMessage());
+      Util.showError(context, ERRCODE_10, "query execution error: " + e.getMessage());
     } finally {
       // It's important to close the connection when you are done with it
       try {
