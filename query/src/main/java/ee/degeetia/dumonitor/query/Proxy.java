@@ -35,29 +35,34 @@ import ee.degeetia.dumonitor.common.config.Property;
 import ee.degeetia.dumonitor.common.config.PropertyLoader;
 import ee.degeetia.dumonitor.common.util.ExceptionUtil;
 
+/**
+ * Proxy forwards SOAP messages from the browser test app to x-road
+ * and returns the answers received
+ *
+ */
 public class Proxy extends ProxyServlet {
-	
-	URI proxyServer;
+  
+  URI proxyServer;
 
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		super.init(config);
-		// Get proxy URL from configuration:
-		loadProperties();
-	}
+  @Override
+  public void init(ServletConfig config) throws ServletException {
+    super.init(config);
+    // Get proxy URL from configuration:
+    loadProperties();
+  }
 
-	@Override
-	protected HttpURI proxyHttpURI(String scheme, String serverName, int serverPort, String uri)
-			throws MalformedURLException {
-		return new HttpURI(proxyServer.resolve(uri));
-	}
+  @Override
+  protected HttpURI proxyHttpURI(String scheme, String serverName, int serverPort, String uri)
+      throws MalformedURLException {
+    return new HttpURI(proxyServer.resolve(uri));
+  }
 
-	protected void loadProperties() {
-		PropertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
-		try {
-			proxyServer = URI.create(Property.QUERY_TURVASERVER_URL.getValue());
-		} catch (IllegalArgumentException e) {
-			ExceptionUtil.uncheck("Invalid security server URL", e);
-		}
-	}
+  protected void loadProperties() {
+    PropertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
+    try {
+      proxyServer = URI.create(Property.QUERY_TURVASERVER_URL.getValue());
+    } catch (IllegalArgumentException e) {
+      ExceptionUtil.uncheck("Invalid security server URL", e);
+    }
+  }
 }

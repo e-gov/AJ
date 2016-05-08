@@ -1,5 +1,5 @@
 /* 
- * aj.css for Andmejälgija
+ * aj.css for Andmejälgija testrakendus
  *
  */
 
@@ -125,22 +125,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .filterselect {  
   color: #333333;  
-  background-color: #ffffff; 
-  font-family: "Open Sans",arial, helvetica,sans-serif;
-  padding:0; 
+  background-color: white; 
+  font-family: "Open Sans",arial, helvetica,sans-serif;  
   background:#F7F7F7;
-  display:inline;
   border: 1px solid #CCCCCC;
-  font-size: 13px;
+  font-size: small;
   font-weight: 400;
-  color: #333333;
+  height: 26px;
+  width: 150px;
 }	
 
 .filterfld {          
   border:1px solid #aaa;
   padding:3px;
   margin-right:10px;
-  font-family:"Open Sans",arial,helvetica,sans-serif,sans-serif;
+  font-family:"Open Sans",arial,helvetica,sans-serif;
   font-size: small;
   height: 26px;
   width: 150px;
@@ -148,7 +147,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .filterlabel {            
   padding:3px;
-  width: 200px; 
+  width: 100px; 
 }
 
 .filtercomp {            
