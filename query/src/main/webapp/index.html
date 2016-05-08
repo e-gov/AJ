@@ -23,8 +23,55 @@
 var queryURL = window.location.href.replace(/index\.html$/, "") + "proxy";
 //var queryURL = "http://localhost:8080/dumonitor-query-1.0-SNAPSHOT/proxy"; // use either relative or full path   
 var pageLength = 50; // maximal number of rows shown on a page
-var ajaxTimeout = 5000; // milliseconds until the data query timeouts
-var debugging=true; // set to true for some console logging
+var ajaxTimeout = 10000; // milliseconds until the data query timeouts
+var debugging=false; // set to true for some console logging
+
+// headers associates organisations with their x-roads header of the andmejalgija service:
+// observe that {id} and {userId} are inserted by the javascipt program
+
+var headers={
+"Asutus1": 
+"<soapenv:Header>"+
+"     <xro:protocolVersion>4.0</xro:protocolVersion>"+
+"     <xro:id>{id}</xro:id>"+
+"     <xro:userId>{userId}</xro:userId>"+
+"     <xro:service iden:objectType=\"SERVICE\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>20000001</iden:memberCode>"+
+"        <iden:subsystemCode>AJ</iden:subsystemCode>"+
+"        <iden:serviceCode>findUsage</iden:serviceCode>"+
+"        <iden:serviceVersion>v1</iden:serviceVersion>"+
+"     </xro:service>"+
+"     <xro:client iden:objectType=\"MEMBER\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>10000001</iden:memberCode>"+
+"        <iden:subsystemCode>Center</iden:subsystemCode>"+
+"     </xro:client>"+
+"</soapenv:Header>",
+
+"Asutus2": 
+"<soapenv:Header>"+
+"     <xro:protocolVersion>4.0</xro:protocolVersion>"+
+"     <xro:id>{id}</xro:id>"+
+"     <xro:userId>{userId}</xro:userId>"+
+"     <xro:service iden:objectType=\"SERVICE\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>20000001</iden:memberCode>"+
+"        <iden:subsystemCode>AJ</iden:subsystemCode>"+
+"        <iden:serviceCode>findUsage</iden:serviceCode>"+
+"        <iden:serviceVersion>v1</iden:serviceVersion>"+
+"     </xro:service>"+
+"     <xro:client iden:objectType=\"MEMBER\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>10000001</iden:memberCode>"+
+"        <iden:subsystemCode>Center</iden:subsystemCode>"+
+"     </xro:client>"+
+"</soapenv:Header>",
+}
 
 </script>
 
@@ -73,143 +120,39 @@ var debugging=true; // set to true for some console logging
       <div id="maincontent">
       <!-- <form name="mainform" id="mainform" action="?" method="post"> -->
       <div class='tabletop'>
+      Vali asutus ja sisesta isikukood:</div>
+      <!--
+      <div class='tabletop'>
       Kirjed <span id='firstrownr'>0</span>...<span id='lastrownr'>0</span></div>
-      
+      -->
       <div class="filters">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">                      
             <table>
               <tbody>
               
               <tr>
+              <td class="filterlabel">Asutus</td>
+              <td>
+                <select class="filterselect" id="flt_organization">
+                  <option value="Asutus1">Asutus1</option>
+                  <option value="Asutus2">Asutus2</option>
+                </select>  
+              </td>
+              </tr>
+              
+              <tr>
               <td class="filterlabel">Isikukood</td>
-              <td class="filtercomp">võrdub</td>
               <td> 
               <input type="text" size="27" value="" class="filterfld" id="flt_personcode_value"
                 autocomplete="off" placeholder="EE47101010033">
               </td>
               </tr>
-
-              <tr>
-              <td class="filterlabel">Tegevuse avalik nimi	</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_action_value"
-                autocomplete="off">
-              </td>
-              </tr>
-              
-              <tr>
-              <td class="filterlabel">Saaja avalik nimi	</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_receiver_value"
-                autocomplete="off">
-              </td>
-              </tr>
-
-              
-              <tr>
-              <td class="filterlabel">Saatja avalik nimi	</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_sender_value"
-                autocomplete="off">
-              </td>
-              </tr>
-              
-              <tr>
-              <td class="filterlabel">X-tee päringu id</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_xroadrequestid_value"
-                autocomplete="off">
-              </td>
-              </tr>
-     
-              <tr>
-              <td class="filterlabel">Salvestamisaeg</td>
-              <td class="filtercomp">suurem kui</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_from_date_value"
-                autocomplete="off" placeholder="2016-06-30 14:20:55">
-              </td>
-              </tr>
-              
+          
               </tbody>
             </table>            
           </div>  
-
-          <div class="col-md-6">
-            <table>
-              <tbody>
-              
-              <tr>
-              <td class="filterlabel">Tegevuse tehniline kood	</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_actioncode_value"
-                autocomplete="off">
-              </td>
-              </tr>
-
-              <tr>
-              <td class="filterlabel">Saaja tehniline kood	</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_receivercode_value"
-                autocomplete="off">
-              </td>
-              </tr>
-              
-              <tr>
-              <td class="filterlabel">Saatja tehniline kood	</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_sendercode_value"
-                autocomplete="off">
-              </td>
-              </tr>
-
-              <tr>
-              <td class="filterlabel">Töötleja isikukood</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_usercode_value"
-                autocomplete="off" placeholder="EE47101010033">
-              </td>
-              </tr>
-              
-              <tr>
-              <td class="filterlabel">X-tee teenuse nimetus</td>
-              <td class="filtercomp">sisaldab</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_xroadservice_value"
-                autocomplete="off">
-              </td>
-              </tr>
-     
-              <tr>
-              <td class="filterlabel">Salvestamisaeg</td>
-              <td class="filtercomp">väiksem kui</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_to_date_value"
-                autocomplete="off" placeholder="2016-06-30 14:20:55">              
-              </td>
-              </tr>
-              
-              <tr>
-              <td class="filterlabel">Piirangud</td>
-              <td class="filtercomp">võrdub</td>
-              <td> 
-              <input type="text" size="27" value="" class="filterfld" id="flt_restrictions_value"
-                autocomplete="off" placeholder="täht P: piiratud">
-              </td>
-              </tr>
-              
-              </tbody>
-            </table>            
-          </div>
+          
         </div>
           
     </div>
@@ -225,14 +168,8 @@ var debugging=true; // set to true for some console logging
       <button class="btn" name="refresh" onclick="
       askData(); return false;" 
       onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">   
-      Uuenda
-      </button>
-
-      <button class="btn" name="clear" onclick="     
-      clearFilters();" 
-      onmouseout="this.className='btn'" onmouseover="this.className='btn btnhov'">
-      Tühjenda filtrid 
-      </button>
+      Vaata andmete kasutamist
+      </button>    
 
       <button class="btn" name="right" onclick="
       nextPage(); return false;"       
@@ -246,11 +183,8 @@ var debugging=true; // set to true for some console logging
     <tbody>
 
       <tr class="headerrow">
-      <th onclick="sortcol('personcode'); return false;" class="colheader">
-      <span class="clearsortmark">?</span>
-      Isik
-      </th>
       <th class="colheader">
+      <span class="sortcol('logtime'); return false;" class="colheader">
       <span class="clearsortmark">?</span>
       Aeg
       </th>
@@ -261,19 +195,7 @@ var debugging=true; // set to true for some console logging
       <th onclick="sortcol('receivercode'); return false;" class="colheader widelistcol">
       <span class="clearsortmark">?</span>
       Saaja
-      </th>
-      <th onclick="sortcol('sendercode'); return false;" class="colheader widelistcol">
-      <span class="clearsortmark">?</span>
-      Saatja
-      </th>
-      <th onclick="sortcol('usercode'); return false;" class="colheader">
-      <span class="clearsortmark">?</span>
-      Töötleja
-      </th>
-      <th onclick="sortcol('restrictions'); return false;" class="colheader widelistcol">
-      <span class="clearsortmark">?</span>
-      Piirang
-      </th>
+      </th>            
       </tr>
       
     <!-- here are the data rows inserted -->
@@ -301,23 +223,17 @@ var debugging=true; // set to true for some console logging
         seepeale näed, kas, millal ja kuhu selle isikukoodiga seotud andmeid
         on asutus saatnud või töödelnud.
         <p>
-        Pane tähele, et reaalselt toimub andmejälgija kasutus eesti.ee kaudu
-        ja <b>ainult sisseloginud kasutaja</b> isikukoodi jaoks. 
+        Kõik päringud ja vastused toimuvad selle testrakenduse puhul üle x-tee.
         <p>
-        Selle veebilehe kaudu saad uurida oma asutuse isikuandmete X-tee kaudu saatmise
-        logi. Vaikimisi kuvatakse kõige uuemaid kirjeid. Noolenuppudega saad liikuda
-        lehekülgede kaupa edasi ja tagasi.                 
-        <p>
-        Otsinguks täida lihtsalt filtriväljad: enamus neist töötab teksti sisalduvuse
-        põhimõttel, seejuures väike- ja suurtähed on erinevad. 
-        Isikukoodi väli töötab täpse otsingu põhimõttel. 
-        Tühje väljasid ignoreeritakse.
-        <p>
-        Kuupäevaväljasid ei pea täitma sekundi täpsusega: piisab ka ainult kuu või kuupäeva või
-        kuupäev + tunnid täpsusest.
-        <p>
-        Kui logis on piiratud ligipääsuga kirjeid, siis nende piirangu välja väärtuseks on P:
-        väärtuse puudumine või A tähendab, et piirangut ei ole.
+        Pane tähele, et:
+        <ul>
+          <li>reaalselt toimub andmejälgija kasutus hoopis eesti.ee kaudu
+          ja <b>ainult sisseloginud kasutaja</b> isikukoodi jaoks, mitte käesoleva
+          testrakenduse kaudu!</li>        
+         <li>andmejälgija komplektis on olemas ka asutuse sisekasutuse veebirakendus,
+          mis on mõeldud isikuandmete liikluse logi uurimiseks ühe asutuse piires ja
+          ei kasuta oma tööks x-teed</li>
+        </ul>       
       </div>
       <div class="modal-footer noround">      
         <button type="button" class="btn btn-default" data-dismiss="modal"
@@ -337,12 +253,14 @@ var debugging=true; // set to true for some console logging
       <div class="modal-header aj-modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Andmejälgija rakendus</h4>
+        <h4 class="modal-title">Andmejälgija testrakendus</h4>
       </div>
       <div class="modal-body">      
-        Selle veebilehe abil saad uurida oma asutuse isikuandmete saatmise logi.
-        Siit leitav informatsioon ei ole avalik: avalikult saavad isikud leida
-        ainult nende oma andmete liikumise logikirjeid portaali eesti.ee kaudu.        
+        See veebileht on andmejälgija <b>testrakendus</b>, mitte reaalseks kasutuseks
+        mõeldud komponent. Testides saad valida, mis
+        asutuse x-tee liiklust uurid ja sisestada suvalise isikukoodi:
+        seepeale näed, kas, millal ja kuhu selle isikukoodiga seotud andmeid
+        on asutus saatnud või töödelnud. Liiklus toimub üle x-tee ja 
       </div>      
       <div class="modal-footer noround">
         <button type="button" class="btn btn-default" 
