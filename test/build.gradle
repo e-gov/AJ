@@ -20,8 +20,8 @@ buildscript {
 apply plugin: 'net.foragerr.jmeter'
 
 jmeter {
-	excludes = ["*.jmx"]
-	
+	excludes = ["*.jmx"];
+	resultFilenameTimestamp = "none";
 	jmTestFiles = [];
 	project.gradle.startParameter.taskNames.each { name ->
 			File f = file("src/test/jmeter/" + (name - "jmRun_") + ".jmx");

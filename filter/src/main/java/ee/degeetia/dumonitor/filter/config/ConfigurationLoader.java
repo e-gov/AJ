@@ -46,22 +46,27 @@ public final class ConfigurationLoader {
 
   private static final Logger LOG = LoggerFactory.getLogger(ConfigurationLoader.class);
 
-  private static FilterConfiguration[] CONFIGURATIONS;
+  private static FilterConfiguration[] loadedConfigurations;
 
   private ConfigurationLoader() {
     throw new UnsupportedOperationException();
   }
 
   /**
-   * Loads the filter configuration file from the classpath.
+   * Loads the specified filter configuration files from the classpath and unmarshals the XML contents into
+   * corresponding JAXB objects. This method must be called at application startup.
+   * <p>
+   * This method throws a RuntimeException if an XML file cannot be parsed or an XPath expression cannot be compiled
+   *
+   * @param filenames an array of filenames to load configurations from
    */
   public static void loadConfiguration(String... filenames) {
-    CONFIGURATIONS = new FilterConfiguration[filenames.length];
+    loadedConfigurations = new FilterConfiguration[filenames.length];
 
     for (int i = 0; i < filenames.length; i++) {
       String filename = filenames[i];
       try {
-        CONFIGURATIONS[i] = readConfigurationFile(filename);
+        loadedConfigurations[i] = readConfigurationFile(filename);
       } catch (JAXBException e) {
         ExceptionUtil.uncheck("Failed to read XPath configuration from " + filename, e);
       }
@@ -70,10 +75,20 @@ public final class ConfigurationLoader {
     precompile(); // Dry run to discover errors at application startup
   }
 
+  /**
+   * Compiles the XPath expressions from loaded configuration files and merges the loaded configurations (default,
+   * custom, etc) into a single object.
+   * <p>
+   * Note that the XPathExpression class (instances of which the returned object contains) is not thread safe.
+   * <p>
+   * This method throws a RuntimeException if an XPath expression cannot be compiled
+   *
+   * @return the filter configuration object with compiled XPath expressions
+   */
   public static synchronized FilterConfig precompile() {
     try {
-      List<Filter> filters = compileFilters(CONFIGURATIONS);
-      List<Exclusion> exclusions = compileExclusions(CONFIGURATIONS);
+      List<Filter> filters = compileFilters(loadedConfigurations);
+      List<Exclusion> exclusions = compileExclusions(loadedConfigurations);
       return new FilterConfig(filters, exclusions);
     } catch (XPathExpressionException e) {
       throw ExceptionUtil.toUnchecked("Failed to compile XPath expressions", e);
@@ -96,7 +111,8 @@ public final class ConfigurationLoader {
   }
 
 
-  private static Map<String, XPathExpression> compileDefaults(FilterConfiguration... configurations) throws XPathExpressionException {
+  private static Map<String, XPathExpression> compileDefaults(FilterConfiguration... configurations) throws
+      XPathExpressionException {
     Map<String, XPathExpression> defaults = new HashMap<String, XPathExpression>();
     for (FilterConfiguration configuration : configurations) {
       XPathNamespaceContext nsCtx = new XPathNamespaceContext(configuration);
@@ -137,7 +153,8 @@ public final class ConfigurationLoader {
   }
 
 
-  private static List<Exclusion> compileExclusions(FilterConfiguration... configurations) throws XPathExpressionException {
+  private static List<Exclusion> compileExclusions(FilterConfiguration... configurations) throws
+      XPathExpressionException {
     BlacklistFunctionResolver functionResolver = new BlacklistFunctionResolver();
 
     List<Exclusion> exclusions = new ArrayList<Exclusion>();
@@ -154,7 +171,8 @@ public final class ConfigurationLoader {
   }
 
   private static Map<String, XPathExpression> compileExpressions(LoggableFields fields,
-                                                                 NamespaceContext nsCtx) throws XPathExpressionException {
+                                                                 NamespaceContext nsCtx) throws
+      XPathExpressionException {
     Map<String, XPathExpression> compiled = new HashMap<String, XPathExpression>();
     if (fields.getPersoncode() != null) {
       compiled.put("personcode", compile(fields.getPersoncode(), nsCtx));

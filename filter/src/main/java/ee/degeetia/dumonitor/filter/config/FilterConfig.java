@@ -24,20 +24,35 @@ package ee.degeetia.dumonitor.filter.config;
 
 import java.util.List;
 
+/**
+ * This class holds the configuration for filters and exclusions.
+ */
 public class FilterConfig {
 
   private final List<Filter> filters;
   private final List<Exclusion> exclusions;
 
+  /**
+   * Creates a new instance of this class with the specified filters and exclusions.
+   *
+   * @param filters    the list of configured filters
+   * @param exclusions the list of configured exclusions
+   */
   public FilterConfig(List<Filter> filters, List<Exclusion> exclusions) {
     this.filters = filters;
     this.exclusions = exclusions;
   }
 
+  /**
+   * @return the configured filters
+   */
   public List<Filter> getFilters() {
     return filters;
   }
 
+  /**
+   * @return the configured exclusions
+   */
   public List<Exclusion> getExclusions() {
     return exclusions;
   }

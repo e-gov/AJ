@@ -25,20 +25,35 @@ package ee.degeetia.dumonitor.filter.config;
 import javax.xml.xpath.XPathExpression;
 import java.util.List;
 
+/**
+ * @see FilterConfig
+ */
 public class Filter {
 
   private final XPathExpression xpath;
   private final List<LoggableField> loggableFields;
 
+  /**
+   * Creates a new Filter instance with the specified XPath expression and list of loggable fields.
+   *
+   * @param xpath          the XPath expression for this filter
+   * @param loggableFields list of loggable fields for this filter
+   */
   public Filter(XPathExpression xpath, List<LoggableField> loggableFields) {
     this.xpath = xpath;
     this.loggableFields = loggableFields;
   }
 
+  /**
+   * @return the XPath expression for this filter
+   */
   public XPathExpression getXpath() {
     return xpath;
   }
 
+  /**
+   * @return the list of loggable fields for this filter
+   */
   public List<LoggableField> getLoggableFields() {
     return loggableFields;
   }

@@ -27,6 +27,7 @@ import ee.degeetia.dumonitor.common.config.RuntimeProperty;
 import ee.degeetia.dumonitor.common.util.HttpUtil;
 import ee.degeetia.dumonitor.common.util.IOUtil;
 import ee.degeetia.dumonitor.common.util.URLUtil;
+import ee.degeetia.dumonitor.filter.http.HttpStatus;
 import ee.degeetia.dumonitor.filter.processor.MessageProcessorQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,8 +92,7 @@ public class XRoadInterceptorServlet extends HttpServlet {
 
   private void forwardResponse(HttpURLConnection con, HttpServletResponse resp) throws IOException {
     HttpUtil.copyResponseHeaders(con, resp);
-    // TODO: checkstyle "magic number"; automaattest
-    InputStream stream = con.getResponseCode() >= 400 ? con.getErrorStream() : con.getInputStream();
+    InputStream stream = new HttpStatus(con.getResponseCode()).isError() ? con.getErrorStream() : con.getInputStream();
     byte[] data = processMessage(stream, con.getContentType());
     IOUtil.writeBytes(data, resp.getOutputStream());
   }

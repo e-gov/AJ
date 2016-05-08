@@ -55,8 +55,8 @@ public final class SoapUtil {
       headers.addHeader(HttpUtil.HEADER_CONTENT_TYPE, contentType);
       return messageFactory.createMessage(headers, inputStream);
     } catch (IOException e) {
-      // Should never happen - ByteArrayInputStream in this case is always readable and if its contents are invalid,
-      // SOAPException will be thrown instead
+      /* Should never happen - ByteArrayInputStream in this case is always readable and if its contents are invalid,
+       * SOAPException will be thrown instead. */
       throw ExceptionUtil.toUnchecked(e);
     } finally {
       IOUtil.close(inputStream);

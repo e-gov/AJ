@@ -45,15 +45,18 @@ public final class URLUtil {
       return new URL(url);
     } catch (MalformedURLException e) {
       try {
-        return new URL(baseUrl + url);
+        return new URL(appendPath(baseUrl, url));
       } catch (MalformedURLException e1) {
-        try {
-          return new URL(baseUrl + '/' + url);
-        } catch (MalformedURLException e2) {
-          throw e;
-        }
+        throw e;
       }
     }
+  }
+
+  private static String appendPath(String base, String path) {
+    if (path.startsWith("/")) {
+      return base + path;
+    }
+    return base + '/' + path;
   }
 
   /**

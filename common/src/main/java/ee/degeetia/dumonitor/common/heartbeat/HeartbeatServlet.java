@@ -34,6 +34,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * This servlet provides a heartbeat service at the URL path configured by the property dumonitor.filter.heartbeat.path.
+ */
 public class HeartbeatServlet extends HttpServlet {
 
   private final Gson gson = GsonFactory.createGson();

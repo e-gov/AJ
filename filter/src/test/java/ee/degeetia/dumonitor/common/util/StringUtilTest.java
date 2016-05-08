@@ -20,41 +20,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package ee.degeetia.dumonitor.filter.config;
+package ee.degeetia.dumonitor.common.util;
 
-import javax.xml.xpath.XPathExpression;
+import org.junit.Test;
 
-/**
- * @see FilterConfig
- */
-public class LoggableField {
+import java.util.Arrays;
+import java.util.Collections;
 
-  private final String fieldName;
-  private final XPathExpression xpath;
+import static org.junit.Assert.*;
 
-  /**
-   * Creates a new LoggableField instance from the specified field name and XPath expression.
-   *
-   * @param fieldName the name of the field
-   * @param xpath     the XPath expression that describes the value of the field
-   */
-  public LoggableField(String fieldName, XPathExpression xpath) {
-    this.fieldName = fieldName;
-    this.xpath = xpath;
+public class StringUtilTest {
+
+  @Test
+  public void testIsEmpty() {
+    assertTrue(StringUtil.isEmpty(null));
+    assertTrue(StringUtil.isEmpty(""));
+    assertFalse(StringUtil.isEmpty("test"));
   }
 
-  /**
-   * @return the name of the field
-   */
-  public String getFieldName() {
-    return fieldName;
+  @Test
+  public void testJoin() {
+    assertEquals("", StringUtil.join(Collections.<String>emptyList(), ", "));
+    assertEquals("str", StringUtil.join(Collections.singletonList("str"), ", "));
+    assertEquals("str1, str2", StringUtil.join(Arrays.asList("str1", "str2"), ", "));
   }
 
-  /**
-   * @return the XPath expression that describes the value of the field
-   */
-  public XPathExpression getXpath() {
-    return xpath;
+  @Test
+  public void testSplit() {
+    assertArrayEquals(new String[]{null}, StringUtil.split(null, ','));
+    assertArrayEquals(new String[]{""}, StringUtil.split("", ','));
+    assertArrayEquals(new String[]{"str"}, StringUtil.split("str", ','));
+    assertArrayEquals(new String[]{"str1", "str2"}, StringUtil.split("str1.str2", '.'));
+    assertArrayEquals(new String[]{"str1", "str2"}, StringUtil.split("str1 , str2", ','));
+    assertArrayEquals(new String[]{"str1", "str2"}, StringUtil.split("str1   str2", ' '));
   }
 
 }

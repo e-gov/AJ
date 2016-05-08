@@ -30,12 +30,22 @@ import ee.degeetia.dumonitor.common.util.URLUtil;
 import java.net.URL;
 import java.util.Date;
 
+/**
+ * This class contains methods for converting property values from String to other types. All methods throw a
+ * RuntimeException if the conversion fails.
+ */
 public final class PropertyConverter {
 
   private PropertyConverter() {
     throw new UnsupportedOperationException();
   }
 
+  /**
+   * Converts the property's String value to Integer.
+   *
+   * @param property the property to convert
+   * @return the Integer value of the property
+   */
   public static Integer toInteger(PropertyHolder property) {
     return convert(property, new Converter<Integer>() {
       @Override
@@ -45,6 +55,12 @@ public final class PropertyConverter {
     });
   }
 
+  /**
+   * Converts the property's String value to Date.
+   *
+   * @param property the property to convert
+   * @return the Date value of the property
+   */
   public static Date toDate(PropertyHolder property) {
     return convert(property, new Converter<Date>() {
       @Override
@@ -54,6 +70,12 @@ public final class PropertyConverter {
     });
   }
 
+  /**
+   * Converts the property's String value to URL.
+   *
+   * @param property the property to convert
+   * @return the URL value of the property
+   */
   public static URL toURL(PropertyHolder property) {
     return convert(property, new Converter<URL>() {
       @Override
@@ -63,6 +85,12 @@ public final class PropertyConverter {
     });
   }
 
+  /**
+   * Converts the property's String value to a String array.
+   *
+   * @param property the property to convert
+   * @return the value of the property as a String array
+   */
   public static String[] toArray(PropertyHolder property) {
     return convert(property, new Converter<String[]>() {
       @Override

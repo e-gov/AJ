@@ -35,42 +35,72 @@ public class Heartbeat {
   private Date startupTime;
   private Date serverTime;
 
+  /**
+   * @return the name of this application
+   */
   public String getSystemName() {
     return systemName;
   }
 
+  /**
+   * @param systemName the name of this application
+   */
   public void setSystemName(String systemName) {
     this.systemName = systemName;
   }
 
+  /**
+   * @return the version number of this application
+   */
   public String getVersion() {
     return version;
   }
 
+  /**
+   * @param version the version number of this application
+   */
   public void setVersion(String version) {
     this.version = version;
   }
 
+  /**
+   * @return the build date of this application
+   */
   public Date getBuildDate() {
     return buildDate;
   }
 
+  /**
+   * @param buildDate the build date of this application
+   */
   public void setBuildDate(Date buildDate) {
     this.buildDate = buildDate;
   }
 
+  /**
+   * @return the time at which this application was last started
+   */
   public Date getStartupTime() {
     return startupTime;
   }
 
+  /**
+   * @param startupTime the time at which this application was last started
+   */
   public void setStartupTime(Date startupTime) {
     this.startupTime = startupTime;
   }
 
+  /**
+   * @return the server time
+   */
   public Date getServerTime() {
     return serverTime;
   }
 
+  /**
+   * @param serverTime the server time
+   */
   public void setServerTime(Date serverTime) {
     this.serverTime = serverTime;
   }

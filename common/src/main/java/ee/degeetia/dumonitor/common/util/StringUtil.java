@@ -22,8 +22,11 @@
  */
 package ee.degeetia.dumonitor.common.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Utility class for String operations.
@@ -39,7 +42,7 @@ public final class StringUtil {
    * @return true if the input String is null or empty
    */
   public static boolean isEmpty(String string) {
-    return string != null && string.isEmpty();
+    return string == null || string.isEmpty();
   }
 
   /**
@@ -50,26 +53,41 @@ public final class StringUtil {
    * @return the resulting string
    */
   public static String join(Collection<String> collection, String separator) {
-    String result = "";
+    StringBuilder sb = new StringBuilder();
     Iterator<String> it = collection.iterator();
     while (it.hasNext()) {
-      result += it.next();
+      sb.append(it.next());
       if (it.hasNext()) {
-        result += separator;
+        sb.append(separator);
       }
     }
-    return result;
+    return sb.toString();
   }
 
+  /**
+   * Splits the given string using the specified separator and returns the result as a String array. Each element in the
+   * array is also trimmed of leading/trailing whitespace.
+   * <p>
+   * For example, <code>split("abc,def", ',')</code> and <code>split("abc , def", ',')</code> will both return
+   * <code>["abc", "def"]</code>.
+   *
+   * @param string    the String to split
+   * @param separator the char to use as a separator
+   * @return the result as a String array
+   */
   public static String[] split(String string, char separator) {
     if (isEmpty(string)) {
-      return new String[0];
+      return new String[]{string};
     }
-    String[] result = string.split("" + separator);
-    for (int i = 0; i < result.length; i++) {
-      result[i] = result[i].trim();
+    String pattern = Pattern.quote(String.valueOf(separator));
+    List<String> result = new ArrayList<String>();
+    for (String s : string.split(pattern)) {
+      String trimmed = s.trim();
+      if (!isEmpty(trimmed)) {
+        result.add(trimmed);
+      }
     }
-    return result;
+    return result.toArray(new String[result.size()]);
   }
 
 }

@@ -41,7 +41,7 @@ public class ApplicationLifecycleListener implements ServletContextListener {
 
   private static final Logger LOG = LoggerFactory.getLogger(ApplicationLifecycleListener.class);
 
-  private static final PropertyHolder[] requiredProperties = {
+  private static final PropertyHolder[] REQUIRED_PROPERTIES = {
       Property.FILTER_CONFIGURATION_FILE,
       Property.TURVASERVER_URL,
       Property.ANDMEKOGU_URL,
@@ -60,7 +60,7 @@ public class ApplicationLifecycleListener implements ServletContextListener {
 
     PropertyLoader.loadProperties(Property.class, "default.properties", "dumonitor.properties");
     PropertyLoader.loadProperties(BuildProperty.class, "build.properties");
-    PropertyLoader.requireProperties(requiredProperties);
+    PropertyLoader.requireProperties(REQUIRED_PROPERTIES);
 
     ConfigurationLoader.loadConfiguration("filter-defaults.xml", Property.FILTER_CONFIGURATION_FILE.getValue());
 
