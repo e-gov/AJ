@@ -46,7 +46,7 @@ Tarkvara lähtekood on kättesaadav avalikus GitHub repositooriumis https://gith
 
 Tarkvara ehitamiseks on vajalik aru saada, millises konfiguratsioonis soovitakse seda paigaldada. Paigaldusvariante on kaks:
 
-* Kõigi tarkvarakomponentide paigaldamine X-tee turvaserverit sisaldavasse serverisse. Sellisel juhul on võimalik kasutada paigaldaisel tarkvara ehitamise väljundina tekkivaid operatsioonisüsteemi Ubuntu 14.04 LTS jaoks loodud paigalduspakette.
+* Kõigi tarkvarakomponentide paigaldamine X-tee turvaserverit sisaldavasse serverisse. Sellisel juhul on võimalik kasutada paigaldamisel tarkvara ehitamise väljundina tekkivaid operatsioonisüsteemi Ubuntu 14.04 LTS jaoks loodud paigalduspakette.
 * Muud konfiguratsioonid. Sellisel juhul tuleb kasutada paigaldamisel tarkvara ehitamise väljundina tekkivaid WAR-formaadis Java rakendusi. Kui rakendust ehitatakse [tarkvara rakendusjuhises](Rakendusjuhend.md) toetatud konfiguratsiooni jaoks, siis on kõigi seal loetletud konfiguratsioonide korral rakenduse ehitamine sama.
 
 ## Ehituskeskkonna ettevalmistamine
@@ -67,7 +67,7 @@ Tarkvara ehitamine seisneb järgmistes sammudes (sammud tuleb teostada loetletud
 
 ### 1. Lähtekoodi allalaadimine
 
-Avada terminali käsurida ning liikuda kataloogi, mille all soovitakse tarkva ehitamine läbi viia. Anda seal käsk:
+Avada terminali käsurida ning liikuda kataloogi, mille all soovitakse tarkvara ehitamine läbi viia. Anda seal käsk:
 
 ```sh
 git clone git@github.com:e-gov/AJ.git

@@ -52,7 +52,7 @@ Tarkvara on võimalik paigaldada järgmistel võimalikel viisidel:
 
 X-tee turvaserverisse paigaldamisel eeldatakse, et turvaserver töötab Ubuntu 14.04 LTS operatsioonisüsteemi käitavas serveris.
 
-Java rakendusserverisse paigaldamisel on tagaatud rakenduse töötamine Ubuntu 14.04 LTS operatsioonisüsteemi käitavas serveris selle koosseisu kuuluva Jetty 8 rakendusserveriga. Tarkvara on võimalik kasutada ka teistes ühilduvates Java rakendusserverites (näiteks Tomcat), kuid nende antud juhendis
+Java rakendusserverisse paigaldamisel on tagatud rakenduse töötamine Ubuntu 14.04 LTS operatsioonisüsteemi käitavas serveris selle koosseisu kuuluva Jetty 8 rakendusserveriga. Tarkvara on võimalik kasutada ka teistes ühilduvates Java rakendusserverites (näiteks Tomcat), kuid nende antud juhendis
 nende kasutamise üksikasju ei kajastata.
 
 ### Rakenduse paigaldamine X-tee turvaserverisse
@@ -61,7 +61,7 @@ X-tee turvaserverisse paigaldamisel tuleb kasutada viimaseid DEB paigalduspakett
 
 Paigaldaja peab otsustama, millised andmejälgija komponendid ta turvaserverisse paigaldab. Valitud komponentide DEB failid on vaja laadida alla ning paigutada turvaserveri mingisse kataloogi.
  
-Tarkvarakomponendi paigaldmiseks tuleb avada turvaserveris käsurida, liikuda kataloogi, kuhu on tarkvara alla laetud, ning anda käsk:
+Tarkvarakomponendi paigaldamiseks tuleb avada turvaserveris käsurida, liikuda kataloogi, kuhu on tarkvara alla laetud, ning anda käsk:
 
 ```sh
 sudo dpkg -i {paketinimi}
@@ -124,9 +124,9 @@ mis on kättesaadavad lingilt https://github.com/e-gov/AJ/releases.
 Paigaldaja peab otsustama, millised andmejälgija komponendid ta Java rakendusserverisse paigaldab. Igat komponenti on ka võimalik 
 paigaldada teistest sõltumatult töötavasse Java rakendusserverisse.
 
-Komponendi paigaldamiseks tuleb esmalt allalaetud ZIP fail lahti pakkida. ZIP fail tekitab lahtipakkides vastava komponendi nimega alamkataloogi. Selles
+Komponendi paigaldamiseks tuleb esmalt allalaetud ZIP fail lahti pakkida. ZIP fail tekitab lahti pakkides vastava komponendi nimega alamkataloogi. Selles
 alamkataloogis leiduv "war" laiendiga fail on komponendi Java rakendus ning tuleb paigaldada rakendusserveri "webapps" kataloogi. Jetty 8 korral
-tuleb selleks see fail kopeerida kataloogi "/var/lib/jetty8/webapps". Lisaks leidub samas ka fail "dumonitor.properties". See fail tuleb kopeerida kataloogi "/usr/share/jetty8/resources". Kõikdel andmejälgija komponentidel on see konfiguratsioonifail täpselt ühe ja sama sisuga. Kui serverisse paigaldatakse
+tuleb selleks see fail kopeerida kataloogi "/var/lib/jetty8/webapps". Lisaks leidub samas ka fail "dumonitor.properties". See fail tuleb kopeerida kataloogi "/usr/share/jetty8/resources". Kõikidel andmejälgija komponentidel on see konfiguratsioonifail täpselt ühe ja sama sisuga. Kui serverisse paigaldatakse
 mitu andmejälgija komponenti korraga, siis piisab ainult ühega kaasa tulnud faili kopeerimisest.
 
 Eraldusfiltri komponendiga on täiendavalt kaasas fail "dumonitor-filter.xml". See fail tuleb samuti kopeerida kataloogi "/usr/share/jetty8/resources".
@@ -162,7 +162,7 @@ Esitamise testrakenduse komponent:
 
 Andmesalvestaja komponent vajab oma tööks andmebaasimootorit. Toetatud on PostgreSQL andmebaasimootor v9.3. Andmebaasimootor võib asuda
 andmesalvestaja komponendiga samas masinas või ka eraldi masinas. Andmesalvestaja ZIP paigalduspaketis on kaasas alamkataloog "database", milles on andmebaasi tekitamiseks vajalikud skriptid. 
-Need tuleb andmebaasimootorit jooksutavas arvutis kasutaja "postgre" õigustes käivitada järgmiselt 
+Need tuleb andmebaasimootorit jooksutavas arvutis kasutaja "postgres" õigustes käivitada järgmiselt 
 (andmebaasimootor peab käsu andmeisel töötama):
 
 ```sh
@@ -184,9 +184,11 @@ Andmebaasi kasutajate paroolid on toodangulahenduse korral mõistlik ära muuta.
 ### MISP2 X-forms faili paigaldamine
 
 Andmesalvestaja komponendiga on kaasas ka MISP2 X-forms fail, mida saab kasutada nii MISP2 tarkvara kui eesti.ee keskkonna jaoks. Fail on allalaetav
-peale andmesalvesteaja komponendi käivitamist lingilt "{andmesalvestajaUrl}/dumonitor-xforms.xml", kus {andmesalvestajaUrl} tähistab konfigurastsiooni elemendi "Andmesalvestaja URL" väärtust.
+peale andmesalvestaja komponendi käivitamist lingilt "{andmesalvestajaUrl}/dumonitor-xforms.xml", kus {andmesalvestajaUrl} tähistab konfiguratsiooni elemendi "Andmesalvestaja URL" väärtust.
 
-Antud fail tuleb paigaldada MISP2 tarkvarasse vastavalt selle tarkvara kohta tootja poolt antud juhistele.
+Antud fail tuleb paigaldada MISP2 tarkvarasse vastavalt selle tarkvara tootja poolt antud juhistele.
+
+MISP2 rakenduses on vaja ära näidata ka andmekogu WSDL. See on kättesaadav lingilt "{andmesalvestajaUrl}/dumonitor.wsdl".
 
 ### Rakenduse eemaldamine
 
@@ -207,7 +209,7 @@ kui eemaldatakse kõik paketid, kustutada veel täiendavalt käsitsi ära järgm
 Lisaks teostab komponentide paigaldusskript järgmisi muudatusi teiste pakettide konfiguratsioonifailides, mis tuleb vajadusel muuta tagasi:
 
 * Faili "/etc/xroad/jetty/start.ini" lõppu lisati rida "--module=resources". Kui seda jetty moodulit teised rakendused ei kasuta, võib selle rea eemaldada.
-* Failis "/etc/xroad/jetty/jetty-public.xml" muudeti elemendi "//Set[@name='extractWars']" väärtus "false" pealt "true" peale. Vajdusel tuleb see tagasi väärtustada.
+* Failis "/etc/xroad/jetty/jetty-public.xml" muudeti elemendi "//Set[@name='extractWars']" väärtus "false" pealt "true" peale. Vajadusel tuleb see tagasi väärtustada.
 * Kui paigaldati ka andmesalvestaja komponent, siis on serveris töötavasse PostgreSQL andmebaasimootorisse tekitatud juurde andmebaas nimega "dumonitor" ning kasutajatunnused nimedega "dumonitor" ja "dumonitor_app". Need tuleb vajaduse möödudes eemaldada.
 
 Muudatuste jõustamiseks tuleb teha restart ka "jetty" ja "nginx" teenustele.
@@ -221,7 +223,7 @@ restardi tegemine.
 
 ## Häälestamine
 
-Kõigi komponentide üldine häälestamine käib ühise konfugiratsioonifaili "dumonitor.properties" muutmise teel. Faili asukoht sõltub komponendi paigaldamise viisist, vt eespool toodud paigaldamise juhiseid, faili asukohta märgib seal konfiguratsiooni element "Konfiguratsioonifaili asukoht". Faili näol on tegemist standardse Java properties-failiga, kus sübol '#' tähendab kommentaari algust ning igal real on kirjas parameetrid kujul "{param}={väärtus}", kus {param} tähistab parameetri nime ja {väärtus} tähistab parameetrile omistatavat väärtust. Parameetri nime ja väärtust eraldab omavahel sümbol '=', selle sümboli ümber olevaid tühikuid ignoreeritakse.
+Kõigi komponentide üldine häälestamine käib ühise konfiguratsioonifaili "dumonitor.properties" muutmise teel. Faili asukoht sõltub komponendi paigaldamise viisist, vt eespool toodud paigaldamise juhiseid, faili asukohta märgib seal konfiguratsiooni element "Konfiguratsioonifaili asukoht". Faili näol on tegemist standardse Java properties-failiga, kus sümbol '#' tähendab kommentaari algust ning igal real on kirjas parameetrid kujul "{param}={väärtus}", kus {param} tähistab parameetri nime ja {väärtus} tähistab parameetrile omistatavat väärtust. Parameetri nime ja väärtust eraldab omavahel sümbol '=', selle sümboli ümber olevaid tühikuid ignoreeritakse.
 
 Lisaks on eraldusfiltri komponendil olemas ka eraldi konfiguratsioonifail "dumonitor-filter.xml", mille abil kirjeldatakse päringute sisu baasilt logimist juhtivad filtrid.
 
@@ -240,9 +242,9 @@ Andmesalvestaja tööd juhitakse järgmiste "dumonitor.properties" failis olevat
 |------------------------------------------|-------------------------------------|------------------------------------------------|
 | dumonitor.storage.xroad.producerns       | http://dumonitor.x-road.eu/producer | Andmesalvestaja X-tee teenuse nimeruum |
 | dumonitor.storage.database.jndi          |                                     | Andmebaasi ühenduse JNDI nimi, täita juhul, kui soovitakse andmebaasiühendust JNDI kaudu |
-| dumonitor.storage.database.connectstring |                                     | Andmebaasi ühendusstring, täita juhul, kui soovitakse andmebaasiühendust vahetult kasutajatunnuse ja parooli äranäitamisega |
-| dumonitor.storage.database.user          |                                     | Andmebaasi kasutaja tunnus, täita juhul, kui soovitakse andmebaasiühendust vahetult kasutajatunnuse ja parooli äranäitamisega |
-| dumonitor.storage.database.password      |                                     | Andmebaasi kasutaja parool, täita juhul, kui soovitakse andmebaasiühendust vahetult kasutajatunnuse ja parooli äranäitamisega |
+| dumonitor.storage.database.connectstring |                                     | Andmebaasi ühendusstring, täita juhul, kui soovitakse andmebaasiühendust vahetult kasutajatunnuse ja parooli ära näitamisega |
+| dumonitor.storage.database.user          |                                     | Andmebaasi kasutaja tunnus, täita juhul, kui soovitakse andmebaasiühendust vahetult kasutajatunnuse ja parooli ära näitamisega |
+| dumonitor.storage.database.password      |                                     | Andmebaasi kasutaja parool, täita juhul, kui soovitakse andmebaasiühendust vahetult kasutajatunnuse ja parooli ära näitamisega |
 
 Juhul, kui konfiguratsioonifailis näidatakse ära andmebaasi kasutaja parool, on vaja hoolitseda selle faili salajasuse eest - selleks tuleb faili lugemisõigus jätta alles ainult Jetty rakendusserveri kasutajatunnusele.
 
@@ -266,9 +268,9 @@ Eraldusfiltri tööd juhitakse järgmiste "dumonitor.properties" failis olevate 
 | Parameeter                                 | Vaikeväärtus         | Väärtustamine 
 |--------------------------------------------|----------------------|----------------------------------------------------|
 | dumonitor.filter.configuration.file        | dumonitor-filter.xml | Eraldusfiltri filtrikirjelduste faili asukoht  |
-| dumonitor.filter.turvaserver.url           | http://localhost/    | Turvaserveri URL                                   |
+| dumonitor.filter.turvaserver.url           |                      | Turvaserveri URL                                   |
 | dumonitor.filter.andmekogu.url             |                      | Andmekogu URL                       |
-| dumonitor.filter.logger.rest.url           |                      | Andmesalvestaja komponendi REST logimisteenuse URL. Saadakse andmesalvestaja komponendi URLile suffiksi "/rest" liitmisega. |
+| dumonitor.filter.logger.rest.url           |                      | Andmesalvestaja komponendi REST logimisteenuse URL. Saadakse andmesalvestaja komponendi URLile sufiksi "/rest" liitmisega. |
 | dumonitor.filter.executor.thread.pool.size | 0                    | Eraldusfiltri paralleelsete lõimede arv |
 | dumonitor.filter.executor.queue.capacity   | 2147483647           | Eraldusfiltri sõnumite järjekorra suurus |
 | dumonitor.blacklist                        |                      | Must nimekiri |
@@ -289,10 +291,68 @@ Rakendus logib oma tegevust [SLF4J](http://www.slf4j.org/) abil ning selle all k
 Esitamise testrakenduse konfigureerimiseks on vaja täiendavalt kindlaks määrata järgmised konfiguratsiooni elemendid:
 
 * Turvaserveri URL. URL, mille kaudu teeb esitamise testrakendus pöördumisi X-tee andmekogude poole.
+* Esitamise testrakenduse X-tee kliendi parameetrid (X-tee instants, X-tee liikme klass, X-tee liikme kood, X-tee liikme alamsüsteemi kood) 
+* Esitamise testrakenduse poolt kasutatavate andmekogude parameetrid (X-tee instants, X-tee liikme klass, X-tee liikme kood, X-tee liikme alamsüsteemi kood, teenuse kood, teenuse versioon, andmekogu nimi)
 
 Esitamise testrakendust juhitakse järgmiste "dumonitor.properties" failis olevate parameetrite abil:
 
 | Parameeter                | Vaikeväärtus      | Väärtustamine    | 
 |---------------------------|-------------------|------------------|
-| dumonitor.query.xroad.url | http://localhost/ | Turvaserveri URL |
+| dumonitor.query.xroad.url |                   | Turvaserveri URL |
+
+
+
+Ülejäänud konfiguratsiooni elementide baasilt tuleb tekitada rakendusserveris, kuhu esitamise testrakendus sai paigaldatud, juurrakenduse juurkataloogi fail nimega "producers.js" ning mille sisus on muutuja "producers" kirjeldus järgmise ülesehitusega:
+
+```js
+var producers = {
+"Andmekogu1": 
+"<soapenv:Header>"+
+"     <xro:protocolVersion>4.0</xro:protocolVersion>"+
+"     <xro:id>{id}</xro:id>"+
+"     <xro:userId>{userId}</xro:userId>"+
+"     <xro:service iden:objectType=\"SERVICE\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>20000001</iden:memberCode>"+
+"        <iden:subsystemCode>AJ</iden:subsystemCode>"+
+"        <iden:serviceCode>findUsage</iden:serviceCode>"+
+"        <iden:serviceVersion>v1</iden:serviceVersion>"+
+"     </xro:service>"+
+"     <xro:client iden:objectType=\"MEMBER\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>10000001</iden:memberCode>"+
+"        <iden:subsystemCode>Center</iden:subsystemCode>"+
+"     </xro:client>"+
+"</soapenv:Header>",
+"Andmekogu2": 
+"<soapenv:Header>"+
+"     <xro:protocolVersion>4.0</xro:protocolVersion>"+
+"     <xro:id>{id}</xro:id>"+
+"     <xro:userId>{userId}</xro:userId>"+
+"     <xro:service iden:objectType=\"SERVICE\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>20000001</iden:memberCode>"+
+"        <iden:subsystemCode>AJ</iden:subsystemCode>"+
+"        <iden:serviceCode>findUsage</iden:serviceCode>"+
+"        <iden:serviceVersion>v1</iden:serviceVersion>"+
+"     </xro:service>"+
+"     <xro:client iden:objectType=\"MEMBER\">"+
+"        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
+"        <iden:memberClass>GOV</iden:memberClass>"+
+"        <iden:memberCode>10000001</iden:memberCode>"+
+"        <iden:subsystemCode>Center</iden:subsystemCode>"+
+"     </xro:client>"+
+"</soapenv:Header>",
+}
+```
+
+Tegemist on JavaScript süntaksiga hash-muutuja kirjeldamisega, kus võtmeväljana tuleb näidata andmekogu inimloetav nimi ning võtmeväljale vastava väärtusena tuleb
+näidata täpne X-tee v6 päiselemendi ülesehitus (kasutades näites näha olevaid nimeruumi prefikseid). Päisväljad tuleb täita vastavalt pärija X-tee seadetele ning 
+andmekogu X-tee seadetele. Päises tuleb esitada X-tee päisväljade "id" ja "userId" väärtused vastavalt stringidena "{id}" ja "{userId"} (tarkvara asendab need
+päringut tehes tegelikega). Elemente võib esitada üks kuni mitu (antud näites on toodud kahe andmekogu kirjeldused).
+
+Kui tarkvara paigaldati töötama Ubuntu 14.04 LTS kaasatuleva Jetty 8 rakendusserverisse, siis tuleb fail "producers.js" asetada kataloogi "/var/lib/jetty8/webapps/root/", muude rakendusserverite korral tuleb konsulteerida vastava rakendusserveri juhenditega.
 

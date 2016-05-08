@@ -44,7 +44,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 
 ## Sissejuhatus
 
-Käesolevas dokumendis kirjeldaatkse DUMonitor tarkvara integratsiooni- ja koormustestide testilood.
+Käesolevas dokumendis kirjeldatakse DUMonitor tarkvara integratsiooni- ja koormustestide testilood.
 
 ## Testilood
 
@@ -62,7 +62,6 @@ Automaatsed testid:
 * Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
 * Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine
 * Andmesalvestaja komponent: X-tee liidese kaudu logist otsimine ja tulemuse tagastamine
-* Andmesalvestaja komponent: X-tee liidese kaudu ajahorisondi päringu vastuvõtmine ja tulemuse tagastamine (hetkel realiseerimata - ootel RIA otsuse taga)
 
 Käsitsi läbi viidavad testid:
 
@@ -102,7 +101,7 @@ Käsitsi läbi viidavad testid:
   Test loetakse positiivseks, kui:
   - Testandmekogu poolt vastuvõetud päring on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku päringus esitatutega.
   - Filtri poolt tagastatud vastus on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku testandmekogu poolt tagastatutega.
-  - Filtri poolt tagastatud vastus on ""multipart/related"" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
+  - Filtri poolt tagastatud vastus on "multipart/related" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
   - Filtri poolt tagastatud vastuse sisus toodud andmeväljade väärtused langevad kokku testandmekogu poolt tagastatutele
   Kõigil muudel juhtudel loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
@@ -131,7 +130,7 @@ Käsitsi läbi viidavad testid:
   Test loetakse positiivseks, kui:
   - Testandmekogu poolt vastuvõetud päring on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku päringus esitatutega.
   - Filtri poolt tagastatud vastus on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku testandmekogu poolt tagastatutega.
-  - Filtri poolt tagastatud vastus on ""multipart/related"" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
+  - Filtri poolt tagastatud vastus on "multipart/related" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
   - Filtri poolt tagastatud vastuse sisus toodud andmeväljade väärtused langevad kokku testandmekogu poolt tagastatutele
   Kõigil muudel juhtudel loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
@@ -155,8 +154,8 @@ Käsitsi läbi viidavad testid:
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	
   Test loetakse positiivseks, kui:
-  - Filtri poolt tagastatud vastus on SOAP exception sõnum, mille ""faultcode"" element langeb kokku testandmekogu poolt tagastatutega.
-  - Filtri poolt tagastatud vastus on ""text/xml"" ning HTTP vastuskood on 400
+  - Filtri poolt tagastatud vastus on SOAP exception sõnum, mille "faultcode" element langeb kokku testandmekogu poolt tagastatutega.
+  - Filtri poolt tagastatud vastus on "text/xml" ning HTTP vastuskood on 400
   Kõigil muudel juhtudel loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
@@ -174,7 +173,7 @@ Käsitsi läbi viidavad testid:
   2. Päringu vastust ei logita andmesalvestaja komponenti või logitakse puudulikult.
 * Testi jada kirjeldus:	
   1. Tehakse test andmekogu teenuse getPersonData päring filtri komponendi andmekogu teenust vahendavale URLile. Päringule genereeritakse juhuslik X-tee päringu ID.
-  2. Filter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule. Parallelselt käivitab päringu logimise andmesalvestaja komponenti.
+  2. Filter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule. Paralleelselt käivitab päringu logimise andmesalvestaja komponenti.
   3. Testandmekogu kontrollib saabunud päringu sisu korrektsust (kõikide väljade vastavust algses päringus toodule) ning tagastab selle baasilt kas korrektse päringu vastuse või veavastuse.
   4. Filter loeb päringu vastuse sisse ja tagastab selle. Paralleelselt käivitab päringu vastuse logimise andmesalvestaja komponenti.
   6. Tehakse JDBC päring andmesalvestaja andmebaasi ning loetakse sisse kõik kirjed, mille ""xroadrequestid"" atribuudi väärtus langeb kokku sammus 1 tekitatule.
@@ -239,7 +238,7 @@ Käsitsi läbi viidavad testid:
 
 * Testiloo nimetus:	Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine
 * Testiloo indeks:	7
-* Lühikirjeldus: 	Andemsalvestaja komponendi REST logimisliidese abil salvestatakse logikirje ning seejärel otsitakse seda andmesalvestaja REST otsinguliidese kaudu. Veendutakse kirje leidumises.
+* Lühikirjeldus: 	Andmesalvestaja komponendi REST logimisliidese abil salvestatakse logikirje ning seejärel otsitakse seda andmesalvestaja REST otsinguliidese kaudu. Veendutakse kirje leidumises.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi REST otsinguliidese toimimine
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST logimisliidese toimimine
 * Lähtetingimused:	-
@@ -262,7 +261,7 @@ Käsitsi läbi viidavad testid:
 
 * Testiloo nimetus:	Andmesalvestaja komponent: X-tee liidese kaudu logist otsimine ja tulemuse tagastamine
 * Testiloo indeks:	8
-* Lühikirjeldus: 	Andemsalvestaja komponendi REST logimisliidese abil salvestatakse logikirje ning seejärel otsitakse seda andmesalvestaja X-tee otsinguliidese kaudu. Veendutakse kirje leidumises.
+* Lühikirjeldus: 	Andmesalvestaja komponendi REST logimisliidese abil salvestatakse logikirje ning seejärel otsitakse seda andmesalvestaja X-tee otsinguliidese kaudu. Veendutakse kirje leidumises.
 * Omadused, mida testitakse:	Andmesalvestaja komponendi X-tee otsinguliidese toimimine
 * Omadused, mida ei testita:	Andmesalvestaja komponendi REST logimise liidese toimimine
 * Lähtetingimused:	-
@@ -292,7 +291,7 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Otsing andmeatribuutide järgi ei toimi korrektselt - kirjeid ei leita.
 * Testi jada kirjeldus:	
   1. Andmesalvestaja veebiliidese kaudu teostatakse otsing, näidates ära järgmised andmed (need langevad kokku testis nr 7 lisatud kirje andmetega):
-    - Isikukood: 47101010033
+    - Isikukood: EE47101010033
     - Tegevuse avalik nimi: Get Person Data
     - Saaja avalik nimi: Test receiver
     - Saatja avalik nimi: Test AK
@@ -303,7 +302,7 @@ Käsitsi läbi viidavad testid:
     - Töötleja isikukood: EE12345678901
     - X-tee teenuse nimetus: getPersonData
     - Salvestamisaeg suurem kui: testi sooritamise kuupäev
-    - Salvestamisaeg väiksem kui: testi sooritamise kuupäev
+    - Salvestamisaeg väiksem kui: testi sooritamise kuupäevale järgnev kuupäev
     - Piirangud: A
   2. Veendutakse, et tagastati vähemalt üks kirje ning et kuvatud kirje atribuutide väärtused langevad kokku otsinguvormile sisestatutega
 * Käivitamise ja läbiviimise skript:	-
@@ -326,20 +325,9 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Otsing andmeatribuutide järgi ei toimi korrektselt - kirjeid ei leita.
 * Testi jada kirjeldus:	
   1. Esitamise testrakenduse veebiliidese kaudu teostatakse otsing, näidates ära järgmised andmed (need langevad kokku testis nr 7 lisatud kirje andmetega):
-    - Isikukood: 47101010033
-    - Tegevuse avalik nimi: Get Person Data
-    - Saaja avalik nimi: Test receiver
-    - Saatja avalik nimi: Test AK
-    - X-tee päringu id: 4894e35d-bf0f-44a6-867a-123456643291
-    - Tegevuse tehniline kood: REQ:getPersonData.v1
-    - Saaja tehniline kood: 10000001
-    - Saatja tehniline kood: 20000001
-    - Töötleja isikukood: EE12345678901
-    - X-tee teenuse nimetus: getPersonData
-    - Salvestamisaeg suurem kui: testi sooritamise kuupäev
-    - Salvestamisaeg väiksem kui: testi sooritamise kuupäev    
-    - Piirangud: A
-  2. Veendutakse, et tagastati vähemalt üks kirje ning et kuvatud kirjete atribuutide väärtused langevad kokku otsinguvormile sisestatutega
+    - Andmekogu: Andmekogu1
+    - Isikukood: EE47101010033
+  2. Veendutakse, et tagastati vähemalt üks kirje ning et kuvatud kirjetel langevad väärtused kokku otsinguvormile sisestatutega
 * Käivitamise ja läbiviimise skript:	-
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	
@@ -360,12 +348,12 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Otsing andmeatribuutide järgi ei toimi korrektselt - kirjeid ei leita.
 * Testi jada kirjeldus:	
   1. Sisenetakse MISP2 keskkonda MARI-LIIS MÄNNIK test ID-kaardiga.
-  2. Käivitatakse teenus findUsage.
+  2. Käivitatakse andmekogu "AJ" teenus "Päring andmekogust isikuandmete töötlemise kohta (findUsage.v1)".
   3. Veendutakse, et tagastati vähemalt üks kirje ning kirjel on esitatud järgmine info:
-    - Tegevus: Get Person Data
-    - Saaja: Test receiver
+    - Kirjeldus: Get Person Data
+    - Päringu sooritanud asutus: Test receiver
     - X-tee päringu id: 4894e35d-bf0f-44a6-867a-123456643291
-    - Kuupäev: testi sooritamise kuupäev
+    - Kuupäev: eelpool mainitud test nr 7 sooritamise kuupäev
 * Käivitamise ja läbiviimise skript:	-
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	
@@ -386,11 +374,18 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Filtri poolt kulutatav täiendav keskmine aeg on liiga suur (suurem kui nõutav 1ms).
 * Testi jada kirjeldus:	
   1. Käivitatakse 50 paralleelset lõime päringute tegemiseks. Lõimed töötavad üksteisest sõltumatult.
-  2. Iga lõim teeb päringu test andmekogu teenusele ja loeb vastuse. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisselugemiseni.
-  3. Iga lõim teeb päringu eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja loeb vastuse. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisselugemiseni.
+  2. Iga lõim teeb päringu test andmekogu teenusele ja loeb vastuse. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisse lugemiseni.
+  3. Iga lõim teeb päringu eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja loeb vastuse. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisse lugemiseni.
   4. Iga lõim täidab samme 2 ja 3 järjest 10 korda.
   5. Kui kõik lõimed on oma töö lõpetanud, arvutatakse mõlema päringu keskmised täitmise ajad.
-  6. Mõlema päringu keskmise täitmisaja vahe annab filtri poolt kulutatava täiendava keskmise aja.
+  6. Mõlema päringu keskmise täitmisaja vahe annab filtri poolt kulutatava täiendava keskmise aja. See leitakse Jenkins CI keskkonnast järgmiselt:
+     * Klikitakse testi projekti nimel
+     * Ettetuleval lehel klikitakse valikul "Performance trend"
+     * Ettetuleval lehel klikitakse valikul "Last Report"
+     * Ettetuleval lehel klikitakse valikul "Response time trends for build: ..."
+     * Loetakse näit "Average (ms)" tabelilt pealkirjaga "URI: filterLoadRequest"
+     * Loetakse näit "Average (ms)" tabelilt pealkirjaga "URI: testakLoadRequest"
+     * Esimese ja teise näidu vahe annab keskmise filtri poolt kulutatava täiendava aja
 * Käivitamise ja läbiviimise skript:	filterLoad
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	Test loetakse positiivseks, kui filtri poolt kulutatav täiendav keskmine aeg on väiksem või võrdne 1ms. Vastasel korral loetakse test ebaõnnestunuks.
@@ -408,9 +403,14 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Päringute täitmise jõudlus on liiga väike - keskmine päringu täitmise aeg on suurem kui 10ms.
 * Testi jada kirjeldus:	
   1. Käivitatakse 50 paralleelset lõime päringute tegemiseks. Lõimed töötavad üksteisest sõltumatult.
-  2. Iga lõim teeb päringu andmesalvestaja komponendi REST logimisliidesele. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisselugemiseni.
+  2. Iga lõim teeb päringu andmesalvestaja komponendi REST logimisliidesele. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisse lugemiseni.
   3. Iga lõim täidab eelmist sammu järjest 10 korda.
-  4. Kui kõik lõimed on oma töö lõpetanud, arvutatakse päringute keskmine täitmise aeg.
+  4. Kui kõik lõimed on oma töö lõpetanud, arvutatakse päringute keskmine täitmise aeg. See leitakse Jenkins CI keskkonnast järgmiselt:
+     * Klikitakse testi projekti nimel
+     * Ettetuleval lehel klikitakse valikul "Performance trend"
+     * Ettetuleval lehel klikitakse valikul "Last Report"
+     * Ettetuleval lehel klikitakse valikul "Response time trends for build: ..."
+     * Loetakse näit "Average (ms)" tabelilt pealkirjaga "URI: storageRestStore" - see on koormustesti päringute täitmise keskmine aeg
 * Käivitamise ja läbiviimise skript:	storageRestStoreLoad
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	Test loetakse positiivseks, kui päringute täitmise keskmine aeg on väiksem või võrdne 10ms. Vastasel korral loetakse test ebaõnnestunuks.
@@ -428,9 +428,14 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Päringute täitmise jõudlus on liiga väike - keskmine päringu täitmise aeg on suurem kui 10ms.
 * Testi jada kirjeldus:	
   1. Käivitatakse 50 paralleelset lõime päringute tegemiseks. Lõimed töötavad üksteisest sõltumatult.
-  2. Iga lõim teeb päringu andmesalvestaja komponendi REST päringuliidesele. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisselugemiseni.
+  2. Iga lõim teeb päringu andmesalvestaja komponendi REST päringuliidesele. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisse lugemiseni.
   3. Iga lõim täidab eelmist sammu järjest 10 korda.
-  4. Kui kõik lõimed on oma töö lõpetanud, arvutatakse päringute keskmine täitmise aeg.
+  4. Kui kõik lõimed on oma töö lõpetanud, arvutatakse päringute keskmine täitmise aeg. See leitakse Jenkins CI keskkonnast järgmiselt:
+     * Klikitakse testi projekti nimel
+     * Ettetuleval lehel klikitakse valikul "Performance trend"
+     * Ettetuleval lehel klikitakse valikul "Last Report"
+     * Ettetuleval lehel klikitakse valikul "Response time trends for build: ..."
+     * Loetakse näit "Average (ms)" tabelilt pealkirjaga "URI: storageRestQuery" - see on koormustesti päringute täitmise keskmine aeg
 * Käivitamise ja läbiviimise skript:	storageRestQueryLoad
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	Test loetakse positiivseks, kui päringute täitmise keskmine aeg on väiksem või võrdne 10ms. Vastasel korral loetakse test ebaõnnestunuks.
@@ -448,11 +453,15 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Päringute täitmise jõudlus on liiga väike - keskmine päringu täitmise aeg on suurem kui 10ms.
 * Testi jada kirjeldus:	
   1. Käivitatakse 50 paralleelset lõime päringute tegemiseks. Lõimed töötavad üksteisest sõltumatult.
-  2. Iga lõim teeb päringu andmesalvestaja komponendi X-tee päringuliidesele. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisselugemiseni.
+  2. Iga lõim teeb päringu andmesalvestaja komponendi X-tee päringuliidesele. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisse lugemiseni.
   3. Iga lõim täidab eelmist sammu järjest 10 korda.
-  4. Kui kõik lõimed on oma töö lõpetanud, arvutatakse päringute keskmine täitmise aeg.
+  4. Kui kõik lõimed on oma töö lõpetanud, arvutatakse päringute keskmine täitmise aeg. See leitakse Jenkins CI keskkonnast järgmiselt:
+     * Klikitakse testi projekti nimel
+     * Ettetuleval lehel klikitakse valikul "Performance trend"
+     * Ettetuleval lehel klikitakse valikul "Last Report"
+     * Ettetuleval lehel klikitakse valikul "Response time trends for build: ..."
+     * Loetakse näit "Average (ms)" tabelilt pealkirjaga "URI: storageXroadQuery" - see on koormustesti päringute täitmise keskmine aeg
 * Käivitamise ja läbiviimise skript:	storageXroadQueryLoad
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	Test loetakse positiivseks, kui päringute täitmise keskmine aeg on väiksem või võrdne 10ms. Vastasel korral loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
-

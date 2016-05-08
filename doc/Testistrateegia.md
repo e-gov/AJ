@@ -58,7 +58,7 @@ Testimiseks luuakse SOAPui tarkvara abil spetsiaalsed makettrakendused. Testide 
 
 ### Koormustestid
 
-Koormustestide abil veendutakse tarkvara võimes töötada ettenähtud koormusel. Testide läbiviimiseks kasutatakse integratsioonitestide jaoks loodud lahendusi. Testimiseks luuakse eraldi Apache jMeter testiskript, mis toimib analoogselt integratsioonitesti jaoks loodud skriptiga, kuid mida täiendatakse paralleelsete käivitustega.  Testide kävitatakse CI serverist Apache jMeter tarkvara abil.
+Koormustestide abil veendutakse tarkvara võimes töötada ettenähtud koormusel. Testide läbiviimiseks kasutatakse integratsioonitestide jaoks loodud lahendusi. Testimiseks luuakse eraldi Apache jMeter testiskript, mis toimib analoogselt integratsioonitesti jaoks loodud skriptiga, kuid mida täiendatakse paralleelsete käivitustega.  Testid käivitatakse CI serverist Apache jMeter tarkvara abil.
 
 ## Testkeskkond
 
@@ -66,7 +66,7 @@ Integratsioonitestide ja koormustestide läbiviimiseks luuakse spetsiaalne CI ke
 
 Testkeskkond koosneb järgmistest komponentidest:
 
-* CI tarvara - testide automaatse läbiviimise vahend
+* CI tarkvara - testide automaatse läbiviimise vahend
 * DUMonitori eraldusfilter
 * DUMonitori andmesalvestaja
 * Test andmekogu - eraldusfiltri testimiseks kasutatav andmekogu
@@ -116,6 +116,6 @@ Testide läbiviimiseks on vajalik järgmise infotehnoloogilise kompleksi paigald
 
 * Täitja arendaja: Arendab ühiktestid, viib läbi ühiktestimise.
 * Täitja projektijuht: Loob testskriptid ja testrakenduse, häälestab CI keskkonna, koostab testiplaani, käivitab testid ja dokumenteerib tulemused.
-* Tellija projektijuht: Korraldab vastuvõtutestimise ja testitulemuste ülevaatamise.
+* Tellija projektijuht: Korraldab vastuvõtutestimise ja testitulemuste üle vaatamise.
 * Tellija süsteemiadministraator: Häälestab testimiseks vajalikud serverid ja süsteemitarkvara.
 * Tellija testijuht: kooskõlastab testistrateegia ja testiplaani.

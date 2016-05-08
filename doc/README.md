@@ -7,7 +7,7 @@ DUMonitor tarkvara dokumentatsiooni sisukord
   * [Testistrateegia](Testistrateegia.md)
   * [Testiplaan](Testiplaan.md)
   * [Testilood](Testilood.md)
-  * Testiraport
+  * [Testiraport](Testiraport.md)
 * Tarkvara:
   * [Tarkvara ehitusjuhend](Ehitusjuhend.md)
   * [Tarkvara rakendusjuhend](Rakendusjuhend.md)

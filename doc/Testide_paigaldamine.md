@@ -60,7 +60,7 @@ Andmejälgija testimine viiakse läbi spetsiaalses CI keskkonnas Jenkins CI kaas
 | TS2       | aj09.ci.kit       | Andmete pärija poolne X-tee turvaserver                       |
 | TS1       | aj10.ci.kit       | Andmekogu poolne X-tee turvaserver                            |
 
-Kompnentide skeem on toodud alljärgneval joonisel:
+Komponentide skeem on toodud alljärgneval joonisel:
 
 ![Testimise skeem](img/testimise_skeem.png)
 
@@ -87,7 +87,7 @@ Kopeerida serverisse lähtekoodi kataloogis "test/ci/setup" olevad failid ning k
 
 1. Kopeerida serverisse lähtekoodi kataloogis "test/ci/setup" olevad failid ning käivitada root-kasutaja õigustes seal olev skript "aj04-install.sh".
 2. Kopeerida lähtekoodi kataloogis "test/testak" asuvad failid "testak.wsdl" ja "dumonotor.wsdl" serveri aj04.ci.kit kataloogi "/var/lib/jetty8/webapps/root".
-3. Kopeerida lähtekoodi kataloogis "xforms" asuv fail "dumonitor-xforms.xhtml" serveri aj04.ci.kit kataloogi "/var/lib/jetty8/webapps/root".
+3. Kopeerida lähtekoodi kataloogis "xforms" asuv fail "dumonitor-xforms.xml" serveri aj04.ci.kit kataloogi "/var/lib/jetty8/webapps/root".
 4. Muuta eelmises kahes punktis kopeeritud failid kuuluma kasutajale "riajenk".
 
 #### aj08.ci.kit
@@ -106,7 +106,7 @@ Paigaldada X-tee turvaserveri tarkvara vastavalt selle paigaldamise juhendile. R
 #### aj10.ci.kit
 
 Paigaldada X-tee turvaserveri tarkvara vastavalt selle paigaldamise juhendile. Registreerida turvaserver X-tee liikme "Member 1" turvaserverina.
-Laadida turvaserverisse "Member 1" alla kaks teenuste WSDL ja lubada neis olevaid teenuseid kõigil väistel osapooltel käivitada:
+Laadida turvaserverisse "Member 1" alla kaks teenuste WSDL ja lubada neis olevaid teenuseid kõigil välistel osapooltel käivitada:
 
 * http://aj04.ci.kit:8080/testak.wsdl
 * http://aj04.ci.kit:8080/dumonitor.wsdl
@@ -119,22 +119,22 @@ Paigaldamisel tuleb jälgida, et paigaldataks variant, kus andmebaas on samas se
 
 Logida sisse MISP2 administreerimise keskkonda ja tekitada selle abil portaal alljärgnevate andmetega:
 
-| Parameeter                      | Väärtus                                   |
-|---------------------------------|-------------------------------------------|
-| Portaali nimi:                  | Member 1 MISP                             |
-| Portaali lühinimi:              | misp                                      |
-| Portaali tüüp:                  | Asutuse portaal                           |
-| Asutuse nimi:                   | Member 1                                  |
-| Asutuse registrikood:           | 20000001                                  |
-| X-tee protokolli versioon:      | 4.0                                       |
-| X-tee instants:                 | ee-dev                                    |
-| X-tee liikmeklass:              | GOV                                       |
-| X-tee alamsüsteemi kood:        | AJ                                        |
-| Asutuse turvaserveri aadress:   | http://aj10.ci.kit                        |
-| Päringute saatmise aadress:     | http://aj04.ci.kit:8080/testak/dumonitor  |
-| Arendaja vaade:                 | sees                                      |
-| Saada autilogi turvaserverisse: | väljas                                    |
-| Teemad kasutusel:               | väljas                                    |
+| Parameeter                       | Väärtus                                   |
+|----------------------------------|-------------------------------------------|
+| Portaali nimi:                   | Member 1 MISP                             |
+| Portaali lühinimi:               | misp                                      |
+| Portaali tüüp:                   | Asutuse portaal                           |
+| Asutuse nimi:                    | Member 1                                  |
+| Asutuse registrikood:            | 20000001                                  |
+| X-tee protokolli versioon:       | 4.0                                       |
+| X-tee instants:                  | ee-dev                                    |
+| X-tee liikmeklass:               | GOV                                       |
+| X-tee alamsüsteemi kood:         | AJ                                        |
+| Asutuse turvaserveri aadress:    | http://aj10.ci.kit                        |
+| Päringute saatmise aadress:      | http://aj04.ci.kit:8080/testak/dumonitor  |
+| Arendaja vaade:                  | sees                                      |
+| Saada auditlogi turvaserverisse: | väljas                                    |
+| Teemad kasutusel:                | väljas                                    |
 
 Portaalile lisada administraator.
 
@@ -163,7 +163,7 @@ Projekti eesmärgiks on lähtekoodi kompileerimine ning ühiktestide käivitamin
 
 * Projekt peab laadima andmejälgija lähtekoodi Git repositooriumist "https://github.com/e-gov/AJ/".
 * Lähtekoodi kompileerimine peab toimuma "Gradle Wrapper" abil taski "build" käivitamisega.
-* Peale build tegemist peab projekt kävitama skripti, mille sisu on järgnev:
+* Peale build tegemist peab projekt käivitama skripti, mille sisu on järgnev:
 
 ```sh
 #!/bin/sh
@@ -187,7 +187,7 @@ projekti toimunud build on toonud kaasa antud projekti buildi käivitamise.
 Projekt tuleb häälestada selliselt, et see viiks läbi järgmised tegevused:
 
 1. Andmesalvestaja komponendi paigaldamine serverisse aj03:
-   1. Kataloogi "/opt/riajenk/database" paigaldatakse andmbaasi tekitamise skriptid lähtekoodi kataloogist "storage/database".
+   1. Kataloogi "/opt/riajenk/database" paigaldatakse andmebaasi tekitamise skriptid lähtekoodi kataloogist "storage/database".
    2. Käivitatakse skript "/opt/riajenk/database/create-testdb.sh", mis tekitab andmebaasi vajalikud objektid.
    3. Kataloogi "/usr/share/jetty8/resources" paigaldatakse konfiguratsioonifailid lähtekoodi kataloogist "test/ci/config".
    4. Kataloogi "/var/lib/jetty8/webapps" paigaldatakse build poolt tekitatud WAR fail "dumonitor-storage.war", mis
@@ -249,7 +249,7 @@ projekti toimunud build on toonud kaasa antud projekti buildi käivitamise.
 
 Ühiktestid käivitatakse tarkvarakoodi kompileerimise tegevusega automaatselt, st lähtekoodi põhikataloogis käsu "./gradle build" kävitamisega. Teste on võimalik käivitada ka eraldi käsu "./gradle test" abil.
 
-Integratsiooniteste ja koormusteste tarkarakoodikompileerimise käigus ei käivitada. Neid teste tuleb käivitada ükshaaval, andes lähtekoodi kataloogis "test" käsu:
+Integratsiooniteste ja koormusteste tarkarakoodi kompileerimise käigus ei käivitada. Neid teste tuleb käivitada ükshaaval, andes lähtekoodi kataloogis "test" käsu:
 
 ```sh
 ../gradlew jmRun_{testinimi}
@@ -261,7 +261,7 @@ Siin {testinimi} tähistab lähtekoodi kataloogis "test/src/test/jmeter" asuva t
 
 ### Ühiktestide täiendamine
 
-Täiendavate ühikstestide lisamine toimub standardsel Java rakenduste jaoks kasutusel oleval meetodil. Testid lisatakse vastava mooduli "src/test" kataloogi ning need peavad vastama JUnit 4 (vt http://www.junit.org/) testide koostamise põhimõtetele. Testide käivitamiseks puudub vajadus testkonfiguratsiooni täiendada, build tuvastab automaatselt lisandunud testid ning käivitab need.
+Täiendavate ühiktestide lisamine toimub standardsel Java rakenduste jaoks kasutusel oleval meetodil. Testid lisatakse vastava mooduli "src/test" kataloogi ning need peavad vastama JUnit 4 (vt http://www.junit.org/) testide koostamise põhimõtetele. Testide käivitamiseks puudub vajadus testkonfiguratsiooni täiendada, build tuvastab automaatselt lisandunud testid ning käivitab need.
 
 ### Integratsioonitestide täiendamine
 
@@ -280,8 +280,8 @@ jMeter parameetrid tuleb seal esitada kujul "{parameeter}={väärtus}". Kasutuse
 |-----------------------|-------------------------------------------------|----------------|
 | testakUrl             | http://aj04.ci.kit:8080/testak/soap             | Test andmekogu URL |
 | filterUrl             | http://aj02.ci.kit:8080/dumonitor-filter/testak | Filtri komponendi URL |
-| dbUrl                 | jdbc:postgresql://aj03.ci.kit/aj                | Andmesalvestaja andmebaasi URL |
-| dbUser                | ajuser                                          | Andmesalvestaja andmebaasi kasutajatunnus |
+| dbUrl                 | jdbc:postgresql://aj03.ci.kit/dumonitor         | Andmesalvestaja andmebaasi URL |
+| dbUser                | dumonitor_app                                   | Andmesalvestaja andmebaasi kasutajatunnus |
 | dbPassword            | aj22p                                           | Andmesalvestaja andmebaasi kasutajatunnuse parool |
 | storageHost           | aj03.ci.kit                                     | Andmesalvestaja serveri nimi |
 | storagePort           | 8080                                            | Andmesalvestaja logimisliidese port |
@@ -296,7 +296,7 @@ Koormustestide täiendamine toimub analoogselt integratsioonitestidega. Koormust
 | Parameeter       | Vaikeväärtus | Tähendus       |
 |------------------|--------------|----------------|
 | parallelRequests | 50           | Paralleelselt käivitatavate testide arv |
-| rampUpPeriod     | 10           | Sekundite arv, mille jooksul parallelsed testid käivituvad. Iga paralleelne test kävitub eelmisega võrreldes nihkega nii, et näidatud perioodi lõpuks oleks kõik paralleelsed testid käivitunud |
+| rampUpPeriod     | 10           | Sekundite arv, mille jooksul paralleelsed testid käivituvad. Iga paralleelne test käivitub eelmisega võrreldes nihkega nii, et näidatud perioodi lõpuks oleks kõik paralleelsed testid käivitunud |
 | loopCount        | 10           | Mitu korda järjest igat paralleelset testi käivitatakse |
 | logRecordCount   | 10           | Kasutusel ainult testides "storageRestQueryLoad" ja "storageXroadQueryLoad" ning näitab, mitu logikirjet selles testis tekitatakse |
 

@@ -71,7 +71,7 @@ Testimistegevustes osalevad järgmised isikud:
 
 Testide läbiviimiseks kasutatakse Tellija juurde paigaldatud spetsiaalselt antud projekti jaoks loodud CI-keskkonda.
 
-Liideste toimimise testimine toimub integratsioonitestide abil. Integratsioonitestide läbiviimiseks realiseeritakse vajalikud makettrakendused ning testiskriptid. Lisaks luuakse vajalikud virtuaalmasinad ning paigaldatakse neisse testimiseks vajalik tarkvara. Pidevintegratsioonikeskkonna kaudu toimub arendatud tarkvarakoodi atomaatne paigaldamine testimiseks kasutatavatesse virtuaalmasinatesse ning testid käivitatakse automaatselt vastavate skriptide abil.
+Liideste toimimise testimine toimub integratsioonitestide abil. Integratsioonitestide läbiviimiseks realiseeritakse vajalikud makettrakendused ning testiskriptid. Lisaks luuakse vajalikud virtuaalmasinad ning paigaldatakse neisse testimiseks vajalik tarkvara. Pidevintegratsioonikeskkonna kaudu toimub arendatud tarkvarakoodi automaatne paigaldamine testimiseks kasutatavatesse virtuaalmasinatesse ning testid käivitatakse automaatselt vastavate skriptide abil.
 
 Koormustestide läbiviimseks kasutatakse integratsioonitestide jaoks üles seatud keskkonda. Koormustestideks koostatakse vastavad testskriptid.
 

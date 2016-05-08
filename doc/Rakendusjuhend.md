@@ -19,8 +19,6 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 
 ## Sisukord
 
-## Sisukord
-
   * [Dokumendi ajalugu](#dokumendi-ajalugu)
   * [Sisukord](#sisukord)
   * [Sihtrühm](#sihtr%C3%BChm)
@@ -99,7 +97,7 @@ tundlikke isikuandmeid.
 
 Reaalsuses edastatakse isikuandmeid väga erinevatel viisidel. Näiteks: üksiku isiku kohta käiv teenus X-teel, 
 sadu inimesi väljastav otsipäring X-teel, regulaarne mass-päring kümnete tuhandete isikute kohta
-nende andmete ajutiseks puhverdamiseks, isikuandmeid sisaldavate pdf failide edasisaatmine,
+nende andmete ajutiseks puhverdamiseks, isikuandmeid sisaldavate PDF failide edasisaatmine,
 isikuandmeid sisaldava andmebaasi kokkupakitud dumbi kopeerimine ftp kaudu jne.
 
 Samuti toimub isikuandmete töötlemine väga mitmekesisel moel, muuhulgas on ka andmetele ligipääsu mõiste mitmeti arusaadav: 
@@ -138,11 +136,11 @@ Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutl
 olukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
 
 Standardvariandina töötab andmejälgija selliselt, et tema filtrikomponent on infosüsteemi ja x-tee turvaserveri
-vahel nö proxy-rezhiimis: infosüsteem edastab oma x-tee päringuid otse filtrikomponendile, mis siis 
+vahel nö proxy-režiimis: infosüsteem edastab oma x-tee päringuid otse filtrikomponendile, mis siis 
 omakorda edastab neid turvaserverile. Kui seos andmekogu ja turvaserveriga ei ole üksühene, ei tekita
 see probleeme:
 
-* Sama rezhiimi on võimalik kasutada ka juhul, kui üks x-tee turvaserver teenindab korraga mitut andmekogu: 
+* Sama režiimi on võimalik kasutada ka juhul, kui üks x-tee turvaserver teenindab korraga mitut andmekogu: 
 siis küll ei saa paigaldada andmejälgijat otse turvaserverisse.
 * Samuti on lubatav olukord, kus üks andmekogu kasutab mitut turvaserverit: eraldusfiltrid
 tuleb sel juhul paigaldada iga turvaserveri ja andmekogu vahele.
@@ -171,7 +169,7 @@ päringutest üheselt võimalik isikuid leida.
 
 * Kui isikuandmeid edastatakse X-teel ja selliselt, et seal liiguvad korraga ainult ühe inimese andmed ja 
 tema isikukoodi saab X-tee päringust leida, tasub paigaldada ja konfigureerida andmejälgija filtrikomponent 
-x-tee liikluse jälgmiseks. See nõuab konfigureerimistöid, kuid mitte arendustöid.
+x-tee liikluse jälgimiseks. See nõuab konfigureerimistöid, kuid mitte arendustöid.
 
 * Kui x-tee lihtne jälgimine ei ole võimalik, saab andmejälgijat kasutada selliselt, et ehitada andmekogu infosüsteemi
 lihtsad http(s) põhised REST-päringud, millega isikuandmete edastamise või töötlemise fakt saadetakse otse
@@ -190,7 +188,7 @@ kasutades seejuures (uue x-tee versiooni korral) otse X-tee poolt kasutatavat Po
 ja nad ei vaja tingimata omaette serverit.
 
 * Kolmas võimalus on mitte paigaldada eraldi andmebaasi-serverit andmejälgija jaoks, vaid kasutada mõnda andmekogu 
-infosüsteemis olebvat andmebaasi. Eriti lihtne (ei vaja arendustööd) on see juhul, 
+infosüsteemis olevat andmebaasi. Eriti lihtne (ei vaja arendustööd) on see juhul, 
 kui andmebaas on realiseeritud Postgresql-l. Vastasel korral võib tekkida vajadus teha väikeses mahus
 arendust, muutmaks ära andmejälgija komponentides olevad SQL-päringud ja kompileerimaks andmejälgija uuesti.
 
@@ -217,7 +215,7 @@ Soovitav oleks, et meeskonnas on ka:
   * Arendaja, kes vajadusel liidestatavale infosüsteemile liidestusi ja täiendusi ehitab.
 
 2.	Otsustada, milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat liidestada;  samuti, millised andmejälgija komponendid kasutusele võtta. Töö võiks võtta mõnest tunnist kuni ca ühe päevani. Siin etapis on vaja 
-  * Aru saada andmejälgija põhimõtetetest ja võimalustest.
+  * Aru saada andmejälgija põhimõtetest ja võimalustest.
   * Arutada variante teenuse/infosüsteemi haldaja ja/või arendajaga.
 
 3.	Otsustada, millistesse olemasolevatesse serveritesse süsteemi komponendid paigutada, või kas hankida uus server. Töö võiks võtta mõne tunni ja eeskätt on otsustajaks asutuse IT süsteemide haldaja, kes peab selleks hetkeks olema kursis andmejälgija põhimõtete ja eelneva punkt 2 otsusega.
@@ -234,7 +232,7 @@ Soovitav oleks, et meeskonnas on ka:
 
 9.	Töötav süsteem tervikuna läbi testida. Spetsiaalseid formaalseid testsüsteeme ei ole siin vaja kasutada, tuleks aga lihtsalt tuvastada, et ettenähtud funktsionaalsus töötab ja ei paista ette-ennustamatuid kõrvalefekte. Siin võiks osa võtta asutuse IT põhimõtete otsustaja ja IT süsteemide haldaja, mahuks planeerida mõned tunnid kuni päeva.
 
-10.	Leppida asutususesiselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
+10.	Leppida asutusesiseselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
 
 
 ## Tarkvara paigaldamine
