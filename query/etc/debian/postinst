@@ -13,6 +13,7 @@ perl -pi -e 's{<Set name="extractWars">false</Set>}{<Set name="extractWars">true
 
 if initctl status xroad-jetty | grep process > /dev/null; then
 	initctl restart xroad-jetty
+	sleep 3
 fi
 if initctl status nginx | grep process > /dev/null; then
 	initctl restart nginx

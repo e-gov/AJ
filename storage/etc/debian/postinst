@@ -18,6 +18,7 @@ sudo -u postgres sh -c "cd /usr/share/dumonitor/storage/database ; ./createdb.sh
 
 if initctl status xroad-jetty | grep process > /dev/null; then
 	initctl restart xroad-jetty
+	sleep 3
 fi
 if initctl status nginx | grep process > /dev/null; then
 	initctl restart nginx
