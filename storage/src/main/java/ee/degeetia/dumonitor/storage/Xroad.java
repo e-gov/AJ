@@ -37,8 +37,8 @@ import org.w3c.dom.Node;
 
 import ee.degeetia.dumonitor.common.config.Property;
 
- /**
- * Xroad is a SOAP service for x-road, answering queries 
+/**
+ * Xroad is a SOAP service for x-road, answering queries
  * with x-road-format lists of log records for one person.
  *
  */

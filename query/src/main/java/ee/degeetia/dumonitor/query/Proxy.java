@@ -58,7 +58,7 @@ public class Proxy extends ProxyServlet {
   }
 
   protected void loadProperties() {
-    PropertyLoader.loadProperties(Property.class, "dumonitor.properties", "default.properties");
+    PropertyLoader.loadProperties(Property.class, "default.properties", "dumonitor.properties");
     try {
       proxyServer = URI.create(Property.QUERY_TURVASERVER_URL.getValue());
     } catch (IllegalArgumentException e) {
