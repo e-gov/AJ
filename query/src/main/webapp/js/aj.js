@@ -286,8 +286,16 @@ function shortenStr(str,maxlen) {
 }
 
 function encodeHtml(txt) {
-  return txt.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;");
+  return txt.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
 function debug(str) {if (debugging) console.log(str); }  
 
+$(document).ready(function(){
+  // Fill in select-box:
+  $('#flt_organization').html('');
+  for (var key in headers) {
+    if (key === 'length' || !headers.hasOwnProperty(key)) continue;
+    $('#flt_organization').append('<option value="'+encodeHtml(key).replace(/'/g, "&#39;")+'">'+encodeHtml(key)+'</option>');
+  }
+});

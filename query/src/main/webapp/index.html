@@ -30,7 +30,7 @@ var debugging=false; // set to true for some console logging
 // observe that {id} and {userId} are inserted by the javascipt program
 
 var headers={
-"Asutus1": 
+"Andmekogu1": 
 "<soapenv:Header>"+
 "     <xro:protocolVersion>4.0</xro:protocolVersion>"+
 "     <xro:id>{id}</xro:id>"+
@@ -51,7 +51,7 @@ var headers={
 "     </xro:client>"+
 "</soapenv:Header>",
 
-"Asutus2": 
+"Andmekogu2": 
 "<soapenv:Header>"+
 "     <xro:protocolVersion>4.0</xro:protocolVersion>"+
 "     <xro:id>{id}</xro:id>"+
@@ -120,7 +120,7 @@ var headers={
       <div id="maincontent">
       <!-- <form name="mainform" id="mainform" action="?" method="post"> -->
       <div class='tabletop'>
-      Vali asutus ja sisesta isikukood:</div>
+      Vali andmekogu ja sisesta isikukood:</div>
       <!--
       <div class='tabletop'>
       Kirjed <span id='firstrownr'>0</span>...<span id='lastrownr'>0</span></div>
@@ -132,11 +132,9 @@ var headers={
               <tbody>
               
               <tr>
-              <td class="filterlabel">Asutus</td>
+              <td class="filterlabel">Andmekogu</td>
               <td>
                 <select class="filterselect" id="flt_organization">
-                  <option value="Asutus1">Asutus1</option>
-                  <option value="Asutus2">Asutus2</option>
                 </select>  
               </td>
               </tr>
@@ -219,9 +217,9 @@ var headers={
       </div>
       <div class="modal-body">     
         See veebileht on andmejälgija testrakendus: saad valida, mis
-        asutuse x-tee liiklust uurid ja sisestada suvalise isikukoodi:
+        andmekogu x-tee liiklust uurid ja sisestada suvalise isikukoodi:
         seepeale näed, kas, millal ja kuhu selle isikukoodiga seotud andmeid
-        on asutus saatnud või töödelnud.
+        on andmekogu saatnud või töödelnud.
         <p>
         Kõik päringud ja vastused toimuvad selle testrakenduse puhul üle x-tee.
         <p>
@@ -231,7 +229,7 @@ var headers={
           ja <b>ainult sisseloginud kasutaja</b> isikukoodi jaoks, mitte käesoleva
           testrakenduse kaudu!</li>        
          <li>andmejälgija komplektis on olemas ka asutuse sisekasutuse veebirakendus,
-          mis on mõeldud isikuandmete liikluse logi uurimiseks ühe asutuse piires ja
+          mis on mõeldud isikuandmete liikluse logi uurimiseks ühe andmekogu piires ja
           ei kasuta oma tööks x-teed</li>
         </ul>       
       </div>
@@ -258,9 +256,9 @@ var headers={
       <div class="modal-body">      
         See veebileht on andmejälgija <b>testrakendus</b>, mitte reaalseks kasutuseks
         mõeldud komponent. Testides saad valida, mis
-        asutuse x-tee liiklust uurid ja sisestada suvalise isikukoodi:
+        andmekogu x-tee liiklust uurid ja sisestada suvalise isikukoodi:
         seepeale näed, kas, millal ja kuhu selle isikukoodiga seotud andmeid
-        on asutus saatnud või töödelnud. Liiklus toimub üle x-tee ja 
+        on andmekogu saatnud või töödelnud. Liiklus toimub üle x-tee ja 
       </div>      
       <div class="modal-footer noround">
         <button type="button" class="btn btn-default" 
