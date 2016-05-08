@@ -31,6 +31,7 @@ jmeter {
 	// jMeter testide parameetrid
 	jmUserProperties = [
 		// Fail tuleb anda jmeter.workDir suhtes, see on vaikimisi "build/jmeter"
+		"jmeter.save.saveservice.url=true",
 		"xpath.namespace.config=../../src/test/jmeter/jmeter.namespaces",
 		"testakUrl=http://aj04.ci.kit:8080/testak/soap",
 		"filterUrl=http://aj02.ci.kit:8080/dumonitor-filter/testak",
