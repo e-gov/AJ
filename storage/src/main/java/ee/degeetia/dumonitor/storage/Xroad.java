@@ -37,8 +37,8 @@ import org.w3c.dom.Node;
 
 import ee.degeetia.dumonitor.common.config.Property;
 
- /**
- * Xroad is a SOAP service for x-road, answering queries 
+/**
+ * Xroad is a SOAP service for x-road, answering queries
  * with x-road-format lists of log records for one person.
  *
  */
@@ -56,8 +56,6 @@ public class Xroad extends HttpServlet {
   private static final int LIMIT_DEFAULT = 1000;
   private static final long serialVersionUID = 1L;
   
-  private static Context context; // global vars are here
-
   // acceptable keys: identical to settable database fields
   public static String[] inKeys = {
       "personcode", "action", "sender", "receiver", "restrictions", "sendercode", "receivercode", "actioncode",
@@ -66,7 +64,7 @@ public class Xroad extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    context = Util.initRequest(req, resp, "text/xml", Xroad.class);
+    Context context = Util.initRequest(req, resp, "text/xml", Xroad.class);
     Util.showError(context, 2, "get method not allowed for xroad requests");
   }
 
@@ -84,6 +82,7 @@ public class Xroad extends HttpServlet {
    */
   private void handleRequest(HttpServletRequest req, HttpServletResponse resp, boolean isPost)
       throws ServletException, IOException {
+    Context context = null;
     try {
       context = Util.initRequest(req, resp, "text/xml", Xroad.class);
       if (context == null)
@@ -91,7 +90,7 @@ public class Xroad extends HttpServlet {
       boolean ok = Util.parseInput(req, resp, context, inKeys, isPost);
       if (!ok || context.inParams == null)
         return;
-      handleXroad();
+      handleXroad(context);
     } catch (Exception e) {
       Util.showError(context, ERRCODE_9, "unexpected error: " + e.getMessage());
     }
@@ -102,10 +101,11 @@ public class Xroad extends HttpServlet {
   /**
    * Main handler: parse the query, call fetchData, wrap result into envelope
    *
+   * @param context Request context
    * @throws ServletException generic catchall
    * @throws IOException generic catchall
    */
-  public static void handleXroad() throws ServletException, IOException {
+  public void handleXroad(Context context) throws ServletException, IOException {
     Document doc = context.xmldoc;
     try {
       if (!Util.parseXroadHeader(context, doc))
@@ -162,7 +162,7 @@ public class Xroad extends HttpServlet {
         return;
       }
 
-      String result = fetchData(personcode, offset, limit);
+      String result = fetchData(context, personcode, offset, limit);
       String restag;
       if (context.xrdVersion.equals("old"))
         restag = "response";
@@ -198,6 +198,7 @@ public class Xroad extends HttpServlet {
    * Query the database and build a partial result to be wrapped in the soap
    * envelope later
    *
+   * @param context request context
    * @param personcode person to search for from logs
    * @param offset resultset starts from here (0,1,...)
    * @param limit max size of resultset
@@ -205,7 +206,8 @@ public class Xroad extends HttpServlet {
    * @throws ServletException generic catchall
    * @throws IOException generic catchall
    */
-  public static String fetchData(String personcode, int offset, int limit) throws ServletException, IOException {
+  public String fetchData(Context context, String personcode, int offset, int limit)
+      throws ServletException, IOException {
     String result = null;
 
     Connection conn = Util.createDbConnection(context);

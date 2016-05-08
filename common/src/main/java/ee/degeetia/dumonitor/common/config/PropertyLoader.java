@@ -68,7 +68,7 @@ public final class PropertyLoader {
       if (propertiesFile == null) {
         throw new IllegalStateException("Properties file " + filename + " not found on classpath");
       }
-      LOG.info("Loading properties from classpath resource {}", filename);
+      LOG.debug("Loading properties from classpath resource {}", filename);
       try {
         properties.load(propertiesFile);
       } catch (IOException e) {
@@ -82,7 +82,7 @@ public final class PropertyLoader {
       definedProperties.add(property.getKey());
       String value = properties.getProperty(property.getKey());
       if (!StringUtil.isEmpty(value)) {
-        LOG.info("Loaded property {} = {}", property.getKey(), value);
+        LOG.debug("Loaded property {} = {}", property.getKey(), value);
         property.setValue(value);
       }
     }

@@ -55,7 +55,7 @@ public class ServletInitializer {
    */
   public void addServlet(Class<? extends Servlet> servletClass, String... servletMappings) {
     String servletName = servletClass.getSimpleName();
-    LOG.info("Initializing servlet {} with mappings {}", servletName, servletMappings);
+    LOG.debug("Initializing servlet {} with mappings {}", servletName, servletMappings);
 
     servletContext.addServlet(servletName, servletClass).addMapping(servletMappings);
   }

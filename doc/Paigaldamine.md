@@ -282,6 +282,8 @@ Lisaks on võimalik kirjeldada konfiguratsioonifailis järgmisi süsteemseid par
 * javax.net.ssl.keyStorePassword
 * javax.net.ssl.trustStorePassword
 
+Rakendus logib oma tegevust [SLF4J](http://www.slf4j.org/) abil ning selle all kasutatakse Apache Log4J 2 raamistikku. Logimise häälestamine tuleb teostada vastavalt Log4J raamistiku tootja poolt antud juhistele (vt http://logging.apache.org/log4j/2.x/manual/configuration.html). Rakenduses on sisemiselt kirjeldatud konfiguratsioonifail "log4j2.xml", millega on häälestatud INFO taseme teadete logimine konsooli logijasse, st rakendusserveri logifaili.
+
 ### Esitamise testrakenduse häälestamine
 
 Esitamise testrakenduse konfigureerimiseks on vaja täiendavalt kindlaks määrata järgmised konfiguratsiooni elemendid:
