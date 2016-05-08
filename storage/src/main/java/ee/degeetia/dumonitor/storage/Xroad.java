@@ -218,7 +218,7 @@ public class Xroad extends HttpServlet {
 
     try {
       // show just logtime, action, receiver
-      String sql = "select " + "to_char(logtime,'YYYY-MM-DDTHH24:MI:SS') as logtime,action,receiver" + " from ajlog "
+      String sql = "select " + "to_char(logtime,'YYYY-MM-DD') || 'T' || to_char(logtime,'HH24:MI:SS') as logtime,action,receiver" + " from ajlog "
           + " where personcode=? " + " and ((restrictions is null) or restrictions!='P') "
           + " order by id desc limit ? offset ?";
       PreparedStatement preparedStatement = conn.prepareStatement(sql);

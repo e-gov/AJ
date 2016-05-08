@@ -74,7 +74,7 @@ function askData() {
   $.ajax({
     url: queryURL, 
     type: "POST",   
-    contentType: "application/xml",
+    contentType: "text/xml",
     // Tell jQuery we're expecting text: we will parse it ourselves    
     dataType: "text",
     data: soap,
