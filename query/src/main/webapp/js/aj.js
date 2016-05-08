@@ -292,10 +292,13 @@ function encodeHtml(txt) {
 function debug(str) {if (debugging) console.log(str); }  
 
 $(document).ready(function(){
-  // Fill in select-box:
-  $('#flt_organization').html('');
-  for (var key in headers) {
-    if (key === 'length' || !headers.hasOwnProperty(key)) continue;
-    $('#flt_organization').append('<option value="'+encodeHtml(key).replace(/'/g, "&#39;")+'">'+encodeHtml(key)+'</option>');
-  }
+  $.getScript("/producers.js", function () {
+    headers = producers;
+	// Fill in select-box:
+	$('#flt_organization').html('');
+	for (var key in headers) {
+	  if (key === 'length' || !headers.hasOwnProperty(key)) continue;
+	  $('#flt_organization').append('<option value="'+encodeHtml(key).replace(/'/g, "&#39;")+'">'+encodeHtml(key)+'</option>');
+    }
+  });
 });
