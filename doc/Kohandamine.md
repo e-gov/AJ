@@ -71,9 +71,46 @@ sisekasutuseks otsimise REST teenus, avalikuks eesti.ee kasutamiseks ettenähtud
 Järgmistes punktides anname näpunäiteid nende komponentide ehituse kohta, et hõlbustada nende lähtekoodi kohandamist
 ja edasiarendamist.
 
+## Ühiskasutatavad komponendid
+
+Lähtekood asub ülemise taseme kataloogis common.
+
+Antud osasse on koondatud Java moodulid, mida kasutavad ühiselt kõik komponendid:
+
+* ee.degeetia.dumonitor.common.config - konfiguratsioonifailide haldus
+* ee.degeetia.dumonitor.common.heartbeat - nn. heartbeat teenuse realisatsioon
+* ee.degeetia.dumonitor.common.util - erinevad väikesed utiliitklassid
+
+Kõikide moodulite poolt kasutatavad konfiguratsiooniparameetrid on kirjeldatud hulgas Property. Konfiguratsioon loetakse sisse klassi PropertyLoader abil.
+
+HeartbeatServlet kujutab endast lihtsat veebiteenust, mis loeb komponendi ressursifailist "build.property" komponendi koosteinfo (nimi, versioon, kompileerimise ajamoment) ning tagastab selle JSON struktuurina päringu esitajale. Ressursifail "build.property" tekitatakse iga komponendi loomisskripti poolt automaatselt.
+
+Komponendi kood kompileeritakse eraldi JAR faili ning liidetakse teiste komponendite WAR failidesse.
+
 ## Eraldusfilter
 
 Lähtekood asub ülemise taseme kataloogis filter.
+
+Eraldusfilter koosneb järgmistest sisemistest moodulitest:
+
+* ee.degeetia.dumonitor.filter - sisaldab servleti, mis töötleb vahendatavaid päringuid. Servlet töötleb korraga mõlemas suunas liikuvaid
+päringuid. Sisemises konfiguratsioonifailis "default.properties" määratakse kindlaks päringu PATH osised, mille baasilt saab servlet aru,
+kas tegu on X-tee turvaserveri või andmekogu poolt lähtuva päringuga.
+* ee.degeetia.dumonitor.filter.config - sisaldab filtri konfiguratsioonifaili haldamise koodi.
+* ee.degeetia.dumonitor.filter.config.generated - sisaldab filtri konfiguratsioonifaili XML-struktuurile vastavaid Java klasse, geneererituna filtri
+konfiguratsioonifaili XML Schema failist
+* ee.degeetia.dumonitor.filter.core - sisaldab põhikoodi, mis käivitub eraldusfiltri komponendi käivitamisel
+* ee.degeetia.dumonitor.filter.http - sisaldab HTTP kliendi realisatsiooni saabunud päringute edasivahendamiseks teisele osapoolele
+* ee.degeetia.dumonitor.filter.log - sisaldab koodi, mis realiseerib andmete logimise andmesalvestaja REST liidsele
+* ee.degeetia.dumonitor.filter.processor - sisaldab filtrite rakendamise koodi
+
+Lisaks on eraldusfiltri koodis kaasas sisemiselt kasutatavad ressursid:
+
+* default.properties - sisaldab komponendi konfiguratsiooniparameetrite vaikeväärtusi
+* filter-defaults.xml - sisaldab komponendi filtrite XML kirjeldusfaili vaikeväärtusi
+* log4j2.xml - sisaldab logimise raamistiku Log4J vaikekonfiguratsiooni
+
+Lähtekoodi muutmisel on vajalik ka vastavate ühiktestide muutmine "src/test/java" kataloogi all.
 
 ## Andmesalvestaja
 
