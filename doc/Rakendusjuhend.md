@@ -28,6 +28,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Variandid andmejälgija kasutuselevõtuks](#variandid-andmej%C3%Algija-kasutuselev%C3%B5tuks)
   * [Andmejälgija kasutuselevõtmise protsess](#andmej%C3%Algija-kasutuselev%C3%B5tmise-protsess)
   * [Tarkvara paigaldamine](#tarkvara-paigaldamine)
+  * [Tarkvara ehitamine ja kohandamine](#tarkvara-ehitamine-ja-kohandamine)
   * [Andmejälgija haldustoimingud](#andmejj%C3%Algija-haldustoimingud)  
   * [Infoturbe küsimused](#infoturbe-k%C3%BCsimused)
   
@@ -239,6 +240,14 @@ Soovitav oleks, et meeskonnas on ka:
 
 Andmejälgija komponentide paigaldamise, eemaldamise ja konfigureerimise tegevused on kirjeldatud eraldi dokumendis 
 [Tarkvara paigaldamise juhend](Paigaldamine.md)
+
+# Tarkvara ehitamine ja kohandamine
+
+Andmejälgija komponentide lätekoodist kompileerimise ja ehitamise tegevused on kirjeldatud eraldi dokumendis 
+[Tarkvara ehitusjuhend](Ehitusjuhend.md)
+
+Andmejälgija komponentide kohandamise ehk lähtekoodi muutmise ja edasiarendamise võimalused on kirjeldatud eraldi dokumendis 
+[Tarkvara kohandamise juhend](Kohandamine.md)
 
 ## Andmejälgija haldustoimingud
 
