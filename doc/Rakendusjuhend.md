@@ -281,7 +281,8 @@ Sellest tulenevalt ei saa aga üks andmejälgija teenindada korraga mitut andmek
 
 Andmejälgijat paigaldades tuleb ta tingimata seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine
 on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb reeglina
-lihtsalt jälgimata jätta.
+lihtsalt jälgimata jätta. Abistava variandina osade päringute logimise keelamiseks saab kasutada jälgimisfiltri
+konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki "Välistuste kirjeldamine".
 
 Andmejälgija paigaldamisel tuleb seda teha selliselt, et andmesalvestaja komponendi erinevad teenused:
 * andmete salvestamise REST liides
@@ -290,7 +291,16 @@ Andmejälgija paigaldamisel tuleb seda teha selliselt, et andmesalvestaja kompon
 ei oleks ligipääsetavad asutusest/andmekogust väljapool.
 
 Sisekasutuse veebirakenduse paigaldamise korral tuleb server seadistada selliselt, et ligipääsud REST teenusele
-oleks võimalikud ainult selleks konkreetse õiguse saanud töötajatele.
+oleks võimalikud ainult selleks konkreetse õiguse saanud töötajatele. Veebirakendus ise selleks mingeid
+vahendeid ei paku, eeldades ligipääsu piiramist veebiserveri standardvahenditega: 
+vaata täpsemalt paigaldamisjuhendi peatükki "Autentimise häälestamine".
+
+Rõhutame, et palju olulisem, kui veebirakendusele endale ligipääsu piiramine, on eelpool mainitud
+andmesalvestaja komponendi teenustele ligipääsu piiramine.
+
+
+
+
 
 
 

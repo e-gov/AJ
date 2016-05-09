@@ -40,6 +40,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
       * [Filtrite kirjeldamine](#filtrite-kirjeldamine)
       * [Näidis](#n%C3%A4idis)
     * [Esitamise testrakenduse häälestamine](#esitamise-testrakenduse-h%C3%A4%C3%A4lestamine)
+    * [Autentimise häälestamine](#autentimise-h%C3%A4%C3%A4lestamine)
 
 
 ## Sissejuhatus

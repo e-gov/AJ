@@ -23,7 +23,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Sisukord](#sisukord)
   * [Sihtrühm](#sihtr%C3%BChm)
   * [Sissejuhatus](#sissejuhatus)
-  * [Andmejälgija komponendid ja nende lähtekoodi asukoht](#andmej%C3%A4lgija-komponendid-ja-nende-l%C3%A4htekoodi-asukoht)
+  * [Andmejälgija komponendid](#andmej%C3%A4lgija-komponendid)
   * [Eraldusfilter](#eraldusfilter)
   * [Andmesalvestaja](#andmesalvestaja)
   * [Sisekasutuse veebiliides](#sisekasutuse-veebiliides)
@@ -35,14 +35,16 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 
 Kohandamisjuhendi sihtrühmaks on:
 
-* Andmejälgija tarkvara kasutav andmekogu omanik, kes soovib seda tarkvara oma tarbeks kohandada ja edasi arendada
+* Andmejälgija tarkvara kasutav andmekogu omanik, kes soovib seda tarkvara oma tarbeks 
+kohandada ja edasi arendada
 
 ## Sissejuhatus
 
 Tarkvara lähtekood on kättesaadav avalikus GitHub repositooriumis https://github.com/e-gov/AJ.
 
-Käesoleva juhendi eesmärgiks on selgitada lähtekoodi struktuuri ja anda näpunäiteid tarkvara kohandamiseks ja edasiarendamiseks,
-Tarkvara paigaldamine ja konfigureerimine on selgitatud eraldi paigaldamisjuhendis ning kompileerimine ja ehitamine ehitusjuhendis,
+Käesoleva juhendi eesmärgiks on selgitada lähtekoodi struktuuri ja anda näpunäiteid 
+tarkvara kohandamiseks ja edasiarendamiseks. Tarkvara paigaldamine ja konfigureerimine
+on selgitatud eraldi paigaldamisjuhendis ning kompileerimine ja ehitamine ehitusjuhendis,
 seega neid punkte siin juhendis me ei käsitle ning eeldame, et nende juhenditega on juba tutvutud.
 
 Pea kogu andmejälgija tarkvara on kirjutatud Javas, võimaldades kasutada Java versioone alates 1.6st. 
@@ -51,19 +53,19 @@ Komponendid on struktureeritud selliselt, et neid saaks käivitada Java rakendus
 Standardvariandina on rakendusserverina kasutatud Jetty serverit, kuid süsteem sobib ka Tomcati
 ja teiste sarnaste rakendusserverite jaoks.
 
-Veebirakenduste funktsionaalsus on kirjutatud javascriptis, andmebaasipärigud SQL-s, eraldusfilter kasutab ka xpath avaldisi.
+Veebirakenduste funktsionaalsus on kirjutatud javascriptis, andmebaasipärigud SQL-s, 
+eraldusfilter kasutab ka xpath avaldisi.
 
 Operatsioonisüsteemina eeldatakse Linuxit, arendus ja testimine on toimunud Ubuntu 14 ja 15 versioonidel.
 
 Andmejälgija ehitamiseks on kasutatud gradle ehitustööriistu.
 
-## Andmejälgija komponendid ja nende lähtekoodi asukoht
+## Andmejälgija komponendid
 
 Siin juhendis jagame andmejälgija järgmisteks osadeks:
 
 * Eraldusfilter, mis jälgib x-tee turvaserveri sõnumeid ja salvestab isikuandmete liikumise andmesalvestajasse.
-* Andmesalvestaja sisaldab andmebaasi ja temaga seotud teenuseid ehk API-sid: salvestamise REST teenus,
-sisekasutuseks otsimise REST teenus, avalikuks eesti.ee kasutamiseks ettenähtud x-tee SOAP otsingute teenus.
+* Andmesalvestaja sisaldab andmebaasi ja temaga seotud teenuseid ehk API-sid: salvestamise REST teenus, sisekasutuseks otsimise REST teenus, avalikuks eesti.ee kasutamiseks ettenähtud x-tee SOAP otsingute teenus.
 * Sisekasutuse veebiliides andmesalvestajast kirjete otsimiseks.
 * eesti.ee jaoks ettenähtud xforms teenuse komponendid
 * Testrakendus, mis sarnaneb eesti.ee rakendusele ja ei ole mõeldud reaalseks kasutuseks.
@@ -81,9 +83,13 @@ Antud osasse on koondatud Java moodulid, mida kasutavad ühiselt kõik komponend
 * ee.degeetia.dumonitor.common.heartbeat - nn. heartbeat teenuse realisatsioon
 * ee.degeetia.dumonitor.common.util - erinevad väikesed utiliitklassid
 
-Kõikide moodulite poolt kasutatavad konfiguratsiooniparameetrid on kirjeldatud hulgas Property. Konfiguratsioon loetakse sisse klassi PropertyLoader abil.
+Kõikide moodulite poolt kasutatavad konfiguratsiooniparameetrid on kirjeldatud hulgas Property. 
+Konfiguratsioon loetakse sisse klassi PropertyLoader abil.
 
-HeartbeatServlet kujutab endast lihtsat veebiteenust, mis loeb komponendi ressursifailist "build.property" komponendi koosteinfo (nimi, versioon, kompileerimise ajamoment) ning tagastab selle JSON struktuurina päringu esitajale. Ressursifail "build.property" tekitatakse iga komponendi loomisskripti poolt automaatselt.
+HeartbeatServlet kujutab endast lihtsat veebiteenust, mis loeb komponendi ressursifailist 
+"build.property" komponendi koosteinfo (nimi, versioon, kompileerimise ajamoment) ning tagastab selle 
+JSON struktuurina päringu esitajale. Ressursifail "build.property" tekitatakse iga komponendi
+loomisskripti poolt automaatselt.
 
 Komponendi kood kompileeritakse eraldi JAR faili ning liidetakse teiste komponendite WAR failidesse.
 
@@ -93,12 +99,13 @@ Lähtekood asub ülemise taseme kataloogis filter.
 
 Eraldusfilter koosneb järgmistest sisemistest moodulitest:
 
-* ee.degeetia.dumonitor.filter - sisaldab servleti, mis töötleb vahendatavaid päringuid. Servlet töötleb korraga mõlemas suunas liikuvaid
-päringuid. Sisemises konfiguratsioonifailis "default.properties" määratakse kindlaks päringu PATH osised, mille baasilt saab servlet aru,
+* ee.degeetia.dumonitor.filter - sisaldab servleti, mis töötleb vahendatavaid päringuid. 
+Servlet töötleb korraga mõlemas suunas liikuvaid päringuid. Sisemises konfiguratsioonifailis 
+"default.properties" määratakse kindlaks päringu PATH osised, mille baasilt saab servlet aru, 
 kas tegu on X-tee turvaserveri või andmekogu poolt lähtuva päringuga.
+
 * ee.degeetia.dumonitor.filter.config - sisaldab filtri konfiguratsioonifaili haldamise koodi.
-* ee.degeetia.dumonitor.filter.config.generated - sisaldab filtri konfiguratsioonifaili XML-struktuurile vastavaid Java klasse, geneererituna filtri
-konfiguratsioonifaili XML Schema failist
+* ee.degeetia.dumonitor.filter.config.generated - sisaldab filtri konfiguratsioonifaili XML-struktuurile vastavaid Java klasse, geneererituna filtri konfiguratsioonifaili XML Schema failist
 * ee.degeetia.dumonitor.filter.core - sisaldab põhikoodi, mis käivitub eraldusfiltri komponendi käivitamisel
 * ee.degeetia.dumonitor.filter.http - sisaldab HTTP kliendi realisatsiooni saabunud päringute edasivahendamiseks teisele osapoolele
 * ee.degeetia.dumonitor.filter.log - sisaldab koodi, mis realiseerib andmete logimise andmesalvestaja REST liidsele
@@ -215,9 +222,78 @@ ja sellest arvestatakse ainult offset ja limit parameetreid, mis võib ka ära j
 
 ## Sisekasutuse veebiliides
 
+Sisekasutuse veebiliides on nn 'single-page application' ehk tegu on staatiliste failidega,
+mis on ette nähtud serveerimiseks mistahes veebiserveri poolt. Veebiliidese lähtekood asub 
+kataloogis storage/src/main/webapp/: vajalikud failid on ainult index.html ja selle poolt kasutavad
+css failid kataloogis storage/src/main/webapp/css ning
+javascripti failid kataloogis storage/src/main/webapp/js
+
+Sisekasutuse veebiliides kasutab logikirjetest otsingu jaoks REST teenust, mida realiseerib
+eelpool mainitud andmesalvestaja API lähtekoodiga Query.java.
+
+Veebiliidese konfigureerimiseks saab muuda index.html faili alguses olevat javascripti blokki:
+muuhulgas võib olla oluline muutuja queryURL seadmine: sellelt URL-lt kutsutakse välja
+otsingu REST API-t. Väljakutsutav API ei pea olema serveeritud samalt serverilt, millelt
+staatiline index.html.
+
+Ligipääs veebiliidesele, eeskätt aga mainitud REST API-le query, tuleb piirata nii,
+et see oleks ainult asutusesisene ja soovitavalt ainult valitud töötajatele. 
+Ligipääsupiiranguteks ei realiseeri antud veebiliides mingeid erivahendeid ja ei sisalda
+oma autentimislahendust: selle asemel eeldatakse, et piirangud seatakse paigaldamisel veebiserveri
+tasemel IP aadressi, paroolide või ID-kaardiga: detaile leiad paigaldamisjuhendist.
+
+
 ## eesti.ee
 
+eesti.ee rakendus on realiseeritud nimetatud portaalis kasutusel oleva X-forms rakenduste
+põhimõttel. Realisatsioon on kahes kataloogis:
+
+* kataloog xforms, mis sisaldab ühtainust .xml faili, mis on ette nähtud eesti.ee süsteemi
+paigaldamiseks koos võimalike eelnevate modifikatsioonidega.
+* eelpool mainitud andmesalvestaja API, lähtekoodiga Xroad.java, mis realiseerib x-tee 
+SOAP otsingupäringu uue x-tee versiooni jaoks. Viimane eeldab iga andmejälgija rakendaja poolt
+paigaldamist, sh seostamist reaalse x-tee turvaserveriga.
+
+eesti.ee rakendus on ette nähtud töötama selliselt, et lõppkasutaja valib asutuse/andmekogu,
+ning eesti.ee teeb x-tee kaudu viimase andmejälgija API-le päringu, andes edasi lõppkasutaja
+isikukoodi ning vastuste loendi alguse ja maksimaalse pikkuse.
+
 ## Testrakendus
+
+Andmejälgija testrakendus on katseline alternatiiv eesti.ee koondavale süsteemile, mis ei ole mõeldud
+mitte reaalseks kasutuselevõtuks, vaid katsetamiseks ja võimalikuks tulevaseks edasiarendamiseks.
+
+Testrakendus on, sarnaselt sisekasutuse veebiliidesele, nn 'single-page application' 
+ehk tegu on staatiliste failidega, mis on ette nähtud serveerimiseks mistahes veebiserveri poolt.
+Veebiliidese lähtekood asub kataloogis query/src/main/webapp/: vajalikud failid on ainult index.html ja selle poolt kasutavad
+css failid kataloogis query/src/main/webapp/css ning
+javascripti failid kataloogis query/src/main/webapp/js, samuti väljakutsutavate 
+x-tee teenuste konfiguratsioonifail producers.js (viimase kohta vaata täpsemalt paigaldamisjuhendist).
+
+Sisekasutuse veebiliides teostab erinevate süsteemiga liidestunud asutuste suunas x-tee päringuid
+läbi x-tee turvaserveri. Liidestunud asutuste x-tee päringute päised tuleb konfigureerida eelpool
+toodud producers.js failis: samuti tuleb muuta asutuste nimesid ja producer.js võtmeid faili
+index.html blokis
+```xml
+<select class="filterselect" id="flt_organization">
+</select> 
+```
+Päringute tegemine tähendab x-tee SOAP ümbriku loomist javascripti rakenduse poolt,
+mis suunatakse proxy API-le, mis peab suunama ta edasi reaalsele turvaserverile, 
+samuti tagastama x-tee SOAP vastuse.
+
+Nimetatud proxy on realiseeritud failis query/src/main/java/ee/degeetia/dumonitor/query/Proxy.java.
+
+Veebiliidese konfigureerimiseks saab muuda index.html faili alguses olevat javascripti blokki:
+muuhulgas võib olla oluline muutuja queryURL seadmine: sellelt URL-lt kutsutakse välja
+mainitud proxy API-t. 
+
+Ligipääs testrakenduse veebiliidesele, eeskätt aga mainitud proxy API-le query, tuleb piirata nii,
+et see oleks ainult asutusesisene ja soovitavalt ainult valitud töötajatele. 
+Ligipääsupiiranguteks ei realiseeri antud veebiliides mingeid erivahendeid ja ei sisalda
+oma autentimislahendust: selle asemel eeldatakse, et piirangud seatakse paigaldamisel veebiserveri
+tasemel IP aadressi, paroolide või ID-kaardiga: detaile leiad paigaldamisjuhendist.
+
 
 
 
