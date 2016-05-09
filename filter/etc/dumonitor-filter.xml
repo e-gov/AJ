@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <filterConfiguration xmlns="http://x-road.eu/xsd/dumonitor.xsd"
+	xmlns:du="http://x-road.eu/xsd/dumonitor.xsd"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<!-- Elemendi "namespaces" all kirjeldatakse ära XML nimeruumide prefiksid, mida järgnevas XPath avaldistes kasutatakse.
 		 Prefiksid ei pea langema kokku andmejälgija filtri komponendist läbi liikuvates päringutes kasutatavatega, 
 		 tegelik XPath avaldiste rakendamine toimub nimeruumide baasilt. 
 		 Alljärgnevas on toodud levinumate X-tee päringutes kasutatavate nimeruumide prefiksite kirjeldused. -->
     <namespaces>
+        <namespace>
+            <prefix>du</prefix>
+            <uri>http://x-road.eu/xsd/dumonitor.xsd</uri>
+        </namespace>
         <namespace>
             <prefix>SOAP-ENV</prefix>
             <uri>http://schemas.xmlsoap.org/soap/envelope/</uri>
@@ -23,8 +28,8 @@
          blacklist väljal välistab antud päringu logimise filtri poolt.
          Alljärgnevas on toodud tarkvara vaikeväärtus -->
     <!--  exclusions>
-        <exclusion>inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode)</exclusion>
-        <exclusion>inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode)</exclusion>
+        <exclusion>du:inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode)</exclusion>
+        <exclusion>du:inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode)</exclusion>
     </exclusions -->
     <!-- Elemendi "defaults" abil kirjeldatakse logiväljade vaikeväärtused, mida kasutatakse juhul, kui filtris vastavat väärtust ei määratleta. 
          Väljade loetelu saab siin olla sama, mis filtris elemendi "loggableFields" all. Alljärgnevas on toodud nendele tarkvara poolt

@@ -33,7 +33,12 @@ Täitja: Degeetia OÜ, Mindstone OÜ
     * [Java rakendusserverisse paigaldatud rakenduse komponentide eemaldamine](#java-rakendusserverisse-paigaldatud-rakenduse-komponentide-eemaldamine)
   * [Häälestamine](#h%C3%A4%C3%A4lestamine)
     * [Andmesalvestaja komponendi häälestamine](#andmesalvestaja-komponendi-h%C3%A4%C3%A4lestamine)
-    * [Eraldusfiltri komponendi häälestamine](#eraldusfiltri-komponendi-h%C3%A4%C3%A4lestamine)
+    * [Eraldusfiltri komponendi filtrite kirjeldamine](#eraldusfiltri-komponendi-filtrite-kirjeldamine)
+      * [Nimeruumide kirjeldamine](#nimeruumide-kirjeldamine)
+      * [Välistuste kirjeldamine](#v%C3%A4listuste-kirjeldamine)
+      * [Vaikeväärtuste kirjeldamine](#vaikev%C3%A4%C3%A4rtuste-kirjeldamine)
+      * [Filtrite kirjeldamine](#filtrite-kirjeldamine)
+      * [Näidis](#n%C3%A4idis)
     * [Esitamise testrakenduse häälestamine](#esitamise-testrakenduse-h%C3%A4%C3%A4lestamine)
 
 
@@ -256,12 +261,15 @@ kus andmesalvestaja teenus paikneb (lisades vajadusel ka pordi numbri ja/või mu
 
 Eraldusfiltri konfigureerimiseks on vaja täiendavalt kindlaks määrata järgmised konfiguratsiooni elemendid:
 
+* Eraldusfiltri filtrite kirjelduse faili asukoht. Asukoht tuleb esitada komponendi poolt kasutatava classpath suhtes. Kui see pole paigaldajale
+täpselt teada, siis sisuliselt tuleb esitada faili asukoht komponendi konfiguratsioonifaili suhtes.
 * Turvaserveri URL. URL, mille kaudu tehakse andmekogu poolt pöördumised teiste X-tee liikmete teenuste poole.
 * Andmekogu URL. URL, mille kaudu pääseb ligi andmekogu teenustele.
 * Eraldusfiltri paralleelsete lõimede arv. Kui see arv on 0, siis haldab eraldusfilter ise dünaamiliselt thread'ide arvu - tekitab neid vastavalt koormusele juurde või võtab vähemaks. Kui see arv erineb nullist, siis käivitatakse näidatud arv threade päringute töötlemiseks. Antud parameeter reguleerib päringute filtris töötlemist, mitte HTTP päringute vastuvõtmist ja edastamist. Viimast reguleeritakse rakendusserveri vastavate parameetrite abil.
 * Eraldusfiltri sõnumite järjekorra suurus. Maksimaalne sõnumite arv, mis võib olla sõnumite lõimede poolt töötlemise ootel.
 Kui ootel sõnumite arv läheb sellest numbrist suuremaks, siis jätab eraldusfilter seda arvu ületavad sõnumid filtrites rakendamata (kuid vahendab need endistviisi edasi teisele osapoolele) ning edastab rakendusserveri logisse vastava veateate.
 * Must nimekiri. X-tee osapoolte koodid, kellelt saadud ja kellele edastatud sõnumeid läbi filtri töötluse ei lasta (ja jäävad sedasi logimata).
+* Eraldusfiltrite kirjeldused.
 
 Eraldusfiltri tööd juhitakse järgmiste "dumonitor.properties" failis olevate parameetrite abil:
 
@@ -285,6 +293,130 @@ Lisaks on võimalik kirjeldada konfiguratsioonifailis järgmisi süsteemseid par
 * javax.net.ssl.trustStorePassword
 
 Rakendus logib oma tegevust [SLF4J](http://www.slf4j.org/) abil ning selle all kasutatakse Apache Log4J 2 raamistikku. Logimise häälestamine tuleb teostada vastavalt Log4J raamistiku tootja poolt antud juhistele (vt http://logging.apache.org/log4j/2.x/manual/configuration.html). Rakenduses on sisemiselt kirjeldatud konfiguratsioonifail "log4j2.xml", millega on häälestatud INFO taseme teadete logimine konsooli logijasse, st rakendusserveri logifaili.
+
+#### Eraldusfiltri komponendi filtrite kirjeldamine
+
+Eraldusfiltri komponent kasutab oma töös vahendatavate päringute logimisel spetsiaalset XML-faili "dumonitor-filter.xml" (faili täpne asukoht ning nimi määratakse
+kindlaks eraldusfiltri komponendi häälestusparameetri "dumonitor.filter.configuration.file" abil). Faili ülesehitust kirjeldab XML Schema fail [dumonitor.xsd](spetsifikatsioonid/dumonitor.xsd). Filtrite kirjeldamine nõuab head arusaama X-tee SOAP sõnumite ülesehituse nüanssidest ning kursis olekut XPath v1.0 standardiga. Failis tuleb filtrid kirjeldada järgmiselt.
+
+Faili juurelemendiks peab olema element nimega "filterConfiguration". See element ning ka kõik teised selle elemendi all asuvad filtrifaili elemendid peavad kasutama XML nimeruumi "http://x-road.eu/xsd/dumonitor.xsd".
+
+Filtrite kirjeldamisel peab arvestama, et eraldusfiltri komponent rakendab samu filtreid kõigile teda läbivatele sõnumitele, nii X-tee poolt andmekogu poole liikuvatele päringutele, kui ka andmekogu poolt tagastatavatele päringute vastustele. Kui soovitakse logida kas ainult päringut või ainult vastust, siis tuleb ka XPath avaldis koostada selliselt, mis rakenduks ainult soovitavas suunas liikuvale sõnumile (kontrollides näiteks SOAP sõnumi "Body" elemendi all asuvat elemendi nime).
+
+##### Nimeruumide kirjeldamine
+
+Kõik filtrifaili XPath avaldistes kasutatavad XML nimeruumid tuleb kirjeldada elemendi "namespaces" all. Iga nimeruum tuleb selle all näidata eraldi elemendiga "namespace", millel on kaks alamelementi:
+
+* element "prefix", mille väärtuseks on XPath avaldises kasutatav nimeruumi prefiks
+* element "uri", mille väärtuseks on XML nimeruumi URI
+
+Nimeruumide prefiksid ei pea kokku langema filtrist läbi liikuvates sõnumites kasutatavate nimeruumide prefiksitega. XPath avaldistes toimub kontroll
+nimeruumide endi võrdlemise baasilt, otsides avaldises esitatud prefiksile antud elemendi all kirjeldatud nimeruumi URI.
+
+##### Välistuste kirjeldamine
+
+Filtrifailis saab eraldi sektsioonis ära näidata XPath avaldised, millele vastavad sõnumid jäetakse igal juhul logimata ka juhul,
+kui sellistele sõnumitele leidub positiivne filtrikirjeldus. 
+
+Avaldistes saab kasutada spetsiaalset funktsiooni "inBlacklist", millele saab näidata parameetrina XPath avaldise. Avaldisega leitud elemendi
+väärtust võrreldakse nn. musta nimekirja väärtustega (eraldusfiltri konfiguratsioonifaili parameetriga "dumonitor.blacklist") ning kui nende hulgast
+leidub väärtus, mis langeb sellega kokku, siis seda sõnumit ei logita.
+
+NB! Funktsiooni "inBlacklist" tuleb tingimata kasutada koos nimeruumile "http://x-road.eu/xsd/dumonitor.xsd" viitava prefiksiga ning see prefiks tuleb kirjeldada ka elemendi "namespaces" all. Vt näidet allpool. 
+
+Eraldusfiltri komponendil on vaikimisi elemendi "exclusions" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis
+elementi "exclusions" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
+
+##### Vaikeväärtuste kirjeldamine
+
+Globaalselt üle kõikide filtrite saab kirjelda ära logitava info vaikeväärtused. Neid väärtusi kasutatakse logi vastavate väljade väärtustamisel
+juhul, kui filtrikirjelduses pole selle välja väärtust eraldi toodud. Sellised vaikeväärtused näidatakse elemendi "defaults" all. Seal tuleb esitada
+iga logi välja jaoks element, mille nimi langeb kokku selle logiväljaga, ning väärtuseks tuleb esitada XPath avaldis, mille leitakse 
+kontrollitavast sõnumist väljale väärtus.
+
+Eraldusfiltri komponendil on vaikimisi elemendi "defaults" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis
+elementi "defaults" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
+
+##### Filtrite kirjeldamine
+
+Vahendatavatele X-tee sõnumitele rakendatavad filtrid kirjeldatakse elemendi "filters" sees. Iga konkreetne filtrikirjeldus näidatakse elemendi "filter" abil. Elemendi all peab olema toodud kaks alamelementi:
+
+* Element "xpath" peab sisaldama XPath avaldist, mille filter teisendab tõeväärtuseks. Kui selle avaldise rakendamine kontrollitavale sõnumile
+annab tõese väärtuse, siis sõnum kuulub logimisele ja rohkem filtreid enam ei kontrollita. Kui avaldise rakendamisel tõest väärtust ei saada, siis kontrollitakse filtrite nimekirjast järgmist filtrit. Kui mitte ühegi filtri korral tõest väärtust ei saadud, siis sõnumit ei logita.
+* Elemendi "loggableFields" abil näidatakse ära logitavate väljade väärtused. Iga logitav väli tuleb esitada samanimelise elemendina ning selle
+elemendi väärtuseks peab olema XPath avaldis, mille abil leitakse vastavale väljale väärtus.
+
+Logitavad väljad saavad olla järgmised:
+
+* personcode - Isikukood, kelle isikuinfot antud päringuga edastati
+* action - Isikuandmete tegevusele omistatud inimloetav nimi
+* sender - Isikuandmeid saatva osapoole inimloetav nimi
+* receiver - Isikuandmeid vastuvõtva osapoole inimloetav nimi
+* restrictions - Kui väärtuseks on 'A', siis on logikirje nähtav andmesalvestaja vastava X-tee teenuse kaudu, vastasel korral mitte
+* sendercode - Isikuandmeid saatava osapoole X-tee kood
+* receivercode - Isikuandmeid vastuvõtva osapoole X-tee kood
+* actioncode - Isikuandmete tegevusele omistatud sisemine masintöödeldav nimi
+* xroadrequestid - Isikuandmeid edastava päringu X-tee ID
+* xroadservice - Isikuandmeid edastava päringu X-tee teenuse nimi
+* usercode - Isikuandmeid küsinud osapoole päringut sooritanud ametniku isikukood
+
+Kui mingi väli neist jäetakse filtri kirjelduses esitamata, siis kasutatakse vaikeväärtuste elemendi "defaults" all toodud avaldist. Kui
+ka seal pole seda välja esitatud, kasutatakse filtri komponendi sisemist vaikeväärtust. Kui ka seda pole esitatud, siis logitakse see
+väli tühja väärtusega.
+
+##### Näidis
+
+Allpool on toodud näidis ühest võimalikust filtri konfiguratsiooni failist.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<filterConfiguration xmlns="http://x-road.eu/xsd/dumonitor.xsd"
+	xmlns:du="http://x-road.eu/xsd/dumonitor.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <namespaces>
+        <namespace>
+            <prefix>du</prefix>
+            <uri>http://x-road.eu/xsd/dumonitor.xsd</uri>
+        </namespace>
+        <namespace>
+            <prefix>SOAP-ENV</prefix>
+            <uri>http://schemas.xmlsoap.org/soap/envelope/</uri>
+        </namespace>
+        <namespace>
+            <prefix>xrd</prefix>
+            <uri>http://x-road.eu/xsd/xroad.xsd</uri>
+        </namespace>
+        <namespace>
+            <prefix>id</prefix>
+            <uri>http://x-road.eu/xsd/identifiers</uri>
+        </namespace>
+    </namespaces>
+    <exclusions>
+        <exclusion>du:inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode)</exclusion>
+        <exclusion>du:inBlacklist(/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode)</exclusion>
+    </exclusions>
+    <defaults>
+        <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender>
+        <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver>
+        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode<sendercode>
+        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode<receivercode>
+        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id<xroadrequestid>
+        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode<xroadservice>
+        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId<usercode>
+    </defaults>
+    <filters>
+		<filter>
+			<xpath>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'replaceWithServiceCode' and /SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'replaceWithServiceVersion'</xpath>
+			<loggableFields>
+				<personcode>/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse/replaceWithXPathToPersonCode</personcode>
+				<action>'Human readable action name'</action>
+				<restrictions>'A'</restrictions>
+				<actioncode>'technicalActionCode'</actioncode>
+			</loggableFields>
+		</filter>
+    </filters>
+</filterConfiguration>
+```
 
 ### Esitamise testrakenduse häälestamine
 
