@@ -162,10 +162,10 @@ Andmesalvestamise API (Store.java) põhimõtted:
 * Päringu- ja vastuseväljad on samad, mis andmebaasi tabeliväljad.
 * Salvestada saab nii cgi-formaadis parameetritega GET päringuga a la
 http://baasurl/store?action=miski
-kus ainult action parameeter on kohustuslik ja võib anda ka kõiki teisi baasivälju ka,
-peale id ja logtime, mis võetakse automaatselt.
-* Kui json-encoded postiga a la 
-{"action":"miski",....}
+kus ainult action parameeter on kohustuslik ja võib anda lisaks kõiki teisi baasivälju,
+peale id ja logtime, mis võetakse automaatselt;
+* kui ka json-encoded POST päringuga a la 
+{"action":"miski",....}.
 Kui postitada jsonit, peab http Content-type sisaldama teksti "json"
 * Päringuvastus on lihtsalt json kujul
 {"ok": 1}
@@ -183,13 +183,13 @@ kus callback paneb vastusele ümber javascripti funktsioonikutsumise.
 * Kui json-encoded postiga a la 
 {"action":"miski",....}
 Kui postitada jsonit, peab http Content-type sisaldama teksti "json"
-* Päringuvastus on lihtsalt json vastuseridadega, kus igaüks on andmebaasiväljadest
+* Päringuvastus on lihtsalt json vastuse ridadega, kus igaüks on andmebaasiväljadest
 võtmetega võti/väärtus paare sisaldav objekt.
 
 X-tee api (Xroad.java) põhimõtted:
 
 * Sisend on uue versiooni x-tee SOAP ümbrik
-* Sisendis arvestatakse ainult isikukoodi, vastusridade algus-offsetti ja soovitud vastusridade maksimaalarvu
+* Sisendis arvestatakse ainult isikukoodi, vastusridade algust (offset) ja soovitud vastusridade maksimaalarvu (limit).
 * Sisendi isikukood võetakse SOAP päise väljast
 ```xml
 <xrd:userId>EE3....</xrd:userId>
@@ -231,7 +231,7 @@ javascripti failid kataloogis storage/src/main/webapp/js
 Sisekasutuse veebiliides kasutab logikirjetest otsingu jaoks REST teenust, mida realiseerib
 eelpool mainitud andmesalvestaja API lähtekoodiga Query.java.
 
-Veebiliidese konfigureerimiseks saab muuda index.html faili alguses olevat javascripti blokki:
+Veebiliidese konfigureerimiseks saab muuta index.html faili alguses olevat javascripti blokki:
 muuhulgas võib olla oluline muutuja queryURL seadmine: sellelt URL-lt kutsutakse välja
 otsingu REST API-t. Väljakutsutav API ei pea olema serveeritud samalt serverilt, millelt
 staatiline index.html.
