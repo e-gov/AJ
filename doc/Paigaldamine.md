@@ -294,6 +294,11 @@ Lisaks on võimalik kirjeldada konfiguratsioonifailis järgmisi süsteemseid par
 
 Rakendus logib oma tegevust [SLF4J](http://www.slf4j.org/) abil ning selle all kasutatakse Apache Log4J 2 raamistikku. Logimise häälestamine tuleb teostada vastavalt Log4J raamistiku tootja poolt antud juhistele (vt http://logging.apache.org/log4j/2.x/manual/configuration.html). Rakenduses on sisemiselt kirjeldatud konfiguratsioonifail "log4j2.xml", millega on häälestatud INFO taseme teadete logimine konsooli logijasse, st rakendusserveri logifaili.
 
+Et X-tee turvaserveri ja andmekogu vaheline liiklus toimuks läbi eraldusfiltri, on vaja veel ka:
+
+* Näidata X-tee turvaserveris andmekogu URLina eraldusfiltri URL, millele on lisatud sufiks "/producer". Eraldusfiltri X-tee turvaserverisse paigaldamise korral on see kujul "http://{turvaserver}:4080/dumonitor-filter/producer".
+* Näidata andmekogu adapterserveris X-tee turvaserveri URLina eraldusfiltri URL, millele on lisatud sufiks "/xroad". Eraldusfiltri X-tee turvaserverisse paigaldamise korral on see kujul "http://{turvaserver}:4080/dumonitor-filter/xroad".
+
 #### Eraldusfiltri komponendi filtrite kirjeldamine
 
 Eraldusfiltri komponent kasutab oma töös vahendatavate päringute logimisel spetsiaalset XML-faili "dumonitor-filter.xml" (faili täpne asukoht ning nimi määratakse
