@@ -66,8 +66,8 @@ Andmejälgija põhiosad on järgmised:
 
 *	X-tee liikluse jälgija, mis tuvastab isikuandmete edasisaatmised x-tee kaudu.
 *	Isikuandmete liikluse logiandmebaas koos REST-liidesega, mida saab mistahes tarkvarast välja kutsuda.
-*	Isikuandmete liikluse logiandmebaasi veebiliides asutuse sisekasutuseks.
-*	X-tee liides kodanike päringutele vastamiseks eesti.ee kaudu.
+*	Isikuandmete liikluse logiandmebaasi veebiliides asutuse sisekasutuseks: [vaata ekraanipilti](img/screenshot_andmesalvestaja.png)
+*	X-tee liides kodanike päringutele vastamiseks http://eesti.ee kaudu. Konkreetne ekraanipilt hetkel puudub, kuid vaata [testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
 
 Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), 
 andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse

@@ -222,6 +222,8 @@ ja sellest arvestatakse ainult offset ja limit parameetreid, mis võib ka ära j
 
 ## Sisekasutuse veebiliides
 
+Vaata [veebiliidese ekraanipilti](img/screenshot_andmesalvestaja.png).
+
 Sisekasutuse veebiliides on nn 'single-page application' ehk tegu on staatiliste failidega,
 mis on ette nähtud serveerimiseks mistahes veebiserveri poolt. Veebiliidese lähtekood asub 
 kataloogis storage/src/main/webapp/: vajalikud failid on ainult index.html ja selle poolt kasutavad
@@ -259,6 +261,8 @@ ning eesti.ee teeb x-tee kaudu viimase andmejälgija API-le päringu, andes edas
 isikukoodi ning vastuste loendi alguse ja maksimaalse pikkuse.
 
 ## Testrakendus
+
+Vaata [testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
 
 Andmejälgija testrakendus on katseline alternatiiv eesti.ee koondavale süsteemile, mis ei ole mõeldud
 mitte reaalseks kasutuselevõtuks, vaid katsetamiseks ja võimalikuks tulevaseks edasiarendamiseks.
