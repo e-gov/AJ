@@ -488,3 +488,50 @@ päringut tehes tegelikega). Elemente võib esitada üks kuni mitu (antud näite
 
 Kui tarkvara paigaldati töötama Ubuntu 14.04 LTS kaasatuleva Jetty 8 rakendusserverisse, siis tuleb fail "producers.js" asetada kataloogi "/var/lib/jetty8/webapps/root/", muude rakendusserverite korral tuleb konsulteerida vastava rakendusserveri juhenditega.
 
+### Autentimise häälestamine
+
+Kõigi andmejälgija moodulitega on eeldatud, et kasutaja autentimine lahendatakse rakendusserveri tasemel. 
+
+Jetty rakendusserveri korral on Basic autentimise sisselülitamiseks vaja teha järgmist:
+
+Kirjeldada Jetty konfiguratsioonifailis "etc/jetty.xml" (siin ja edaspidi antud punktis on failide asukohad antud Jetty kodukataloogi suhtes) elemendi "Configure" sees autentimise teenus:
+
+```xml
+<Call name="addBean">
+    <Arg>
+        <New class="org.eclipse.jetty.security.HashLoginService">
+            <Set name="name">DUMonitor</Set>
+            <Set name="config"><SystemProperty name="jetty.home" default="."/>/etc/realm.properties</Set>
+            <Set name="refreshInterval">0</Set>
+        </New>
+    </Arg>
+</Call>
+```
+
+Tekitada fail "etc/realm.properties". Faili sisus esitatakse kasutajatunnused ja paroolid kujul 
+"{username}: {password}, {rolename}". Näiteks siis alljärgneva sisuga:
+
+```
+ajkasutaja: ajparool, admin
+```
+
+Lisada faili "etc/webdefault.xml" elemendi "web-app" sisse autentimise määrang kujul:
+
+```xml
+<security-constraint>
+    <web-resource-collection>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+</security-constraint>
+<login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>DUMonitor</realm-name>
+</login-config>
+```
+
+Jetty rakendusserver toetab ka ID-kaardiga autentimist, selleks tuleb järgida juhiseid lingilt https://wiki.eclipse.org/Jetty/Howto/Configure_SSL.
+
+Analoogsed võimalused on ka teistel rakendusserveritel (näiteks Tomcat). Instruktsioonid on toodud vastava rakendusserveri dokumentatsioonis.

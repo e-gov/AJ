@@ -259,6 +259,18 @@ tegevusi:
 * Kontrollida, et andmesalvestaja liidesed ei ole serverite konfiguratsioonide muutmise käigus asutuseväliselt kättesaadavaks tehtud.
 * Uute isikuandmeid edastavate x-tee teenuste ehitamise või muude uute isikuandmete töötlemisvõimaluste ehitamise korral
 lisada ka need andmejälgijasse.
+* Perioodiliselt kustutada aegunud logiridu.
+
+### Aegunud andmejälgija logiridade kustutamine
+
+Aegunud andmejälgija logiread tuleb kustutada andmebaasist SQL käsu abil. Kõige lihtsamal juhul saab ridu kustutada käsuga:
+
+```sql
+delete from ajlog where logtime < to_char('{kuupaev}', 'YYYY-MM-DD');
+```
+
+Seal {kuupaev} tuleb asendada kuupäevaga kujul AAAA-KK-PP.
+
 
 ## Infoturbe küsimused
 
