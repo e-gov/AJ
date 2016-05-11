@@ -24,10 +24,11 @@ jmeter {
 	resultFilenameTimestamp = "none";
 	jmTestFiles = [];
 	project.gradle.startParameter.taskNames.each { name ->
+		if (name.startsWith("jmRun_")) {
 			File f = file("src/test/jmeter/" + (name - "jmRun_") + ".jmx");
 			if (f.exists()) jmTestFiles.add(f);
+		}
 	}
-	// if (jmTestFiles.size() == 0) jmTestFiles = [file("src/test/jmeter/integration-test.jmx")];
 	// jMeter testide parameetrid
 	jmUserProperties = [
 		// Fail tuleb anda jmeter.workDir suhtes, see on vaikimisi "build/jmeter"
