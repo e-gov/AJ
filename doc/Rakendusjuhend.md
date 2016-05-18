@@ -271,6 +271,13 @@ delete from ajlog where logtime < to_char('{kuupaev}', 'YYYY-MM-DD');
 
 Seal {kuupaev} tuleb asendada kuupäevaga kujul AAAA-KK-PP.
 
+Andmesalvestaja komponendi andmebaasiskriptide hulgas leidub ka kaks käsurea skripti vanade kirjete haldamiseks PostgreSQL andmebaasi korral.
+
+* Skript archive-old-records.sh väljastab vanad kirjed stdout-i. Vajdusel tuleb suunata skripti väljund faili.
+* Skript delete-old-records.sh kustutab andmebaasist vanad kirjed.
+
+Mõlemad skriptid vajavad parameetrina eelpool toodud kujul kuupäeva. Andmebaas ja autentimisinfo tuleb skriptidele
+ette anda PostgreSQL standardsete keskkonnamuutujate PGDATABASE, PGHOST, PGPORT, PGUSER, PGPASSWORD abil.
 
 ## Infoturbe küsimused
 

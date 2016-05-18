@@ -6,3 +6,5 @@ dumonitor /usr/share/dumonitor/storage
 ../database/createdb.sh /usr/share/dumonitor/storage/database
 ../database/createschema.sh /usr/share/dumonitor/storage/database
 ../database/privileges.sh /usr/share/dumonitor/storage/database
+../database/archive-old-records.sh /usr/share/dumonitor/storage/database
+../database/delete-old-records.sh /usr/share/dumonitor/storage/database

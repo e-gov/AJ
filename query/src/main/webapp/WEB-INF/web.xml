@@ -6,7 +6,7 @@
     <display-name>dumonitor-query</display-name>
     <servlet>
         <servlet-name>ProxyServlet</servlet-name>
-        <servlet-class>ee.degeetia.dumonitor.query.Proxy</servlet-class>
+        <servlet-class>ee.ria.dumonitor.query.Proxy</servlet-class>
     </servlet>
 
     <servlet-mapping>

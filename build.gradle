@@ -9,7 +9,7 @@ task wrapper(type: Wrapper) {
 }
 
 allprojects {
-	group 'ee.degeetia'
+	group 'ee.ria'
 	apply plugin: 'eclipse'
 
 	repositories {

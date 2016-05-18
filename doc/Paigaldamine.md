@@ -354,7 +354,7 @@ elemendi väärtuseks peab olema XPath avaldis, mille abil leitakse vastavale v�
 
 Logitavad väljad saavad olla järgmised:
 
-* personcode - Isikukood, kelle isikuinfot antud päringuga edastati
+* personcode - Isikukood, kelle isikuinfot antud päringuga edastati (peab sisaldama riigi prefiksit, näiteks Eesti korral 'EE')
 * action - Isikuandmete tegevusele omistatud inimloetav nimi
 * sender - Isikuandmeid saatva osapoole inimloetav nimi
 * receiver - Isikuandmeid vastuvõtva osapoole inimloetav nimi
@@ -364,7 +364,7 @@ Logitavad väljad saavad olla järgmised:
 * actioncode - Isikuandmete tegevusele omistatud sisemine masintöödeldav nimi
 * xroadrequestid - Isikuandmeid edastava päringu X-tee ID
 * xroadservice - Isikuandmeid edastava päringu X-tee teenuse nimi
-* usercode - Isikuandmeid küsinud osapoole päringut sooritanud ametniku isikukood
+* usercode - Isikuandmeid küsinud osapoole päringut sooritanud ametniku isikukood (peab sisaldama riigi prefiksit, näiteks Eesti korral 'EE')
 
 Kui mingi väli neist jäetakse filtri kirjelduses esitamata, siis kasutatakse vaikeväärtuste elemendi "defaults" all toodud avaldist. Kui
 ka seal pole seda välja esitatud, kasutatakse filtri komponendi sisemist vaikeväärtust. Kui ka seda pole esitatud, siis logitakse see
@@ -461,7 +461,6 @@ var producers = {
 "        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
 "        <iden:memberClass>GOV</iden:memberClass>"+
 "        <iden:memberCode>10000001</iden:memberCode>"+
-"        <iden:subsystemCode>Center</iden:subsystemCode>"+
 "     </xro:client>"+
 "</soapenv:Header>",
 "Andmekogu2": 
