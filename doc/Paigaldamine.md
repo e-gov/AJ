@@ -480,7 +480,6 @@ var producers = {
 "        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
 "        <iden:memberClass>GOV</iden:memberClass>"+
 "        <iden:memberCode>10000001</iden:memberCode>"+
-"        <iden:subsystemCode>Center</iden:subsystemCode>"+
 "     </xro:client>"+
 "</soapenv:Header>",
 }
