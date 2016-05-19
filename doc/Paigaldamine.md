@@ -457,10 +457,11 @@ var producers = {
 "        <iden:serviceCode>findUsage</iden:serviceCode>"+
 "        <iden:serviceVersion>v1</iden:serviceVersion>"+
 "     </xro:service>"+
-"     <xro:client iden:objectType=\"MEMBER\">"+
+"     <xro:client iden:objectType=\"SUBSYSTEM\">"+
 "        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
 "        <iden:memberClass>GOV</iden:memberClass>"+
 "        <iden:memberCode>10000001</iden:memberCode>"+
+"        <iden:subsystemCode>Center</iden:subsystemCode>"+
 "     </xro:client>"+
 "</soapenv:Header>",
 "Andmekogu2": 
@@ -476,10 +477,11 @@ var producers = {
 "        <iden:serviceCode>findUsage</iden:serviceCode>"+
 "        <iden:serviceVersion>v1</iden:serviceVersion>"+
 "     </xro:service>"+
-"     <xro:client iden:objectType=\"MEMBER\">"+
+"     <xro:client iden:objectType=\"SUBSYSTEM\">"+
 "        <iden:xRoadInstance>CI</iden:xRoadInstance>"+
 "        <iden:memberClass>GOV</iden:memberClass>"+
 "        <iden:memberCode>10000001</iden:memberCode>"+
+"        <iden:subsystemCode>Center</iden:subsystemCode>"+
 "     </xro:client>"+
 "</soapenv:Header>",
 }
