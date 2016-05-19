@@ -266,7 +266,7 @@ lisada ka need andmejälgijasse.
 Aegunud andmejälgija logiread tuleb kustutada andmebaasist SQL käsu abil. Kõige lihtsamal juhul saab ridu kustutada käsuga:
 
 ```sql
-delete from ajlog where logtime < to_char('{kuupaev}', 'YYYY-MM-DD');
+delete from ajlog where logtime < to_date('{kuupaev}', 'YYYY-MM-DD');
 ```
 
 Seal {kuupaev} tuleb asendada kuupäevaga kujul AAAA-KK-PP.
