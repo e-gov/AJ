@@ -70,7 +70,7 @@ Testkeskkond koosneb järgmistest komponentidest:
 * DUMonitori eraldusfilter
 * DUMonitori andmesalvestaja
 * Test andmekogu - eraldusfiltri testimiseks kasutatav andmekogu
-* MISP - eraldusfiltri eesti.ee keskkonna jaoks tehtud xforms lahenduse testimiseks
+* MISP - kodaniku vaatamisrakenduse eesti.ee keskkonna jaoks tehtud xforms lahenduse testimiseks
 * Esitaja testrakendus - lihtne rakendus DUMonitori andmesalvestajale päringute tegemiseks
 * X-tee keskserver - testkeskkonna jaoks loodud eraldiseisva X-tee instantsi tekitamiseks
 * X-tee turvaserver, mis teenindab test andmekogu (läbi DUMonitor eraldusfiltri)

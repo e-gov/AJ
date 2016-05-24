@@ -46,10 +46,10 @@ Automaatsed testid käivitati tellija sidusarenduskeskkonna Jenkins CI tarkaras 
 
 | Testiloo nr | Testiloo nimetus                                                                                        | Testimise aeg    | Testi tulemus | Kommentaarid |
 |-------------|---------------------------------------------------------------------------------------------------------|------------------|---------------|--------------|
-| 1           | Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring          | 08.05.2016 22:57 | OK            |              |
-| 2           | Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring     | 08.05.2016 22:59 | OK            |              |
-| 3           | Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring             | 08.05.2016 22:58 | OK            |              |
-| 4           | Filtri komponent: päringu ja vastuse logimine                                                           | 08.05.2016 22:59 | OK            |              |
+| 1           | Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring          | 08.05.2016 22:57 | OK            |              |
+| 2           | Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring     | 08.05.2016 22:59 | OK            |              |
+| 3           | Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring             | 08.05.2016 22:58 | OK            |              |
+| 4           | Eraldusfiltri komponent: päringu ja vastuse logimine                                                           | 08.05.2016 22:59 | OK            |              |
 | 5           | Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine          | 08.05.2016 23:00 | OK            |              |
 | 6           | Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine | 08.05.2016 23:00 | OK            |              |
 | 7           | Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine                   | 08.05.2016 22:57 | OK            |              |
@@ -63,7 +63,7 @@ Käsitsi läbi viidavad testid teostati tellija sidusarenduskeskkonnas vastava t
 |-------------|-----------------------------------------------------------------------------------------------|------------------|---------------|--------------|
 |  9          | Andmesalvestaja komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine         | 08.05.2016 23:00 | OK            |              |
 | 10          | Esitamise testrakenduse komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine | 08.05.2016 23:02 | OK            |              |
-| 11          | Eesti.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine          | 08.05.2016 23:05 | OK            | Testitud isikukoodi 37012062719 baasilt, selleks muudetud andmebaasis vastaval kirjel isikukoodi väärtus ümber. |
+| 11          | Kodaniku vaatamisrakenduse komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine          | 08.05.2016 23:05 | OK            | Testitud isikukoodi 37012062719 baasilt, selleks muudetud andmebaasis vastaval kirjel isikukoodi väärtus ümber. |
 
 ### Koormustestid
 
@@ -71,15 +71,15 @@ Koormustestid käivitati tellija sidusarenduskeskkonna Jenkins CI tarkaras iga k
 
 | Testiloo nr | Testiloo nimetus                                            | Testimise aeg    | Testi tulemus | Kommentaarid |
 |-------------|-------------------------------------------------------------|------------------|---------------|--------------|
-| 12          | Filtri komponendi koormustest                               | 08.05.2016 23:07 | OK            | Tulemused: filterLoadRequest avg 625ms, testakLoadRequest avg 647ms, vahe seega -22ms. |
+| 12          | Eraldusfiltri komponendi koormustest                               | 08.05.2016 23:07 | OK            | Tulemused: filterLoadRequest avg 625ms, testakLoadRequest avg 647ms, vahe seega -22ms. |
 | 13          | Andmesalvestaja komponendi REST logimisliidese koormustest  | 08.05.2016 13:00 | OK            | Tulemus: avg 9ms |
 | 14          | Andmesalvestaja komponendi REST päringuliidese koormustest  | 08.05.2016 13:00 | OK            | Tulemus: avg 14ms |
 | 15          | Andmesalvestaja komponendi X-tee päringuliidese koormustest | 08.05.2016 13:00 | OK            | Tulemus: avg 42ms |
 
 ## Erisused
 
-Filtri komponendi koormustesti tulemused on liiga palju mõjutatud keskkonnast. Testkeskkonnad on kõik virtuaalmasinates ning seetõttu pole nende stabiilsus piisavalt tagatud,
-et testida 1ms täpsusega päringute täitmise aega. Tulemusena kõigub ka 500 päringu korral aeg nii palju, et keskmise baasilt arvutades on läbi filtri tehtud päringud andmekogu pihta 22ms kiiremad, kui otse tehtud päringud.
+Eraldusfiltri komponendi koormustesti tulemused on liiga palju mõjutatud keskkonnast. Testkeskkonnad on kõik virtuaalmasinates ning seetõttu pole nende stabiilsus piisavalt tagatud,
+et testida 1ms täpsusega päringute täitmise aega. Tulemusena kõigub ka 500 päringu korral aeg nii palju, et keskmise baasilt arvutades on läbi eraldusfiltri tehtud päringud andmekogu pihta 22ms kiiremad, kui otse tehtud päringud.
 
 ## Soovitused
 

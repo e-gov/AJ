@@ -19,6 +19,8 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 
 ## Sisukord
 
+  * [Dokumendi ajalugu](#dokumendi-ajalugu)
+  * [Sisukord](#sisukord)
   * [Sissejuhatus](#sissejuhatus)
   * [Testilood](#testilood-1)
     * [Testilugude koond](#testilugude-koond)
@@ -26,17 +28,17 @@ Täitja: Degeetia OÜ, Mindstone OÜ
       * [Koormustestid](#koormustestid)
     * [Testilugude kirjeldused](#testilugude-kirjeldused)
       * [1\. Filtri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- korrektne päring](#1-filtri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---korrektne-p%C3%A4ring)
-      * [2\. Filtri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- korrektne MTOM päring](#2-filtri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---korrektne-mtom-p%C3%A4ring)
-      * [3\. Filtri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- vigane päring](#3-filtri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---vigane-p%C3%A4ring)
-      * [4\. Filtri komponent: päringu ja vastuse logimine](#4-filtri-komponent-p%C3%A4ringu-ja-vastuse-logimine)
+      * [2\. Eraldusfiltri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- korrektne MTOM päring](#2-eraldusfiltri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---korrektne-mtom-p%C3%A4ring)
+      * [3\. Eraldusfiltri komponent: X\-teelt saabunud päringu vastuvõtt ja vastuse tagastamine \- vigane päring](#3-eraldusfiltri-komponent-x-teelt-saabunud-p%C3%A4ringu-vastuv%C3%B5tt-ja-vastuse-tagastamine---vigane-p%C3%A4ring)
+      * [4\. Eraldusfiltri komponent: päringu ja vastuse logimine](#4-eraldusfiltri-komponent-p%C3%A4ringu-ja-vastuse-logimine)
       * [5\. Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine](#5-andmesalvestaja-komponent-url-kaudu-kasutusteabe-logimise-s%C3%B5numi-vastuv%C3%B5tmine-ja-salvestamine)
       * [6\. Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine](#6-andmesalvestaja-komponent-rest-liidese-kaudu-kasutusteabe-logimise-s%C3%B5numi-vastuv%C3%B5tmine-ja-salvestamine)
       * [7\. Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine](#7-andmesalvestaja-komponent-rest-liidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
       * [8\. Andmesalvestaja komponent: X\-tee liidese kaudu logist otsimine ja tulemuse tagastamine](#8-andmesalvestaja-komponent-x-tee-liidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
       * [9\. Andmesalvestaja komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine](#9-andmesalvestaja-komponent-veebiliidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
       * [10\. Esitamise testrakenduse komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine](#10-esitamise-testrakenduse-komponent-veebiliidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
-      * [11\. Eesti\.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine](#11-eestiee-komponent-misp2-veebiliidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
-      * [12\. Filtri komponendi koormustest](#12-filtri-komponendi-koormustest)
+      * [11\. Kodaniku vaatamisrakenduse komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine](#11-kodaniku-vaatamisrakenduse-komponent-misp2-veebiliidese-kaudu-logist-otsimine-ja-tulemuse-tagastamine)
+      * [12\. Eraldusfiltri komponendi koormustest](#12-eraldusfiltri-komponendi-koormustest)
       * [13\. Andmesalvestaja komponendi REST logimisliidese koormustest](#13-andmesalvestaja-komponendi-rest-logimisliidese-koormustest)
       * [14\. Andmesalvestaja komponendi REST päringuliidese koormustest](#14-andmesalvestaja-komponendi-rest-p%C3%A4ringuliidese-koormustest)
       * [15\. Andmesalvestaja komponendi X\-tee päringuliidese koormustest](#15-andmesalvestaja-komponendi-x-tee-p%C3%A4ringuliidese-koormustest)
@@ -54,10 +56,10 @@ Käesolevas dokumendis kirjeldatakse DUMonitor tarkvara integratsiooni- ja koorm
 
 Automaatsed testid:
 
-* Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring
-* Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
-* Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
-* Filtri komponent: päringu ja vastuse logimine
+* Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring
+* Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
+* Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
+* Eraldusfiltri komponent: päringu ja vastuse logimine
 * Andmesalvestaja komponent: URL kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
 * Andmesalvestaja komponent: REST liidese kaudu kasutusteabe logimise sõnumi vastuvõtmine ja salvestamine
 * Andmesalvestaja komponent: REST liidese kaudu logist otsimine ja tulemuse tagastamine
@@ -67,11 +69,11 @@ Käsitsi läbi viidavad testid:
 
 * Andmesalvestaja komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
 * Esitamise testrakenduse komponent: veebiliidese kaudu logist otsimine ja tulemuse tagastamine
-* Eesti.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
+* Kodaniku vaatamisrakenduse komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
 
 #### Koormustestid
  
-* Filtri komponendi koormustest
+* Eraldusfiltri komponendi koormustest
 * Andmesalvestaja komponendi REST logimisliidese koormustest
 * Andmesalvestaja komponendi REST päringuliidese koormustest
 * Andmesalvestaja komponendi X-tee päringuliidese koormustest
@@ -80,7 +82,7 @@ Käsitsi läbi viidavad testid:
 
 #### 1. Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring
 
-* Testiloo nimetus:	Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring
+* Testiloo nimetus:	Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne päring
 * Testiloo indeks:	1
 * Lühikirjeldus: 	Tehakse päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse saadud vastuse korrektsuses.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi päringu vahendamine
@@ -91,25 +93,25 @@ Käsitsi läbi viidavad testid:
   2. Andmekogu poolt tagastatud päringu vastus tagastatakse vigaselt või ei tagastata üldse
 * Testi jada kirjeldus:	
   1. Tehakse test andmekogu teenuse getPersonData päring filtri komponendi andmekogu teenust vahendavale URLile.
-  2. Filter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule.
+  2. Eraldusfilter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule.
   3. Testandmekogu kontrollib saabunud päringu sisu korrektsust (kõikide väljade vastavust algses päringus toodule) ning tagastab selle baasilt kas korrektse päringu vastuse või veavastuse.
-  4. Filter loeb päringu vastuse sisse ja tagastab selle.
+  4. Eraldusfilter loeb päringu vastuse sisse ja tagastab selle.
   6. Testiskript veendub et tegemist pole veavastusega ning et vastuses toodud andmeväljade sisu vastab test andmekogu poolt saadetule.
 * Käivitamise ja läbiviimise skript:	filterReqResp
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
   Test loetakse positiivseks, kui:
   - Testandmekogu poolt vastuvõetud päring on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku päringus esitatutega.
-  - Filtri poolt tagastatud vastus on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku testandmekogu poolt tagastatutega.
-  - Filtri poolt tagastatud vastus on "multipart/related" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
-  - Filtri poolt tagastatud vastuse sisus toodud andmeväljade väärtused langevad kokku testandmekogu poolt tagastatutele
+  - Eraldusfiltri poolt tagastatud vastus on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku testandmekogu poolt tagastatutega.
+  - Eraldusfiltri poolt tagastatud vastus on "multipart/related" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
+  - Eraldusfiltri poolt tagastatud vastuse sisus toodud andmeväljade väärtused langevad kokku testandmekogu poolt tagastatutele
   Kõigil muudel juhtudel loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 2. Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
+#### 2. Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
 
-* Testiloo nimetus:	Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
+* Testiloo nimetus:	Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - korrektne MTOM päring
 * Testiloo indeks:	2
 * Lühikirjeldus: 	Tehakse päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse saadud vastuse korrektsuses.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi päringu vahendamine
@@ -119,25 +121,25 @@ Käsitsi läbi viidavad testid:
   1. Päring edastatakse andmekogule vigaselt või ei edastata üldse
   2. Andmekogu poolt tagastatud päringu vastus tagastatakse vigaselt või ei tagastata üldse
 * Testi jada kirjeldus:	
-  1. Tehakse test andmekogu teenuse getPersonDataMtom päring filtri komponendi andmekogu teenust vahendavale URLile.
-  2. Filter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule.
+  1. Tehakse test andmekogu teenuse getPersonDataMtom päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile.
+  2. Eraldusfilter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule.
   3. Testandmekogu kontrollib saabunud päringu sisu korrektsust (kõikide väljade vastavust algses päringus toodule) ning tagastab selle baasilt kas korrektse päringu vastuse või veavastuse.
-  4. Filter loeb päringu vastuse sisse ja tagastab selle.
+  4. Eraldusfilter loeb päringu vastuse sisse ja tagastab selle.
   6. Testiskript veendub et tegemist pole veavastusega ning et vastuses toodud andmeväljade sisu vastab test andmekogu poolt saadetule.
 * Käivitamise ja läbiviimise skript:	filterReqRespMtom
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:
   Test loetakse positiivseks, kui:
   - Testandmekogu poolt vastuvõetud päring on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku päringus esitatutega.
-  - Filtri poolt tagastatud vastus on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku testandmekogu poolt tagastatutega.
-  - Filtri poolt tagastatud vastus on "multipart/related" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
-  - Filtri poolt tagastatud vastuse sisus toodud andmeväljade väärtused langevad kokku testandmekogu poolt tagastatutele
+  - Eraldusfiltri poolt tagastatud vastus on SOAP sõnum, milles kõigi X-tee päisväljade väärtused langevad kokku testandmekogu poolt tagastatutega.
+  - Eraldusfiltri poolt tagastatud vastus on "multipart/related" ning sisaldab manust, mille ID langeb kokku testandmekogu poolt tagastatuga
+  - Eraldusfiltri poolt tagastatud vastuse sisus toodud andmeväljade väärtused langevad kokku testandmekogu poolt tagastatutele
   Kõigil muudel juhtudel loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
-#### 3. Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
+#### 3. Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
 
-* Testiloo nimetus:	Filtri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
+* Testiloo nimetus:	Eraldusfiltri komponent: X-teelt saabunud päringu vastuvõtt ja vastuse tagastamine - vigane päring
 * Testiloo indeks:	3
 * Lühikirjeldus: 	Tehakse vigaseid andmeis sisaldav päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse vastuseks saadud SOAP exceptioni korrektsuses. Eesmärgiks on veenduda, et andmekogu poolt tagastatav SOAP exception jõuab muutmatult läbi filtri päringu tegijale.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi päringu vahendamine
@@ -146,23 +148,23 @@ Käsitsi läbi viidavad testid:
 * Oletatavad vead:	Viga sisaldav andmekogu päringuvastus tagastatakse filtri poolt muutunud kujul
 * Testi jada kirjeldus:
   1. Tehakse test andmekogu teenuse getPersonData päring filtri komponendi andmekogu teenust vahendavale URLile. Päringus on esitatud vigased andmed.
-  2. Filter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule.
+  2. Eraldusfilter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule.
   3. Testandmekogu kontrollib saabunud päringu sisu korrektsust, tuvastab probleemi andmetes ning tagastab veavastuse (SOAP exception).
-  4. Filter loeb päringu vastuse sisse ja tagastab selle.
+  4. Eraldusfilter loeb päringu vastuse sisse ja tagastab selle.
   5. Testiskript veendub, et tegemist on SOAP exception vastusega ning veakood langeb kokku andmekogu poolt antuga.
 * Käivitamise ja läbiviimise skript:	filterReqRespInvalid
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
 * Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	
   Test loetakse positiivseks, kui:
-  - Filtri poolt tagastatud vastus on SOAP exception sõnum, mille "faultcode" element langeb kokku testandmekogu poolt tagastatutega.
-  - Filtri poolt tagastatud vastus on "text/xml" ning HTTP vastuskood on 400
+  - Eraldusfiltri poolt tagastatud vastus on SOAP exception sõnum, mille "faultcode" element langeb kokku testandmekogu poolt tagastatutega.
+  - Eraldusfiltri poolt tagastatud vastus on "text/xml" ning HTTP vastuskood on 400
   Kõigil muudel juhtudel loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 
-#### 4. Filtri komponent: päringu ja vastuse logimine
+#### 4. Eraldusfiltri komponent: päringu ja vastuse logimine
 
-* Testiloo nimetus:	Filtri komponent: päringu ja vastuse logimine
+* Testiloo nimetus:	Eraldusfiltri komponent: päringu ja vastuse logimine
 * Testiloo indeks:	4
 * Lühikirjeldus: 	Tehakse päring eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja veendutakse päringu ja selle vastuse logimises andmesalvestaja komponenti.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi päringu logimine
@@ -173,9 +175,9 @@ Käsitsi läbi viidavad testid:
   2. Päringu vastust ei logita andmesalvestaja komponenti või logitakse puudulikult.
 * Testi jada kirjeldus:	
   1. Tehakse test andmekogu teenuse getPersonData päring filtri komponendi andmekogu teenust vahendavale URLile. Päringule genereeritakse juhuslik X-tee päringu ID.
-  2. Filter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule. Paralleelselt käivitab päringu logimise andmesalvestaja komponenti.
+  2. Eraldusfilter loeb päringu sisse ja teeb sama sisuga päringu testandmekogule. Paralleelselt käivitab päringu logimise andmesalvestaja komponenti.
   3. Testandmekogu kontrollib saabunud päringu sisu korrektsust (kõikide väljade vastavust algses päringus toodule) ning tagastab selle baasilt kas korrektse päringu vastuse või veavastuse.
-  4. Filter loeb päringu vastuse sisse ja tagastab selle. Paralleelselt käivitab päringu vastuse logimise andmesalvestaja komponenti.
+  4. Eraldusfilter loeb päringu vastuse sisse ja tagastab selle. Paralleelselt käivitab päringu vastuse logimise andmesalvestaja komponenti.
   6. Tehakse JDBC päring andmesalvestaja andmebaasi ning loetakse sisse kõik kirjed, mille ""xroadrequestid"" atribuudi väärtus langeb kokku sammus 1 tekitatule.
   7. Veendutakse, et tagastati päringu ning päringu vastuse logikirjed ning et nende logikirjete väljade väärtused langevad kokku päringu ja päringu vastuse omadega.
 * Käivitamise ja läbiviimise skript:	filterLogging
@@ -337,12 +339,12 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Käsitsi läbiviidav test.
 
 
-#### 11. Eesti.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
+#### 11. Kodaniku vaatamisrakenduse komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
 
-* Testiloo nimetus:	Eesti.ee komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
+* Testiloo nimetus:	Kodaniku vaatamisrakenduse komponent: MISP2 veebiliidese kaudu logist otsimine ja tulemuse tagastamine
 * Testiloo indeks:	11
-* Lühikirjeldus: 	Otsitakse esitamise testrakenduse kaudu logikirjet, mis lisati testi nr 7 täitmise käigus. Veendutakse kirje leidumises.
-* Omadused, mida testitakse:	Eesti.ee xforms rakenduse toimimine
+* Lühikirjeldus: 	Otsitakse logikirjet, mis lisati testi nr 7 täitmise käigus. Veendutakse kirje leidumises.
+* Omadused, mida testitakse:	Eesti.ee xforms lehe toimimine
 * Omadused, mida ei testita:	
 * Lähtetingimused:	Vahetult enne testi peab olema sooritatud test nr 7
 * Oletatavad vead:	Otsing andmeatribuutide järgi ei toimi korrektselt - kirjeid ei leita.
@@ -363,22 +365,22 @@ Käsitsi läbi viidavad testid:
 * Testi läbiviimise meetodi kirjeldus:	Käsitsi läbiviidav test.
 
 
-#### 12. Filtri komponendi koormustest
+#### 12. Eraldusfiltri komponendi koormustest
 
-* Testiloo nimetus:	Filtri komponendi koormustest
+* Testiloo nimetus:	Eraldusfiltri komponendi koormustest
 * Testiloo indeks:	12
-* Lühikirjeldus: 	Tehakse paralleelsed päringud test andmekogu teenusele ja peale seda eraldusfiltri komponendi andmekogu teenust vahendavale URLile. Saadud tulemuste baasilt leitakse keskmised päringuajad otse test andmekogu teenuse vastu ning filtri vastu. Päringuaegade vahe annab filtri poolt kulutatava täiendava keskmise aja.
+* Lühikirjeldus: 	Tehakse paralleelsed päringud test andmekogu teenusele ja peale seda eraldusfiltri komponendi andmekogu teenust vahendavale URLile. Saadud tulemuste baasilt leitakse keskmised päringuajad otse test andmekogu teenuse vastu ning eraldusfiltri vastu. Päringuaegade vahe annab eraldusfiltri poolt kulutatava täiendava keskmise aja.
 * Omadused, mida testitakse:	Eraldusfiltri komponendi jõudlus
 * Omadused, mida ei testita:	Eraldusfiltri logimise funktsionaalsuse jõudlus
 * Lähtetingimused:	-
-* Oletatavad vead:	Filtri poolt kulutatav täiendav keskmine aeg on liiga suur (suurem kui nõutav 1ms).
+* Oletatavad vead:	Eraldusfiltri poolt kulutatav täiendav keskmine aeg on liiga suur (suurem kui nõutav 1ms).
 * Testi jada kirjeldus:	
   1. Käivitatakse 50 paralleelset lõime päringute tegemiseks. Lõimed töötavad üksteisest sõltumatult.
   2. Iga lõim teeb päringu test andmekogu teenusele ja loeb vastuse. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisse lugemiseni.
   3. Iga lõim teeb päringu eraldusfiltri komponendi andmekogu teenust vahendavale URLile ja loeb vastuse. Registreeritakse aeg, mis kulub päringu tegemisest vastuse sisse lugemiseni.
   4. Iga lõim täidab samme 2 ja 3 järjest 10 korda.
   5. Kui kõik lõimed on oma töö lõpetanud, arvutatakse mõlema päringu keskmised täitmise ajad.
-  6. Mõlema päringu keskmise täitmisaja vahe annab filtri poolt kulutatava täiendava keskmise aja. See leitakse Jenkins CI keskkonnast järgmiselt:
+  6. Mõlema päringu keskmise täitmisaja vahe annab eraldusfiltri poolt kulutatava täiendava keskmise aja. See leitakse Jenkins CI keskkonnast järgmiselt:
      * Klikitakse testi projekti nimel
      * Ettetuleval lehel klikitakse valikul "Performance trend"
      * Ettetuleval lehel klikitakse valikul "Last Report"
@@ -388,7 +390,7 @@ Käsitsi läbi viidavad testid:
      * Esimese ja teise näidu vahe annab keskmise filtri poolt kulutatava täiendava aja
 * Käivitamise ja läbiviimise skript:	filterLoad
 * Katkestamise ja jätkamise tingimused testi käigus tekkinud vigade korral:	Testi käigus tekkinud vigade korral test katkestatakse ning testi tulemus loetakse negatiivseks.
-* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	Test loetakse positiivseks, kui filtri poolt kulutatav täiendav keskmine aeg on väiksem või võrdne 1ms. Vastasel korral loetakse test ebaõnnestunuks.
+* Testi tulemuste hindamise kriteeriumid negatiivsel ja positiivsel juhul:	Test loetakse positiivseks, kui eraldusfiltri poolt kulutatav täiendav keskmine aeg on väiksem või võrdne 1ms. Vastasel korral loetakse test ebaõnnestunuks.
 * Testi läbiviimise meetodi kirjeldus:	Täisautomaatne test, mis käivitatakse vastava skriptiga.
 
 

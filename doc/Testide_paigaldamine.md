@@ -52,10 +52,10 @@ Andmejälgija testimine viiakse läbi spetsiaalses CI keskkonnas Jenkins CI kaas
 |-----------|-------------------|---------------------------------------------------------------|
 | J         | aj-jenkins.ci.kit | Jenkins CI keskkond                                           |
 | ER        | aj02.ci.kit       | Eraldusfilter                                                 |
-| AS, SK    | aj03.ci.kit       | Andmesalvestaja ning andmesalvestaja sisekasutuse veebiliides |
+| AS, SK    | aj03.ci.kit       | Andmesalvestaja ning sisekontrolli rakendus                   |
 | AK1       | aj04.ci.kit       | Test andmekogu veebiteenused                                  |
 | ET        | aj05.ci.kit       | Esitaja testrakendus                                          |
-| MISP      | aj07.ci.kit       | MISP (eesti.ee xforms komponendi testimiseks)                 |
+| MISP      | aj07.ci.kit       | MISP (kodaniku vaatamisrakenduse testimiseks)                 |
 | KS        | aj08.ci.kit       | X-tee keskserver                                              |
 | TS2       | aj09.ci.kit       | Andmete pärija poolne X-tee turvaserver                       |
 | TS1       | aj10.ci.kit       | Andmekogu poolne X-tee turvaserver                            |
@@ -192,7 +192,7 @@ Projekt tuleb häälestada selliselt, et see viiks läbi järgmised tegevused:
    3. Kataloogi "/usr/share/jetty8/resources" paigaldatakse konfiguratsioonifailid lähtekoodi kataloogist "test/ci/config".
    4. Kataloogi "/var/lib/jetty8/webapps" paigaldatakse build poolt tekitatud WAR fail "dumonitor-storage.war", mis
    käivitatakse automaatselt Jetty8 serveri poolt.
-2. Filtri komponendi paigaldamine serverisse aj02:
+2. Eraldusfiltri komponendi paigaldamine serverisse aj02:
    1. Kataloogi "/usr/share/jetty8/resources" paigaldatakse konfiguratsioonifailid lähtekoodi kataloogist "test/ci/config".
    2. Kataloogi "/var/lib/jetty8/webapps" paigaldatakse build käigus tekitatud WAR fail "dumonitor-filter.war", mis
    käivitatakse automaatselt Jetty8 serveri poolt.
@@ -279,7 +279,7 @@ jMeter parameetrid tuleb seal esitada kujul "{parameeter}={väärtus}". Kasutuse
 | Parameeter            | Vaikeväärtus                                    | Tähendus       |
 |-----------------------|-------------------------------------------------|----------------|
 | testakUrl             | http://aj04.ci.kit:8080/testak/soap             | Test andmekogu URL |
-| filterUrl             | http://aj02.ci.kit:8080/dumonitor-filter/testak | Filtri komponendi URL |
+| filterUrl             | http://aj02.ci.kit:8080/dumonitor-filter/testak | Eraldusfiltri komponendi URL |
 | dbUrl                 | jdbc:postgresql://aj03.ci.kit/dumonitor         | Andmesalvestaja andmebaasi URL |
 | dbUser                | dumonitor_app                                   | Andmesalvestaja andmebaasi kasutajatunnus |
 | dbPassword            | aj22p                                           | Andmesalvestaja andmebaasi kasutajatunnuse parool |

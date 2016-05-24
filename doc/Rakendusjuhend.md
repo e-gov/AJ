@@ -64,20 +64,17 @@ oma andmejälgija süsteemi paigaldada või ehitada.
 
 Andmejälgija põhiosad on järgmised:
 
-*	X-tee liikluse jälgija, mis tuvastab isikuandmete edasisaatmised x-tee kaudu.
-*	Isikuandmete liikluse logiandmebaas koos REST-liidesega, mida saab mistahes tarkvarast välja kutsuda.
-*	Isikuandmete liikluse logiandmebaasi veebiliides asutuse sisekasutuseks: [vaata ekraanipilti](img/screenshot_andmesalvestaja.png)
-*	X-tee liides kodanike päringutele vastamiseks http://eesti.ee kaudu. Konkreetne ekraanipilt hetkel puudub, kuid vaata [testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
+* Eraldusfilter - X-tee liikluse jälgija, mis tuvastab isikuandmete edasisaatmised x-tee kaudu.
+* Andmesalvestaja - Isikuandmete liikluse logiandmebaas koos REST-liidesega, mida saab mistahes tarkvarast välja kutsuda.
+* Sisekontrollija rakendus - Isikuandmete liikluse logiandmebaasi veebiliides asutuse sisekasutuseks: [vaata ekraanipilti](img/screenshot_andmesalvestaja.png)
+* Kodaniku vaatamisrakendus - X-tee liides kodanike päringutele vastamiseks http://eesti.ee kaudu. Konkreetne ekraanipilt hetkel puudub, kuid vaata [testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
 
-Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), 
-andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse
-X-tee turvaserverisse kui mõnda olemasolevasse serverisse koos teiste süsteemidega,
-või hoopis eraldi serverisse.
+Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse X-tee turvaserverisse kui mõnda olemasolevasse serverisse koos teiste süsteemidega, või hoopis eraldi serverisse.
 
 ## Milliseid andme-edastamisi ja -kasutamisi logida
 
 Isikuandmete kaitse seadus sisaldab kahte punkti, mille lahendamise hõlbustamiseks andmejälgija
-süsteem on loodud:
+lahendus on loodud:
 
 * Andmesubjekti soovil peab isikuandmete töötleja andmesubjektile teatavaks tegema kolmandad isikud, kellele tema isikuandmeid on edastatud. (IKS § 19 lg 1 p 5);
 
@@ -136,14 +133,14 @@ et teda on võimalik paigaldada ka otse X-tee turvaserverisse, segamata viimase 
 Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubada
 olukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
 
-Standardvariandina töötab andmejälgija selliselt, et tema filtrikomponent on infosüsteemi ja x-tee turvaserveri
-vahel nö proxy-režiimis: infosüsteem edastab oma x-tee päringuid otse filtrikomponendile, mis siis 
+Standardvariandina töötab andmejälgija selliselt, et tema eraldusfiltri komponent on infosüsteemi ja x-tee turvaserveri
+vahel nö proxy-režiimis: infosüsteem edastab oma x-tee päringuid otse eraldusfiltri komponendile, mis siis 
 omakorda edastab neid turvaserverile. Kui seos andmekogu ja turvaserveriga ei ole üksühene, ei tekita
 see probleeme:
 
 * Sama režiimi on võimalik kasutada ka juhul, kui üks x-tee turvaserver teenindab korraga mitut andmekogu: 
 siis küll ei saa paigaldada andmejälgijat otse turvaserverisse.
-* Samuti on lubatav olukord, kus üks andmekogu kasutab mitut turvaserverit: eraldusfiltrid
+* Samuti on lubatav olukord, kus üks andmekogu kasutab mitut turvaserverit: eraldusfiltri komponendid
 tuleb sel juhul paigaldada iga turvaserveri ja andmekogu vahele.
 
 Järgnevas esitame põhilised otsusekohad andmejälgija tehnilise kasutuselevõtu variantide jaoks.
@@ -152,7 +149,7 @@ Esimene otsusekoht tuleneb küsimusest, kas andmekogus on juba realiseeritud isi
 kasutamise logimine. 
 
 * Kui jah, siis ei ole tingimata vaja teha muud, kui võtta andmesalvestaja
-X-tee komponent, asendada selle lähtekoodis andmebaasiühendus ja SQL-päring olemasoleva logibaasi ja
+X-tee liidese alamkomponent, asendada selle lähtekoodis andmebaasiühendus ja SQL-päring olemasoleva logibaasi ja
 temale vastava päringuga, kompileerida ja paigaldada komponent ning luua X-tee turvaserverisse vastav
 teenus eesti.ee jaoks.
 
@@ -160,7 +157,7 @@ teenus eesti.ee jaoks.
 sel juhul asub süsteem jälgima oma konfiguratsioonis seatud väljaminevaid sõnumeid x-teel, leiab sealt 
 konfiguratsioonis antud teel asuva isikukoodi ja salvestab selle oma andmebaasi. Andmebaasiga on omakorda 
 seotud X-tee teenus, mis vastab eesti.ee kaudu tulnud isikupõhistele päringutele. Lisaks sisaldab andmejälgija
-asutusesiseseks kasutamiseks mõeldud lihtsat veebirakendust sellestsamast andmebaasist päringute tegemiseks.
+sisekontrollija rakendust - asutusesiseseks kasutamiseks mõeldud lihtsat veebirakendust sellestsamast andmebaasist päringute tegemiseks.
 Kõik need komponendid on paigaldatavad ilma arendustööta, küll aga nõuavad nad konfigureerimis- ja paigaldustöid
 ja oskust seadistada X-tee turvaserverit, nõudes seega infosüsteemi haldava spetsialisti panustust.
 
@@ -169,14 +166,14 @@ kus liiguvad korraga ainult ühe inimese andmed ja tema isikukoodi saab X-tee p�
 päringutest üheselt võimalik isikuid leida.
 
 * Kui isikuandmeid edastatakse X-teel ja selliselt, et seal liiguvad korraga ainult ühe inimese andmed ja 
-tema isikukoodi saab X-tee päringust leida, tasub paigaldada ja konfigureerida andmejälgija filtrikomponent 
+tema isikukoodi saab X-tee päringust leida, tasub paigaldada ja konfigureerida andmejälgija eraldusfiltri komponent 
 x-tee liikluse jälgimiseks. See nõuab konfigureerimistöid, kuid mitte arendustöid.
 
 * Kui x-tee lihtne jälgimine ei ole võimalik, saab andmejälgijat kasutada selliselt, et ehitada andmekogu infosüsteemi
-lihtsad http(s) põhised REST-päringud, millega isikuandmete edastamise või töötlemise fakt saadetakse otse
-andmejälgija salvestuskomponendi andmebaasi. See nõuab arendustöid.
+lihtsad HTTP(S) põhised REST-päringud, millega isikuandmete edastamise või töötlemise fakt saadetakse otse
+andmejälgija andmesalvestaja komponendi andmebaasi. See nõuab arendustöid.
 
-Mõistlik võib olla ka stsenaarium, kus kasutatakse nii filtrikomponenti valitud X-tee teenuste
+Mõistlik võib olla ka stsenaarium, kus kasutatakse nii eraldusfiltri komponenti valitud X-tee teenuste
 jälgimiseks, kui REST teenuseid otse infosüsteemist logikirjete salvestamiseks andmejälgija baasi.
 
 Kolmas otsusekoht on küsimus, kas kasutada andmejälgija oma andmebaasi (Postgresql) või asutuses juba
@@ -193,13 +190,13 @@ infosüsteemis olevat andmebaasi. Eriti lihtne (ei vaja arendustööd) on see ju
 kui andmebaas on realiseeritud Postgresql-l. Vastasel korral võib tekkida vajadus teha väikeses mahus
 arendust, muutmaks ära andmejälgija komponentides olevad SQL-päringud ja kompileerimaks andmejälgija uuesti.
 
-Neljas otsusekoht on küsimus, kas ja kuidas paigaldada ja konfigureerida asutuse sisekasutuseks ettenähtud
-veebirakendus, mis võimaldab mugavalt otsida andmejälgija andmebaasis olevaid kirjeid:
+Neljas otsusekoht on küsimus, kas ja kuidas paigaldada ja konfigureerida sisekontrollija rakendus - asutuse sisekasutuseks 
+ettenähtud veebirakendus, mis võimaldab mugavalt otsida andmejälgija andmebaasis olevaid kirjeid:
 
 * Kui asutuses on juba olemas oma isikuandmete liikumise/kasutamise logisüsteem koos mugava võimalusega
 sealt otsinguid teha, ei ole mainitud komponenti mõtet installeerida.
 * Kui taolist süsteemi ei ole, on komponendi installeerimine tõenäoliselt mõttekas. Sel juhul on tingimata
-vaja konfigureerida selle komponendid veebiserver selliselt, et rakenduse API-dele ei oleks välist ligipääsu
+vaja konfigureerida selle komponendi veebiserver selliselt, et rakenduse API-dele ei oleks välist ligipääsu
 ning asutusesiselt pääseks ligi ainult piiratud hulk töötajaid.
 
 
@@ -293,28 +290,14 @@ konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi
 
 Andmejälgija paigaldamisel tuleb seda teha selliselt, et andmesalvestaja komponendi erinevad teenused:
 * andmete salvestamise REST liides
-* sisekasutuse veebirakenduse päringu REST liides
+* sisekontrollija rakenduse päringu REST liides
 * x-tee turvaserveri SOAP liides
 ei oleks ligipääsetavad asutusest/andmekogust väljapool.
 
-Sisekasutuse veebirakenduse paigaldamise korral tuleb server seadistada selliselt, et ligipääsud REST teenusele
-oleks võimalikud ainult selleks konkreetse õiguse saanud töötajatele. Veebirakendus ise selleks mingeid
+Sisekontrollija rakenduse paigaldamise korral tuleb server seadistada selliselt, et ligipääsud REST teenusele
+oleks võimalikud ainult selleks konkreetse õiguse saanud töötajatele. Rakendus ise selleks mingeid
 vahendeid ei paku, eeldades ligipääsu piiramist veebiserveri standardvahenditega: 
 vaata täpsemalt paigaldamisjuhendi peatükki "Autentimise häälestamine".
 
 Rõhutame, et palju olulisem, kui veebirakendusele endale ligipääsu piiramine, on eelpool mainitud
 andmesalvestaja komponendi teenustele ligipääsu piiramine.
-
-
-
-
-
-
-
-
-
-
-
-
-
-

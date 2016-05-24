@@ -24,12 +24,12 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Sihtrühm](#sihtr%C3%BChm)
   * [Sissejuhatus](#sissejuhatus)
   * [Andmejälgija komponendid](#andmej%C3%A4lgija-komponendid)
+  * [Ühiskasutatavad komponendid](#%C3%9Chiskasutatavad-komponendid)
   * [Eraldusfilter](#eraldusfilter)
   * [Andmesalvestaja](#andmesalvestaja)
-  * [Sisekasutuse veebiliides](#sisekasutuse-veebiliides)
-  * [eesti.ee](#eesti.ee)
-  * [Testrakendus](#testrakendus)
-
+  * [Sisekontrollija rakendus](#sisekontrollija-rakendus)
+  * [Kodaniku vaatamisrakendus](#kodaniku-vaatamisrakendus)
+  * [Esitamise testrakendus](#esitamise-testrakendus)
 
 ## Sihtrühm
 
@@ -54,7 +54,7 @@ Standardvariandina on rakendusserverina kasutatud Jetty serverit, kuid süsteem 
 ja teiste sarnaste rakendusserverite jaoks.
 
 Veebirakenduste funktsionaalsus on kirjutatud javascriptis, andmebaasipärigud SQL-s, 
-eraldusfilter kasutab ka xpath avaldisi.
+eraldusfilter kasutab ka XPath avaldisi.
 
 Operatsioonisüsteemina eeldatakse Linuxit, arendus ja testimine on toimunud Ubuntu 14 ja 15 versioonidel.
 
@@ -66,22 +66,22 @@ Siin juhendis jagame andmejälgija järgmisteks osadeks:
 
 * Eraldusfilter, mis jälgib x-tee turvaserveri sõnumeid ja salvestab isikuandmete liikumise andmesalvestajasse.
 * Andmesalvestaja sisaldab andmebaasi ja temaga seotud teenuseid ehk API-sid: salvestamise REST teenus, sisekasutuseks otsimise REST teenus, avalikuks eesti.ee kasutamiseks ettenähtud x-tee SOAP otsingute teenus.
-* Sisekasutuse veebiliides andmesalvestajast kirjete otsimiseks.
-* eesti.ee jaoks ettenähtud xforms teenuse komponendid
-* Testrakendus, mis sarnaneb eesti.ee rakendusele ja ei ole mõeldud reaalseks kasutuseks.
+* Sisekontrollija rakendus andmesalvestajast kirjete otsimiseks.
+* Kodaniku vaatamisrakendus sisaldab eesti.ee jaoks ettenähtud XForms teenuse komponendid
+* Esitamise testrakendus, mis sarnaneb kodaniku vaatamisrakendusele ja ei ole mõeldud reaalseks kasutuseks.
 
 Järgmistes punktides anname näpunäiteid nende komponentide ehituse kohta, et hõlbustada nende lähtekoodi kohandamist
 ja edasiarendamist.
 
 ## Ühiskasutatavad komponendid
 
-Lähtekood asub ülemise taseme kataloogis common.
+Lähtekood asub ülemise taseme kataloogis "common".
 
 Antud osasse on koondatud Java moodulid, mida kasutavad ühiselt kõik komponendid:
 
-* ee.degeetia.dumonitor.common.config - konfiguratsioonifailide haldus
-* ee.degeetia.dumonitor.common.heartbeat - nn. heartbeat teenuse realisatsioon
-* ee.degeetia.dumonitor.common.util - erinevad väikesed utiliitklassid
+* ee.ria.dumonitor.common.config - konfiguratsioonifailide haldus
+* ee.ria.dumonitor.common.heartbeat - nn. heartbeat teenuse realisatsioon
+* ee.ria.dumonitor.common.util - erinevad väikesed utiliitklassid
 
 Kõikide moodulite poolt kasutatavad konfiguratsiooniparameetrid on kirjeldatud hulgas Property. 
 Konfiguratsioon loetakse sisse klassi PropertyLoader abil.
@@ -95,21 +95,21 @@ Komponendi kood kompileeritakse eraldi JAR faili ning liidetakse teiste komponen
 
 ## Eraldusfilter
 
-Lähtekood asub ülemise taseme kataloogis filter.
+Lähtekood asub ülemise taseme kataloogis "filter".
 
 Eraldusfilter koosneb järgmistest sisemistest moodulitest:
 
-* ee.degeetia.dumonitor.filter - sisaldab servleti, mis töötleb vahendatavaid päringuid. 
+* ee.ria.dumonitor.filter - sisaldab servleti, mis töötleb vahendatavaid päringuid. 
 Servlet töötleb korraga mõlemas suunas liikuvaid päringuid. Sisemises konfiguratsioonifailis 
 "default.properties" määratakse kindlaks päringu PATH osised, mille baasilt saab servlet aru, 
 kas tegu on X-tee turvaserveri või andmekogu poolt lähtuva päringuga.
 
-* ee.degeetia.dumonitor.filter.config - sisaldab filtri konfiguratsioonifaili haldamise koodi.
-* ee.degeetia.dumonitor.filter.config.generated - sisaldab filtri konfiguratsioonifaili XML-struktuurile vastavaid Java klasse, geneererituna filtri konfiguratsioonifaili XML Schema failist
-* ee.degeetia.dumonitor.filter.core - sisaldab põhikoodi, mis käivitub eraldusfiltri komponendi käivitamisel
-* ee.degeetia.dumonitor.filter.http - sisaldab HTTP kliendi realisatsiooni saabunud päringute edasivahendamiseks teisele osapoolele
-* ee.degeetia.dumonitor.filter.log - sisaldab koodi, mis realiseerib andmete logimise andmesalvestaja REST liidsele
-* ee.degeetia.dumonitor.filter.processor - sisaldab filtrite rakendamise koodi
+* ee.ria.dumonitor.filter.config - sisaldab filtri konfiguratsioonifaili haldamise koodi.
+* ee.ria.dumonitor.filter.config.generated - sisaldab filtri konfiguratsioonifaili XML-struktuurile vastavaid Java klasse, geneererituna filtri konfiguratsioonifaili XML Schema failist
+* ee.ria.dumonitor.filter.core - sisaldab põhikoodi, mis käivitub eraldusfiltri komponendi käivitamisel
+* ee.ria.dumonitor.filter.http - sisaldab HTTP kliendi realisatsiooni saabunud päringute edasivahendamiseks teisele osapoolele
+* ee.ria.dumonitor.filter.log - sisaldab koodi, mis realiseerib andmete logimise andmesalvestaja REST liidsele
+* ee.ria.dumonitor.filter.processor - sisaldab filtrite rakendamise koodi
 
 Lisaks on eraldusfiltri koodis kaasas sisemiselt kasutatavad ressursid:
 
@@ -124,7 +124,7 @@ Lähtekoodi muutmisel on vajalik ka vastavate ühiktestide muutmine "src/test/ja
 Lähtekood asub ülemise taseme kataloogis storage.
 
 * Andmebaasi loomise failid on kataloogis storage/database. Rakenduse töötamise ajal neid ei vajata. 
-* Kõigi API-de ehk teenuste lähtekood on kataloogis storage/src/main/java/ee/degeetia/dumonitor/storage/
+* Kõigi API-de ehk teenuste lähtekood on kataloogis storage/src/main/java/ee/ria/dumonitor/storage/
 * API-de konfiguratsioonifailid on kataloogis storage/src/main/resources/
 * Sisekasutuse veebiliides on kataloogis storage/src/main/webapp, mh on vajalikud ka seal all olevad css ja js kataloogid.
 
@@ -143,8 +143,8 @@ andmebaasiühenduse loomise, päringusisendite parsimise, veatrükkide ja XML t�
 
 Util.java kasutab konfiguratsiooni lugemiseks neid kahte andmejälgija teistes kataloogides
 realiseeritud klasse:
-* ee.degeetia.dumonitor.common.config.Property;
-* ee.degeetia.dumonitor.common.config.PropertyLoader;
+* ee.ria.dumonitor.common.config.Property;
+* ee.ria.dumonitor.common.config.PropertyLoader;
 
 Konkreetseid API-sid realiseerivad järgmised failid:
 
@@ -220,20 +220,20 @@ ja sellest arvestatakse ainult offset ja limit parameetreid, mis võib ka ära j
 </soapenv:Envelope>
 ``` 
 
-## Sisekasutuse veebiliides
+## Sisekontrollija rakendus
 
 Vaata [veebiliidese ekraanipilti](img/screenshot_andmesalvestaja.png).
 
-Sisekasutuse veebiliides on nn 'single-page application' ehk tegu on staatiliste failidega,
+Sisekontrollija rakendus on nn 'single-page application' ehk tegu on staatiliste failidega,
 mis on ette nähtud serveerimiseks mistahes veebiserveri poolt. Veebiliidese lähtekood asub 
 kataloogis storage/src/main/webapp/: vajalikud failid on ainult index.html ja selle poolt kasutavad
 css failid kataloogis storage/src/main/webapp/css ning
 javascripti failid kataloogis storage/src/main/webapp/js
 
-Sisekasutuse veebiliides kasutab logikirjetest otsingu jaoks REST teenust, mida realiseerib
+Sisekontrollija rakendus kasutab logikirjetest otsingu jaoks REST teenust, mida realiseerib
 eelpool mainitud andmesalvestaja API lähtekoodiga Query.java.
 
-Veebiliidese konfigureerimiseks saab muuta index.html faili alguses olevat javascripti blokki:
+Rakenduse konfigureerimiseks saab muuta index.html faili alguses olevat javascripti blokki:
 muuhulgas võib olla oluline muutuja queryURL seadmine: sellelt URL-lt kutsutakse välja
 otsingu REST API-t. Väljakutsutav API ei pea olema serveeritud samalt serverilt, millelt
 staatiline index.html.
@@ -245,9 +245,9 @@ oma autentimislahendust: selle asemel eeldatakse, et piirangud seatakse paigalda
 tasemel IP aadressi, paroolide või ID-kaardiga: detaile leiad paigaldamisjuhendist.
 
 
-## eesti.ee
+## Kodaniku vaatamisrakendus
 
-eesti.ee rakendus on realiseeritud nimetatud portaalis kasutusel oleva X-forms rakenduste
+Kodaniku vaatamisrakendus on realiseeritud eesti.ee portaalis kasutusel oleva X-forms rakenduste
 põhimõttel. Realisatsioon on kahes kataloogis:
 
 * kataloog xforms, mis sisaldab ühtainust .xml faili, mis on ette nähtud eesti.ee süsteemi
@@ -256,25 +256,25 @@ paigaldamiseks koos võimalike eelnevate modifikatsioonidega.
 SOAP otsingupäringu uue x-tee versiooni jaoks. Viimane eeldab iga andmejälgija rakendaja poolt
 paigaldamist, sh seostamist reaalse x-tee turvaserveriga.
 
-eesti.ee rakendus on ette nähtud töötama selliselt, et lõppkasutaja valib asutuse/andmekogu,
+Kodaniku vaatamisrakendus on ette nähtud töötama selliselt, et lõppkasutaja valib asutuse/andmekogu,
 ning eesti.ee teeb x-tee kaudu viimase andmejälgija API-le päringu, andes edasi lõppkasutaja
 isikukoodi ning vastuste loendi alguse ja maksimaalse pikkuse.
 
-## Testrakendus
+## Esitamise testrakendus
 
-Vaata [testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
+Vaata [esitamise testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
 
-Andmejälgija testrakendus on katseline alternatiiv eesti.ee koondavale süsteemile, mis ei ole mõeldud
+Esitamise testrakendus on katseline alternatiiv eesti.ee koondavale süsteemile, mis ei ole mõeldud
 mitte reaalseks kasutuselevõtuks, vaid katsetamiseks ja võimalikuks tulevaseks edasiarendamiseks.
 
-Testrakendus on, sarnaselt sisekasutuse veebiliidesele, nn 'single-page application' 
+Esitamise testrakendus on, sarnaselt sisekontrollija rakendusele, nn 'single-page application' 
 ehk tegu on staatiliste failidega, mis on ette nähtud serveerimiseks mistahes veebiserveri poolt.
 Veebiliidese lähtekood asub kataloogis query/src/main/webapp/: vajalikud failid on ainult index.html ja selle poolt kasutavad
 css failid kataloogis query/src/main/webapp/css ning
 javascripti failid kataloogis query/src/main/webapp/js, samuti väljakutsutavate 
 x-tee teenuste konfiguratsioonifail producers.js (viimase kohta vaata täpsemalt paigaldamisjuhendist).
 
-Sisekasutuse veebiliides teostab erinevate süsteemiga liidestunud asutuste suunas x-tee päringuid
+Esitamise testrakendus teostab erinevate süsteemiga liidestunud asutuste suunas x-tee päringuid
 läbi x-tee turvaserveri. Liidestunud asutuste x-tee päringute päised tuleb konfigureerida eelpool
 toodud producers.js failis: samuti tuleb muuta asutuste nimesid ja producer.js võtmeid faili
 index.html blokis
@@ -286,19 +286,14 @@ Päringute tegemine tähendab x-tee SOAP ümbriku loomist javascripti rakenduse 
 mis suunatakse proxy API-le, mis peab suunama ta edasi reaalsele turvaserverile, 
 samuti tagastama x-tee SOAP vastuse.
 
-Nimetatud proxy on realiseeritud failis query/src/main/java/ee/degeetia/dumonitor/query/Proxy.java.
+Nimetatud proxy on realiseeritud failis query/src/main/java/ee/ria/dumonitor/query/Proxy.java.
 
 Veebiliidese konfigureerimiseks saab muuda index.html faili alguses olevat javascripti blokki:
 muuhulgas võib olla oluline muutuja queryURL seadmine: sellelt URL-lt kutsutakse välja
 mainitud proxy API-t. 
 
-Ligipääs testrakenduse veebiliidesele, eeskätt aga mainitud proxy API-le query, tuleb piirata nii,
+Ligipääs rakenduse veebiliidesele, eeskätt aga mainitud proxy API-le query, tuleb piirata nii,
 et see oleks ainult asutusesisene ja soovitavalt ainult valitud töötajatele. 
 Ligipääsupiiranguteks ei realiseeri antud veebiliides mingeid erivahendeid ja ei sisalda
 oma autentimislahendust: selle asemel eeldatakse, et piirangud seatakse paigaldamisel veebiserveri
 tasemel IP aadressi, paroolide või ID-kaardiga: detaile leiad paigaldamisjuhendist.
-
-
-
-
-

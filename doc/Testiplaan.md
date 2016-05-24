@@ -41,7 +41,7 @@ Testiplaan kirjeldab DUMonitor tarkvaraga läbi viidavad integratsiooni- ja koor
 
 Automaatsete integratsioonitestidega testitakse järgmised tarkvara suhtlusliidesed:
 
-* Filtri komponendi päringute vahendusliides
+* Eraldusfiltri komponendi päringute vahendusliides
 * Andmesalvestaja komponendi REST kasutusteabe logimise liides
 * Andmesalvestaja komponendi REST päringuliides
 * Andmesalvestaja komponendi X-tee päringuliides
@@ -50,11 +50,11 @@ Käsitsi läbi viidavate integratsioonitestidega testitakse järgmised tarkvara 
 
 * Andmesalvestaja komponendi sisekasutuse veebiliides
 * Esitamise testrakenduse veebiliides
-* Eesti.ee komponendi xforms liides
+* Kodaniku vaatamisrakenduse komponendi xforms liides
 
 Koormustestidega testitakse järgmised tarkvara suhtlusliidesed:
 
-* Filtri komponendi päringute vahendusliides
+* Eraldusfiltri komponendi päringute vahendusliides
 * Andmesalvestaja komponendi REST kasutusteabe logimise liides
 * Andmesalvestaja komponendi REST päringuliides
 * Andmesalvestaja komponendi X-tee päringuliides
