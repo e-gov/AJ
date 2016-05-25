@@ -212,7 +212,7 @@ Eesti.ee-s esitatavad väljad:
 
 -  **personcode** (tekstiväli) ehk isikukood: kelle andmeid töödeldi. Ei ole kohustuslik. Kui isikukood on olemas, peab ta algama riigi prefiksiga EE. Kui isikukood puudub, siis tähistab kirje masstöötluse fakti (mass-edasisaatmine, -kustutamine vms), mille sisu on kirjeldatud eraldi väljas.   Aluseks eesti.ee päringutel.
 -  **logtime** (datetime väli) ehk sündmuse aeg (kuupäev ja kellaaeg) sekundi täpsusega. Kohustuslik. Salvestatakse – automaatselt - logikirje kirjutamise aeg, mitte tegelik andmete kasutamise aeg: eeldatavalt on need lähestikku. Kuvatakse eesti.ee kaudu. Aluseks eesti.ee päringutel.
--  **action** (tekstiväli)ehk menetluse/tegevuse inimloetav nimi. Kohustuslik. Tuletatakse kas x-tee päringu nimest  ja/või on andmetöötleja poolt seatav. Võib, aga ei pruugi langeda kokku väljaga "actioncode", sisekasutuseks ettenähtud nimetusega. Kuvatakse eesti.ee kaudu.
+-  **action** (tekstiväli)ehk menetluse/tegevuse inimloetav nimi. Kohustuslik. Tuletatakse kas X-tee päringu nimest  ja/või on andmetöötleja poolt seatav. Võib, aga ei pruugi langeda kokku väljaga "actioncode", sisekasutuseks ettenähtud nimetusega. Kuvatakse eesti.ee kaudu.
 -  **receiver** (tekstiväli) ehk asutuse, vajadusel täpsustava täiendusega, inimloetav nimi / viide, kellele andmeid edastatakse. Kohustuslik juhul, kui logikirje vastab andmete väljasaatmisele X-tee kaudu. Võib sisaldada klikitavat linki. Kuvatakse eesti.ee kaudu.
 -  **sender** (tekstiväli) ehk nii asutuse kui andmekogu koond - inimloetav nimi / viide, kellelt andmed saadi. Kohustuslik juhul, kui logikirje vastab andmete saabumisele X-tee kaudu. Võib sisaldada klikitavat linki. Kuvatakse eesti.ee kaudu.
 

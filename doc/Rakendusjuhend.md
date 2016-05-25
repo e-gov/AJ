@@ -64,7 +64,7 @@ oma andmejälgija süsteemi paigaldada või ehitada.
 
 Andmejälgija põhiosad on järgmised:
 
-* Eraldusfilter - X-tee liikluse jälgija, mis tuvastab isikuandmete edasisaatmised x-tee kaudu.
+* Eraldusfilter - X-tee liikluse jälgija, mis tuvastab isikuandmete edasisaatmised X-tee kaudu.
 * Andmesalvestaja - Isikuandmete liikluse logiandmebaas koos REST-liidesega, mida saab mistahes tarkvarast välja kutsuda.
 * Sisekontrollija rakendus - Isikuandmete liikluse logiandmebaasi veebiliides asutuse sisekasutuseks: [vaata ekraanipilti](img/screenshot_andmesalvestaja.png)
 * Kodaniku vaatamisrakendus - X-tee liides kodanike päringutele vastamiseks http://eesti.ee kaudu. Konkreetne ekraanipilt hetkel puudub, kuid vaata [testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
@@ -133,12 +133,12 @@ et teda on võimalik paigaldada ka otse X-tee turvaserverisse, segamata viimase 
 Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubada
 olukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
 
-Standardvariandina töötab andmejälgija selliselt, et tema eraldusfiltri komponent on infosüsteemi ja x-tee turvaserveri
-vahel nö proxy-režiimis: infosüsteem edastab oma x-tee päringuid otse eraldusfiltri komponendile, mis siis 
+Standardvariandina töötab andmejälgija selliselt, et tema eraldusfiltri komponent on infosüsteemi ja X-tee turvaserveri
+vahel nö proxy-režiimis: infosüsteem edastab oma X-tee päringuid otse eraldusfiltri komponendile, mis siis 
 omakorda edastab neid turvaserverile. Kui seos andmekogu ja turvaserveriga ei ole üksühene, ei tekita
 see probleeme:
 
-* Sama režiimi on võimalik kasutada ka juhul, kui üks x-tee turvaserver teenindab korraga mitut andmekogu: 
+* Sama režiimi on võimalik kasutada ka juhul, kui üks X-tee turvaserver teenindab korraga mitut andmekogu: 
 siis küll ei saa paigaldada andmejälgijat otse turvaserverisse.
 * Samuti on lubatav olukord, kus üks andmekogu kasutab mitut turvaserverit: eraldusfiltri komponendid
 tuleb sel juhul paigaldada iga turvaserveri ja andmekogu vahele.
@@ -154,7 +154,7 @@ temale vastava päringuga, kompileerida ja paigaldada komponent ning luua X-tee 
 teenus eesti.ee jaoks.
 
 * Kui ei, siis kõige otsesemaks viisiks andmejälgijat kasutusele võtta on installeerida ja konfigureerida kõik tema komponendid:
-sel juhul asub süsteem jälgima oma konfiguratsioonis seatud väljaminevaid sõnumeid x-teel, leiab sealt 
+sel juhul asub süsteem jälgima oma konfiguratsioonis seatud väljaminevaid sõnumeid X-teel, leiab sealt 
 konfiguratsioonis antud teel asuva isikukoodi ja salvestab selle oma andmebaasi. Andmebaasiga on omakorda 
 seotud X-tee teenus, mis vastab eesti.ee kaudu tulnud isikupõhistele päringutele. Lisaks sisaldab andmejälgija
 sisekontrollija rakendust - asutusesiseseks kasutamiseks mõeldud lihtsat veebirakendust sellestsamast andmebaasist päringute tegemiseks.
@@ -167,9 +167,9 @@ päringutest üheselt võimalik isikuid leida.
 
 * Kui isikuandmeid edastatakse X-teel ja selliselt, et seal liiguvad korraga ainult ühe inimese andmed ja 
 tema isikukoodi saab X-tee päringust leida, tasub paigaldada ja konfigureerida andmejälgija eraldusfiltri komponent 
-x-tee liikluse jälgimiseks. See nõuab konfigureerimistöid, kuid mitte arendustöid.
+X-tee liikluse jälgimiseks. See nõuab konfigureerimistöid, kuid mitte arendustöid.
 
-* Kui x-tee lihtne jälgimine ei ole võimalik, saab andmejälgijat kasutada selliselt, et ehitada andmekogu infosüsteemi
+* Kui X-tee lihtne jälgimine ei ole võimalik, saab andmejälgijat kasutada selliselt, et ehitada andmekogu infosüsteemi
 lihtsad HTTP(S) põhised REST-päringud, millega isikuandmete edastamise või töötlemise fakt saadetakse otse
 andmejälgija andmesalvestaja komponendi andmebaasi. See nõuab arendustöid.
 
@@ -179,8 +179,8 @@ jälgimiseks, kui REST teenuseid otse infosüsteemist logikirjete salvestamiseks
 Kolmas otsusekoht on küsimus, kas kasutada andmejälgija oma andmebaasi (Postgresql) või asutuses juba
 olemasolevat muud andmebaasi, ning millisesse serverisse andmejälgija paigutada:
 
-* Üks võimalus on paigaldada andmejälgija valitud komponendid otse samasse serverisse, kus töötab x-tee turvaserver,
-kasutades seejuures (uue x-tee versiooni korral) otse X-tee poolt kasutatavat Postgresql andmebaasi.
+* Üks võimalus on paigaldada andmejälgija valitud komponendid otse samasse serverisse, kus töötab X-tee turvaserver,
+kasutades seejuures (uue X-tee versiooni korral) otse X-tee poolt kasutatavat Postgresql andmebaasi.
 
 * Teine võimalus on paigaldada andmejälgija komponendid muudesse serveritesse: nende ressursinõudlus on väike
 ja nad ei vaja tingimata omaette serverit.
@@ -254,7 +254,7 @@ tegevusi:
 * Kontrollida, et andmejälgija andmebaas ei hakka lõpuni täitma serveri kettaruumi.
 * Kontrollida, et andmejälgija regulaarselt andmeid ka salvestab ning eesti.ee-st on salvestatud andmed kättesaadavad.
 * Kontrollida, et andmesalvestaja liidesed ei ole serverite konfiguratsioonide muutmise käigus asutuseväliselt kättesaadavaks tehtud.
-* Uute isikuandmeid edastavate x-tee teenuste ehitamise või muude uute isikuandmete töötlemisvõimaluste ehitamise korral
+* Uute isikuandmeid edastavate X-tee teenuste ehitamise või muude uute isikuandmete töötlemisvõimaluste ehitamise korral
 lisada ka need andmejälgijasse.
 * Perioodiliselt kustutada aegunud logiridu.
 
@@ -279,7 +279,7 @@ ette anda PostgreSQL standardsete keskkonnamuutujate PGDATABASE, PGHOST, PGPORT,
 ## Infoturbe küsimused
 
 Üldise põhimõttena andmejälgija paigaldamisel tuleks lähtuda sellest, et andmejälgija on põhiandmekogu osa, 
-mitte eraldiseisev süsteem. Seega ei nõua ta ka omaette ISKE analüüsi, omaette x-tee süsteeme jne. 
+mitte eraldiseisev süsteem. Seega ei nõua ta ka omaette ISKE analüüsi, omaette X-tee süsteeme jne. 
 
 Sellest tulenevalt ei saa aga üks andmejälgija teenindada korraga mitut andmekogu.
 
@@ -291,7 +291,7 @@ konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi
 Andmejälgija paigaldamisel tuleb seda teha selliselt, et andmesalvestaja komponendi erinevad teenused:
 * andmete salvestamise REST liides
 * sisekontrollija rakenduse päringu REST liides
-* x-tee turvaserveri SOAP liides
+* X-tee turvaserveri SOAP liides
 ei oleks ligipääsetavad asutusest/andmekogust väljapool.
 
 Sisekontrollija rakenduse paigaldamise korral tuleb server seadistada selliselt, et ligipääsud REST teenusele

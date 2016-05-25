@@ -64,8 +64,8 @@ Andmejälgija ehitamiseks on kasutatud gradle ehitustööriistu.
 
 Siin juhendis jagame andmejälgija järgmisteks osadeks:
 
-* Eraldusfilter, mis jälgib x-tee turvaserveri sõnumeid ja salvestab isikuandmete liikumise andmesalvestajasse.
-* Andmesalvestaja sisaldab andmebaasi ja temaga seotud teenuseid ehk API-sid: salvestamise REST teenus, sisekasutuseks otsimise REST teenus, avalikuks eesti.ee kasutamiseks ettenähtud x-tee SOAP otsingute teenus.
+* Eraldusfilter, mis jälgib X-tee turvaserveri sõnumeid ja salvestab isikuandmete liikumise andmesalvestajasse.
+* Andmesalvestaja sisaldab andmebaasi ja temaga seotud teenuseid ehk API-sid: salvestamise REST teenus, sisekasutuseks otsimise REST teenus, avalikuks eesti.ee kasutamiseks ettenähtud X-tee SOAP otsingute teenus.
 * Sisekontrollija rakendus andmesalvestajast kirjete otsimiseks.
 * Kodaniku vaatamisrakendus sisaldab eesti.ee jaoks ettenähtud XForms teenuse komponendid
 * Esitamise testrakendus, mis sarnaneb kodaniku vaatamisrakendusele ja ei ole mõeldud reaalseks kasutuseks.
@@ -150,8 +150,8 @@ Konkreetseid API-sid realiseerivad järgmised failid:
 
 * Store.java : realiseerib andmesalvestamise REST teenust.
 * Query.java : realiseerib sisekasutuse veebilehe jaoks otsingu REST teenust.
-* Xroad.java : realiseerib eesti.ee jaoks x-tee SOAP otsingupäringu uue x-tee versiooni jaoks.
-* Heartbeat.java : realiseerib üldise metainfo andmise x-tee jaoks, ei ole vajalik API-de tööks.
+* Xroad.java : realiseerib eesti.ee jaoks X-tee SOAP otsingupäringu uue X-tee versiooni jaoks.
+* Heartbeat.java : realiseerib üldise metainfo andmise X-tee jaoks, ei ole vajalik API-de tööks.
 
 Store, Query ja Xroad failid avavad andmebaasiühenduse Util failis asuva funktsiooni abil,
 kuid sisaldavad igaüks ise konkreetseid SQL päringuid jdbc kaudu. Andmebaasiühenduse parameetrid
@@ -188,7 +188,7 @@ võtmetega võti/väärtus paare sisaldav objekt.
 
 X-tee api (Xroad.java) põhimõtted:
 
-* Sisend on uue versiooni x-tee SOAP ümbrik
+* Sisend on uue versiooni X-tee SOAP ümbrik
 * Sisendis arvestatakse ainult isikukoodi, vastusridade algust (offset) ja soovitud vastusridade maksimaalarvu (limit).
 * Sisendi isikukood võetakse SOAP päise väljast
 ```xml
@@ -204,7 +204,7 @@ X-tee api (Xroad.java) põhimõtted:
   </soapenv:Body>
 ```  
 ja sellest arvestatakse ainult offset ja limit parameetreid, mis võib ka ära jätta (vaikimisi 0 ja 1000).
-* Tulemuse päis on identne sisendi päisega, vastavalt uue x-tee põhimõttele.
+* Tulemuse päis on identne sisendi päisega, vastavalt uue X-tee põhimõttele.
 * Tulemuse keha on kujul
 ```xml
 <soapenv:Body>
@@ -252,12 +252,12 @@ põhimõttel. Realisatsioon on kahes kataloogis:
 
 * kataloog xforms, mis sisaldab ühtainust .xml faili, mis on ette nähtud eesti.ee süsteemi
 paigaldamiseks koos võimalike eelnevate modifikatsioonidega.
-* eelpool mainitud andmesalvestaja API, lähtekoodiga Xroad.java, mis realiseerib x-tee 
-SOAP otsingupäringu uue x-tee versiooni jaoks. Viimane eeldab iga andmejälgija rakendaja poolt
-paigaldamist, sh seostamist reaalse x-tee turvaserveriga.
+* eelpool mainitud andmesalvestaja API, lähtekoodiga Xroad.java, mis realiseerib X-tee 
+SOAP otsingupäringu uue X-tee versiooni jaoks. Viimane eeldab iga andmejälgija rakendaja poolt
+paigaldamist, sh seostamist reaalse X-tee turvaserveriga.
 
 Kodaniku vaatamisrakendus on ette nähtud töötama selliselt, et lõppkasutaja valib asutuse/andmekogu,
-ning eesti.ee teeb x-tee kaudu viimase andmejälgija API-le päringu, andes edasi lõppkasutaja
+ning eesti.ee teeb X-tee kaudu viimase andmejälgija API-le päringu, andes edasi lõppkasutaja
 isikukoodi ning vastuste loendi alguse ja maksimaalse pikkuse.
 
 ## Esitamise testrakendus
@@ -272,19 +272,19 @@ ehk tegu on staatiliste failidega, mis on ette nähtud serveerimiseks mistahes v
 Veebiliidese lähtekood asub kataloogis query/src/main/webapp/: vajalikud failid on ainult index.html ja selle poolt kasutavad
 css failid kataloogis query/src/main/webapp/css ning
 javascripti failid kataloogis query/src/main/webapp/js, samuti väljakutsutavate 
-x-tee teenuste konfiguratsioonifail producers.js (viimase kohta vaata täpsemalt paigaldamisjuhendist).
+X-tee teenuste konfiguratsioonifail producers.js (viimase kohta vaata täpsemalt paigaldamisjuhendist).
 
-Esitamise testrakendus teostab erinevate süsteemiga liidestunud asutuste suunas x-tee päringuid
-läbi x-tee turvaserveri. Liidestunud asutuste x-tee päringute päised tuleb konfigureerida eelpool
+Esitamise testrakendus teostab erinevate süsteemiga liidestunud asutuste suunas X-tee päringuid
+läbi X-tee turvaserveri. Liidestunud asutuste X-tee päringute päised tuleb konfigureerida eelpool
 toodud producers.js failis: samuti tuleb muuta asutuste nimesid ja producer.js võtmeid faili
 index.html blokis
 ```xml
 <select class="filterselect" id="flt_organization">
 </select> 
 ```
-Päringute tegemine tähendab x-tee SOAP ümbriku loomist javascripti rakenduse poolt,
+Päringute tegemine tähendab X-tee SOAP ümbriku loomist javascripti rakenduse poolt,
 mis suunatakse proxy API-le, mis peab suunama ta edasi reaalsele turvaserverile, 
-samuti tagastama x-tee SOAP vastuse.
+samuti tagastama X-tee SOAP vastuse.
 
 Nimetatud proxy on realiseeritud failis query/src/main/java/ee/ria/dumonitor/query/Proxy.java.
 
