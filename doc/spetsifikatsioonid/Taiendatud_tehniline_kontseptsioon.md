@@ -71,8 +71,8 @@ Andmejälgija kasutamine või mittekasutamine ning konkreetne viis tema kasutuse
 Andmejälgija pakub järgmisi funktsionaalsusi, ning võimaldab neist ka ainult valitute kasutamist ja teiste ignoreerimist:
 
 - Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi.
-- X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu.
-- Asutuse sisekasutuse otsingu-API ja otsingu-veebiliides.
+- X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu (nn kodaniku vaatamisrakendus).
+- Asutuse sisekasutuse otsingu-API ja otsingu-veebiliides (nn. sisekontrollija rakendus).
 
 Vajadus asutuse sisekasutuse otsingu-API ja otsingu-veebiliidese järgi on ilmnenud kõigist intervjuudest, sh AKI soovitustest. Ilma sellise funktsionaalsuseta on (a) asutustel vähe motivatsiooni süsteem kasutusele võtta ning (b) neil tekib huvi asuda seda funktsionaalsust ise looma.
 

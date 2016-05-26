@@ -44,7 +44,7 @@ Käesolev dokument kajastab tarkvaralise lahenduse "Andmejälgija" kasutuslugusi
 Süsteemis on mitu erinevat kasutajate tüüpi:
 
 - eesti.ee kaudu lähenev lõppkasutaja
-- asutuse sisekasutaja, kes otsib logikirjeid andmejälgija andmebaasist veebiliidese kaudu
+- asutuse sisekasutaja, kes otsib logikirjeid andmejälgija andmebaasist veebiliidese kaudu (sisekontrollija rakenduse kaudu)
 - asutuse IT-administraator, kes süsteemi üles seab, konfigureerib ja jälgib töökorda
 - (valikuliselt) asutuse IT-süsteemi arendaja, kes kutsub välja andmesalvestaja API-t sisekasutuseks või realiseerib otse X-tee teenuse eesti.ee jaoks
 - eesti.ee poolne administraator, kes lisab eesti.ee-sse andmejälgija üldlehe ja liidestab sellega erinevaid andmekogusid, kes selleks soovi avaldavad

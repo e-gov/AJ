@@ -54,7 +54,7 @@ Andmesalvestajal kui andmejälgija põhikomponendil on mitu rolli:
 - eesti.ee süsteemist tulevatele SOAP päringutele vastamine X-tee turvaserveri kaudu.
 - REST API isikuandmete salvestamiseks.
 - REST API isikuandmetest sisekasutuse jaoks päringute tegemiseks. See roll ei pruugi olla igas paigaldusviisis  kasutusel.
-- Sisekasutuse veebilehtede serveerimine ja sisekasutuse jaoks autentimisvõimaluste pakkumine. See roll ei pruugi olla igas paigaldusviisis  kasutusel.
+- Sisekontrollija rakendus - sisekasutuse veebilehtede serveerimine ja sisekasutuse jaoks autentimisvõimaluste pakkumine. See roll ei pruugi olla igas paigaldusviisis  kasutusel.
 - Süsteemi põhikonfiguratsioonifaili lugemine.
 - Vealogide kirjutamine.
 
@@ -113,7 +113,7 @@ Oma andmebaasiserveri ja andmebaasi-skeemi kergema kasutamise võimaldamiseks:
 - tehakse andmebaasi-ühenduse parameetrid konfiguratsioonifaili kaudu seatavaks,
 - programmeeritakse kõik andmejälgija andmebaasiliidesed eraldi failis hästi dokumenteeritud ja kergesti mõistetaval ja muudetaval kujul selliselt, et süsteemi paigaldaja saab neid mõõduka pingutusega ümber programmeerida.
 
-Lisaks isikuandmete esitusmudelile luuakse andmebaasi ka eraldi tabeli sessiooni tokenite ehk sessiooni ID-de hoidmiseks: see on vajalik sisekasutuse süsteemis ID-kaardiga autentimise efektiivseks realiseerimiseks.   Sisekasutuse veebiliides ei ole kasutamiseks kohustuslik, seega peab andmejälgija funktsioneerima ka juhul, kui seda tabelit ei looda.
+Lisaks isikuandmete esitusmudelile luuakse andmebaasi ka eraldi tabeli sessiooni tokenite ehk sessiooni ID-de hoidmiseks: see on vajalik sisekontrollija rakenduses ID-kaardiga autentimise efektiivseks realiseerimiseks.   Sisekontrollija rakendus ei ole kasutamiseks kohustuslik, seega peab andmejälgija funktsioneerima ka juhul, kui seda tabelit ei looda.
 
 Kasutajate isikukoodide ja sessiooni tokenite halduse jaoks erivahendeid andmesalvestajasse ei looda. Neid peab süsteemi administraator saama soovi korral lisada ja muuta otse konfiguratsioonifailis või andmebaasis või käsurea-utiliitidega, mis pakutakse süsteemile kaasa.
 
@@ -121,7 +121,7 @@ Andmebaasi vanade kirjete arhiveerimiseks ja kustutamiseks luuakse käsurea-util
 
 ## 10. HTTP(S) ja REST API-d, X-tee SOAP päringuliides ja siseveeb
 
-REST API-d, X-tee SOAP päringuliides ja sisekasutuse veebiliides luuakse Java SE standardteegi com.sun.net.httpserver abil või mõne analoogilise standardvahendi abil, vältimaks vajadust kasutada eraldi veebiserverit nagu Tomcat või Jetty.
+REST API-d, X-tee SOAP päringuliides ja sisekontrollija rakendus luuakse Java SE standardteegi com.sun.net.httpserver abil või mõne analoogilise standardvahendi abil, vältimaks vajadust kasutada eraldi veebiserverit nagu Tomcat või Jetty.
 
 Samas luuakse kõik need liidesed viisil, mis võimaldavad nende kasutamist ka Jetty või Tomcati koosseisus, mh WAR failina, mh kasutades X-tee turvaserveri komponendiks olevat Jetty serverit.
 
@@ -129,7 +129,7 @@ Konkreetse valiku peab saama teha konfigureerimise abil.
 
 Tomcat või Jetty serverit andmejälgija installatsioonipaketiga kaasa ei panda.
 
-Nii andmete lisamise kui sisekasutuse veebiliidese REST APId on detailselt täpsustatud dokumendis „Andmejälgija täiendatud tehniline kontseptsioon".
+Nii andmete lisamise kui sisekontrollija rakenduse REST APId on detailselt täpsustatud dokumendis „Andmejälgija täiendatud tehniline kontseptsioon".
 
 ## 11. Programmeerimiskeel ja teegid
 
