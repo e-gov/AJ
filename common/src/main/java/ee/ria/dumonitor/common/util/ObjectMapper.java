@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Class for mapping properties from a {@link Map} to a POJO.
@@ -38,6 +39,7 @@ public class ObjectMapper<T> {
   private static final Logger LOG = LoggerFactory.getLogger(ObjectMapper.class);
 
   private final Class<T> objectClass;
+  private final String objectClassName;
 
   /**
    * Creates an instance of ObjectMapper for the specified class.
@@ -46,6 +48,7 @@ public class ObjectMapper<T> {
    */
   public ObjectMapper(Class<T> objectClass) {
     this.objectClass = objectClass;
+    this.objectClassName = objectClass.getSimpleName();
   }
 
   /**
@@ -57,16 +60,28 @@ public class ObjectMapper<T> {
    * @return the mapped object
    */
   public T map(Map<String, ?> properties) {
-    String className = objectClass.getSimpleName();
     T object;
 
     try {
       object = objectClass.getDeclaredConstructor().newInstance();
     } catch (Exception e) {
-      throw ExceptionUtil.toUnchecked("Failed to create an instance of " + className, e);
+      throw ExceptionUtil.toUnchecked("Failed to create an instance of " + objectClassName, e);
     }
 
-    for (Map.Entry<String, ?> property : properties.entrySet()) {
+    return map(properties, object);
+  }
+
+  /**
+   * Matches keys from <code>properties</code> with field names in {@link T} and writes the values to the fields using
+   * the corresponding setters. If a matching setter (with the correct name and parameter type) is not found, then the
+   * key is ignored.
+   *
+   * @param properties the Map to read properties from
+   * @param object     the object to write values to
+   * @return the mapped object
+   */
+  public T map(Map<String, ?> properties, T object) {
+    for (Entry<String, ?> property : properties.entrySet()) {
       String fieldName = property.getKey();
       Object fieldValue = property.getValue();
 
@@ -75,14 +90,14 @@ public class ObjectMapper<T> {
       try {
         setter = objectClass.getMethod(getSetterName(fieldName), fieldValue.getClass());
       } catch (NoSuchMethodException e) {
-        LOG.debug("No setter for field {} in {}", fieldName, className);
+        LOG.debug("No setter for field {} in {}", fieldName, objectClassName);
         continue;
       }
 
       try {
         setter.invoke(object, fieldValue);
       } catch (Exception e) {
-        throw ExceptionUtil.toUnchecked("Failed to invoke setter for field " + fieldName + " in " + className, e);
+        throw ExceptionUtil.toUnchecked("Failed to invoke setter for field " + fieldName + " in " + objectClassName, e);
       }
     }
 

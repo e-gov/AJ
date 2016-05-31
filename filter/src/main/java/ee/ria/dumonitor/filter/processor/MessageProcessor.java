@@ -22,10 +22,6 @@
  */
 package ee.ria.dumonitor.filter.processor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.Node;
-
 import ee.ria.dumonitor.common.util.IOUtil;
 import ee.ria.dumonitor.common.util.ObjectMapper;
 import ee.ria.dumonitor.common.util.SoapUtil;
@@ -33,10 +29,14 @@ import ee.ria.dumonitor.common.util.XPathUtil;
 import ee.ria.dumonitor.filter.config.*;
 import ee.ria.dumonitor.filter.log.LogEntry;
 import ee.ria.dumonitor.filter.log.LogService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Node;
 
 import javax.xml.soap.SOAPMessage;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import static ee.ria.dumonitor.common.util.ObjectUtil.eq;
 
 /**
  * This class takes care of parsing the raw message content and determining if the message contains information that
@@ -73,9 +73,8 @@ public class MessageProcessor {
       SOAPMessage message = SoapUtil.parseMessage(content, contentType);
 
       if (isLoggable(message.getSOAPPart())) {
-        Map<String, String> loggableFields = getLoggableFields(message.getSOAPPart());
-        if (!loggableFields.isEmpty()) {
-          logService.createEntry(logEntryMapper.map(loggableFields));
+        for (LogEntry logEntry : createLogEntries(message.getSOAPPart())) {
+          logService.createEntry(logEntry);
         }
       }
     } catch (Exception e) {
@@ -94,17 +93,32 @@ public class MessageProcessor {
     return true;
   }
 
-  private Map<String, String> getLoggableFields(Node node) {
-    Map<String, String> loggableFields = new HashMap<String, String>();
+  private Iterable<LogEntry> createLogEntries(Node node) {
     for (Filter filter : config.get().getFilters()) {
       if (XPathUtil.evaluate(node, filter.getXpath())) {
+        Set<String> personcodes = new HashSet<String>();
+        Map<String, String> fields = new HashMap<String, String>();
+
         for (LoggableField field : filter.getLoggableFields()) {
-          loggableFields.put(field.getFieldName(), XPathUtil.getValue(node, field.getXpath()));
+          if (eq(field.getFieldName(), "personcode")) {
+            personcodes.addAll(XPathUtil.getListValue(node, field.getXpath()));
+          } else {
+            fields.put(field.getFieldName(), XPathUtil.getStringValue(node, field.getXpath()));
+          }
         }
-        break;
+
+        List<LogEntry> logEntries = new ArrayList<LogEntry>(personcodes.size());
+        for (String personcode : personcodes) {
+          LogEntry logEntry = new LogEntry();
+          logEntry.setPersoncode(personcode);
+          logEntryMapper.map(fields, logEntry);
+          logEntries.add(logEntry);
+        }
+        return logEntries;
       }
     }
-    return loggableFields;
+
+    return Collections.emptyList();
   }
 
 }

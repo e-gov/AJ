@@ -22,12 +22,11 @@
  */
 package ee.ria.dumonitor.filter.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import ee.ria.dumonitor.common.util.*;
 import ee.ria.dumonitor.filter.config.generated.FilterConfiguration;
 import ee.ria.dumonitor.filter.config.generated.LoggableFields;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.namespace.NamespaceContext;
@@ -152,7 +151,6 @@ public final class ConfigurationLoader {
     }
     return new Filter(XPathUtil.compile(filter.getXpath(), nsCtx), loggableFields);
   }
-
 
   private static List<Exclusion> compileExclusions(FilterConfiguration... configurations) throws
       XPathExpressionException {

@@ -23,9 +23,13 @@
 package ee.ria.dumonitor.common.util;
 
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Utility class for working with XML documents and XPath expressions.
@@ -82,17 +86,38 @@ public final class XPathUtil {
   }
 
   /**
-   * Evaluates the XPath expression in the specified context and returns the element if it was found.
+   * Evaluates the XPath expression in the specified context and returns the found element as a String.
    *
    * @param node       the XML document to evaluate
    * @param expression the compiled XPath expression
    * @return the element if it was found, or null
    */
-  public static String getValue(Node node, XPathExpression expression) {
+  public static String getStringValue(Node node, XPathExpression expression) {
     try {
       return (String) expression.evaluate(node, XPathConstants.STRING);
     } catch (XPathExpressionException e) {
       return null;
+    }
+  }
+
+  /**
+   * Evaluates the XPath expression in the specified context and returns the found items as a List.
+   *
+   * @param node       the XML document to evaluate
+   * @param expression the compiled XPath expression
+   * @return the list of elements found
+   */
+  public static List<String> getListValue(Node node, XPathExpression expression) {
+    try {
+      NodeList nodeList = (NodeList) expression.evaluate(node, XPathConstants.NODESET);
+      List<String> list = new ArrayList<String>(nodeList.getLength());
+      for (int i = 0; i < nodeList.getLength(); i++) {
+        Node item = nodeList.item(i);
+        list.add(item.getFirstChild().getNodeValue());
+      }
+      return list;
+    } catch (XPathExpressionException e) {
+      return Collections.emptyList();
     }
   }
 
@@ -106,5 +131,4 @@ public final class XPathUtil {
     }
     return xPath;
   }
-
 }

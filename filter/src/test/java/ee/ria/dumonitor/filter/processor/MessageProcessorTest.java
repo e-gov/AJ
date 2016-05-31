@@ -26,10 +26,8 @@ import ee.ria.dumonitor.common.util.IOUtil;
 import ee.ria.dumonitor.common.util.ResourceUtil;
 import ee.ria.dumonitor.filter.log.LogEntry;
 import ee.ria.dumonitor.filter.log.LogService;
-import ee.ria.dumonitor.filter.processor.MessageProcessor;
 import ee.ria.testutils.jetty.EmbeddedJettyHttpServer;
 import ee.ria.testutils.jetty.EmbeddedJettyIntegrationTest;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatcher;
@@ -62,19 +60,7 @@ public class MessageProcessorTest extends EmbeddedJettyIntegrationTest {
     byte[] content = IOUtil.readBytes(ResourceUtil.getClasspathResourceAsStream("test_response.xml"));
     messageProcessor.process(content, "text/xml");
 
-    LogEntry logEntry = new LogEntry();
-    logEntry.setLogtime(new Date());
-    logEntry.setPersoncode("47101010033");
-    logEntry.setAction("Get Person Data");
-    logEntry.setSender("Test AK");
-    logEntry.setReceiver("Test receiver");
-    logEntry.setRestrictions("A");
-    logEntry.setSendercode("MEMBER1");
-    logEntry.setReceivercode("MEMBER2");
-    logEntry.setActioncode("getPersonData.v1");
-    logEntry.setXroadrequestid("4894e35d-bf0f-44a6-867a-8e51f1daa7e1");
-    logEntry.setXroadservice("getPersonData");
-    logEntry.setUsercode("EE12345678901");
+    LogEntry logEntry = getLogEntry("47101010033");
 
     verify(logService).createEntry(argThat(matches(logEntry)));
   }
@@ -84,6 +70,36 @@ public class MessageProcessorTest extends EmbeddedJettyIntegrationTest {
     byte[] content = IOUtil.readBytes(ResourceUtil.getClasspathResourceAsStream("test_response_blacklisted.xml"));
     messageProcessor.process(content, "text/xml");
     verifyZeroInteractions(logService);
+  }
+
+  @Test
+  public void testProcessMultipleIsikukood() throws Exception {
+    byte[] content =
+        IOUtil.readBytes(ResourceUtil.getClasspathResourceAsStream("test_response_multiple_isikukood.xml"));
+    messageProcessor.process(content, "text/xml");
+
+    LogEntry logEntry1 = getLogEntry("47101010033");
+    LogEntry logEntry2 = getLogEntry("47101010044");
+
+    verify(logService).createEntry(argThat(matches(logEntry1)));
+    verify(logService).createEntry(argThat(matches(logEntry2)));
+  }
+
+  private LogEntry getLogEntry(String isikukood) {
+    LogEntry logEntry1 = new LogEntry();
+    logEntry1.setLogtime(new Date());
+    logEntry1.setPersoncode(isikukood);
+    logEntry1.setAction("Get Person Data");
+    logEntry1.setSender("Test AK");
+    logEntry1.setReceiver("Test receiver");
+    logEntry1.setRestrictions("A");
+    logEntry1.setSendercode("MEMBER1");
+    logEntry1.setReceivercode("MEMBER2");
+    logEntry1.setActioncode("getPersonData.v1");
+    logEntry1.setXroadrequestid("4894e35d-bf0f-44a6-867a-8e51f1daa7e1");
+    logEntry1.setXroadservice("getPersonData");
+    logEntry1.setUsercode("EE12345678901");
+    return logEntry1;
   }
 
   private ArgumentMatcher<LogEntry> matches(final LogEntry logEntry) {
