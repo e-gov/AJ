@@ -117,6 +117,13 @@ public final class XPathUtil {
       }
       return list;
     } catch (XPathExpressionException e) {
+      // Try to evaluate in string context:
+      String value = getStringValue(node, expression);
+      if (value != null) {
+          List<String> list = new ArrayList<String>(1);
+          list.add(value);
+          return list;
+      }
       return Collections.emptyList();
     }
   }
