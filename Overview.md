@@ -10,13 +10,13 @@ The power lies in how the components are connected to each other and the element
 
 Extractor is placed as a proxy between X-Road Security Server and governmental Information System.  
 
-[](img/Extractor.PNG)
+![](img/Extractor.PNG)
 
 Extractor has four interfaces:
 
-- [](img/ProvidesRIGHT.svg) provides a service of delivering X-Road message from Information System to Security Server
+- ![](img/ProvidesRIGHT.svg) provides a service of delivering X-Road message from Information System to Security Server
 
-- [](img/RequiresLEFT.svg) requires a service that accepts the X-Road message received from Information System and to be passed on
+- ![](img/RequiresLEFT.svg) requires a service that accepts the X-Road message received from Information System and to be passed on
 
 - [](img/RequiresDOWN.svg) requires a service to where to send the log record
 
@@ -26,7 +26,7 @@ Protocols: (1) and (2) conform to X-Road message protocol (which is built over S
 
 **Personal Data Usage Logger** (*et* *Andmesalvestaja*) stores the personal data usage log record in database. Contents of the database is made available for request by the person.  
 
-[](img/Logger.PNG)
+![](img/Logger.PNG)
 
 Personal Data Usage Logger has four interfaces:
 
@@ -42,7 +42,7 @@ Protocols: (1) conforms to Personal Data Usage Logger protocol; (2) conforms to 
 
 **Personal Data Usage Viewer** (*et* *Vaataja*) offers the citizen, through UI, the comprehensive view of how his or her personal data has been used by the government.  
 
-[](img/Viewer.PNG)
+![](img/Viewer.PNG)
 
 Personal Data Usage Viewer has three interfaces:
 
@@ -56,7 +56,7 @@ Protocols: (1) uses HTML/CSS/JS over HTTPS; (2) requires a X-Road web service.
 
 **Personal Data Usage Verifier** (*et* *Kontrollija*) offers the Information System's auditor to view the personal data usage log.  
 
-[](img/Verifier.PNG)
+![](img/Verifier.PNG)
 
 Personal Data Usage Verifier has three interfaces:
 
