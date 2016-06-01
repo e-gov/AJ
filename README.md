@@ -1,3 +1,5 @@
+![EL struktuurifondid](doc/img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+
 Andmejälgija tarkvara
 =====================
 
