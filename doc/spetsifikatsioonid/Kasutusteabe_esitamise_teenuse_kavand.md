@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.1, 07.12.2015
+Versioon 1.2, 13.06.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -16,6 +16,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | --- | --- | --- | --- |
 | 1.0 | 20.12.2015 | Tanel Tammet | Esimene versioon |
 | 1.1 | 07.12.2015 | Ivo Mehide | Muudetud peatükki 9 tellija tagasiside baasilt |
+| 1.2 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist
 
 
 ## 2. Sisukord
@@ -33,13 +34,13 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
 ## 3. Sissejuhatus
 
-Käesolev dokument kajastab tarkvaralise lahenduse "Andmejälgija" ühe komponendi - eesti.ee portaalis isikuandmete edastamiste ja vaatamiste teenuse funktsionaalsust ja prototüüpe.
+Käesolev dokument kajastab andmejälgija ühe komponendi - eesti.ee portaalis isikuandmete edastamiste ja vaatamiste teenuse funktsionaalsust ja prototüüpe.
 
-Andmejälgija kui terviku süsteemi ülevaade on esitatud dokumendis "Andmejälgija täiendatud tehniline kontseptsioon".
+Andmejälgija kui terviku süsteemi ülevaade on esitatud dokumendis "Andmejälgija tehniline kontseptsioon".
 
 ## 4. Süsteemi taust
 
-Ennast autentinud füüsilised isikud saavad eesti.ee portaali kaudu vaadata oma andmete edasisaatmist ja kasutamist erinevates andmekogudes. Iga andmekogu salvestab isikuandmete töötlemise fakte eraldi oma andmebaasis ning annab tulemusi eesti.ee-le X-tee päringu abil, mille struktuur on kõigi andmekogude jaoks sama.
+Ennast autentinud füüsilised isikud saavad eesti.ee portaali kaudu vaadata oma andmete edastamist ja töötlemist erinevates andmekogudes. Iga andmekogu salvestab isikuandmete töötlemise fakte eraldi oma andmesalvestajas ning annab tulemusi eesti.ee-le X-tee päringu abil, mille struktuur on kõigi andmekogude jaoks sama.
 
 X-tee päringu formaat on toodud eraldi dokumendis "Andmejälgija kasutusteabe esitamise protokoll".
 
@@ -54,13 +55,13 @@ Konkreetseks andmete kuvamiseks tuleb vajutada asutuse lingile.
 
 Peale asutuse lingile vajutamist kuvatakse:
 
-- Lühiülevaade, milleks asutus isikuandmeid kasutab. Tegemist on tekstiga, mida API kaudu ei saadeta, vaid mille edastab eesti.ee haldajale liituv asutus ise (üks kord, teenusega liitudes), lähtudes etteantud mallist. Tekstil on kolm osa:
+- Lühiülevaade, mis eesmärgil asutus isikuandmeid töötleb. Tegemist on tekstiga, mida ei saadeta liidese kaudu, vaid mille edastab eesti.ee haldajale liituv asutus ise (üks kord, teenusega liitudes), lähtudes etteantud mallist. Tekstil on kolm osa:
   - ooInfosüsteemi eesmärgi paarilauseline selgitus koos viitadega infosüsteemi veebilehele (kui see on), määrusele (kui see on) ning haldavale asutusele.
   - ooKellele ja miks andmeid edasi saadetakse. Kui asutusi, kellele andmeid saadetakse, on palju (näites rahvastikuregistri puhul), ei ole vaja loetleda kõigi asutusi. Kui neid on vähe (alla viie), on soovitav neid loetleda. Kui asutus saadab välja mass-infot suure hulga isikute kohta korraga, siis see tuleks siin samuti välja tuua, koos täpsustusega, et sellistest mass-saatmistest otsinguid teha ei saa.
   - ooKas ja miks asutus ise isikuandmeid vaatab/töötleb. Siin ei ole vaja loetleda kõiki kasutusjuhte, vaid anda ainult lühike selgitus. Kui asutus otseselt ei töötle isikuandmeid, ei ole seda kirjeldusosa vaja.
-- Otsivorm, kus esialgses realisatsioonis ei ole vaja sisestada ühtegi parameetrit, piisab automaatselt lisatavast isikukoodist. Realisatsiooni käigus võib kaaluda varianti sisestada perioodi alguskuupäev ja lõpukuupäev ning koond/detailvaade lüliti. Algus- ja lõpukuupäev on sel juhul kohe algtäidetud, algusega üks aasta tagasi ja lõpuga käesoleva päevaga. Võimalikku täiendavat koond- ja detailvaate valiku lülitit esialgu ei realiseerita, kuvatakse ainult detailvaade. Detailvaate puhul kuvatakse kõiki üksikuid päringuid. Koondvaate valiku puhul (esialgu ei realiseerita) agregeeritakse mitmed identsed lähestikku päringud üheks nähtavaks reaks, kus on samas näha tegelike agregeeritud päringute arv. Realisatsiooni käigus võib kaaluda ka algus- ja lõpukuupäeva ärajätmist ning asendamist kirjete arvuga.
+- Otsivorm, kus esialgses realisatsioonis ei ole vaja sisestada ühtegi parameetrit, piisab automaatselt lisatavast isikukoodist. Algus- ja lõpukuupäev on sel juhul kohe algtäidetud, algusega üks aasta tagasi ja lõpuga käesoleva päevaga. Kuvatakse kõiki üksikuid päringuid. 
 
-Otsinguvormile vajutamise tulemusena kuvatakse andmekogu logist X-tee teenuse kaudu tulnud infokirjete loend,  formaadis üks isikuandmete edasisaatmine või kasutus ühel real.
+Otsinguvormile vajutamise tulemusena kuvatakse andmekogu andmesalvestajast X-tee teenuse kaudu tulnud infokirjete loend,  formaadis üks isikuandmete töötlemise kirje ühel real.
 
 Teenuse näitelehed on esitatud proto.eesti.ee keskkonnas (Avaleht > E-teenused > Kodanikule > Minu isikuandmete kasutamine), alljärgnevas on need kirjeldatud täpsemalt.
 
@@ -72,11 +73,9 @@ Esilehe struktuur sisaldab kõigepealt lühikest tekstilist ülevaadet teenusest
 
 ## 7. Konkreetse asutuse otsinguvorm
 
-Asutuse lingile klikkides avaneb tekstiline ülevaade antud asutuse isikuandmete kasutusest / edasisaatmistest ja otsinguvorm.
+Asutuse lingile klikkides avaneb tekstiline ülevaade antud asutuse isikuandmete töötlemisest ja otsinguvorm.
 
 Esialgu realiseeritakse otsinguvorm, mis on tühi, sisuliselt on kasutusel ainult kasutaja isikukood, mis tuleb vormile automaatselt.
-
-Realisatsiooni käigus võib kaaluda ka algus- ja lõpukuupäeva lisamist ja/või maksimaalset kirjete arvu.
 
 ![Teenuse otsivorm](../img/teenuse_otsivorm.png)
 

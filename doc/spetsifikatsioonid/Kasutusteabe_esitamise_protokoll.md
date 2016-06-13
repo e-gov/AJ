@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.0, 20.12.2015
+Versioon 1.1, 13.06.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -15,6 +15,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | Versioon | Kuupäev | Autor | Märkused |
 | --- | --- | --- | --- |
 | 1.0 | 20.12.2015 | Ivo Mehide | Esimene versioon |
+| 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist 
 
 ## 2. Sisukord
 
@@ -71,7 +72,7 @@ Kasutusteabe esitamise protokolli normatiivsed viited:
 
 ## 6. Üldistatud kirjeldus
 
-Kasutusteabe esitamise protokolli kasutatakse esmajoones eesti.ee keskkonna poolt, võimaldamaks kodanikel esitada päringuid temaga seotud isikuandmete kasutusteabe kohta. Kuid lisaks sellele on võimalik seda protokolli kasutada ükskõik millisel osapoolel, kellele peetakse vajalikuks tagada juurdepääs kasutusteabe infole. Protokolli abil realiseeritakse andmesalvestaja kasutatavast andmekogust kasutusteabe pärimine ning selle tagastamine. Protokoll pakub välja universaalse meetodi kõigi andmekogude poolt ühesugustel alustel kasutusteabe info küsimiseks ning tagastamiseks.
+Kasutusteabe esitamise protokolli kasutatakse esmajoones eesti.ee keskkonna poolt, võimaldamaks kodanikel esitada päringuid temaga seotud isikuandmete kasutusteabe kohta. Kuid lisaks sellele on võimalik seda protokolli kasutada ükskõik millisel osapoolel, kellele peetakse vajalikuks tagada juurdepääs kasutusteabe infole. Protokolli abil realiseeritakse andmesalvestaja kasutatavast andmekogust kasutusteabe pärimine ning selle tagastamine. Protokoll on universaalne meetod kõigi andmekogude poolt ühesugustel alustel kasutusteabe info küsimiseks ning tagastamiseks.
 
 Protokoll toimib üle X-tee versioon 6 sõnumiprotokolli.
 
