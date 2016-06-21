@@ -15,7 +15,7 @@ ning ei ole tarkvara kasutuselevõtuks või arendamiseks otseselt vajalikud:
 
 * [Spetsifikatsioonid](spetsifikatsioonid/README.md)  
 
-Testimisjuhendid on vajalikud ühiktestide üsteemi kasutamiseks, mitte
+Testimisjuhendid on vajalikud ühiktestide süsteemi kasutamiseks, mitte
 aga paigaldamiseks või arendamiseks:
 
 
