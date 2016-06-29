@@ -8,9 +8,9 @@ Andmejälgija / Personal Data Usage Monitor
 Andmejälgija tarkvara ("DUMonitor") eesmärk on pakkuda andmekogude haldajatele paindlikud standardkomponendid 
 isikuandmete töötlemise logimiseks ning nende faktide esitamiseks eesti.ee portaali kaudu.
 
-Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md)
+Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md).
 
-Andmejälgija on [MIT litsentsiga](LICENSE.txt) vabatarkvara
+Andmejälgija on [MIT litsentsiga](LICENSE.txt) vabatarkvara.
 
 #### EN
 
