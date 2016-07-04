@@ -2,13 +2,13 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.1, 13.06.2016
+Versioon 1.3, 03.07.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
-![EL struktuurifondid](../img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL struktuurifondid](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 ## 1. Dokumendi ajalugu
 
@@ -16,6 +16,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | --- | --- | --- | --- |
 | 1.0 | 20.12.2015 | Ivo Mehide | Esimene versioon |
 | 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist 
+| 1.2 | 03.07.2016 | Ivo Mehide | WSDL viidud vastavusse lahenduses kasutatavaga 
 
 ## 2. Sisukord
 
@@ -54,8 +55,7 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 
 Käesoleva kasutusteabe esitamise protokolli lahutamatuteks osadeks on:
 
-- Kasutusteabe esitamise protokolli WSDL-kirjeldus "tracker.wsdl" (esitatud lõpus lisana)
-- Kasutusteabe esitamise protokolli poolt kasutatavate andmestruktuuride XSD-kirjeldus "tracker.xsd" (esitatud lõpus lisana)
+- Kasutusteabe esitamise protokolli WSDL-kirjeldus "dumonitor.wsdl" (esitatud lõpus lisana)
 
 Kasutusteabe esitamise protokolli normatiivsed viited:
 
@@ -95,7 +95,7 @@ Suhtlus algab alati päringu algataja poolt – päringu algataja esitab päring
 
 ## 8. Päringute kirjeldused
 
-Päringute täpsed spetsifikatsioonid on toodud WSDL-kirjelduse failis "tracker.wsdl". Allpool on toodud seal esitatud päringute lahtiseletused.
+Päringute täpsed spetsifikatsioonid on toodud WSDL-kirjelduse failis "dumonitor.wsdl". Allpool on toodud seal esitatud päringute lahtiseletused.
 
 #### 8.1. Kasutusteabe küsimine
 
@@ -113,33 +113,18 @@ Päringu sisendis on järgmised elemendid:
 
 | Element | Andmetüüp | Kohustuslik | Kirjeldus |
 | --- | --- | --- | --- |
-| personcode | string | jah | Inimese isikukood, kelle isikuandmetega seotud kasutusteavet soovitakse saada. Kui on määramata, siis isikupõhiselt kasutusteavet ei piirata. |
-| logtimefrom | dateTime | jah | Alates mis ajamomendist registreeritud kasutusteavet soovitakse saada. Päringu vastuses on kasutusteave, mille registreerimise ajamoment on näidatuga võrdne või sellest suurem. |
-| logtimeto | dateTime | jah | Kuni mis ajamomendini registreeritud kasutusteavet soovitakse saada. Päringu vastuses on kasutusteave, mille registreerimise ajamoment on näidatuga võrdne või sellest väiksem. |
-| receiver | string | ei | Asutuse kood, kellele isikuandmeid edastati. |
-| sender | string | ei | Asutuse kood, kes isikuandmeid edastas. |
-| actioncode | string | ei | Isikuandmete edastamise sisemine kood. |
-| xroadrequestid | string | ei | Isikuandmete edastamise teenuse päringu ID. |
-| xroadservice | string | ei | Isikuandmete edastamise teenuse nimi. |
-| recordFrom | int | ei | Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 1). |
-| recordCount | int | ei | Tagastata maksimaalselt näidatud arv kirjeid (vaikimisi tagastatakse maksimaalselt 100 kirjet). |
+| offset | int | ei | Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 1). |
+| limit | int | ei | Tagastata maksimaalselt näidatud arv kirjeid (vaikimisi tagastatakse maksimaalselt 100 kirjet). |
 
 #### 8.1.4. Päringu väljund
 
-Päringu väljundis tagastatakse leitud kirjete koguarv (esitatud elemendis "recordCountTotal" - see arv näitab kirjete koguarvu juhul, kui päringus puuduks kirjete maksimaalarvu piirang) ning nimekiri elementidest "usage", kus iga element vastab ühele isikuandmete kasutuse kirjele ning mille struktuur on järgnev:
+Päringu väljundis tagastatakse nimekiri elementidest "usage", kus iga element vastab ühele isikuandmete kasutuse kirjele ning mille struktuur on järgnev:
 
 | Element | Andmetüüp | Kirjeldus |
 | --- | --- | --- |
-| id | integer | Kirje unikaalne kood |
-| personcode | string | Inimese isikukood, kelle isikuandmetega seotud kasutusteavet tagastatakse. |
 | logtime | dateTime | Kirje ajamoment. |
 | action | string | Menetluse/tegevuse inimmõistetav nimi. |
 | receiver | string | Asutuse kood, kellele isikuandmeid edastati. |
-| sender | string | Asutuse kood, kes isikuandmeid edastas. |
-| actioncode | string | Isikuandmete edastamise sisemine kood. |
-| xroadrequestid | string | Isikuandmete edastamise teenuse päringu ID |
-| xroadservice | string | Isikuandmete edastamise teenuse nimi. |
-| usercode | string | Asutuse töötaja, kes isikuandmeid päris. |
 
 #### 8.1.5. Veasituatsioonid
 
@@ -163,72 +148,76 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
-## 12. LISA: tracker.xsd
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://x-road.eu/xsd/tracker.xsd" xmlns:tns="http://x-road.eu/xsd/tracker.xsd" elementFormDefault="qualified">
-    <complexType name="Usage">
-    	<sequence>
-    		<element name="id" type="int"></element>
-    		<element name="personcode" type="string"></element>
-    		<element name="logtime" type="dateTime"></element>
-    		<element name="action" type="string"></element>
-    		<element name="sender" type="string"></element>
-    		<element name="receiver" type="string"></element>
-    		<element name="restrictions" type="boolean"></element>
-    		<element name="sendercode" type="string"></element>
-    		<element name="receivercode" type="string"></element>
-    		<element name="actioncode" type="string"></element>
-    		<element name="xroadrequestid" type="string"></element>
-    		<element name="xroadservice" type="string"></element>
-		<element name="usercode" type="string"></element>
-    	</sequence>
-    </complexType>
-</schema>
-```
-
-
-## 13. LISA: tracker.wsdl
+## 12. LISA: tracker.wsdl
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions name="tracker"
+<wsdl:definitions name="dumonitor"
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xrd="http://x-road.eu/xsd/xroad.xsd"
-	targetNamespace="http://tracker.x-road.eu/producer" xmlns:tns="http://tracker.x-road.eu/producer"
-	xmlns:t="http://x-road.eu/xsd/tracker.xsd">
+	targetNamespace="http://dumonitor.x-road.eu/producer" xmlns:tns="http://dumonitor.x-road.eu/producer">
 	<wsdl:types>
-		<xsd:schema targetNamespace="http://tracker.x-road.eu/producer" elementFormDefault="qualified">
+		<xsd:schema targetNamespace="http://dumonitor.x-road.eu/producer">
 			<xsd:import namespace="http://x-road.eu/xsd/xroad.xsd"
 				schemaLocation="http://x-road.eu/xsd/xroad.xsd" />
-			<xsd:import namespace="http://x-road.eu/xsd/tracker.xsd"
-				schemaLocation="tracker.xsd" />
-			<xsd:element name="findUsage">
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:element name="personcode" type="xsd:string" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="logtimeFrom" type="xsd:dateTime" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="logtimeTo" type="xsd:dateTime" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="sender" type="xsd:string" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="receiver" type="xsd:string" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="actioncode" type="xsd:string" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="xroadrequestid" type="xsd:string" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="xroadservice" type="xsd:string" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="recordFrom" type="xsd:int" maxOccurs="1" minOccurs="0"/>
-						<xsd:element name="recordCount" type="xsd:int" maxOccurs="1" minOccurs="0"/>
-					</xsd:sequence>
-				</xsd:complexType>
-			</xsd:element>
+			<xsd:complexType name="ResponseFields">
+				<xsd:sequence>
+					<xsd:element type="xsd:dateTime" name="logtime"
+						minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:appinfo>
+								<xrd:title>Isikuandmete töötlemise aeg</xrd:title>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element type="xsd:string" name="action" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:appinfo>
+								<xrd:title>Tegevus</xrd:title>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element type="xsd:string" name="receiver"
+						minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:appinfo>
+								<xrd:title>Isikuandmeid vastu võtnud osapool</xrd:title>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="QueryFields">
+				<xsd:sequence>
+					<xsd:element type="xsd:integer" name="offset"
+						minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:appinfo>
+								<xrd:title>Esimese tagastatava kirje jrknr</xrd:title>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element type="xsd:integer" name="limit" minOccurs="0"
+						maxOccurs="1">
+						<xsd:annotation>
+							<xsd:appinfo>
+								<xrd:title>Tagastatavate kirjete arv</xrd:title>
+							</xsd:appinfo>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="findUsage" type="tns:QueryFields" />
 			<xsd:element name="findUsageResponse">
 				<xsd:complexType>
 					<xsd:sequence>
-						<xsd:element name="recordCountTotal" type="xsd:int"/>
-						<xsd:element name="usage" type="t:Usage" maxOccurs="unbounded" minOccurs="0"/>
+						<xsd:element name="usage" type="tns:ResponseFields"
+							maxOccurs="unbounded" minOccurs="0" />
 					</xsd:sequence>
 				</xsd:complexType>
 			</xsd:element>
-        </xsd:schema>
+		</xsd:schema>
 	</wsdl:types>
 	<wsdl:message name="requestHeader">
 		<wsdl:part name="client" element="xrd:client" />
@@ -245,16 +234,17 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 	<wsdl:message name="findUsageResponse">
 		<wsdl:part name="body" element="tns:findUsageResponse" />
 	</wsdl:message>
-	<wsdl:portType name="trackerPortType">
+	<wsdl:portType name="dumonitorPortType">
 		<wsdl:operation name="findUsage">
 			<wsdl:documentation>
-				<xrd:title>Find personal information request records</xrd:title>
+				<xrd:title>Päring andmekogust isikuandmete töötlemise kohta
+				</xrd:title>
 			</wsdl:documentation>
 			<wsdl:input message="tns:findUsage" />
 			<wsdl:output message="tns:findUsageResponse" />
 		</wsdl:operation>
 	</wsdl:portType>
-	<wsdl:binding name="trackerBinding" type="tns:trackerPortType">
+	<wsdl:binding name="dumonitorBinding" type="tns:dumonitorPortType">
 		<soap:binding style="document"
 			transport="http://schemas.xmlsoap.org/soap/http" />
 		<wsdl:operation name="findUsage">
@@ -292,9 +282,9 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:binding>
-	<wsdl:service name="trackerService">
-		<wsdl:port binding="tns:trackerBinding" name="trackerServicePort">
-			<soap:address location="http://tracker.ria.ee/ws" />
+	<wsdl:service name="dumonitorService">
+		<wsdl:port binding="tns:dumonitorBinding" name="dumonitorServicePort">
+			<soap:address location="http://INSERT_CORRECT_SERVICE_URL" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
