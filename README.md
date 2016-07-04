@@ -1,4 +1,4 @@
-![EL struktuurifondid](doc/img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](doc/img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 Andmejälgija / Personal Data Usage Monitor
 =====================
