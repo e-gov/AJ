@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.3, 03.07.2016
+Versioon 1.2.1, 29.09.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
