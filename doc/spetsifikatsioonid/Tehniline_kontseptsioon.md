@@ -98,9 +98,9 @@ Andmesalvestaja on andmejälgija komponent, mis sisaldab isikuandmete saatmisjuh
 Eraldusfiltrit saab paigaldada kahel eri moel (täpsemad komponentdiagrammid ja detailid kummagi juhu jaoks on toodud eraldi dokumendis "Eraldusfiltri disainlahendus"):
 
 - Eraldusfilter on turvaserverist **eraldiseisev nn proxy** , millega infosüsteem liidestub ja mis suunab sõnumid edasi turvaserverile.
-- Eraldusfilter on on **turvaserveri sees olev proxy** : pordid välismaailmaga on samad, mis turvaserveril seni, kuid sisemiselt suunab liiklust edasi teistele turvaserveri portidele (need saab ja tuleb sel juhul ümber konfigureerida).
+- Eraldusfilter on **turvaserveri sees olev proxy** : pordid välismaailmaga on samad, mis turvaserveril seni, kuid sisemiselt suunab liiklust edasi teistele turvaserveri portidele (need saab ja tuleb sel juhul ümber konfigureerida).
 
-Analoogiliselt saab ka andmesalvestajat paigaldada mitmel eri moel (täpsemad detailid on toodud juhu jaoks on toodud eraldi dokumendis "Andmesalvestaja disainlahendus"):
+Analoogiliselt saab ka andmesalvestajat paigaldada mitmel eri moel (täpsemad detailid on toodud eraldi dokumendis "Andmesalvestaja disainlahendus"):
 
 - Andmesalvestaja on tervikuna **paigaldatud turvaserverist välja**.
 - Andmesalvestaja on tervikuna **paigaldatud turvaserveri sisse**. See variant sobib väiksema koormusega turvaserveri puhul olukorras, kus ei ole lihtne leida serverit, kuhu andmesalvestajat paigaldada.

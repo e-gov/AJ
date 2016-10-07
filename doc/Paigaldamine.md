@@ -424,6 +424,14 @@ Allpool on toodud näidis ühest võimalikust filtri konfiguratsiooni failist.
 </filterConfiguration>
 ```
 
+Filtri kirjeldamises peab arvestama, et väljal `personcode` on vaja isikukood esitada riigi prefiksiga. Kui päringus
+on aga isikukoodid ilma riigi prefiksita, siis tuleb riigi prefiks lisada XPath avaldise abil näiteks järgmiselt (eelmise
+näite baasilt):
+
+```xml
+<personcode>concat('EE',/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse/replaceWithXPathToPersonCode)</personcode>
+```
+
 ### Esitamise testrakenduse häälestamine
 
 Esitamise testrakenduse konfigureerimiseks on vaja täiendavalt kindlaks määrata järgmised konfiguratsiooni elemendid:

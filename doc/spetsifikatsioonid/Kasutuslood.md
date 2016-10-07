@@ -68,9 +68,10 @@ Peale andmejälgijasüsteemi lehtede leidmist on kasutusel veel üks kahest või
 
 Nõutav variant otsustatakse RIA poolt koostöös eesti.ee-ga.
 
-Andmejälgija süsteemi avalehel näeb kasutaja paarilauselist süsteemi kirjeldust ja loetelu liitunud asutustest/andmekogudest. Klikkides mõnele neist näeb ta paarilauselist selgitust: miks ja kuidas see andmekogu isikuandmeid kasutab, kuhu ta neid saadab ja kontaktinfot lisaselgituste küsimiseks. Samuti näeb ta vormi, kus on eeltäidetud perioodi algus- ja lõpptähtaeg ning nupp oma andmesaatmiste/kasutuste otsinguks.
+Andmejälgija süsteemi avalehel näeb kasutaja paarilauselist süsteemi kirjeldust ja loetelu liitunud asutustest/andmekogudest. Klikkides mõnele neist näeb ta paarilauselist selgitust: miks ja kuidas see andmekogu isikuandmeid kasutab, kuhu ta neid saadab ja kontaktinfot lisaselgituste küsimiseks. Samuti näeb ta nuppu oma andmesaatmiste/kasutuste otsinguks.
 
-Nupule vajutades kuvatakse kasutajale isikuandmete kasutuse loetelu valitud perioodil: millal/kuhu/mis teenuse kaudu on andmeid saadetud või millal/mille jaoks/kelle poolt on andmeid kasutatud.
+Nupule vajutades kuvatakse kasutajale isikuandmete kasutuse loetelu alates ajaliselt kõige hilisematest: millal/kuhu/mis teenuse kaudu on andmeid saadetud või millal/mille jaoks/kelle poolt on andmeid kasutatud. 
+Lehe allosas kuvatakse navigeerimisnupud, mille abil ta saab liikuda järgmise lehekülje info peale ja uuesti tagasi.
 
 Kasutaja saab seejärel liikuda lihtsasti andmejälgija avalehele.
 

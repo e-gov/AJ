@@ -39,8 +39,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
   * [10\. Vastavusklausel](#10-vastavusklausel)
   * [11\. Vastavusmudel](#11-vastavusmudel)
     * [11\.1\. Kasutusteabe lugemise vastavus](#111-kasutusteabe-lugemise-vastavus)
-  * [12\. LISA: tracker\.xsd](#12-lisa-trackerxsd)
-  * [13\. LISA: tracker\.wsdl](#13-lisa-trackerwsdl)
+  * [12\. LISA: dumonitor\.wsdl](#12-lisa-dumonitorwsdl)
 
 ## 3. Ülevaade
 
@@ -137,7 +136,14 @@ Päringu täitmisel juhtunud vea korral tekitatakse SOAP Fault, millel on Fault 
 
 ## 9. Disaini konstrueerimise kaalutlused
 
-Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa. Punktis "Kasutusteabe küsimine" kirjeldatud päringu kasutamisel tuleb vajadusel näidata parameetri "recordCount" abil soovitavate kirjete maksimumarv (juhul, kui soovitakse vaikimisi kasutatavast maksimumarvust erinevat kirjete arvu). Kui päringu vastuses tagastatakse maksimumarv kirjeid, siis järelikult leiti kirjeid rohkem. Ülejäänud kirjete saamiseks tuleb käivitada sama päring samade otsitingimustega uuesti, näidates parameetri "recordFrom" väärtuseks eelmise päringu poolt tagastatud kirjete arv + 1. Päringut korratakse analoogse loogikaga (suurendades iga kord "recordFrom" parameetri väärtust maksimumkirjete arvu võrra) niikaua, kuni päringu vastuses tagastatud kirjete arv on väiksem maksimumarvust.
+Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa. 
+Punktis "Kasutusteabe küsimine" kirjeldatud päringu kasutamisel tuleb vajadusel näidata parameetri 
+"limit" abil soovitavate kirjete maksimumarv (juhul, kui soovitakse vaikimisi kasutatavast maksimumarvust erinevat 
+kirjete arvu). Kui päringu vastuses tagastatakse maksimumarv kirjeid, siis järelikult leiti kirjeid rohkem. 
+Ülejäänud kirjete saamiseks tuleb käivitada sama päring samade otsitingimustega uuesti, 
+näidates parameetri "offset" väärtuseks eelmise päringu poolt tagastatud kirjete arv + 1. Päringut korratakse 
+analoogse loogikaga (suurendades iga kord "offset" parameetri väärtust maksimumkirjete arvu võrra) niikaua, kuni 
+päringu vastuses tagastatud kirjete arv on väiksem maksimumarvust.
 
 ## 10. Vastavusklausel
 
@@ -151,7 +157,7 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
-## 12. LISA: tracker.wsdl
+## 12. LISA: dumonitor.wsdl
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
