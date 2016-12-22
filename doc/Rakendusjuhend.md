@@ -127,7 +127,7 @@ Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiran
 
 Seetõttu tuleb andmejälgijat paigaldades seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb reeglina jälgimata jätta.
 
-Kodanikule ei tohi näidata järgnevaid andmekasutajaid: Kaitsepolitseiamet (registrikood 70000591); Politsei- ja Piirivalveamet (registrikood 70008747); Teabeamet (registrikood 70005938).  Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule ilmutatud. Abistava variandina osade päringute logimise keelamiseks saab tüüplahenduse juures kasutada jälgimisfiltri konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki [Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine) või välistused tuleb kirjeldada kodanikule andmete esitamise teenuses, mis on teenuse pakkuja realiseerida.
+Kodanikule ei tohi näidata järgnevaid andmekasutajaid: Kaitsepolitseiamet (registrikood 70000591); Politsei- ja Piirivalveamet (registrikood 70008747); Teabeamet (registrikood 70005938).  Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule ilmutatud. Abistava variandina osade päringute logimise keelamiseks saab tüüplahenduse juures kasutada jälgimisfiltri konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)" või välistused tuleb kirjeldada kodanikule andmete esitamise teenuses, mis on teenuse pakkuja realiseerida.
 
 ## Variandid andmejälgija kasutuselevõtuks
 
