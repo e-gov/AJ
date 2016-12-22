@@ -16,6 +16,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 | Versioon | Kuupäev    | Autor                    | Märkused
 |----------|------------|--------------------------|----------------------------------------------
 | 1.0      | 09.05.2016 | Ivo Mehide, Tanel Tammet | Esimene versioon
+| 1.1      | 22.12.2016 | Piret Elm, Vitali Stupin | Musta nimekirja lisamine
 
 ## Sisukord
 
