@@ -333,6 +333,11 @@ NB! Funktsiooni "inBlacklist" tuleb tingimata kasutada koos nimeruumile "http://
 Eraldusfiltri komponendil on vaikimisi elemendi "exclusions" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis
 elementi "exclusions" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
 
+Failis [dumonitor.properties](../filter/etc/dumonitor.properties) omadus "dumonitor.blacklist" peab sisaldama väärtuseid 70000591, 70008747, 70005938 (Kaitsepolitseiamet, Politsei- ja Piirivalveamet, Teabeamet). Ehk:
+```
+dumonitor.blacklist=70000591, 70008747, 70005938
+```
+
 ##### Vaikeväärtuste kirjeldamine
 
 Globaalselt üle kõikide filtrite saab kirjelda ära logitava info vaikeväärtused. Neid väärtusi kasutatakse logi vastavate väljade väärtustamisel
