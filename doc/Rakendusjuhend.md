@@ -16,6 +16,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 | Versioon | Kuupäev    | Autor                    | Märkused
 |----------|------------|--------------------------|----------------------------------------------
 | 1.0      | 09.05.2016 | Tanel Tammet, Ivo Mehide | Esimene versioon
+| 1.1      | 22.12.2016 | Piret Elm, Vitali Stupin | Logimise välistused
 
 ## Sisukord
 
@@ -24,7 +25,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Sihtrühm](#sihtr%C3%BChm)
   * [Sissejuhatus](#sissejuhatus)
   * [Andmejälgija ülevaade](#andmej%C3%A4lgija-%C3%BClevaade)
-  * [Milliseid andme-edastamisi ja -kasutamisi logida](#milliseid-andme-edastamisi-ja--kasutamisi-logida)
+  * [Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte](#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid mitte)
   * [Variandid andmejälgija kasutuselevõtuks](#variandid-andmej%C3%A4lgija-kasutuselev%C3%B5tuks)
   * [Andmejälgija kasutuselevõtmise protsess](#andmej%C3%A4lgija-kasutuselev%C3%B5tmise-protsess)
   * [Tarkvara paigaldamine](#tarkvara-paigaldamine)
@@ -71,7 +72,7 @@ Andmejälgija põhiosad on järgmised:
 
 Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse X-tee turvaserverisse kui mõnda olemasolevasse serverisse koos teiste süsteemidega, või hoopis eraldi serverisse.
 
-## Milliseid andme-edastamisi ja -kasutamisi logida
+## Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte
 
 Isikuandmete kaitse seadus sisaldab kahte punkti, mille lahendamise hõlbustamiseks andmejälgija
 lahendus on loodud:
@@ -88,7 +89,6 @@ Sarnased nõuded tulenevad ka euroopa direktiividest:
 a) mõistliku aja tagant, ilma piiranguteta ja ilma liigsete viivituste ja kulutusteta:
 - kinnitust selle kohta, kas isikut ennast käsitlevaid andmeid töödeldakse, ja teavet vähemalt töötlemise eesmärkide, asjaomaste andmete liikide ja nende vastuvõtjate või vastuvõtjate kategooriate kohta, kellele andmed avalikustatakse,
 - arusaadaval kujul teavet töödeldavate andmete ja nende allika kohta," (Direktiiv 95/46/EU, artikkel 12)
-
 
 Isikuandmetena käsitleb seadus mistahes andmeid isiku kohta - kaasa arvatud tema nimi ja sünniaeg - mitte ainult
 tundlikke isikuandmeid.
@@ -123,6 +123,11 @@ Teise ülaltoodud seadusepunkti jaoks tuleks lähtuda järgmisest:
 * Pika isikute loendi (näiteks üle mitmekümne inimese) vaatamist vms ei tule üldjuhul talletada nende isikutega seotuna.
 * Tehnilised ja administratiivsed ligipääsuvõimalused ja nende kehtimise perioodid tuleks talletada eraldi logisse/faili vms.
 
+Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiranguid (IKS § 20 lg 1-4). Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse, kui see võib: 1) kahjustada teise isiku õigusi ja vabadusi; 2) ohustada lapse põlvnemise saladuse kaitset; 3) takistada kuriteo tõkestamist või kurjategija tabamist; 4) raskendada kriminaalmenetluses tõe väljaselgitamist.
+
+Seetõttu tuleb andmejälgijat paigaldades seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb reeglina jälgimata jätta.
+
+Kodanikule ei tohi näidata järgnevaid andmekasutajaid: Kaitsepolitseiamet (registrikood 70000591); Politsei- ja Piirivalveamet (registrikood 70008747); Teabeamet (registrikood 70005938).  Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule ilmutatud. Abistava variandina osade päringute logimise keelamiseks saab tüüplahenduse juures kasutada jälgimisfiltri konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki [Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine) või välistused tuleb kirjeldada kodanikule andmete esitamise teenuses, mis on teenuse pakkuja realiseerida.
 
 ## Variandid andmejälgija kasutuselevõtuks
 
@@ -282,11 +287,6 @@ ette anda PostgreSQL standardsete keskkonnamuutujate PGDATABASE, PGHOST, PGPORT,
 mitte eraldiseisev süsteem. Seega ei nõua ta ka omaette ISKE analüüsi, omaette X-tee süsteeme jne. 
 
 Sellest tulenevalt ei saa aga üks andmejälgija teenindada korraga mitut andmekogu.
-
-Andmejälgijat paigaldades tuleb ta tingimata seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine
-on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb reeglina
-lihtsalt jälgimata jätta. Abistava variandina osade päringute logimise keelamiseks saab kasutada jälgimisfiltri
-konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki "Välistuste kirjeldamine".
 
 Andmejälgija paigaldamisel tuleb seda teha selliselt, et andmesalvestaja komponendi erinevad teenused:
 * andmete salvestamise REST liides
