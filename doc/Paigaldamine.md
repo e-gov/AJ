@@ -14,9 +14,9 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 ## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor                    | Märkused
-|----------|------------|--------------------------|----------------------------------------------
+|----------|------------|--------------------------|-----------------------------------------------------------
 | 1.0      | 09.05.2016 | Ivo Mehide, Tanel Tammet | Esimene versioon
-| 1.1      | 22.12.2016 | Piret Elm, Vitali Stupin | Musta nimekirja lisamine
+| 1.1      | 22.12.2016 | Piret Elm, Vitali Stupin | Eraldusfiltris vaikeväärtuste musta nimekirja täpsustamine
 
 ## Sisukord
 
@@ -334,7 +334,7 @@ NB! Funktsiooni "inBlacklist" tuleb tingimata kasutada koos nimeruumile "http://
 Eraldusfiltri komponendil on vaikimisi elemendi "exclusions" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis
 elementi "exclusions" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
 
-Failis [dumonitor.properties](../filter/etc/dumonitor.properties) omadus "dumonitor.blacklist" peab sisaldama väärtuseid 70000591, 70008747, 70005938 (Kaitsepolitseiamet, Politsei- ja Piirivalveamet, Teabeamet). Ehk:
+Faili [dumonitor.properties](../filter/etc/dumonitor.properties) konfiguratsiooni element "dumonitor.blacklist" peab sisaldama väärtuseid 70000591, 70008747, 70005938 (Kaitsepolitseiamet, Politsei- ja Piirivalveamet, Teabeamet). Ehk:
 ```
 dumonitor.blacklist=70000591, 70008747, 70005938
 ```
