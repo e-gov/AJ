@@ -25,7 +25,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Sihtrühm](#sihtr%C3%BChm)
   * [Sissejuhatus](#sissejuhatus)
   * [Andmejälgija ülevaade](#andmej%C3%A4lgija-%C3%BClevaade)
-  * [Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte](#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid mitte)
+  * [Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte](#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid-mitte)
   * [Variandid andmejälgija kasutuselevõtuks](#variandid-andmej%C3%A4lgija-kasutuselev%C3%B5tuks)
   * [Andmejälgija kasutuselevõtmise protsess](#andmej%C3%A4lgija-kasutuselev%C3%B5tmise-protsess)
   * [Tarkvara paigaldamine](#tarkvara-paigaldamine)
