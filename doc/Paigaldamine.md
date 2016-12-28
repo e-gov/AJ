@@ -14,8 +14,9 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 ## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor                    | Märkused
-|----------|------------|--------------------------|----------------------------------------------
+|----------|------------|--------------------------|-----------------------------------------------------------
 | 1.0      | 09.05.2016 | Ivo Mehide, Tanel Tammet | Esimene versioon
+| 1.1      | 27.12.2016 | Piret Elm, Vitali Stupin | Eraldusfiltris vaikeväärtuste musta nimekirja täpsustamine
 
 ## Sisukord
 
@@ -330,8 +331,12 @@ leidub väärtus, mis langeb sellega kokku, siis seda sõnumit ei logita.
 
 NB! Funktsiooni "inBlacklist" tuleb tingimata kasutada koos nimeruumile "http://x-road.eu/xsd/dumonitor.xsd" viitava prefiksiga ning see prefiks tuleb kirjeldada ka elemendi "namespaces" all. Vt näidet allpool. 
 
-Eraldusfiltri komponendil on vaikimisi elemendi "exclusions" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis
-elementi "exclusions" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
+Eraldusfiltri komponendil on vaikimisi elemendi "exclusions" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis elementi "exclusions" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
+
+Faili [dumonitor.properties](../filter/etc/dumonitor.properties) konfiguratsiooni element "dumonitor.blacklist" peab sisaldama väärtuseid 70000591, 70008747, 70005938, 70000349, 70000898 (Kaitsepolitseiamet, Politsei- ja Piirivalveamet, Teabeamet, Maksu- ja Tolliamet, Justiitsministeerium). Ehk:
+```
+dumonitor.blacklist=70000591, 70008747, 70005938, 70000349, 70000898
+```
 
 ##### Vaikeväärtuste kirjeldamine
 
