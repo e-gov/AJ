@@ -16,7 +16,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 | Versioon | Kuupäev    | Autor                    | Märkused
 |----------|------------|--------------------------|----------------------------------------------
 | 1.0      | 09.05.2016 | Tanel Tammet, Ivo Mehide | Esimene versioon
-| 1.1      | 27.12.2016 | Piret Elm, Vitali Stupin | Logimise välistuste täpsustamine
+| 1.1      | 28.12.2016 | Piret Elm, Vitali Stupin | Logimise välistuste täpsustamine
 
 ## Sisukord
 
@@ -125,7 +125,7 @@ Teise ülaltoodud seadusepunkti jaoks tuleks lähtuda järgmisest:
 
 Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiranguid (IKS § 20 lg 1-4). Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse, kui see võib: 1) kahjustada teise isiku õigusi ja vabadusi; 2) ohustada lapse põlvnemise saladuse kaitset; 3) takistada kuriteo tõkestamist või kurjategija tabamist; 4) raskendada kriminaalmenetluses tõe väljaselgitamist.
 
-Seetõttu tuleb andmejälgijat paigaldades seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb reeglina jälgimata jätta. Andmejälgija standardlahendus ei võimalda sellist filtrit, mis varjab üksnes käimasolevas kriminaalmenetluses (st üksnes kuritegude uurimisel) tehtud päringuid ning jälitustegevuses tehtud päringuid. Kui  Politsei- ja Piirivalveameti päring tehakse mingis muus menetluses (nt väärteomenetluses) või üldse menetluse väliselt, peab kodanik tegema tavapärase päringu jälitustegevuse õigusega seotud asutusse.
+Seetõttu tuleb andmejälgijat paigaldades seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb jälgimata jätta. Andmejälgija standardlahendus ei võimalda sellist filtrit, mis varjab üksnes käimasolevas kriminaalmenetluses (st üksnes kuritegude uurimisel) tehtud päringuid ning jälitustegevuses tehtud päringuid. Kui  Politsei- ja Piirivalveameti päring tehakse mingis muus menetluses (nt väärteomenetluses) või üldse menetluse väliselt, peab kodanik tegema tavapärase päringu jälitustegevuse õigusega seotud asutusse.
 
 Jälitustegevuse õigusega asutused on üles loetletud Kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> [https://www.riigiteataja.ee/akt/121032011002](https://www.riigiteataja.ee/akt/121032011002): Politsei- ja Piirivalveamet (70008747); Kaitsepolitseiamet (70000591); Maksu- ja Tolliamet (70000349); Justiitsministeeriumi (70000898) vanglate osakond ja vangla. Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) [https://www.riigiteataja.ee/akt/117122015039#para28](https://www.riigiteataja.ee/akt/117122015039#para28). Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule ilmutatud. Abistava variandina osade päringute logimise keelamiseks saab tüüplahenduse juures kasutada jälgimisfiltri konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)" või välistused tuleb kirjeldada kodanikule andmete esitamise teenuses, mis on teenuse pakkuja realiseerida.
 
