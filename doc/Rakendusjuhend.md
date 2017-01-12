@@ -125,9 +125,22 @@ Teise ülaltoodud seadusepunkti jaoks tuleks lähtuda järgmisest:
 
 Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiranguid (IKS § 20 lg 1-4). Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse, kui see võib: 1) kahjustada teise isiku õigusi ja vabadusi; 2) ohustada lapse põlvnemise saladuse kaitset; 3) takistada kuriteo tõkestamist või kurjategija tabamist; 4) raskendada kriminaalmenetluses tõe väljaselgitamist.
 
-Seetõttu tuleb andmejälgijat paigaldades seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb jälgimata jätta. Andmejälgija standardlahendus ei võimalda sellist filtrit, mis varjab üksnes käimasolevas kriminaalmenetluses (st üksnes kuritegude uurimisel) tehtud päringuid ning jälitustegevuses tehtud päringuid. Kui  Politsei- ja Piirivalveameti päring tehakse mingis muus menetluses (nt väärteomenetluses) või üldse menetluse väliselt, peab kodanik tegema tavapärase päringu jälitustegevuse õigusega seotud asutusse.
+Seetõttu ei tohi kodanikele ilmutada päringuid, mis on tehtud jälitustegevuse käigus. Standardlahendus võimaldab piirata kodanikule näidatavat infot kahel moel:
 
-Jälitustegevuse õigusega asutused on üles loetletud Kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> [https://www.riigiteataja.ee/akt/121032011002](https://www.riigiteataja.ee/akt/121032011002): Politsei- ja Piirivalveamet (70008747); Kaitsepolitseiamet (70000591); Maksu- ja Tolliamet (70000349); Justiitsministeeriumi (70000898) vanglate osakond ja vangla. Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) [https://www.riigiteataja.ee/akt/117122015039#para28](https://www.riigiteataja.ee/akt/117122015039#para28). Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule ilmutatud. Abistava variandina osade päringute logimise keelamiseks saab tüüplahenduse juures kasutada jälgimisfiltri konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)" või välistused tuleb kirjeldada kodanikule andmete esitamise teenuses, mis on teenuse pakkuja realiseerida.
+* Eraldusfiltris asuv Blacklist – võimaldab välja lülitada mingi asutuse kogu andmevahetuse registri koodi alusel, nii et asutuse päringuid ei logita üldse (vaata täpsemalt paigaldamisjuhendi peatükki "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)").
+* Eraldusfiltri täpsem seadistus – võimaldab piirata teenuse või alamsüsteemi täpsusega välistada teatud päringute logimise. 
+
+Sõltumata kumba moodust välistuse tagamiseks kasutatakse – peab see tulenema asjakohasest kokkuleppest päringuid sooritava asutusega. Juhtumi või kaasuse põhine filtreerimine ei ole standardlahendust kasutades võimalik. Kodanikule andmete väljastamise filtreerimist standardlahendus ei toeta. Filtreeritud päringute kohta on kodanikul õigus teha asutusse järelepärimine traditsioonilisel moel (näiteks teabenõudega).
+
+Jälitustegevuse õigusega asutused, kelle osas andmekasutamise filtreerimise täpsemad asjaolud peavad olema välja selgitatud, on üles loetletud Kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> [https://www.riigiteataja.ee/akt/121032011002](https://www.riigiteataja.ee/akt/121032011002):
+
+* Politsei- ja Piirivalveamet (70008747);
+* Kaitsepolitseiamet (70000591);
+* Maksu- ja Tolliamet (70000349);
+* Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
+* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) [https://www.riigiteataja.ee/akt/117122015039#para28](https://www.riigiteataja.ee/akt/117122015039#para28).
+
+Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule ilmutatud.
 
 ## Variandid andmejälgija kasutuselevõtuks
 
