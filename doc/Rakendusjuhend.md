@@ -3,7 +3,7 @@ Tarkvara rakendusjuhend
 
 **DUMonitor**
 
-Versioon 1.0, 09.05.2016
+Versioon 1.1, 19.01.2017
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -16,7 +16,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 | Versioon | Kuupäev    | Autor                    | Märkused
 |----------|------------|--------------------------|----------------------------------------------
 | 1.0      | 09.05.2016 | Tanel Tammet, Ivo Mehide | Esimene versioon
-| 1.1      | 28.12.2016 | Piret Elm, Vitali Stupin | Logimise välistuste täpsustamine
+| 1.1      | 19.01.2017 | Piret Elm, Vitali Stupin | Logimise välistuste täpsustamine
 
 ## Sisukord
 
@@ -123,24 +123,35 @@ Teise ülaltoodud seadusepunkti jaoks tuleks lähtuda järgmisest:
 * Pika isikute loendi (näiteks üle mitmekümne inimese) vaatamist vms ei tule üldjuhul talletada nende isikutega seotuna.
 * Tehnilised ja administratiivsed ligipääsuvõimalused ja nende kehtimise perioodid tuleks talletada eraldi logisse/faili vms.
 
-Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiranguid (IKS § 20 lg 1-4). Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse, kui see võib: 1) kahjustada teise isiku õigusi ja vabadusi; 2) ohustada lapse põlvnemise saladuse kaitset; 3) takistada kuriteo tõkestamist või kurjategija tabamist; 4) raskendada kriminaalmenetluses tõe väljaselgitamist.
+Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiranguid (IKS § 20 lg 1-4).
 
-Seetõttu ei tohi kodanikele ilmutada päringuid, mis on tehtud jälitustegevuse käigus. Standardlahendus võimaldab piirata kodanikule näidatavat infot kahel moel:
+Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse, kui see võib:
 
-* Eraldusfiltris asuv Blacklist – võimaldab välja lülitada mingi asutuse kogu andmevahetuse registri koodi alusel, nii et asutuse päringuid ei logita üldse (vaata täpsemalt paigaldamisjuhendi peatükki "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)").
-* Eraldusfiltri täpsem seadistus – võimaldab piirata teenuse või alamsüsteemi täpsusega välistada teatud päringute logimise. 
+*	kahjustada teise isiku õigusi ja vabadusi; 
+*	ohustada lapse põlvnemise saladuse kaitset; 
+*	takistada kuriteo tõkestamist või kurjategija tabamist; 
+*	raskendada kriminaalmenetluses tõe väljaselgitamist.
 
-Sõltumata kumba moodust välistuse tagamiseks kasutatakse – peab see tulenema asjakohasest kokkuleppest päringuid sooritava asutusega. Juhtumi või kaasuse põhine filtreerimine ei ole standardlahendust kasutades võimalik. Kodanikule andmete väljastamise filtreerimist standardlahendus ei toeta. Filtreeritud päringute kohta on kodanikul õigus teha asutusse järelepärimine traditsioonilisel moel (näiteks teabenõudega).
+Seetõttu ei tohi kodanikele avaldada päringuid, mis on tehtud jälitustegevuse käigus.
 
-Jälitustegevuse õigusega asutused, kelle osas andmekasutamise filtreerimise täpsemad asjaolud peavad olema välja selgitatud, on üles loetletud Kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> [https://www.riigiteataja.ee/akt/121032011002](https://www.riigiteataja.ee/akt/121032011002):
+Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> https://www.riigiteataja.ee/akt/121032011002:
 
 * Politsei- ja Piirivalveamet (70008747);
 * Kaitsepolitseiamet (70000591);
 * Maksu- ja Tolliamet (70000349);
 * Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
-* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) [https://www.riigiteataja.ee/akt/117122015039#para28](https://www.riigiteataja.ee/akt/117122015039#para28).
+* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) https://www.riigiteataja.ee/akt/117122015039#para28.
 
-Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule ilmutatud.
+Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule näha.
+
+Standardlahendus võimaldab piirata kodanikule näidatavat infot kahel moel:
+
+* Eraldusfiltris asuv Blacklist – võimaldab välja lülitada asutuse kogu andmevahetuse asutuse registrikoodi alusel, nii et asutuse päringuid ei logita üldse (vaata täpsemalt paigaldamisjuhendi peatükki  "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)").
+* Eraldusfiltri täpsem seadistus – võimaldab välistada teatud päringute logimise teenuse parameetri või alamsüsteemi täpsusega. 
+
+Sõltumata sellest, kumba moodust välistuse tagamiseks kasutatakse, tuleb piirangute seadistamise reeglid kokku leppida päringuid sooritava asutusega. Juhtumi- või kaasusepõhine filtreerimine ei ole standardlahendust kasutades võimalik. 
+
+Kodanikule andmete väljastamise filtreerimist standardlahendus ei toeta. Filtreeritud päringute kohta on kodanikul õigus teha asutusse järelepärimine traditsioonilisel moel (näiteks teabenõudega).
 
 ## Variandid andmejälgija kasutuselevõtuks
 
