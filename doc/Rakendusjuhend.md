@@ -17,6 +17,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 |----------|------------|--------------------------|----------------------------------------------
 | 1.0      | 09.05.2016 | Tanel Tammet, Ivo Mehide | Esimene versioon
 | 1.1      | 19.01.2017 | Piret Elm, Vitali Stupin | Logimise välistuste täpsustamine
+| 1.2      | 16.03.2017 | Piret Elm                | Logimise välistuste täpsustamine
 
 ## Sisukord
 
@@ -132,7 +133,7 @@ Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandm
 *	takistada kuriteo tõkestamist või kurjategija tabamist; 
 *	raskendada kriminaalmenetluses tõe väljaselgitamist.
 
-Seetõttu ei tohi kodanikele avaldada päringuid, mis on tehtud jälitustegevuse käigus.
+Seetõttu ei tohi kodanikele avaldada päringuid, mis on tehtud jälitustegevuse käigus ja teistel IKS § 20 toodud juhtudel, samuti konkreetse asutuse eriseadustest tulenevatest piirangutest. Juba andmejälgija tarkvara kasutusele võtmisel tuleb otsustada ja dokumenteerida milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat liidestada, milliseid andmeedastamisi ja -kasutamisi logida ja milliseid mitte. Millised on üldised ja millised asutuse eriseadusest tulenevad piirangud.
 
 Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> https://www.riigiteataja.ee/akt/121032011002:
 
