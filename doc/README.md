@@ -27,3 +27,5 @@ aga paigaldamiseks või arendamiseks:
 * [Testiplaan](Testiplaan.md)
 * [Testilood](Testilood.md)
 * [Testiraport](Testiraport.md)
+
+![](img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")

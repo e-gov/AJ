@@ -2,40 +2,44 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.0.1, 31.05.2016
+Versioon 1.0.2, 20.03.2017
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
-####1	Dokumendi ajalugu
+![](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
 
-Versioon	Kuupäev	Autor	Märkused
-- 0.9	07.12.2015	Urmas Kukk	Esimene versioon
-- 1.0	14.12.2015	Ivo Mehide	Dokumendi kujunduse muudatused
-- 1.0.1 31.05.2015 Priit Parmakson Teisendus Markdowni			
+#### 1	Dokumendi ajalugu
 
-####2	Sissejuhatus
+| Versioon | Kuupäev    | Autor                    | Märkused
+|----------|------------|--------------------------|-----------------------------------------------------------
+| 0.9      | 07.12.2015 | Urmas Kukk               | Esimene versioon
+| 1.0      | 14.12.2015 | Ivo Mehide               | Dokumendi kujunduse muudatused
+| 1.0.1    | 31.05.2015 | Priit Parmakson          | Teisendus Markdowni		
+| 1.0.2    | 20.03.2017 | Vitali Stupin            | Parandatud Markdowni vead, lisatud EL logo
+
+#### 2	Sissejuhatus
 Analüüsis esitatakse vastused alljärgnevatele küsimustele:
 1)	Kas väljatöötatud lahendus vastab kehtivale õigusele? Kas väljatöötatud tehnilise lahenduse kasutamine eeldab muudatusi kehtivates õigusaktides?
 2)	Kas ja millises osas on vaja muuta andmejälgija kasutusele võtmisega seonduvalt andmekogude pidamise aluseks olevaid õigusakte, sh põhimäärusi?
 3)	Kui kaua peaks säilitama andmesalvestajasse kogutavaid metaandmeid? (peatükk 6)
 
-####3	Aluseks olevad õigusaktid
+#### 3	Aluseks olevad õigusaktid
 Käesoleva analüüsi aluseks on võetud alljärgnevad rahvusvahelise ja siseriikliku õiguse normid: 
 
-####3.1	Rahvusvaheline õigus
-####3.1.1	Euroopa Nõukogu Isikuandmete automatiseeritud töötlemisel isiku kaitse konventsioon (Nr 108)
+#### 3.1	Rahvusvaheline õigus
+#### 3.1.1	Euroopa Nõukogu Isikuandmete automatiseeritud töötlemisel isiku kaitse konventsioon (Nr 108)
 Artikkel 8. Lisatagatised andmesubjektile
 
 Isikule peab olema võimaldatud:
 b. saada määratletud ajavahemike järel ning ilma liigse viivituseta või kuluta teavet, kas tema isikuandmeid säilitatakse automatiseeritud andmekogus ja saada neid andmeid talle mõistetavas vormis;
 
-####3.1.2	Inimõiguste ja biomeditsiini konventsioon: inimõiguste ja inimväärikuse kaitse bioloogia ja arstiteaduse rakendamisel
+#### 3.1.2	Inimõiguste ja biomeditsiini konventsioon: inimõiguste ja inimväärikuse kaitse bioloogia ja arstiteaduse rakendamisel
 Artikkel 10. Eraelu ja õigus saada teavet
 2. Igaühel on õigus saada mis tahes teavet, mis tema tervise kohta on kogutud.
 
-####3.1.3	Direktiiv 95/46/EU
+#### 3.1.3	Direktiiv 95/46/EU
 Artikkel 12. Õigus tutvuda andmetega
 
 Liikmesriigid tagavad, et igal andmesubjektil on õigus nõuda vastutavalt töötlejalt:
@@ -44,8 +48,8 @@ a) mõistliku aja tagant, ilma piiranguteta ja ilma liigsete viivituste ja kulut
 - kinnitust selle kohta, kas isikut ennast käsitlevaid andmeid töödeldakse, ja teavet vähemalt töötlemise eesmärkide, asjaomaste andmete liikide ja nende vastuvõtjate või vastuvõtjate kategooriate kohta, kellele andmed avalikustatakse,
 - arusaadaval kujul teavet töödeldavate andmete ja nende allika kohta,
 
-####3.2	Siseriiklik õigus
-####3.2.1	Isikuandmete kaitse seadus (IKS)
+#### 3.2	Siseriiklik õigus
+#### 3.2.1	Isikuandmete kaitse seadus (IKS)
 § 19.  Andmesubjekti õigus saada teavet ja tema kohta käivaid isikuandmeid
  (1) Andmesubjekti soovil peab isikuandmete töötleja andmesubjektile teatavaks tegema:
  1) tema kohta käivad isikuandmed;
@@ -61,7 +65,7 @@ a) mõistliku aja tagant, ilma piiranguteta ja ilma liigsete viivituste ja kulut
  3) ära hoidma isikuandmete omavolilist salvestamist, muutmist ja kustutamist ning tagama, et tagantjärele oleks võimalik kindlaks teha, millal, kelle poolt ja milliseid isikuandmeid salvestati, muudeti või kustutati või millal, kelle poolt ja millistele isikuandmetele andmetöötlussüsteemis juurdepääs saadi;
 5) tagama andmete olemasolu isikuandmete edastamise kohta: millal, kellele ja millised isikuandmed edastati, samuti selliste andmete muutusteta säilimise. 
 
-####4	Väljatöötatava lahenduse vastavus õigusnormidele.
+#### 4	Väljatöötatava lahenduse vastavus õigusnormidele.
 Andmejälgija eesmärgiks on luua võimalus nii andmesubjektidele kui andmetöötlejatele keskkond IKS §25 lg2 pp3 ning 5 rakendamiseks ja §19 lg1 ja 2 õiguse realiseerimiseks.
 
 Seega on Andmejälgija eesmärk pakkuda andmesubjektile lihtsat võimalust talle IKS §19 antud õiguste kasutamiseks ja samas anda talle lihtne võimalus kontrollimiseks iseseisvalt, kas andmetöötleja järgib IKS §25 lg 2 p-de 3 ja 5 nõudeid.  
@@ -73,8 +77,8 @@ Andmejälgija funktsionaalsuse osas soovitakse pakkuda:
 
 Andmejälgija funktsionaalsus tervikuna ja osade kaupa  vastab IKS-i nõuetele ja seepärast ei ole siinkohal vajalik iga eelnevas lõigus toodud alamosist eraldi analüüsida.
 
-####5	Piloteeritavate andmekogude pidamist reguleerivate õigusaktide vastavus isikuandmete kaitse seadusele.
-####5.1	Sotsiaalteenuste ja –toetuste andmeregistri asutamine ja selle pidamise põhimäärus.
+#### 5	Piloteeritavate andmekogude pidamist reguleerivate õigusaktide vastavus isikuandmete kaitse seadusele.
+#### 5.1	Sotsiaalteenuste ja –toetuste andmeregistri asutamine ja selle pidamise põhimäärus.
 
 Andmesubjekti poolt tehtava päringu ja andmete väljastamise kohta on põhimääruses alljärgnev regulatsioon: 
 § 11. Andmete väljastamine
@@ -83,7 +87,7 @@ Andmesubjekti poolt tehtava päringu ja andmete väljastamise kohta on põhimä�
 
 Regulatsioon (küll väga üldsõnaline) vastab IKS-i nõuetele ja selle alusel saab andmeid väljastada ka Andmejälgija rakendumisel. Selguse huvides võiks põhimääruses olla viide isikuandmete kaitse seaduse kohaldamisel isikuandmete töötlemisel.
 
-####5.2	Rahvastikuregister
+#### 5.2	Rahvastikuregister
 
 Rahvastikuregistri toimimine on sätestatud rahvastikuregistri seadusega, milles isikuandmete kaitse ja teabe väljastamise on sätestatud alljärgnevalt:
 § 61.  Andmete kaitse nõuded
@@ -103,7 +107,7 @@ Rahvastikuregistri toimimine on sätestatud rahvastikuregistri seadusega, milles
 
 Regulatsioon vastab IKS-i nõuetele ja selle alusel saab andmeid väljastada ka Andmejälgija rakendumisel.
 
-####5.3	Andmevahetusplatvorm
+#### 5.3	Andmevahetusplatvorm
 
 Andmevahetusplatvorm on digitaalne keskkond, mille kaudu toimub elektriturul andmevahetus avatud tarnija vahetamiseks, mõõteandmete edastamiseks ning turuosalisele seadus kohustuste täitmiseks ja talle antud õiguste tagamiseks. 
 
@@ -111,7 +115,7 @@ Andmevahetusplatvormi kaudu toimuv andmete edastamine on reguleeritud võrgueesk
 
 Võrgueeskirja on vaja täiendada isikuandmete töötlemist puudutavate sätetega ka juhul kui Andmejälgija ei rakendu. Regulatsioon ei pea olema väga detailne. Piisab ka viitest selle, et isikuandmete töötlemisel kohaldatakse isikuandmete kaitse seadust. 
 
-####5.4	Töötuskindlustuse andmekogu
+#### 5.4	Töötuskindlustuse andmekogu
 
 Andmesubjekti poolt tehtava päringu ja andmete väljastamise kohta on Töötukindlustuse andmekogu põhimääruses alljärgnev regulatsioon:
 
@@ -122,7 +126,7 @@ Andmesubjekti poolt tehtava päringu ja andmete väljastamise kohta on Töötuki
 
 Regulatsioon (samuti väga üldsõnaline) vastab IKS-i §19 lg1  nõuetele ja selle alusel saab andmeid väljastada ka Andmejälgija rakendumisel. Selguse huvides võiks ka selles põhimääruses olla viide isikuandmete kaitse seaduse kohaldamisel isikuandmete töötlemisel (väljastamisel).
 
-####5.5	Ravikindlustuse andmekogu
+#### 5.5	Ravikindlustuse andmekogu
 
 Ravikindlustuse andmekogu pidamise põhimääruses on isikuandmete väljastamise kord kehtestatud alljärgnevalt:
 VI Andmete väljastamise kord 
@@ -132,17 +136,16 @@ VI Andmete väljastamise kord
 Seega puudub Ravikindlustuse andmekogus regulatsioon, mis sätestab andmete väljastamist andmesubjektile. 
 Ravikindlustuse andmekogu on vaja täiendada isikuandmete töötlemist puudutavate sätetega ka juhul kui Andmejälgija ei rakendu. Regulatsioon ei pea olema väga detailne. Piisab ka viitest selle, et isikuandmete töötlemisel kohaldatakse isikuandmete kaitse seadust.
 
-####6	Metaandmete säilitamise tähtaeg
+#### 6	Metaandmete säilitamise tähtaeg
  Isikuandmete kaitse seadus ei sea tähtaegasid isikuandmete säilitamiseks. Ka Direktiiv 95/46/EÜ art.6 1.e) sätestab ainult, et isikuandmeid säilitatakse kujul, mis võimaldab andmesubjekti tuvastada ainult seni, kuni see on vajalik seoses andmete kogumise või hilisema töötlemise eesmärkidega.
 
 Isikuandmete töötlemisel peaks lähtuma põhimõttest, et põhiõigusi (käesoleva kontekstis, siis eraelu ja isikuandmete kaitset) riivavaid andmeid peaks säilitama nii lühikest aega kui võimalik ja põhiõigusi kaitsvaid andmeid (käesoleva kontekstis, siis isikuandmete töötlemist näitavaid metaandmeid) nii pikka aega kui vajalik.
 
 Metaandmete säilitamise ülemiseks ajaliseks piiriks võiks olla karistusseadustiku §1571 lõigetega 2 ja 4 ettenähtud süütegude aegumise tähtaeg, so 5 aastat.
 
-####7	Kokkuvõte
+#### 7	Kokkuvõte
 
 Piloteeritavatest andmekogudest Ravikindlustuse andmekogu pidamise põhimääruses ja Andmevahetuskihis puudub regulatsioon isikuandmete töötlemiseks. Seega vajavad nii Ravikindlustuse andmekogu pidamise põhimäärus kui ka võrgueeskiri kindlasti vastavat täiendamist. Teiste puhul võimaldab ka praegune redaktsioon Andmejälgijat rakendada.
 
 Selguse huvides võiks siiski kõikide andmekogude regulatsioonides olla alljärgnev säte:
 „Andmekogust väljastatakse isikuandmeid isikuandmete kaitse seaduses sätestatud tingimustel ja korras.“
-
