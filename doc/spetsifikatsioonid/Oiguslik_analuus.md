@@ -8,6 +8,8 @@ Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
+![](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
+
 #### 1	Dokumendi ajalugu
 
 Versioon	Kuupäev	Autor	Märkused
@@ -146,5 +148,3 @@ Piloteeritavatest andmekogudest Ravikindlustuse andmekogu pidamise põhimäärus
 
 Selguse huvides võiks siiski kõikide andmekogude regulatsioonides olla alljärgnev säte:
 „Andmekogust väljastatakse isikuandmeid isikuandmete kaitse seaduses sätestatud tingimustel ja korras.“
-
-![](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
