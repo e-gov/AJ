@@ -5,6 +5,7 @@ X-tee andmejälgija analüüs ja disain
 Versioon 1.0.2, 20.03.2017
 
 Tellija: Riigi Infosüsteemi Amet
+
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
 ![](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
