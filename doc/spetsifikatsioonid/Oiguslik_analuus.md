@@ -12,11 +12,12 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
 #### 1	Dokumendi ajalugu
 
-Versioon	Kuupäev	Autor	Märkused
-- 0.9	07.12.2015	Urmas Kukk	Esimene versioon
-- 1.0	14.12.2015	Ivo Mehide	Dokumendi kujunduse muudatused
-- 1.0.1 31.05.2015 Priit Parmakson Teisendus Markdowni			
-- 1.0.2 20.03.2017 Vitali Stupin Parandatud Markdowni vead, Lisatud EL logo
+| Versioon | Kuupäev    | Autor                    | Märkused
+|----------|------------|--------------------------|-----------------------------------------------------------
+| 0.9      | 07.12.2015 | Urmas Kukk               | Esimene versioon
+| 1.0      | 14.12.2015 | Ivo Mehide               | Dokumendi kujunduse muudatused
+| 1.0.1    | 31.05.2015 | Priit Parmakson          | Teisendus Markdowni		
+| 1.0.2    | 20.03.2017 | Vitali Stupin            | Parandatud Markdowni vead, lisatud EL logo
 
 #### 2	Sissejuhatus
 Analüüsis esitatakse vastused alljärgnevatele küsimustele:
