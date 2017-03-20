@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.0.1, 31.05.2016
+Versioon 1.0.2, 20.03.2017
 
 Tellija: Riigi Infosüsteemi Amet
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
@@ -13,7 +13,8 @@ Tabel 1 - Dokumendi muudatuste ajalugu
 
 Versioon	Kuupäev	Autor	Märkused
 - 1.0	11.12.2105	Janek Part, Valdo Praust	Esimene versioon
-- 1.0 31.05.2016  Priit Parmakson  Teisendus Markdowni
+- 1.0.1 31.05.2016 Priit Parmakson Teisendus Markdowni
+- 1.0.2 20.03.2017 Vitali Stupin Parandatud Markdowni vead, Lisatud EL logo
 
 #### 2	Kokkuvõte
 Käesoleva projektiga disainitakse ja spetsifitseeritakse isikuandmete kasutamise jälgimise tarkvaraline tüüplahendus (andmejälgija). Andmejälgija on mõeldud kasutamiseks andmekogu omanikule, kes seadusest tulenevalt peab kodanikule jagama informatsiooni tema andmete edastamise, salvestamise, muutmise ja kustutamise kohta (vt punkti 7.1). 
