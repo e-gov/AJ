@@ -7,6 +7,8 @@ Versioon 1.0.2, 20.03.2017
 Tellija: Riigi Infosüsteemi Amet
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
+![](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
+
 #### 1	Dokumendi ajalugu
 
 Tabel 1 - Dokumendi muudatuste ajalugu
@@ -279,5 +281,3 @@ Antud dokumendi lisad:
 (a)	Lisa 2. AKI „ANDMEKOGUDE JUHEND“ - http://www.aki.ee/sites/www.aki.ee/files/elfinder/article_files/Andmekogude%20juhend_1.pdf
 
 (b)	Lisa 3. „Turvaserveri kasutusjuhend v 2.3“ - http://x-road.eu/docs/x-road_v6_security_server_user_guide.pdf.
-
-![](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
