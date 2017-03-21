@@ -60,7 +60,4 @@ Personal Data Usage Verifier has three interfaces:
 
 Protocols: (1) requires a X-Road web service; (2) uses HTML/CSS/JS over HTTPS.
 
-
-
-
-
+![](../doc/img/EU_Regional_Development_Fund_horizontal.jpg "European Union | European Regional Development Fund | Investing in your future")
