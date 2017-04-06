@@ -25,6 +25,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Sisukord](#sisukord)
   * [Sissejuhatus](#sissejuhatus)
   * [Andmejälgija tarkvara paigaldamine](#andmej%C3%A4lgija-tarkvara-paigaldamine)
+    * [Eeldus andmejälgija tarkvara paigaldamiseks](#eeldus-andmejälgija-tarkvara-paigaldamiseks)
     * [Üldised nõuded](#%C3%9Cldised-n%C3%B5uded)
     * [Rakenduse paigaldamine X\-tee turvaserverisse](#rakenduse-paigaldamine-x-tee-turvaserverisse)
     * [Rakenduse paigaldamine Java rakendusserverisse](#rakenduse-paigaldamine-java-rakendusserverisse)
