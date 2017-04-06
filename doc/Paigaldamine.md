@@ -17,6 +17,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 |----------|------------|--------------------------|-----------------------------------------------------------
 | 1.0      | 09.05.2016 | Ivo Mehide, Tanel Tammet | Esimene versioon
 | 1.1      | 27.12.2016 | Piret Elm, Vitali Stupin | Eraldusfiltris vaikeväärtuste musta nimekirja täpsustamine
+| 1.3      | 06.04.2017 | Piret Elm                | Lisatud eeldus andmejälgija kasutamiseks
 
 ## Sisukord
 
@@ -49,6 +50,10 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 Antud dokument on [rakendusjuhendi](Rakendusjuhend.md) üks osa ning annab ammendavad ja samm-sammulised juhised andmejälgija tarkvara kõigi komponentide paigaldamiseks, konfigureerimiseks, eemaldamiseks. See on vormistatud eraldiseisva dokumendina hoidmaks rakendusjuhendi põhidokumendi mahtu madalal ja läbi selle tagades dokumentide parema loetavuse.
 
 ## Andmejälgija tarkvara paigaldamine
+
+### Eeldus andmejälgija tarkvara paigaldamiseks
+
+Andmejälgija tarkvara on arendatud X-tee versioon 6 turvaserveri jaoks, st eelnevalt peab olema paigaldatud versioon 6 turvaserver, omatakse allkirjastamisseadet ja kasutatakse usaldusteenuse pakkujaid, kirjeldatud on alamsüsteemid läbi mille saab teenuseid kasutada. Vt X-tee kasutamise juhend https://moodle.ria.ee/mod/page/view.php?id=288.
 
 ### Üldised nõuded
 
