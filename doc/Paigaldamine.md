@@ -19,6 +19,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 | 1.1      | 27.12.2016 | Piret Elm, Vitali Stupin | Eraldusfiltris vaikeväärtuste musta nimekirja täpsustamine
 | 1.3      | 06.04.2017 | Piret Elm                | Lisatud eeldus andmejälgija kasutamiseks
 | 1.4      | 02.05.2017 | Piret Elm                | Lisatud peatükk andmejälgija teenuse avaldamine riigiportaalis
+| 1.5      | 08.03.2018 | Vitali Stupin            | Lisatud näidis päringu ja vastuse eristamiseks
 
 ## Sisukord
 
@@ -499,11 +500,11 @@ Allpool on toodud näidis ühest võimalikust filtri konfiguratsiooni failist.
     <defaults>
         <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender>
         <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver>
-        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode<sendercode>
-        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode<receivercode>
-        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id<xroadrequestid>
-        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode<xroadservice>
-        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId<usercode>
+        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sendercode>
+        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receivercode>
+        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id</xroadrequestid>
+        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode</xroadservice>
+        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId</usercode>
     </defaults>
     <filters>
 		<filter>
@@ -525,6 +526,20 @@ näite baasilt):
 
 ```xml
 <personcode>concat('EE',/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse/replaceWithXPathToPersonCode)</personcode>
+```
+
+Samal ajal tuleks tähele panna, et eraldusfilter otsib vastavusi nii päringus kui ka vastuses. Ning juhul kui `personcode`
+välja otsimiseks kasutatud xpath avaldis leiab väärtuse ainult vastuses, siis päringu puhul `concat` liidab 'EE' tühja
+väärtusega ning tulemusena saab 'EE', mis omakorda on salvestatud andmesalvestajasse.
+
+Antud probleemi on võimalik lahendada määrates `<xpath>` elemendis, et antud filter kehtib vaid päringu või vastuse puhul.
+Näiteks järgmine `<xpath>` väärtus on tõene vaid päringute puhul:
+
+```xml
+<xpath>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'replaceWithServiceCode'
+	and /SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'replaceWithServiceVersion'
+	and /SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse
+</xpath>
 ```
 
 ### Esitamise testrakenduse häälestamine
