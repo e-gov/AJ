@@ -7,6 +7,7 @@
     <servlet>
         <servlet-name>ProxyServlet</servlet-name>
         <servlet-class>ee.ria.dumonitor.query.Proxy</servlet-class>
+        <async-supported>true</async-supported>
     </servlet>
 
     <servlet-mapping>
