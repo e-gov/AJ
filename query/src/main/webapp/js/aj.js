@@ -6,7 +6,7 @@
 
 /*
 var queryURL = "proxy"; // url to query from: this here is a relative url
-//var queryURL = "http://localhost:8080/dumonitor-query-1.0-SNAPSHOT/proxy"; // use either relative or full path   
+//var queryURL = "http://localhost:8080/dumonitor-query-1.0-SNAPSHOT/proxy"; // use either relative or full path
 var pageLength = 50; // maximal number of rows shown on a page
 var ajaxTimeout = 5000; // milliseconds until the data query timeouts
 var debugging=true; // set to true for some console logging
@@ -41,15 +41,15 @@ var firstRowNr=0; // currently shown first row
 /* keys to show in the table */
 
 var listKeys=["logtime","action","receiver"];
-  
+
 /* keys to hide in a list if a screen is small */
 
-var wideListKeys=[]; 
+var wideListKeys=[];
 
 /* keys to show for one record */
 
 var recordKeys=["logtime","action","receiver"];
-  
+
 /* long Estonian names for the record view  */
 
 var transTable={
@@ -59,44 +59,44 @@ var transTable={
   "action":"Tegevus",
   "sender":"Saatja",
   "receiver":"Saaja"};
-  
+
 /* initial actions when the page is loaded */
-  
-$(document).ready(function(){ 
+
+$(document).ready(function(){
   //askData();
 });
 
 /* querying and handling data */
 
-function askData() {  
-  var soap=makeSOAP();   
+function askData() {
+  var soap=makeSOAP();
   // call proxy with soap
   $.ajax({
-    url: queryURL, 
-    type: "POST",   
+    url: queryURL,
+    type: "POST",
     contentType: "text/xml",
-    // Tell jQuery we're expecting text: we will parse it ourselves    
+    // Tell jQuery we're expecting text: we will parse it ourselves
     dataType: "text",
     data: soap,
     // Time in millis until fails with timeout
     timeout: ajaxTimeout,
     // Work with the response
-    success: function(response) { handleAjaxSuccess(response); },    
+    success: function(response) { handleAjaxSuccess(response); },
     error: function(response) { handleAjaxError(response); }
   });
 }
 
 function makeSOAP() {
-  var userid=$("#flt_personcode_value").val();      
+  var userid=$("#flt_personcode_value").val();
   var orgname=$("#flt_organization option:selected").val();
-  var uuid=makeUUID();  
+  var uuid=makeUUID();
   var header=headers[orgname];
   header=header.replace("{userId}",userid).replace("{id}",uuid);
   var envelope=queryTemplate;
   envelope=envelope.replace("{header}",header);
   envelope=envelope.replace("{offset}",firstRowNr);
-  envelope=envelope.replace("{limit}",pageLength);         
-  debug(envelope);   
+  envelope=envelope.replace("{limit}",pageLength);
+  debug(envelope);
   return envelope;
 }
 
@@ -114,22 +114,22 @@ function makeUUID(){
   });
   return uuid;
 }
- 
+
 
 function handleAjaxSuccess(response) {
   var html;
-  debug("response: "+response);    
+  debug("response: "+response);
   $("#maintable tr:gt(0)").remove();
   data=parseSOAP(response);  // store to global var
   if (data && ! $.isArray(data)) {
     handleDataError(data);
     return;
-  }  
+  }
   html=makeTable(data);
   $("#maintable > tbody:last-child").append(html);
   $("#firstrownr").html(getFirstRowNr()+1);
-  $("#lastrownr").html(getLastRowNr()+1);  
-} 
+  $("#lastrownr").html(getLastRowNr()+1);
+}
 
 function handleAjaxError(response) {
   var errmsg="Viga ühenduses serveriga: ";
@@ -142,8 +142,8 @@ function handleAjaxError(response) {
   errmsg+="<p>Serveri url: "+queryURL;
   $("#errorcontents").html(errmsg);
   $("#errorModal").modal('show');
-  debug(errmsg); 
-}  
+  debug(errmsg);
+}
 
 function handleDataError(response) {
   var errmsg="",tmp="";
@@ -152,11 +152,11 @@ function handleDataError(response) {
     errmsg=errmsg+encodeHtml(tmp);
   } else {
     errmsg=errmsg+encodeHtml(" "+response);
-  }    
+  }
   $("#dataerrorcontents").html(errmsg);
   $("#dataerrorModal").modal('show');
-  debug(errmsg); 
-} 
+  debug(errmsg);
+}
 
 /* parse soap body data to a json list of objects */
 
@@ -166,13 +166,13 @@ function parseSOAP(soap) {
   try {
     var xmlDoc = $.parseXML(soap);
   } catch (err) {
-    return {"errmessage":err+""};     
-  } 
-  $(xmlDoc).find("usage").each(function(){     
+    return {"errmessage":err+""};
+  }
+  $(xmlDoc).find("usage").each(function(){
     logtime=$(this).find('logtime').text();
     action=$(this).find('action').text();
     receiver=$(this).find('receiver').text();
-    data.push({"logtime":logtime,"action":action,"receiver":receiver});    
+    data.push({"logtime":logtime,"action":action,"receiver":receiver});
   });
   return data;
 }
@@ -190,9 +190,9 @@ function makeTable(data) {
     for (var j=0; j<listKeys.length; j++) {
       var key=listKeys[j];
       var colstr;
-      if ($.inArray(key,wideListKeys)>=0)  
+      if ($.inArray(key,wideListKeys)>=0)
         colstr="<td onclick='showRow("+i+")' class='widelistcol'>";
-      else 
+      else
         colstr="<td onclick='showRow("+i+")'>";
       var value = row[key];
       if (key === "logtime") value = convertDate(value);
@@ -222,7 +222,7 @@ function showRow(nr) {
   var str="<table><tbody>";
   for (var j=0; j<recordKeys.length; j++) {
     var key=recordKeys[j];
-    var rowstr="<tr>";    
+    var rowstr="<tr>";
     rowstr+="<td class='recordkey'>"+trans(key)+"</td><td class='recordvalue'>";
     var value = obj[key];
     if (key === "logtime") value = convertDate(value);
@@ -237,7 +237,7 @@ function showRow(nr) {
 
 function trans(key) {
   if (has(transTable,key)) return transTable[key];
-  else return key;  
+  else return key;
 }
 
 /* pagination and sorting */
@@ -265,7 +265,7 @@ function getLastRowNr() {
   if (!data) return firstRowNr;
   else if (data && data.length>(firstRowNr+pageLength)) return firstRowNr+pageLength-1;
   else if ((firstRowNr+data.length-1)<0) return 0;
-  else return firstRowNr+data.length-1;  
+  else return firstRowNr+data.length-1;
 }
 
 function sortcol(key) {
@@ -274,7 +274,7 @@ function sortcol(key) {
 
 /* helpers */
 
-  
+
 function has(object, key) {return object ? hasOwnProperty.call(object, key) : false;}
 
 function shortenStr(str,maxlen) {
@@ -289,10 +289,10 @@ function encodeHtml(txt) {
   return txt.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
-function debug(str) {if (debugging) console.log(str); }  
+function debug(str) {if (debugging) console.log(str); }
 
 $(document).ready(function(){
-  $.getScript("/producers.js", function () {
+  $.getScript(window.location.href + '/producers.js', function () {
     headers = producers;
 	// Fill in select-box:
 	$('#flt_organization').html('');
