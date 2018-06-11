@@ -330,7 +330,7 @@ Lisaks on eraldusfiltri komponendil olemas ka eraldi konfiguratsioonifail "dumon
 Andmesalvestaja konfigureerimiseks on vaja täiendavalt kindlaks määrata järgmised konfiguratsiooni elemendid:
 
 * Andmesalvestaja X-tee teenuse nimeruum. Kui on vaja kasutada vaikeväärtusest erinevat XML nimeruumi.
-* Andmebaasi ühenduse JNDI nimi. Juhul, kui soovitakse andmebaasi ühendus kirjeldata JNDI nime kaudu (vt täpsemalt https://wiki.eclipse.org/Jetty/Feature/JNDI). 
+* Andmebaasi ühenduse JNDI nimi. Juhul, kui soovitakse andmebaasi ühendus kirjeldada JNDI nime kaudu (vt täpsemalt https://wiki.eclipse.org/Jetty/Feature/JNDI). 
 * Andmebaasi ühendusstring. Juhul, kui soovitakse andmebaasi ühendus luua vahetult konfiguratsioonifailis kasutajatunnuse ja parooli ära näitamisega.
 
 
