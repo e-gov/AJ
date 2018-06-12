@@ -1,7 +1,7 @@
 DUMonitor tarkvara spetsifikatsioonid
 =====================================
 
-* [AJ täiendatud tehniline kontseptsioon](Taiendatud_tehniline_kontseptsioon.md)
+* [AJ tehniline kontseptsioon](Tehniline_kontseptsioon.md)
 * [AJ isikuandmete kasutusteabe andmemudel](Isikuandmete_kasutusteabe_andmemudel.md)
 * [AJ kasutuslood](Kasutuslood.md)
 * [AJ kasutusteabe esitamise protokoll](Kasutusteabe_esitamise_protokoll.md)

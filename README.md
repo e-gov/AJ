@@ -1,4 +1,4 @@
-![EL struktuurifondid](doc/img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](doc/img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 Andmejälgija / Personal Data Usage Monitor
 =====================
@@ -8,9 +8,9 @@ Andmejälgija / Personal Data Usage Monitor
 Andmejälgija tarkvara ("DUMonitor") eesmärk on pakkuda andmekogude haldajatele paindlikud standardkomponendid 
 isikuandmete töötlemise logimiseks ning nende faktide esitamiseks eesti.ee portaali kaudu.
 
-Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md)
+Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md).
 
-Andmejälgija on [MIT litsentsiga](LICENSE.txt) vabatarkvara
+Andmejälgija on [MIT litsentsiga](LICENSE.txt) vabatarkvara.
 
 #### EN
 

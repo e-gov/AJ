@@ -2,19 +2,20 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.0, 20.12.2015
+Versioon 1.1, 13.06.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
-![EL struktuurifondid](../img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 ## 1. Dokumendi ajalugu
 
 | Versioon | Kuupäev | Autor | Märkused |
 | --- | --- | --- | --- |
 | 1.0 | 20.12.2015 | Tanel Tammet | Esimene versioon |
+| 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist |
 
 ## 2. Sisukord
 
@@ -36,25 +37,25 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
 ## 3. Sissejuhatus
 
-Käesolev dokument kajastab tarkvaralise lahenduse "Andmejälgija" ühe komponendi - eraldusfiltri -  arhitektuurilist ülesehitust ja tehnilist kontseptsiooni, esitades seejuures ühe konkreetse ettepaneku, mis ei ole veel RIA poolt kinnitatud. Seega on võimalik, et siin väljapakutud eraldusfiltri ülesehitus läheb muutmisele.
+Käesolev dokument kajastab tarkvaralise lahenduse "Andmejälgija" ühe komponendi - eraldusfiltri -  arhitektuurilist ülesehitust ja tehnilist kontseptsiooni.
 
-Dokument on suunatud arendajatele, kellel on tarvis realiseerida  eraldusfilter.
+Dokument on suunatud arendajatele, kellel on soov modifitseerida andmejälgija tarkvara.
 
 ## 4. Süsteemi taust
 
-Esitame taustana kõigepealt lühiülevaate eraldusfiltrist ja siis pikemalt olulised punktid X-tee turvaserverist, mis on tähtsad eraldusfiltri realisatsiooni piirangute ja valikute aspektist.
+Esitame taustana kõigepealt lühiülevaate eraldusfiltrist ja siis pikemalt olulised punktid X-tee turvaserverist, mis on tähtsad eraldusfiltri realisatsiooni aspektist.
 
 Mõtleme siin X-tee turvaserveri all eraldi serverit  / virtuaalserverit / Linuxi paigaldust, kuhu on paigaldatud ja kus töötab X-tee turvaserveri tarkvara. Viimane sisaldab terve hulga baastarkvara ja komponente. Paigalduspaketti ennast me siin dokumendis "turvaserveriks" ei nimeta.
 
 ### 4.1. Ülevaade eraldusfiltrist andmejälgija komponendina
 
-Andmejälgija kui terviku eesmärk, funktsionaalsus ja arhitektuuriline ülesehitus on detailselt kirjeldatud eraldi dokumendis "Andmejälgija täiendatud tehniline kontseptsioon".
+Andmejälgija kui terviku eesmärk, funktsionaalsus ja arhitektuuriline ülesehitus on detailselt kirjeldatud eraldi dokumendis "Andmejälgija tehniline kontseptsioon".
 
-Eraldusfilter on osa andmejälgijast, jälgib andmekogu X-tee liiklust ning võimaldab minimaalse arendus- ja paigaldustööga logida andmekogust X-teele saadetud (ja paigaldaja soovi korral ka laekunud) isikuandmete liikumise fakte: mis isiku andmed liikusid, mis andmekogust mis andmekogusse, mis oli päring ehk andmete liikumise lühieesmärk.
+Eraldusfilter on osa andmejälgijast, jälgib andmekogu X-tee liiklust ning võimaldab minimaalse arendus- ja paigaldustööga logida andmekogust X-teele saadetud (ja paigaldaja soovi korral ka laekunud) isikuandmete edastamise fakte: mis isiku andmed liikusid, mis andmekogust mis andmekogusse, mis oli päring ehk andmete liikumise lühieesmärk.
 
-Eraldusfilteron mõteldud isikuandmete liikumise salvestamiseks X-teel:
+Eraldusfilter on mõeldud isikuandmete liikumise salvestamiseks X-teel:
 
-- üldjuhul väljaminevate isikuandmete jaoks, kuid peab olema võimalik konfigureerida ka sissetulnud andmete salvestamist.
+- üldjuhul väljaminevate isikuandmete jaoks, kuid on võimalik konfigureerida ka sissetulnud andmete salvestamist.
 - Eraldusfilter  on küll andmejälgija standardkomponent, kuid tema paigaldamine andmejälgijas ei ole kohustuslik.
 - Eraldusfiltri saab paigaldada proxyna nii turvaserveri sisse (väikese koormusega turvaserveritel) kui proxyna turvaserveri ja infosüsteemi vahele (suure koormusega turvaserveritel).
 
@@ -62,7 +63,7 @@ Eraldusfilteron mõteldud isikuandmete liikumise salvestamiseks X-teel:
 
 Mõtleme siin X-tee turvaserveri all eraldi serverit / virtuaalserverit / Linuxi paigaldust, kuhu on paigaldatud ja kus töötab X-tee turvaserveri tarkvara. Viimane sisaldab terve hulga baastarkvara ja komponente. Paigalduspaketti ennast me siin dokumendis "turvaserveriks" ei nimeta.
 
-Praegu on kasutusel turvaserveri versioon 5. Lähiajal asutakse juurutama versiooni 6: see protsess on mittetriviaalne. Juurutusperioodi pikkus on raskelt ennustatav. Lähemas tulevikus jäävad paralleelselt toimima nii versioon 5 kui 6.
+Praegu on kasutusel turvaserveri versioon 5 ning juurutatakse versiooni 6. Juurutusperioodi pikkus on raskelt ennustatav. Lähemas tulevikus jäävad paralleelselt toimima nii versioon 5 kui 6.
 
 Olulisi tehnoloogilisi tähelepanekuid:
 
@@ -81,9 +82,9 @@ Olulisi tehnoloogilisi tähelepanekuid:
 
 ## 5. Komponentdiagramm
 
-Eraldusfiltri väljapakutud lahendus on olla proxy infosüsteemi ja turvaserveri vahel. Seejuures saab teda paigaldada kahel eri moel:
+Eraldusfilt funktsioneerib kui nn proxy infosüsteemi ja turvaserveri vahel. Seejuures saab teda paigaldada kahel eri moel:
 
-- Eraldusfilter on turvaserverist **eraldiseisev nn proxy** , millega infosüsteem liidestub ja mis suunab sõnumid edasi turvaserverile.
+- Eraldusfilter on turvaserverist **eraldiseisev proxy** , millega infosüsteem liidestub ja mis suunab sõnumid edasi turvaserverile.
 - Eraldusfilter on on **turvaserveri sees olev proxy** : pordid välismaailmaga on samad, mis turvaserveril seni, kuid sisemiselt suunab liiklust edasi teistele turvaserveri portidele (need saab ja tuleb sel juhul ümber konfigureerida)
 
 
@@ -109,14 +110,13 @@ Eraldusfiltrit paigaldades lähtutakse põhimõttest, et üks eraldusfilter teen
 
 ## 7. Eraldusfiltri arhitektuurilised / funktsionaalsed põhimõtted
 
-Eraldusfilter realiseeritakse proxyna viisil, et:
+Eraldusfilter on realiseeritud proxyna viisil, et:
 
 - Kõik saabunud sõnumid salvestatakse eraldusfiltri mälus olevasse järjekorda edasiseks filtreerimiseks/töötlemiseks ja saadetakse seejärel koheselt edasi turvaserverile. Turvaserveri liiklusele tekitatav täiendav latentsus eraldusfiltri olemasolul ei tohi olla rohkem, kui 1 millisekund ühes suunas.
 - Filtreerimine/töötlemine toimub eraldusfiltri järjekorras, kasutades eraldi lõime, juba peale sõnumi edasisaatmist X-tee turvaserverile / turvaserveri standardosadele.
 - Eraldusfilter ei salvesta töö käigus vaheinformatsiooni kettale ega nö vaheandmebaasi: järjekord ja muu ajutine informatsioon hoitakse mälus.
 - Eraldusfilter salvestab tuvastatud ja teisendatud sõnumi-info valmiskujul andmejälgija andmebaasi, kasutades selleks andmesalvesaja API-t. Salvestatud info on kujul, kus ta ei vaja edasist teisendamist  väljakuvamiseks eesti.ee portaalis või sisekasutuseks. Kõik eesti.ee-s kuvatavad tekstid salvestatakse juba kuvamiskujul andmejälgija andmebaasi.
 - Eraldusfilter loeb käivitudes infot konfiguratsioonifailist ning monitoorib regulaarselt konfiguratsioonifaili muutuste osas N-sekundilise intervalliga, mis on toodud konfiguratsioonifailis. Töötavat eraldusfiltrit saab ümber konfigureerida ilma teda ümber käivitamata.
-- Eraldusfiltri poolt kasutatav maksimaalne mälumaht peab olema konfiguratsioonis seatav.
 - Vigade tekkimisel eraldusfiltris (näiteks, järjekorra täitumisel) jätkab eraldusfilter sõnumite edasisaatmist turvaserverile, ning:
   - Salvestab veateate omaenda vigade-logifaili, mille asukoht võetakse konfiguratsioonifailist
   - Teatab süsteemi haldurile e-postiga (e-post võetakse konfiguratsioonifailist) läbi andmejälgija muude komponentide veast.
@@ -125,13 +125,11 @@ Eraldusfilter realiseeritakse proxyna viisil, et:
 
 ## 8. Eraldusfiltri tehnoloogilised põhimõtted
 
-Eraldusfilter realiseeritakse Java keeles, kasutades Java Standard Edition (SE) selliselt, et tema paigaldamine nii turvaserveri sisse kui väljapoole turvaserverit oleks võimalikult lihtne ja ei tekitaks konflikte turvaserveri teekide / komponentidega.
+Eraldusfilter on realiseeritud Java keeles, kasutades Java Standard Editionit (SE) selliselt, et tema paigaldamine nii turvaserveri sisse kui väljapoole turvaserverit oleks võimalikult lihtne ja ei tekitaks konflikte turvaserveri teekide / komponentidega.
 
-Turvaserveri sisse paigaldamise alusena eeldatakse X-tee turvaserveri versiooni 6. Versioon 5 sisse paigaldamise võimaldamine on positiivne täiendav võimalus, kuid ei ole esmane eesmärk.
+Turvaserveri sisse paigaldamise alusena eeldatakse X-tee turvaserveri versiooni 6. 
 
-Eraldusfilter realiseeritakse turvaserveri versioon 6-s olemasolevat Java versiooni kasutades, kuid vältides tehnoloogiaid, mis ei tööta Java versioon 6-s. Põhjus selles, et eraldusfiltri paigutamisel väljapoole turvaserverit ei tekiks konflikte infosüsteemis olemasoleva Java versiooniga, mis võib olla versioon 6 või 7.
-
-Eraldusfiltri realisatsioonis välditakse teekide kasutamist, mis ei ole olemas Java versioon 6 standardteegis. Tungiva vajaduse korral võib kasutada turvaserveri versioon 6-s olevaid teeke.
+Eraldusfilter on realiseeritud turvaserveri versioon 6-s olemasolevat Java versiooni kasutades, kuid vältides tehnoloogiaid, mis ei tööta Java versioon 6-s. 
 
 ## 9. Eraldusfiltri konfigureerimine
 
@@ -154,7 +152,7 @@ Konfiguratsioonifailis esitatakse kaks blokki informatsiooni:
 
 ## 10. Plussid ja miinused eraldusfiltri paigaldamisel turvaserveri sisse vs turvaserverist välja
 
-Allpool toodud paigaldusvariandid on juhtöörid eraldusfiltri paigaldajale.
+Allpool toodud paigaldusvariandid on juhtnöörid eraldusfiltri paigaldajale.
 
 **Turvaserverist väljapoole paigaldamise variant:**
 
@@ -167,7 +165,7 @@ Plussid:
 Miinused:
 
 - Nõuab rohkem andmekogu infosüsteemi konfiguratsioonide sättimist ja paigaldustöid, kui muud variandid: üldjuhul tekib vajadus suunata infosüsteemi turvaserverile mõeldud sõnumid teisele IP-aadressile/pordile, kui seni.
-- Tekitab väikese viivituse sõnumite edasisaatmisel (nõuame suurusjärku maksimaalselt 1 millisekund), samas ei tekita piirangut läbilaskevõime osas.
+- Tekitab väikese viivituse sõnumite edasisaatmisel (maksimaalselt 1 millisekund), samas ei tekita piirangut läbilaskevõime osas.
 
 **Turvaserveri sisse paigaldamise variant:**
 
@@ -179,5 +177,5 @@ Miinused:
 
 - Lisab turvaserverile uut funktsionaalsust/keerukusi/turvariske.
 - Koormab turvaserveri arvutit jõudluse osas.
-- Tekitab väga väikese viivituse sõnumite edasisaatmisel (oletame suurusjärku maksimaalselt 0.1 millisekundit), samas ilmselt ei tekita mingit piirangut läbilaskevõime osas, v.a. arvuti jõudluse kulutamine.
+- Tekitab väga väikese viivituse sõnumite edasisaatmisel (suurusjärk 0.1 millisekundit), samas ei tekita piirangut läbilaskevõime osas, v.a. arvuti jõudluse kulutamine.
 - Kui proxy läheb rikki, siis liiklus X-teega katkeb. Samas on see kergesti tuvastatav.

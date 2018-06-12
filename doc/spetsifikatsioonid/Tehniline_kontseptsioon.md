@@ -1,19 +1,20 @@
-# Andmejälgija täiendatud tehniline kontseptsioon
+# Andmejälgija tehniline kontseptsioon
 
-Versioon 1.1, 30.12.2015
+Versioon 1.2, 13.06.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
-![EL struktuurifondid](../img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 ## 1. Dokumendi ajalugu
 
 | Versioon | Kuupäev | Autor | Märkused |
 | --- | --- | --- | --- |
 | 1.0 | 20.12.2015 | Tanel Tammet | Esimene versioon |
-| 1.1 | 30.12.2015 | Tanel Tammet | Lisatud REST API detaile ja nõutud sisekasutuse veebiliidese ID-kaardi põhine autentimine |
+| 1.1 | 30.12.2015 | Tanel Tammet | Lisatud REST liideste detaile ja nõutud sisekontrolli veebiliidese ID-kaardi põhine autentimine |
+| 1.2 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist |
 
 ## 2. Sisukord
 
@@ -22,22 +23,22 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
   * [3\. Sissejuhatus](#3-sissejuhatus)
   * [4\. Süsteemi taust](#4-s%C3%BCsteemi-taust)
     * [4\.1\. Andmejälgija eesmärk](#41-andmej%C3%A4lgija-eesm%C3%A4rk)
-  * [4\.2\. Andmejälgija funktsionaalsus](#42-andmej%C3%A4lgija-funktsionaalsus)
+    * [4\.2\. Andmejälgija funktsionaalsus](#42-andmej%C3%A4lgija-funktsionaalsus)
   * [5\. Komponentdiagramm](#5-komponentdiagramm)
   * [6\. Erikonfiguratsioonid juhul, kui turvaserveril ja andmekogul puudub üks\-ühene vastavus](#6-erikonfiguratsioonid-juhul-kui-turvaserveril-ja-andmekogul-puudub-%C3%BCks-%C3%BChene-vastavus)
     * [6\.1\. Üks andmekogu kasutab mitut turvaserverit](#61-%C3%9Cks-andmekogu-kasutab-mitut-turvaserverit)
     * [6\.2\. Mitu andmekogu kasutavad ühist turvaserverit](#62-mitu-andmekogu-kasutavad-%C3%BChist-turvaserverit)
-  * [7\. Isikuandmete töötlemise logimine andmejälgija oma andmebaasi\.](#7-isikuandmete-t%C3%B6%C3%B6tlemise-logimine-andmej%C3%A4lgija-oma-andmebaasi)
+  * [7\. Isikuandmete töötlemise logimine andmesalvestajasse](#7-isikuandmete-t%C3%B6%C3%B6tlemise-logimine-andmesalvestajasse)
   * [8\. Põhimõtted: mida salvestada ja mida mitte](#8-p%C3%B5him%C3%B5tted-mida-salvestada-ja-mida-mitte)
-  * [9\. X\-tee teenuse kaudu kodanike päringutele vastamine eesti\.ee veebilehe kaudu\.](#9-x-tee-teenuse-kaudu-kodanike-p%C3%A4ringutele-vastamine-eestiee-veebilehe-kaudu)
+  * [9\.  Kodaniku vaatamisrakendus eesti\.ee keskkonnas\.](#9-kodaniku-vaatamisrakendus-eestiee-keskkonnas)
   * [10\. Andmekoosseis](#10-andmekoosseis)
-  * [11\. Andmete lisamise REST API](#11-andmete-lisamise-rest-api)
-  * [12\. Asutuse sisekasutuse otsingu\- veebiliides](#12-asutuse-sisekasutuse-otsingu--veebiliides)
-  * [13\. Sisekasutuse otsingu REST API](#13-sisekasutuse-otsingu-rest-api)
+  * [11\. Andmete lisamise REST liides](#11-andmete-lisamise-rest-liides)
+  * [12\. Asutuse sisekontrollija rakendus](#12-asutuse-sisekontrollija-rakendus)
+  * [13\. Sisekontrolli REST liides](#13-sisekontrolli-rest-liides)
   * [14\. Programmeerimiskeel ja teegid](#14-programmeerimiskeel-ja-teegid)
   * [15\. Konfiguratsioon](#15-konfiguratsioon)
-  * [16\. Andmebaasikomponent ja sellega suhtlemine](#16-andmebaasikomponent-ja-sellega-suhtlemine)
-  * [17\. Funktsioneerimine serverina ja ühe või mitme käivitatava rakendusena](#17-funktsioneerimine-serverina-ja-%C3%BChe-v%C3%B5i-mitme-k%C3%A4ivitatava-rakendusena)
+  * [16\. Andmesalvestaja ja sellega suhtlemine](#16-andmesalvestaja-ja-sellega-suhtlemine)
+  * [17\. Funktsioneerimine serverina](#17-funktsioneerimine-serverina)
 
 
 ## 3. Sissejuhatus
@@ -64,40 +65,42 @@ Andmejälgijat saavad andmekogude haldajad kasutada mõlemat tüüpi tegevuste l
 
 Asutus võib soovi korral logida ka enda tehtud isikuandmete päringuid X-tee kaudu, mitte ainult X-tee kaudu väljapoole edastamisi või ametnike poolt sisemiselt kasutamisi.
 
-Andmejälgija kasutamine või mittekasutamine ning konkreetne viis tema kasutuseks on iga andmekogu haldaja oma otsus ja valik. Mida ja kuidas konkreetselt logida, seadistab ja arendab andmekogu haldaja oma vajadustele ning eelistustele vastavalt. Selleks realiseeritakse andmejälgija viisil, mis hõlbustab tema kasutust erinevates stsenaariumides.
+Andmejälgija kasutamine või mittekasutamine ning konkreetne viis tema kasutuseks on iga andmekogu haldaja oma otsus ja valik. Mida ja kuidas konkreetselt logida, seadistab ja arendab andmekogu haldaja oma vajadustele ning eelistustele vastavalt. Selleks on andmejälgija realiseeritud viisil, mis hõlbustab tema kasutust erinevates stsenaariumides.
 
 ## 4.2. Andmejälgija funktsionaalsus
 
 Andmejälgija pakub järgmisi funktsionaalsusi, ning võimaldab neist ka ainult valitute kasutamist ja teiste ignoreerimist:
 
-- Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi.
-- X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu (nn kodaniku vaatamisrakendus).
-- Asutuse sisekasutuse otsingu-API ja otsingu-veebiliides (nn. sisekontrollija rakendus).
+- Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi: selleks kasutatakse eraldusfiltrit ja andmesalvestajat.
+- X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu: nn kodaniku vaatamisrakendus.
+- Asutuse sisekontrollija rakenduse REST liides ja veebiliides.
 
-Vajadus asutuse sisekasutuse otsingu-API ja otsingu-veebiliidese järgi on ilmnenud kõigist intervjuudest, sh AKI soovitustest. Ilma sellise funktsionaalsuseta on (a) asutustel vähe motivatsiooni süsteem kasutusele võtta ning (b) neil tekib huvi asuda seda funktsionaalsust ise looma.
+Vajadus asutuse sisekontrollija rakenduse järgi ilmnes kõigist intervjuudest, sh AKI soovitustest. Ilma sellise funktsionaalsuseta on (a) asutustel vähe motivatsiooni süsteem kasutusele võtta ning (b) neil tekib huvi asuda seda funktsionaalsust ise looma.
 
-Lisaks luuakse andmejälgija kasutuse reeglistik ja suunised: milliseid andme-edastamisi ja andme-kasutusi logida (ja kuidas logida) ning milliseid pigem mitte.
-
-Vajadus selliste suuniste järele ilmnes mitmes intervjuus, samuti soovitas seda AKI.
+Lisaks on loodud andmejälgija kasutuse reeglistik ja suunised: milliseid isikuandmete edastamisi ja -kasutusi logida (ja kuidas logida) ning milliseid pigem mitte. Vajadus selliste suuniste järele ilmnes mitmes intervjuus, samuti soovitas seda AKI.
 
 Kasutuslood on esitatud viie rollina eraldi dokumendis "Andmejälgija kasutuslood":  tavakasutaja eesti.ee kaudu, ametnik asutuses, sisekontroll asutuses, IT süsteemiadministraator asutuses, administraator eesti.ee-s.
 
 ## 5. Komponentdiagramm
 
-Andmejälgija realiseeritakse viisil, et teda on võimalik paigaldada mitmes erinevas konfiguratsioonis vastavalt konkreetse andmekogu vajadustele ja selle haldaja võimalustele.
+Andmejälgija on realiseeritud viisil, et teda on võimalik paigaldada mitmes erinevas konfiguratsioonis vastavalt konkreetse andmekogu vajadustele ja selle haldaja võimalustele.
 
 Kõigis konfiguratsioonides peab olema realiseeritud isikuandmete kasutamise logimine andmebaasi ning X-tee päring, mille kaudu eesti.ee portaalis kuvatakse konkreetse sisseloginud kasutaja isikuandmete kasutamise fakte selles andmebaasis.
 
-Ülejäänud komponendid võivad jääda paigaldamata/kasutamata, samuti on nende puhul võimalik valida mitme realisatsioonivariandi vahel: näiteks, kas eraldusfilter paigaldada, kas ta paigaldada turvaserveri sisse või välja, kas andmebaasina kasutada spetsiaalselt andmejälgija jaoks installeeritud andmebaasi-serverit või andmekogus juba olemasolevat andmebaasi-serverit.
+Ülejäänud komponendid võivad jääda paigaldamata/kasutamata, samuti on nende puhul võimalik valida mitme realisatsioonivariandi vahel: näiteks, kas eraldusfilter paigaldada, kas ta paigaldada turvaserveri sisse või välja, kas andmesalvestajana kasutada spetsiaalselt andmejälgija jaoks installeeritud andmebaasi-serverit või andmekogus juba olemasolevat andmebaasi-serverit.
 
 _X-tee turvaserveri all mõistame eraldi serverit  / virtuaalserverit / Linuxi installatsiooni_, kuhu on paigaldatud ja kus töötab X-tee turvaserveri tarkvara. Viimane sisaldab terve hulga baastarkvara ja komponente. Paigalduspaketti ennast me siin dokumendis "turvaserveriks" ei nimeta.
 
-Eraldusfiltrit peab saama paigaldada kahel eri moel (täpsemad komponentdiagrammid ja detailid kummagi juhu jaoks on toodud eraldi dokumendis "Eraldusfiltri disainlahendus"):
+Eraldusfilter on andmejälgija komponent, mis jälgib isikuandmete saatmist X-tee kaudu ning kirjutab saatmisjuhud andmesalvestajasse.
+
+Andmesalvestaja on andmejälgija komponent, mis sisaldab isikuandmete saatmisjuhtude tabelit ning sinna kirjutamise ja sealt lugemise liideseid.
+
+Eraldusfiltrit saab paigaldada kahel eri moel (täpsemad komponentdiagrammid ja detailid kummagi juhu jaoks on toodud eraldi dokumendis "Eraldusfiltri disainlahendus"):
 
 - Eraldusfilter on turvaserverist **eraldiseisev nn proxy** , millega infosüsteem liidestub ja mis suunab sõnumid edasi turvaserverile.
-- Eraldusfilter on on **turvaserveri sees olev proxy** : pordid välismaailmaga on samad, mis turvaserveril seni, kuid sisemiselt suunab liiklust edasi teistele turvaserveri portidele (need saab ja tuleb sel juhul ümber konfigureerida).
+- Eraldusfilter on **turvaserveri sees olev proxy** : pordid välismaailmaga on samad, mis turvaserveril seni, kuid sisemiselt suunab liiklust edasi teistele turvaserveri portidele (need saab ja tuleb sel juhul ümber konfigureerida).
 
-Analoogiliselt peab saama ka andmesalvestaja paigaldada mitmel eri moel (täpsemad detailid on toodud juhu jaoks on toodud eraldi dokumendis "Andmesalvestaja disainlahendus"):
+Analoogiliselt saab ka andmesalvestajat paigaldada mitmel eri moel (täpsemad detailid on toodud eraldi dokumendis "Andmesalvestaja disainlahendus"):
 
 - Andmesalvestaja on tervikuna **paigaldatud turvaserverist välja**.
 - Andmesalvestaja on tervikuna **paigaldatud turvaserveri sisse**. See variant sobib väiksema koormusega turvaserveri puhul olukorras, kus ei ole lihtne leida serverit, kuhu andmesalvestajat paigaldada.
@@ -107,24 +110,32 @@ Komponentide üldpilt on alljärgnev:
 
 ![Komponentdiagramm](../img/komponentdiagramm.png)
 
-_Andmesalvestaja_ on andmejälgija paigaldamisel kohustuslik komponent, mis koosneb kahest osast:
+_Andmesalvestaja_ on andmejälgija paigaldamisel kohustuslik komponent, mis koosneb mitmest osast:
 
 - Andmebaas: võib olla nii andmesalvestaja oma standardosa kui ka realiseeritud andmekogu haldaja poolt.
-- Liidesed sisekasutuseks.
+- Andmete salvestamise liidesed: jdbc ja REST.
+- Sisekontrollija rakenduse jaoks päringute REST liides.
 - X-tee päringutele vastamise liides (diagrammil "Kasutusteabe X-tee teenuse pakkumine"), mõeldud eesti.ee kaudu tulnud päringutele vastamiseks.
 
-_Eraldusfilter_ on mõteldud isikuandmete liikumise salvestamiseks X-teel:
+_Sisekontrollija rakendus_ on asutusesiseste otsingute võimaldamiseks andmesalvestajast:
 
-- üldjuhul väljaminevate isikuandmete jaoks, kuid peab olema võimalik konfigureerida ka sissetulnud andmete salvestamist.
-- Eraldusfilter  on küll andmejälgija standardkomponent, kuid tema paigaldamine andmejälgijas ei ole kohustuslik
-- Eraldusfiltri saab paigaldada proxyna nii turvaserveri sisse (väikese koormusega turvaserveritel) kui proxyna turvaserveri ja infosüsteemi vahele (suure koormusega turvaserveritel)
-- Eraldusfiltri paigaldamise variandid ja detailid on toodud eraldi dokumendis "Eraldusfiltri disainlahendus"
+- Rakendus on lihtne nn single-page veebirakendus.
+- Rakendus suhtleb andmesalvestajaga otsinguid võimaldava REST liidese kaudu.
+- Rakenduse paigaldamine ei ole kohustuslik.
+- Üldjuhul käsitleme seda rakendust andmesalvestaja osana, seega ei tooda teda skeemidel alati välja.
 
-_Teabevärava eesti.ee_ jaoks tuleb luua:
+_Eraldusfilter_ on mõeldud isikuandmete edastamise salvestamiseks X-teel:
 
-- X-forms kujul päringuvorm
-- Andmejälgija üldleht eesti.ee jaoks, mida eesti.ee haldajad kasutavad
-- Küsimuste vorm (dokument) andmekogu poolt andmejälgija liidestamiseks eesti.ee-ga: mis infot eesti.ee jaoks antakse.
+- üldjuhul väljaminevate isikuandmete jaoks, kuid on võimalik konfigureerida ka sissetulnud andmete salvestamist.
+- Eraldusfilter  on küll andmejälgija standardkomponent, kuid tema paigaldamine andmejälgijas ei ole kohustuslik.
+- Eraldusfiltri saab paigaldada proxyna nii turvaserveri sisse (väikese koormusega turvaserveritel) kui proxyna turvaserveri ja infosüsteemi vahele (suure koormusega turvaserveritel).
+- Eraldusfiltri paigaldamise variandid ja detailid on toodud eraldi dokumendis "Eraldusfiltri disainlahendus".
+
+_Teabevärava eesti.ee_ jaoks on loodud või loomisel:
+
+- X-forms kujul päringuvorm.
+- eesti.ee poolt luuakse andmejälgija üldleht, mida eesti.ee haldajad kasutavad.
+- eesti.ee poolt edastatakse küsimuste vorm (dokument) andmekogu poolt andmejälgija liidestamiseks eesti.ee-ga: mis infot eesti.ee jaoks antakse.
 
 Täiendavad komponentdiagrammid ja nende alternatiivid on toodud dokumentides "Eraldusfiltri disainlahendus" ja "Andmesalvestaja disainlahendus".
 
@@ -156,22 +167,22 @@ Andmejälgija paigaldatakse sellisel juhul niimoodi, et:
 - Iga andmekogu jaoks on paigaldatud üks, ainult selle andmekogu jaoks kasutatav andmesalvestaja, ning ta asub väljapool X-tee turvaserverit.
 - Iga andmekogu jaoks on samuti paigaldatud üks, ainult selle andmekogu jaoks kasutatav eraldusfilter, ning ta asub väljapool X-tee turvaserverit.
 
-## 7. Isikuandmete töötlemise logimine andmejälgija oma andmebaasi.
+## 7. Isikuandmete töötlemise logimine andmesalvestajasse
 
-Andmejälgija üheks komponendiks on tema oma andmebaas ehk logi. Andmebaasi andmete sisestamiseks pakub andmejälgija kahte erinevat võimalust, millest andmekogu haldaja saab valida endale mugavamad:
+Andmejälgija üheks komponendiks on tema oma andmesalvestaja ehk logi. Andmesalvestajasse andmete sisestamiseks pakub andmejälgija kahte erinevat võimalust, millest andmekogu haldaja saab valida endale mugavamad:
 
 1. Eraldusfilter X-tee turvaserveri ja asutuse infosüsteemi vahel, mis on installeeritud proxyna kas turvaserveri sisse või temast eraldi. Milliseid SOAP sõnumite välju ja kuidas logitakse, seadistatakse andmejälgija konfiguratsioonifailis X-path avaldiste ja teisendustabeli abil. Sel viisil saab andmejälgija liidestada ilma mingite otseste arendustöödeta asutuse infosüsteemis endas.
 2. REST päring: kohaliku ligipääsuga veebiaadress, millele saadetakse tekstilised päringuandmeid, mis siis kirjutatakse andmebaasi. Päringu detailid on esitatud eraldi dokumendis.
 
 ## 8. Põhimõtted: mida salvestada ja mida mitte
 
-Lisaks tarkvarale luuakse juhend süsteemi kasutuselevõtuks, kus tuuakse välja soovitused, mida logida ja mida mitte. Üldpõhimõtted on järgmised:
+Üldpõhimõtted on järgmised:
 
-- Väljasaadetud sõnumid isikuandmetega tuleb logida, kui sõnumis on või vähem kui N isiku andmed. Kui korraga saadetakse välja enama kui N isiku andmeid (N võiks olla vahemikus 3-100), siis neid sündmusi logitakse eraldi märkega "mass-sõnum", mille juurde ei lisata isikukoode, ja mis on ette nähtud asutuse sisekasutuseks.
+- Väljasaadetud sõnumid isikuandmetega tuleb logida, kui sõnumis on või vähem kui N isiku andmed. Kui korraga saadetakse välja enama kui N isiku andmeid (N võiks olla vahemikus 3-100), siis neid sündmusi logitakse eraldi märkega "mass-sõnum", mille juurde ei lisata isikukoode, ja mis on ette nähtud asutuse sisekontrolli jaoks.
 - Sisemise kasutamise sündmusi logitakse põhimõttel, et kui ametnik vaatab konkreetse isiku andmeid, siis see vaatamine logitakse. Kui ametnik näeb nimekirja isikuandmetest, kus on nimekirjas näha konkreetsed isikuandmed kas otse või abstraheeritult, siis seda logitakse (iga üksiku isiku kaupa) ainult juhul, kui nimekiri on alla N isiku pikk, kus N on jällegi määratav infosüsteemi siseselt.
-- Analoogiliselt sisemise kasutamisega võib logida ka X-tee kaudu sissetulnud isikuandmeid, kui see osutub otstarbekamaks, kui infosüsteemi sisese töö logimine. Jällegi lähtutakse alla-N/üle-N põhimõttest. Nimetatud logimine ei toimuks siis mitte vahefiltri vahendusel, vaid andmejälgija API väljakutsumise teel infosüsteemi siseselt (ehk, eeldab infosüsteemi arendust, mille vajalikkuse üle otsustab andmekogu haldaja ise).
+- Analoogiliselt sisemise kasutamisega võib logida ka X-tee kaudu sissetulnud isikuandmeid, kui see osutub otstarbekamaks, kui infosüsteemi sisese töö logimine. Jällegi lähtutakse alla-N/üle-N põhimõttest. Nimetatud logimine ei toimuks siis mitte eraldusfiltri vahendusel, vaid andmejälgija API väljakutsumise teel infosüsteemi siseselt (ehk, eeldab infosüsteemi arendust, mille vajalikkuse üle otsustab andmekogu haldaja ise).
 
-## 9. X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu.
+## 9. Kodaniku vaatamisrakendus eesti.ee keskkonnas.
 
 Ennast eesti.ee keskkonnas autentinud füüsilised isikud (kasutajad) saavad teha päringuid konkreetsele andmekogudele uurimaks iseenda andmete edastamisi ja kasutusi. Koondpäringute võimalus üle mitme andmekogu korraga eesti.ee liidese kaudu on kaalumisel.
 
@@ -182,7 +193,7 @@ Lisaks kuvatakse infosüsteemide juures:
 - Mass-infosaatmised, mida infosüsteem teeb regulaarselt, stiilis "saadab regulaarselt isikuandmete suuri hulki infosüsteemile X, täitmaks ülesannet XX, infosüsteemile Y, täitmaks ülesannet YY..: neid mass-saatmisi siitkaudu otsida ei saa. " Vastava teksti edastab liidestuva infosüsteemi haldaja ise e-postiga, lähtudes etteantud mallist.
 - Infosüsteemi ülesande paarilauseline selgitus koos viitadega infosüsteemi veebilehele (kui see on), määrusele (kui see on) ning haldavale asutusele. Vastava teksti edastab liidestuv infosüsteem ise, lähtudes etteantud mallist. Selgitus on puhtalt eesti.ee kasutajaliidesesse pandud tekst, mida andmekogu haldaja saadab liitumisel e-postiga. API kaudu seda automaatselt ei saadeta.
 
-eesti.ee-s täiendavate selgituste ja mass-infosaatmiste kirjelduste olulisust rõhutab AKI, kes soovib eeskätt, et kodanikud saaksid võimalikult hästi aru, kus ja miks nende isikuandmeid säilitatakse, edasi saadetakse ja töödeldakse.
+eesti.ee-s täiendavate selgituste ja mass-infosaatmiste kirjelduste osas rõhutab AKI, et kodanikud saaksid võimalikult hästi aru, kus ja miks nende isikuandmeid säilitatakse, edastatakse ja töödeldakse.
 
 Infosüsteemile klikkides avaneb otsinguvorm, kus saab sisestada perioodi alguskuupäeva ja lõpukuupäeva ning koond/detailvaade lülitinupu. Algus- ja lõpukuupäev ning lülitinupp on kohe algtäidetud. Mõnes andmekogus võib olla realiseeritud ka ainult koond- või detailvaade.
 
@@ -194,13 +205,13 @@ Andmekogu X-tee teenus, mis taolisele päringule vastab, on andmejälgija osa, k
 
 Samuti on andmejälgija osa X-forms rakendus, mida eesti.ee süsteem päringu tegemisel veebiliidese genereerimiseks kasutab.
 
-Andmejälgija loomisel ei ehitata eraldi rakendust, mis võimaldaks kasutajal otsida (a) üle konkreetse asutuse infosüsteemide oma isikuandmete kasutust (b) üle kõigi liidestatud infosüsteemide oma isikuandmete kasutust. Küll aga kaalutakse sellise rakenduse lisamist peale andmejälgija piloodi käivitamist ja kasutuskogemuste saamist. Konkreetselt on taolise rakenduse loomist soovitanud AKI.
+Andmejälgija ei sisalda eraldi rakendust, mis võimaldaks kasutajal otsida (a) üle konkreetse asutuse infosüsteemide oma isikuandmete kasutust (b) üle kõigi liidestatud infosüsteemide oma isikuandmete kasutust. Küll aga kaalutakse sellise rakenduse lisamist peale andmejälgija piloodi käivitamist ja kasutuskogemuste saamist. Konkreetselt on taolise rakenduse loomist soovitanud AKI.
 
 ## 10. Andmekoosseis
 
 Andmejälgija salvestab kirjeid logipõhimõttel.  Kasutusel on ainult üks tabel, read on nummerdamata – kirjetel ei ole kas üldse kirje identifikaatorit või siis ei ole väljapool andmebaasi (päringutes ja vastustes) kasutatavat kirje identifikaatorit-  ning neid tagantjärgi ei muudeta ega kustutata. Andmejälgija andmebaas võibki olla realiseeritud nii andmebaasisüsteemi kasutades kui roteeritava logifailina.
 
-Tabelile ei looda muutmist vältivaid kontrolle, nagu näiteks räsiahelaid. Süsteemi administraator saab soovi korral tabeli sisu muuta, kuid muutmiseks ei looda mitte mingeid abivahendeid.
+Tabelil ei ole muutmist vältivaid kontrolle, nagu näiteks räsiahelaid. Süsteemi administraator saab soovi korral tabeli sisu muuta, kuid muutmiseks ei pakuta mingeid abivahendeid.
 
 Andmejälgija andmemudel on toodud eraldi dokumendis "Andmejälgija isikuandmete kasutusteabe andmemudel".
 
@@ -226,15 +237,15 @@ Sisemiseks kasutuseks väljad (ei kuvata eesti.ee kaudu):
 -  **xroadrequestid** (tekstiväli) ehk X-tee päringu identifikaator. Ei ole kohustuslik.
 -  **usercode** (tekstiväli) X-tee kaudu andmeid pärinud isiku või asutusesisese töötleva isiku isikukood. Ei ole kohustuslik.
 
-## 11. Andmete lisamise REST API
+## 11. Andmete lisamise REST liides
 
-Andmete lisamise REST API on ette nähtud kirjete lisamiseks andmejälgija andmebaasi otse infosüsteemi tarkvarast, alternatiivina turvaserveri liikluse jälgimisele. Selle kasutamine ei ole kohustuslik ja eeldab infosüsteemi arendustööd.
+Andmete lisamise REST liides on ette nähtud kirjete lisamiseks andmesalvestajasse otse infosüsteemi tarkvarast, alternatiivina turvaserveri liikluse jälgimisele. Selle kasutamine ei ole kohustuslik ja eeldab infosüsteemi arendustööd.
 
-Ligipääs API-le piiratakse IP aadressiga. Kasutatakse kas http või https protokolli. Vastavad piirangud seatakse konfiguratsioonifailis.
+Ligipääs API-le tuleb piirata IP aadressiga. Kasutada tuleb kas http või https protokolli. Vastavad piirangud tuleb seada konfiguratsioonifailis.
 
 Iga API päring lisab ühe andmerea.
 
-REST API paigaldatakse ja konfigureeritakse töötama URL-l, kuhu saab andmeid saata:
+REST liides paigaldatakse ja konfigureeritakse töötama URL-l, kuhu saab andmeid saata:
 
 - GET päringuga cgi-konventsiooni järgi kodeerituna kujul _endpoint?personcode=....&...._ GET päring on mõeldud testimiseks, töös on tungivalt soovitav kasutada POST päringuid.
 - POST päringuga samale lõpp-punktile cgi-kodeeringuga.
@@ -242,51 +253,47 @@ REST API paigaldatakse ja konfigureeritakse töötama URL-l, kuhu saab andmeid s
 
 Väljanimed on needsamad, mis andmebaasis.
 
-Millised väljad on kohustuslikud, tulenevad käesoleva dokumendi peatükis Andmekoosseis" esitatud detailidest ja nõuetest. Igal juhul on kohustuslikud väljad action ja actioncode. Normaaljuhtudel tuleks kindlasti lisada ka personcode, receiver ja receivercode. Logtime ja id välju API-s ei esitatata, kuna need täidetakse andmebaasi salvestamisel automaatselt. Kõigis väljades on esitatud andmed tekstilised.
+Millised väljad on kohustuslikud, tulenevad käesoleva dokumendi peatükis "Andmekoosseis" esitatud detailidest ja nõuetest. Igal juhul on kohustuslikud väljad action ja actioncode. Normaaljuhtudel tuleks kindlasti lisada ka personcode, receiver ja receivercode. Logtime ja id välju liideses ei esitatata, kuna need täidetakse andmebaasi salvestamisel automaatselt. Kõigis väljades on esitatud andmed tekstilised.
 
-Millist kodeeringut (GET/POST, cgi/json) kasutati, tuvastab API automaatselt.
+Millist kodeeringut (GET/POST, cgi/json) kasutati, tuvastab liides automaatselt.
 
-API kaudu saadetud andmed salvestatakse andmebaasi neid muutmata, kui välja arvata urldecoding, json decoding jms elementaarteisendused.
+Liidese kaudu saadetud andmed salvestatakse andmebaasi neid muutmata, kui välja arvata urldecoding, json decoding jms elementaarteisendused.
 
- Vigade korral annab API tagasi veateate ja salvestab vea fakti logisse. Õnnestunud saatmise korral annab API tagasi veateatest selgelt eristuva lihtvastuse.
+ Vigade korral annab liides tagasi veateate ja salvestab vea fakti logisse. Õnnestunud saatmise korral annab liides tagasi veateatest selgelt eristuva lihtvastuse.
 
-## 12. Asutuse sisekasutuse otsingu- veebiliides
+## 12. Asutuse sisekontrollija rakendus
 
-Andmekogu haldaval asutusel võib olla otstarbekas kasutada andmejälgija logi sisemiselt, uurides vajadusel isikuandmete edastamist ja kasutamist ametnike poolt, näiteks vastuse koostamiseks telefoni, paberkirja või e-posti kaudu tulnud päringule.
+Andmekogu haldaval asutusel võib olla otstarbekas kasutada andmejälgija logi sisemiselt, uurides vajadusel isikuandmete edastamist ja kasutamist ametnike poolt, näiteks vastuse koostamiseks telefoni, paberkirja või e-posti kaudu tulnud päringule. Sisemise logi ja siseotsingute võimaldamise tähtsus andmejälgija süsteemis ilmnes kõigist intervjuudest.
 
-Sisemise logi ja siseotsingute võimaldamise tähtsus andmejälgija süsteemis ilmnes kõigist intervjuudest.
+Selleks võib asutus luua kas oma veebiliidese või kasutada andmejälgijasse ehitatud sisekontrollija rakendust. Omaenda veebiliidese loomise hõlbustamiseks pakub andmejälgija sisekontrolli REST-liidest ehk GET-parameetrite ja json väljundiga URLi, mille kaudu saab teha logis otsinguid.
 
-Selleks võib asutus luua kas oma veebiliidese või kasutada andmejälgijasse ehitatud veebiliidest. Omaenda veebiliidese loomise hõlbustamiseks pakub andmejälgija REST-põhist päringut ehk GET-parameetrite ja json väljundiga URLi, mille kaudu saab teha logis otsinguid.
+Nimetatud liidese kaudu andmebaasis olevaid kirjeid muuta, lisada või kustutada ei saa.
 
-Nimetatud API kaudu andmebaasis olevaid kirjeid muuta, lisada või kustutada ei saa.
+Liidesele ligipääs tuleb andmekogu haldajal piirata asutuse sisevõrgu ja valitud IP aadressidega, pluss ID-kaardi põhise autentimisega.
 
-API-le ligipääs tuleb andmekogu haldajal piirata asutuse sisevõrgu ja valitud IP aadressidega, pluss ID-kaardi põhise autentimisega: viimase järel võib API-s autentimiseks kasutada ka loodud sessiooni.
+Selleks, et andmekogu haldaja tingimata ei peaks sel juhul ise veebiliidest realiseerima, on andmejälgijas realiseeritud sisekontrollija rakendus.
 
-Selleks, et andmekogu haldaja tingimata ei peaks sel juhul ise veebiliidest realiseerima, realiseeritakse veebiliides andmejälgijas.
+Sisekontrollija rakenduse kaudu saab otsida suvalise isikukoodi jaoks andmete edastamist ja kasutamist andmejälgija logis vabalt valitud perioodil. Samuti saab vaadata kogu valitud perioodi logi ning teha täistekstiotsinguid valitud perioodi logi erinevatest väljadest.
 
-Veebiliidese kaudu saab otsida suvalise isikukoodi jaoks andmete edastamist ja kasutamist andmejälgija logis vabalt valitud perioodil. Samuti saab vaadata kogu valitud perioodi logi ning teha täistekstiotsinguid valitud perioodi logi erinevatest väljadest.
+Sisekontrollija rakenduse kaudu andmebaasis olevaid kirjeid muuta, lisada või kustutada ei saa.
 
-Veebiliidese kaudu andmebaasis olevaid kirjeid muuta, lisada või kustutada ei saa.
+Veebiliidesele ligipääs tuleb andmekogu haldajal piirata asutuse sisevõrgu ja valitud IP aadressidega ja/või ID-kaardi põhise autentimisega.
 
-Veebiliidesele ligipääs tuleb andmekogu haldajal piirata asutuse sisevõrgu ja valitud IP aadressidega, pluss ID-kaardi põhise autentimisega.
+Konkreetne viis sessiooni tokenite hoidmiseks ja lubatud kasutajate isikukoodide salvestamise valikuks jäetakse otsustamiseks realisatsiooni käigus. 
 
-ID-kaardiga autentimine tuleb teostada veebiliidese kaudu sisse logides, mispeale genereeritakse juhuslik sessioonitoken, salvestatakse see andmejälgija eraldi sessiooni-andmebaasi ja saadetakse sama token veebilehele kaasa cookiega: sessiooni token antakse edaspidi javascripti poolt kaasa API päringutele.
+Sisekontrollija rakendus on realiseeritud staatiliste html lehtede, css-i ja javascripti kombinatsioonina nn single-page rakendusena, mis pärib andmeid eelmainitud sisekasutuse REST liidese kaudu ajaxi päringutega ning ehitab tulemusest nähtava html-i.
 
-Konkreetne viis sessiooni tokenite hoidmiseks ja lubatud kasutajate isikukoodide salvestamise valikuks jäetakse otsustamiseks realisatsiooni käigus. Lubatud isikukoodide salvestamiseks realiseeritakse ühe viisina nimetatud isikukoodide kirjutamine süsteemi konfiguratsioonifaili: andmekogu haldajal peab olema suhteliselt lihtne soovi korral programmeerida süsteemi kasutama mõnda muud lubatud isikukoodide salvestamise ja kontrolli viisi, mis sobitub tema infosüsteemiga.
+## 13. Sisekontrolli REST liides
 
-Sisekasutuse kasutajaliides realiseeritakse põhiosas staatiliste html lehtede, css-i ja javascripti kombinatsioonina nn single-page rakendusena, mis pärib andmeid eelmainitud sisekasutuse REST API kaudu ajaxi päringutega ning ehitab tulemusest nähtava html-i.
+Andmejälgija pakub lisaks eesti.ee-le eraldi ligipääsu konkreetse andmekoguga seotud ametnike ligipääsuks/otsinguteks sisekontrollija veebiliidese kaudu.
 
-## 13. Sisekasutuse otsingu REST API
+Sisekontrolli REST liides on ette nähtud kasutajaliideste loomiseks infosüsteemi administraatoritele ja sellega töötavatele ametnikele, võimaldamaks neil otsida logikirjeid kõigi väljade järgi. Otsingud sisaldavad alati logikirje algus- ja lõppaega ning kombinatsiooni väljasisudes esinevatest tekstidest. Otsing toimub teksti sisalduvuse järgi, erandina võib kaaluda isikukoodi järgi otsingut terve isikukoodi põhiselt: juhul, kui sisalduvuse järgi otsing osutub suure andmemahu tõttu aeglaseks.
 
-Andmejälgija pakub lisaks eesti.ee-le eraldi ligipääsu konkreetse andmekoguga seotud ametnike ligipääsuks/otsinguteks veebiliidese kaudu.
+Andmete muutmist, kustutamist ja lisamist sisekontrolli REST liides ei võimalda.
 
-Sisekasutuse otsingu REST API on ette nähtud kasutajaliideste loomiseks infosüsteemi administraatoritele ja sellega töötavatele ametnikele, võimaldamaks neil otsida logikirjeid kõigi väljade järgi. Otsingud sisaldavad alati logikirje algus- ja lõppaega ning kombinatsiooni väljasisudes esinevatest tekstidest. Otsing toimub teksti sisalduvuse järgi, erandina võib kaaluda isikukoodi järgi otsingut terve isikukoodi põhiselt: juhul, kui sisalduvuse järgi otsing osutub suure andmemahu tõttu aeglaseks.
+Sisekontrolli REST liidesele ligipääs tuleb süsteemi haldajal piirata asutuse sisevõrguga ning kasutada ainult HTTPS protokolli ja/või ID-kaardi põhist autentimist.
 
-Andmete muutmist, kustutamist ja lisamist sisekasutuse REST API ei võimalda.
-
-Sisekasutuse API-le ligipääs tuleb süsteemi haldajal piirata asutuse sisevõrguga ning kasutada ainult HTTPS protokolli ning API-le kaasa-antavat sessiooni tokenit, mida kontrollitakse vastu autenditud sessioonide andmebaasi.
-
-Sisekasutuse REST API näeb ette päringute tegemist ainult GET meetodiga, kasutades CGI konventsiooni järgi kodeeritud parameetreid callback=...&token=....&startrow =....&rowcount= ...sortfield=....&sortdirection=....&starttime=...&endtime=...&personcode=...  jne, kus
+Sisekontrolli REST liides näeb ette päringute tegemist ainult GET meetodiga, kasutades CGI konventsiooni järgi kodeeritud parameetreid callback=...&token=....&startrow =....&rowcount= ...sortfield=....&sortdirection=....&starttime=...&endtime=...&personcode=...  jne, kus
 
 - väljade järjekord ei ole oluline
 - callback parameeter on tingimuslik ja ette nähtud nn. padded json-i vastuse loomiseks.
@@ -302,28 +309,28 @@ Sisekasutuse REST API näeb ette päringute tegemist ainult GET meetodiga, kasut
 
 Ajalised väärtused on esitatud ISO 8601 standardile vastavalt, kohalikus ajas, sekundi täpsusega, näiteks 2007-04-05T14:30:56.
 
-REST API vastus on json objekt kujul {personcode: ...., logtime: .....} mis sisaldab kõiki kirje välju nende nimede ja sellesama sisuga, mis andmebaasis, või padded kujul callback\_väärtus({...}) ümber sama struktuuri.
+REST liidese vastus on json objekt kujul {personcode: ...., logtime: .....} mis sisaldab kõiki kirje välju nende nimede ja sellesama sisuga, mis andmebaasis, või padded kujul callback\_väärtus({...}) ümber sama struktuuri.
 
 Kõik vastuse väljad peale id (täisarv) ja logtime (vaata ülal ajaliste väärtuste esitust) on tekstiväljad.
 
 ## 14. Programmeerimiskeel ja teegid
 
-Kogu süsteem realiseeritakse Java keeles, kasutades Java Standard Editionit ja tagades süsteemi töötamise nii JSE 6, JSE 7 kui JSE 8 platvormil.
+Kogu süsteem on realiseeritud Java keeles, kasutades Java Standard Editionit ja tagades süsteemi töötamise nii JSE 6, JSE 7 kui JSE 8 platvormil. Erandina on sisekontrollija rakendus realiseeritud javascriptis nn. single-page rakendusena.
 
-Täiendavate komponentide - mis ei ole JSE osaks – arv tuleb viia miinimumini ja nende kasutus peab olema tugevalt põhjendatud.
+Kasutuses olevate täiendavate komponentide - mis ei ole JSE osaks – arv on minimaalne.
 
-Süsteem ehitatakse selliselt, et teda saab paigaldada ja kasutada kas:
+Süsteem on ehitatud selliselt, et teda saab paigaldada ja kasutada kas:
 
 - JSE sisse-ehitatud com.sun.net.httpserver funktsionaalsusega ilma eraldi "suure" veebiserverita.
 - Töötamaks olemasoleva või eraldi installeeritud Jetty või Tomcat serveri all, mispuhul ta on esitatud WAR-failina.
 
-Tomcati või jetty vms eraldi veebiserverit andmejälgija paketti sisse ei ehitata.
+Tomcati või jetty vms eraldi veebiserverit andmejälgija pakett ei sisalda.
 
 ## 15. Konfiguratsioon
 
 Süsteemil on kaks erinevat konfiguratsioonifaili: põhikonfiguratsioonifail andmesalvestaja jaoks ning eraldi konfiguratsioonifail eraldusfiltri jaoks.
 
-Süsteemi põhikonfiguratsioon seatakse ühest peatükkideks jagatud ja korralikult kommenteeritud konfiguratsioonifailist, mis kasutab nimi=väärtus tüüpi süntaksit, näiteks
+Süsteemi põhikonfiguratsioon seatakse ühest peatükkideks jagatud konfiguratsioonifailist, mis kasutab nimi=väärtus tüüpi süntaksit, näiteks
 
 SERVER\_PORT=10000
 
@@ -331,24 +338,20 @@ THREAD\_POOL\_COUNT=3
 
 Eraldusfiltri konfiguratsioon esitatakse eraldi XML failina, mis paigutatakse samasse serverisse, kus eraldusfilter töötab.
 
-.
-
 Eraldusfiltri konfiguratsioonifailis esitatakse kaks blokki informatsiooni:
 
-- Informatsioon turvaserveri töötamise üldparameetrite osas:
-  - Maksimaalne kasutatav mälu
+- Informatsioon turvaserveri töötamise üldparameetrite osas, mh:
   - Andmejälgija andmebaasiga kirjutamiseks ühenduse võtmise parameetrid
   - Sissetulevate ja väljaminevate sõnumite pordid ja IP-d
-  - Muu vajalikuks osutuv
 - Informatsioon monitooritavate sõnumite osas
   - Milliseid sõnumeid tuleb monitoorida
   - Iga sellise monitooritava sõnumitüübi kohta:
     - isikukoodi olemasolu / puudumine ja XPATH tema asukoha kohta sõnumis
-    - muude andmejälgijasse salvestatavate andmeväljade jaoks kas (a) fikseeritud tekst või (b) XPATH avaldis vastava identifikaatori/teksti saamiseks sõnumist koos (vajadusel) teisendustabeliga, mis teisendab tehnilise koodi inimloetavaks tekstiks, mis on mõeldud esitamiseks eesti.ee-s.
+    - muude andmejälgijasse salvestatavate andmeväljade jaoks kas (a) fikseeritud tekst või (b) XPATH avaldis vastava identifikaatori/teksti saamiseks sõnumist koos teisendustabeliga, mis teisendab tehnilise koodi inimloetavaks tekstiks, mis on mõeldud esitamiseks eesti.ee-s.
 
-## 16. Andmebaasikomponent ja sellega suhtlemine
+## 16. Andmesalvestaja ja sellega suhtlemine
 
-Andmebaasiserverina kasutatakse standardlahendusena Postgresql süsteemi.
+Andmesalvestaja andmebaasiserverina kasutatakse standardlahendusena Postgresql süsteemi.
 
 Andmebaasimootoriga suhtlemist teostavad andmejälgijas viis funktsiooni
 
@@ -358,18 +361,13 @@ Andmebaasimootoriga suhtlemist teostavad andmejälgijas viis funktsiooni
 - otsi kirjeid sisekasutuseks,
 - sulge ühendus
 
-mis kõik realiseeritakse ühes, korralikult dokumenteeritud ja kergesti leitavas lähtekoodifailis: eesmärk on teha andmekogu haldajal andmebaasimootori väljavahetamine või olemasoleva mootori/logisüsteemi kasutuselevõtt võimalikult lihtsaks.
+Nende funktsioonide muutmine või ümbervahetamine, samuti andmebaasimootori väljavahetamine või olemasoleva mootori/logisüsteemi kasutuselevõtt eeldab süsteemi lähtekoodi muutmist, kuid on tehtud võimalikult lihtsaks.
 
 Lisaks mainitud viie funktsiooni olemasolule (ja nende muutmisvõimalusele) seadistatakse andmebaasimootoriga ühendust andmejälgija konfiguratsioonifailis.
 
-Andmejälgija tarkvara ei tohi:
+Andmejälgija tarkvara ei eeldada andmebaasimootorilt mingeid omadusi, mida näiteks logifailidena realiseeritud "andmebaasimootor" ei pruugi omada.
 
-- kasutada andmebaasimootoriga suhtlemiseks muid funktsioone peale eelnimetatud viie;
-- eeldada andmebaasimootorilt mingeid omadusi, mida näiteks logifailidena realiseeritud "andmebaasimootor" ei pruugi omada.
-
-
-
-## 17. Funktsioneerimine serverina ja ühe või mitme käivitatava rakendusena
+## 17. Funktsioneerimine serverina
 
 Andmejälgija funktsioneerib kahe pidevalt töötava serverina, pakkudes ligipääsu erinevatelt portidelt:
 
@@ -377,6 +375,6 @@ Andmejälgija funktsioneerib kahe pidevalt töötava serverina, pakkudes ligipä
 - Port, mis võtab vastu muidu X-tee turvaserverile suunatava liikluse eraldusfiltri režiimis
 - Port, mis suhtleb X-tee turvaserveriga eraldusfiltri režiimis
 - Port, mis pakub X-tee turvaserverile eesti.ee jaoks SOAP päringule vastust
-- Port, mis pakub sisekasutuseks kirjete otsingu REST teenust ja sisekasutuseks kirjete otsingu veebilehte
+- Port, mis pakub sisekasutuseks kirjete otsingu REST teenust ja sisekontrollija rakenduse veebilehte
 
 Andmesalvestaja ning eraldusfiltri moodulite töötamist/mittetöötamist ja kasutusel olevaid porte reguleeritakse konfiguratsioonifaili seadmisega.

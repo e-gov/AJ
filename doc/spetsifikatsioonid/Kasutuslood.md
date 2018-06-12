@@ -2,19 +2,20 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.0, 20.12.2015
+Versioon 1.1, 13.06.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
-![EL struktuurifondid](../img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 ## 1. Dokumendi ajalugu
 
 | Versioon | Kuupäev | Autor | Märkused |
 | --- | --- | --- | --- |
 | 1.0 | 20.12.2015 | Tanel Tammet | Esimene versioon |
+| 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist 
 
 ## 2. Sisukord
 
@@ -23,7 +24,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
   * [3\. Sissejuhatus](#3-sissejuhatus)
   * [4\. Kasutuslood](#4-kasutuslood)
     * [4\.1\. eesti\.ee kaudu lähenev lõppkasutaja](#41-eestiee-kaudu-l%C3%A4henev-l%C3%B5ppkasutaja)
-    * [4\.2\. Asutuse sisekasutaja](#42-asutuse-sisekasutaja)
+    * [4\.2\. Asutuse sisekontroll](#42-asutuse-sisekontroll)
     * [4\.3\. Asutuse IT\-administraator](#43-asutuse-it-administraator)
     * [4\.4\. Asutuse IT\-süsteemi arendaja](#44-asutuse-it-s%C3%BCsteemi-arendaja)
     * [4\.5\. eesti\.ee administraator](#45-eestiee-administraator)
@@ -39,12 +40,12 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
 ## 3. Sissejuhatus
 
-Käesolev dokument kajastab tarkvaralise lahenduse "Andmejälgija" kasutuslugusid.
+Käesolev dokument kajastab tarkvaralise lahenduse "Andmejälgija" planeeritud kasutuslugusid, mitte reaalselt kasutusele läinud andmejälgija kogemusi.
 
 Süsteemis on mitu erinevat kasutajate tüüpi:
 
 - eesti.ee kaudu lähenev lõppkasutaja
-- asutuse sisekasutaja, kes otsib logikirjeid andmejälgija andmebaasist veebiliidese kaudu (sisekontrollija rakenduse kaudu)
+- asutuse sisekontroll, kes otsib logikirjeid andmejälgija andmebaasist veebiliidese kaudu (sisekontrollija rakenduse kaudu)
 - asutuse IT-administraator, kes süsteemi üles seab, konfigureerib ja jälgib töökorda
 - (valikuliselt) asutuse IT-süsteemi arendaja, kes kutsub välja andmesalvestaja API-t sisekasutuseks või realiseerib otse X-tee teenuse eesti.ee jaoks
 - eesti.ee poolne administraator, kes lisab eesti.ee-sse andmejälgija üldlehe ja liidestab sellega erinevaid andmekogusid, kes selleks soovi avaldavad
@@ -65,33 +66,34 @@ Peale andmejälgijasüsteemi lehtede leidmist on kasutusel veel üks kahest või
 
 (b) kasutajalt nõutakse sisselogimist ja siis näeb liitunud asutusi/andmekogusid
 
-Nõutav variant otsustatakse RIA poolt.
+Nõutav variant otsustatakse RIA poolt koostöös eesti.ee-ga.
 
-Andmejälgija süsteemi avalehel näeb kasutaja paarilauselist süsteemi kirjeldust ja loetelu liitunud asutustest/andmekogudest. Klikkides mõnele neist näeb ta paarilauselist selgitust: miks ja kuidas see andmekogu isikuandmeid kasutab, kuhu ta neid saadab ja kontaktinfot lisaselgituste küsimiseks. Samuti näeb ta vormi, kus on eeltäidetud perioodi algus- ja lõpptähtaeg ning nupp oma andmesaatmiste/kasutuste otsinguks.
+Andmejälgija süsteemi avalehel näeb kasutaja paarilauselist süsteemi kirjeldust ja loetelu liitunud asutustest/andmekogudest. Klikkides mõnele neist näeb ta paarilauselist selgitust: miks ja kuidas see andmekogu isikuandmeid kasutab, kuhu ta neid saadab ja kontaktinfot lisaselgituste küsimiseks. Samuti näeb ta nuppu oma andmesaatmiste/kasutuste otsinguks.
 
-Nupule vajutades kuvatakse kasutajale isikuandmete kasutuse loetelu valitud perioodil: millal/kuhu/mis teenuse kaudu on andmeid saadetud või millal/mille jaoks/kelle poolt on andmeid kasutatud.
+Nupule vajutades kuvatakse kasutajale isikuandmete kasutuse loetelu alates ajaliselt kõige hilisematest: millal/kuhu/mis teenuse kaudu on andmeid saadetud või millal/mille jaoks/kelle poolt on andmeid kasutatud. 
+Lehe allosas kuvatakse navigeerimisnupud, mille abil ta saab liikuda järgmise lehekülje info peale ja uuesti tagasi.
 
 Kasutaja saab seejärel liikuda lihtsasti andmejälgija avalehele.
 
 Andmejälgija avalehelt peab olema võimalik saada infot, kuidas saab kodanik infot mitteliitunud andmekogudes toimunud isikuandmete töötlemise kohta. See info tuleb esitada kas eraldi veebilehega või paarilauselise selgitusega.
 
-### 4.2. Asutuse sisekasutaja
+### 4.2. Asutuse sisekontroll
 
-Asutuse sisekasutaja on ametnik, kellel on parasjagu ülesandeks kas:
+Asutuse sisekontrollija on ametnik, kellel on parasjagu ülesandeks kas:
 
 1. Vastata isikute päringutele (telefonitsi, e-postiga, kirjaga) tema isikuandmete töötlemise kohta. Sellist küsimust esitatakse seni üldjuhul vaid väga väikese hulga asutuste kohta. Küll aga võib küsimuste hulk oluliselt kasvada peale andmejälgija süsteemi käivitamist ja laiemat tutvustamist.
 
 2. Teostada pistelist sisekontrolli isikuandmete sisekasutuse kohta. Seda tehakse üldjuhul asutustes, kus andmejälgija on API kaudu integreeritud infosüsteemiga ning on võimalik tuvastada isikuandmete tava-kasutamist infosüsteemi sees.
 
-Kummalgi juhul avab sisekasutaja veebilehitsejas andmejälgija sisemise veebilehe: URL on pandud kas asutuse siseportaali või saadetud varem e-postiga.
+Kummalgi juhul avab sisekontrolli veebilehitsejas andmejälgija sisekontrolli rakenduse: URL on pandud kas asutuse siseportaali või saadetud varem e-postiga.
 
-Sisekasutaja saab üldjuhul andmejälgijale ligi vaid asutuse sisevõrgust.
+Sisekontrollija saab üldjuhul andmejälgijale ligi vaid asutuse sisevõrgust.
 
-Sisekasutaja peab ennast süsteemi jaoks autentima. Autentimise konkreetne viis sõltub süsteemi paigaldusvalikutest.
+Sisekontrollija peab ennast süsteemi jaoks autentima. Autentimise konkreetne viis sõltub süsteemi paigaldusvalikutest.
 
-Autendituna näeb sisekasutaja vormi, kus on (a) viit kasutusjuhendile, (b) kus saab täita kõiki andmejälgija infovälju, ning (c) "otsi" nuppu. Viimasele vajutades kuvatakse lehekülgedeks jagatuna veergude kaupa sorteeritav loetelu isikuandmete töötlemistest. Igale kirjele saab vajutada, et näha kogu detailinfot.
+Autendituna näeb sisekontrollija vormi, kus on (a) viit kasutusjuhendile, (b) kus saab täita kõiki andmejälgija infovälju, ning (c) "otsi" nuppu. Viimasele vajutades kuvatakse lehekülgedeks jagatuna veergude kaupa sorteeritav loetelu isikuandmete töötlemistest. Igale kirjele saab vajutada, et näha kogu detailinfot.
 
-Sisekasutaja kirjeid muuta, kustutada ega lisada ei saa.
+Sisekontrollija kirjeid muuta, kustutada ega lisada ei saa.
 
 ### 4.3. Asutuse IT-administraator
 
@@ -101,7 +103,7 @@ Asutuse IT-administraatori ülesanded on:
 2. eesti.ee-le vajaliku info saatmine andmejälgija süsteemi liidestamiseks eesti.ee süsteemiga;
 3. regulaarselt andmejälgija süsteemi töövõime monitoorimine, sh vealogide vaatamine;
 4. jälgimine, et süsteemi andmebaas ei oleks liiga mahukas ega täidaks serveri ketast. Liigse mahukuse korral peab administraator vanad andmed arhiivifaili kopeerima ja andmebaasist kustutama;
-5. andma andmejälgija sisekasutuse eest vastutavatele ametnikele (kui neid on) selgitusi andmejälgija süsteemi põhimõtete kohta;
+5. andma andmejälgija sisekontrolli eest vastutavatele ametnikele (kui neid on) selgitusi andmejälgija süsteemi põhimõtete kohta;
 6. anda vajadusel eesti.ee haldajale täiendavat infot asutuse/andmekogu isikuandmete töötlemise põhimõtete kohta.
 
 ### 4.4. Asutuse IT-süsteemi arendaja
@@ -110,7 +112,7 @@ Asutuse IT-süsteemi arendaja ülesanneteks on:
 
 1. vajadusel andmejälgija süsteemi paigaldamine (juhul, kui asutuses on see IT-administraatorilt delegeeritud arendajale)
 2. vajadusel asutuse infosüsteemile andmejälgija API liidese arendamine
-3. vajadusel sisekasutuse eriliideste arendamine või muu spetsiifiline andmejälgijaga seotud muutmissoov
+3. vajadusel sisekontrolli eriliideste arendamine või muu spetsiifiline andmejälgijaga seotud muutmissoov
 
 ### 4.5. eesti.ee administraator
 
@@ -123,7 +125,7 @@ eesti.ee administraatoril on järgmised ülesanded:
 
 ## 5. Liidestuvate andmekogude ja huvipoolte kasutuslood: koondid intervjuudest
 
-Esitame lühidalt intervjueeritavate asutuse põhipunktid andmejälgijaga seoses. Intervjuude detailid on esitatud eraldi failides. Antud kasutuslood pole nõutud otse ja vahetult realiseerida, vaid peavad olema realiseeritavad võimalikult suures mahus eelpool kirjeldatud kasutuslugude kaudu.
+Esitame lühidalt intervjueeritavate asutuse põhipunktid andmejälgijaga seoses. Intervjuude detailid on esitatud eraldi failides. Antud kasutuslood pole nõutud otse ja vahetult realiseerida, vaid on realiseeritavad võimalikult suures mahus eelpool kirjeldatud kasutuslugude kaudu.
 
 ### 5.1. Andmekaitse inspektsioon
 
@@ -199,7 +201,7 @@ Mitte-sisemised vaatamised tulevad üle X-tee (e-toimik, MISP, e-toimiku klients
 
 ### 5.7. Elering
 
-Novembri algusest alustati uue infosüsteemi faasi käivitamisega: põhineb X-tee tehnoloogial ja võimaldab rakenduste paljusust. Igal müüjal saab olla oma rakendus, mis küsib Eleringilt API kaudu tarbimisandmeid.
+2015 novembri algusest alustati uue infosüsteemi faasi käivitamisega: põhineb X-tee tehnoloogial ja võimaldab rakenduste paljusust. Igal müüjal saab olla oma rakendus, mis küsib Eleringilt API kaudu tarbimisandmeid.
 
 Tahaks anda inimestele infot selle kohta, kellele on andmeid antud.
 

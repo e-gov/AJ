@@ -1,21 +1,24 @@
-###Andmejälgija turvaanalüüs
+### Andmejälgija turvaanalüüs
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.0.1, 31.05.2016
+Versioon 1.0.2, 20.03.2017
 
 Tellija: Riigi Infosüsteemi Amet
+
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
-####1	Dokumendi ajalugu
+![](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
 
-Tabel 1 - Dokumendi muudatuste ajalugu
+#### 1	Dokumendi ajalugu
 
-Versioon	Kuupäev	Autor	Märkused
-- 1.0	11.12.2105	Janek Part, Valdo Praust	Esimene versioon
-- 1.0 31.05.2016  Priit Parmakson  Teisendus Markdowni
+| Versioon | Kuupäev    | Autor                    | Märkused
+|----------|------------|--------------------------|-----------------------------------------------------------
+| 1.0      | 11.12.2105 | Janek Part, Valdo Praust | Esimene versioon
+| 1.0.1    | 31.05.2016 | Priit Parmakson          | Teisendus Markdowni		
+| 1.0.2    | 20.03.2017 | Vitali Stupin            | Parandatud Markdowni vead, lisatud EL logo
 
-####2	Kokkuvõte
+#### 2	Kokkuvõte
 Käesoleva projektiga disainitakse ja spetsifitseeritakse isikuandmete kasutamise jälgimise tarkvaraline tüüplahendus (andmejälgija). Andmejälgija on mõeldud kasutamiseks andmekogu omanikule, kes seadusest tulenevalt peab kodanikule jagama informatsiooni tema andmete edastamise, salvestamise, muutmise ja kustutamise kohta (vt punkti 7.1). 
 
 Antud dokument keskendub turvaeesmärkidele, mida andmekogu omanik peab jälgima, et andmejälgijasse salvestatavat infot hoitaks ja käideldaks turvaliselt. Metoodiliselt on analüüsi aluseks võetud ISKE versioon 7.00. 
@@ -24,7 +27,7 @@ Dokument on suunatud andmekogu omanikule, et aidata tal paigaldada andmejälgija
 
 Turvalisuse osas soovitame andmekogu omanikul pöörata eeskätt tähelepanu punktis 10 Usaldusalad käsitletud teemadele ning tagada organisatoorsete ja/või tehniliste meetmetega, et võimalikud riskid saaksid maandatud.
 
-####3	Sisukord
+#### 3	Sisukord
 
 1.	Dokumendi ajalugu
 2.	Kokkuvõte
@@ -50,12 +53,12 @@ Turvalisuse osas soovitame andmekogu omanikul pöörata eeskätt tähelepanu pun
 14.1.	Alamdokumendid
 14.2	Viited dokumentidele
 
-####4	Tabelid ja joonised
+#### 4	Tabelid ja joonised
 
 - Tabel 1 - Dokumendi muudatuste ajalugu
 - Tabel 2 - Andmejälgija infovarad
 
-####5	Sissejuhatus
+#### 5	Sissejuhatus
 
 Antud dokument kuulub riigihanke “X-tee andmejälgija analüüs ja disain” (viitenumber 164646) tulemitena üleantavate dokumentide koosseisu. Turvaanalüüsi koostamisel on arvesse võetud järgmiseid dokumente:
 •	andmejälgija tehniline kontseptsioon;
@@ -69,13 +72,13 @@ Vastavalt lähteülesandele käsitletakse turvaanalüüsis järgmisi elemente: t
 
 Metoodikana on kasutatud turvaanalüüsis ISKE versioon 7.00 rakendusjuhendit ja ISKE kataloogi, sest selle etalonturbe süsteemi juurutamine on kohustuslik kõikides riiklikes andmekogudes. Samuti kõnetab antud metoodika kõiki andmekogude omanikke ning selle baasil turvateema käsitlemine vähendab oluliselt lisanduvate juurutustööde mahtu.
 
-####6	Turvatavad infovarad
+#### 6	Turvatavad infovarad
 
 Analüüsi tulemusena otsustati realiseerida eraldusfilter proxy põhimõttel selliselt, et teda saaks paigutada nii turvaserveri sisse kui turvaserverist välja.
 
 Andmekogu pidajal on ISKE kohaste infovarade nimekirja vaja täiendada kasutusele võetava riistvara, tarkvara ja võrguühenduste vaates nii, nagu seda nõuab ISKE juurutamise samm 1.
 
-####6.1	Infovarade täiendamine
+#### 6.1	Infovarade täiendamine
 
 Vastavalt valitud lahendusele tuleb varade kaardistamise juures arvestada järgnevat:
 
@@ -91,11 +94,11 @@ Rakendused	| -	Andmejälgija veebirakendus -	ID-kaardiga autentimine	| -	Andmej�
 Võrguühendused	| Lisaühendused switchis. Täiendused/muudatused tulemüüris	| Kasutab infosüsteemiga suhtlemiseks samu porte, mis turvaserver.
 Moodulid, millega tuleb arvestada kas täies mahus või osade ohtude meetmete mahus	| -	B 1.3. Hädaolukorraks valmisoleku kontseptsioon -	B 1.8 Turvaintsidentide käsitlus -	B 1.9 Riist- ja tarkvara haldus -	B 1.14 Turvapaikade ja muudatuste haldus -	B 3.101 Server -	B 3.304 Virtualiseerimine -	Asjakohane B3 IT-süsteemid kihi moodul(i )-	B 5.4 Veebiserver -	B 5.7 Andmebaasid -	B 5.21 Veebirakendused -	B 5.22 Logimine -	B 5.E2 ID-kaart/PKI	| -	B 1.3. Hädaolukorraks valmisoleku kontseptsioon -	B 1.8 Turvaintsidentide käsitlus -	B 1.9 Riist- ja tarkvara haldus -	B 1.14 Turvapaikade ja muudatuste haldus -	B 5.4 Veebiserver -	B 5.21 Veebirakendused -	B 5.22 Logimine -	B 5.E2 ID-kaart/PKI
  
-####7	Turvaeesmärgid
+#### 7	Turvaeesmärgid
 
 Vastavalt ISKE juurutamise sammule 2 peab andmekogu omanik vajadusel täiendama turvaosaklassi analüüsi ja määramise dokumenti. Arvestama peab olemasolevate õiguslike nõuete täitmisega. 
 
-####7.1	Õiguslikud nõuded
+#### 7.1	Õiguslikud nõuded
 Antud punktis on välja toodud õiguslikud nõuded, mis on olulised turvaklassi määramise seisukohast. Andmejälgija kohta tervikuna on koostatud samuti õiguslik analüüs (vt dokumenti „Andmejälgija õiguslik analüüs“).
 
 (a)	Isikuandmete kaitse seadus (IKS)
@@ -125,11 +128,11 @@ Lähtuda saab järgmistest õiguslikest nõuetest:
 2)	Infosüsteemide andmevahetuskiht § 19 ;
 3)	AKI Andmekogude juhendi alapeatükk 3.5 .
 
-####7.2	Lepingulised nõuded
+#### 7.2	Lepingulised nõuded
 
 Nõuded ei täiene eeldusel, et andmejälgijat ei hallata teenusepartneri poolt. Juhul kui andmejälgija haldamine antakse teenusepakkujale, tuleb täiendavalt arvestada ISKE tüüpmooduliga „B 1.11 Väljasttellimine (Outsourcing)“ ning täita seal esitatud nõudeid. 
 
-####7.3	Tagajärgede kaalukuse nõuded
+#### 7.3	Tagajärgede kaalukuse nõuded
 
 (a)	Õiguslikest nõuetest tulenevad tagajärjed, mis võivad tuua kaasa ettekirjutusi AKI poolt.
 
@@ -143,7 +146,7 @@ Punkt (a), (b) ja (c) R1 – kaasnevad väheolulised kahjud, turvaintsident (st 
 
 Punkt (d) R2 - kaasnevad olulised kahjud, turvaintsident (st info käideldavuse ja/või konfidentsiaalsuse ja/või tervikluse nõuete mittetäitmine) põhjustab tõenäoliselt olulise takistuse asutuse funktsiooni täitmisele.
 
-####7.4	Turvaeesmärgid terviklusele (T), konfidentsiaalsusele (S) ja käideldavusele (K)
+#### 7.4	Turvaeesmärgid terviklusele (T), konfidentsiaalsusele (S) ja käideldavusele (K)
 
 Õiguslikest ja tagajärgede kaalukuse nõuetest lähtuvalt peab Andmejälgija turvaosaklass vastama järgmistele tingimustele:
 
@@ -158,11 +161,11 @@ K2 – käideldavus – suurem või võrdne kui 99% ja väiksem kui 99,9% aastas
 
 Vastavalt leitud turvaosaklassidele tuleb andmejälgija turbeastmeks võtta M tase. 
 
-####8	Ohtude (rünnete) klassifikatsioon
+#### 8	Ohtude (rünnete) klassifikatsioon
 
 Vastavalt ISKE juurutamise sammule 10 kontrollitakse tegelikku turvaolukorda ohtude kataloogi G baasil. Vaadeldes punktis „6.1 Infovarade täiendamine“ mainitud mooduleid, muutuvad asjakohaseks all mainitud ohud.
 
-####8.1	Asjakohaste ohtude klassifikatsioon „Turvaserveri sees olev proxy“ ja „Turvaserverist eraldiseisev proxy“ lahenduse korral
+#### 8.1	Asjakohaste ohtude klassifikatsioon „Turvaserveri sees olev proxy“ ja „Turvaserverist eraldiseisev proxy“ lahenduse korral
 
 Täielik ja asjakohane ohtude nimekiri on ära toodud lisas 1. Siin punktis on kokku võetud olulisemad ohud, mida peab turvaserveri juurutamisel silmas pidama.
 
@@ -176,11 +179,11 @@ i.	Seotud oht (ISKE ohtude kataloogis, vt lisa): G 2.62 Turvaintsidentide puudul
 
 i.	Seotud ohud (ISKE ohtude kataloogis, vt lisa): G 5.20 Administraatoriõiguste väärkasutus; G 3.11 Sendmaili väär konfiguratsioon; G 5.2 Andmete või tarkvara manipuleerimine; G 5.71 Tundliku informatsiooni konfidentsiaalsuse kadu ja G 5.85 Tundliku informatsiooni tervikluse kadu.
 
-####9	Turvaeeldused
+#### 9	Turvaeeldused
 
 Vastavalt ISKE juurutamise sammule 7 koostatakse turbeastmest lähtudes turbehalduse meetmete loetelu. Vaadeldes punktis „Infovarade täiendamine“ nimetatud mooduleid, muutuvad all mainitud turvameetmed asjakohaseks.
 
-####9.1	Asjakohaste turvameetmete ülevaade „Turvaserveri sees olev proxy“ ja „Turvaserverist eraldiseisev proxy“ lahenduse korral
+#### 9.1	Asjakohaste turvameetmete ülevaade „Turvaserveri sees olev proxy“ ja „Turvaserverist eraldiseisev proxy“ lahenduse korral
 
 Täielik ja asjakohane turvameetmete nimekiri on ära toodud lisas 1. Alljärgnevas on kokku võetud olulisemad turvameetmed, mida peab turvaserveri juurutamisel silmas pidama.
 
@@ -204,7 +207,7 @@ i.	Seotud meede: M 5.66z (M) TLS-i/SSL-i kasutamine.
 
 i.	Seotud meede: M 5.150 Penetratsioonitestide läbiviimine.
 
-####10	Usaldusalad
+#### 10	Usaldusalad
 
 Andmejälgija töö saab tõhusalt toimida vaid sujuvas koostöös IT ja äripoole vahel. Seega peab äripool selgelt välja ütlema nõuded, mida on vaja järgida. Koostöös IT-ga tuleb need nõuded ka rakendada ning tagada nende üle kontroll. 
 
@@ -221,7 +224,7 @@ ii.	Näide, kus asutuse töötaja saab oma huvides teha (ja peita) päringuid an
 
 Andmejälgija andmeid võib säilitada ka arhiveerimise teel. Arhiveerimise juures tuleb arvestada vastava ISKE mooduliga.
 
-####11	Lahenduse turvaelemendid
+#### 11	Lahenduse turvaelemendid
 
 All on ära toodud peamised turvaelemendid, mis peaksid õige kasutamise korral tagama andmejälgija turvalise töö ja kasutamise.
 
@@ -237,13 +240,13 @@ Iga asutus peab hindama logide säilitamise ajalise ulatuse suurust ja logide s�
 
 (e)	ID-kaardiga autentimine – veebiliidesesse autentimine peab toimuma ID-kaardi abil. ID-kaardi kasutamine on paroolide hulga tõttu eelistatuim variant.
 
-####12	Protokollide puhul – turvaomadused
+#### 12	Protokollide puhul – turvaomadused
 
 TLSile toetuv https-protokoll – veebiliideses on ülimalt soovitatav kasutada TLS protokolli ja mitte SSL protokolli, sest SSL protokolli (SSL3 protokolli) teatav nõrkus  võimaldab teoreetilist murdmist. 
 
 Protokollide juures vaata ka „Turvaserveri kasutusjuhend v 2.3“ punkti 9 .
 
-####13	Seosed ülalnimetatud elementide vahel
+#### 13	Seosed ülalnimetatud elementide vahel
 
 Antud turvaanalüüsi koostamisel on järgitud ISKE versiooni 7.00 ja ISKE juurutamise samme. Järgitud on järgmisi samme:
 
@@ -259,7 +262,7 @@ SAMM 7: Turvameetmete loetelu koostamine – turvaeelduste koostamine vastavalt 
 
 SAMM 10: Tegeliku turvaolukorra kontroll – ohtude (rünnete) klassifikatsioon analüüsi koostamine. 
 
-####14	Seotud dokumendid
+#### 14	Seotud dokumendid
 
 Antud dokument kuulub riigihanke “X-tee andmejälgija analüüs ja disain” (viitenumber 164646) tulemitena üleantavate dokumentide koosseisu. Selle dokumendi koostamisel on arvesse võetud järgmiseid dokumente:
 •	andmejälgija tehniline kontseptsioon;
@@ -267,15 +270,14 @@ Antud dokument kuulub riigihanke “X-tee andmejälgija analüüs ja disain” (
 •	andmesalvestaja disainilahendus;
 •	andmejälgija õiguslik analüüs.
 
-####14.1	Alamdokumendid
+#### 14.1	Alamdokumendid
 
 Antud dokumendi lisad:
 
 (a)	Lisa 1. Andmejälgija ISKE ohud ja meetmed – kirjeldab detailselt andmejälgijaga lisanduvate täiendavate ISKE-kohaste tüüpmoodulite ohte ja meetmeid, mis siin dokumendis leiavad vaid põgusat kajastust.
 
-####14.2	Viited dokumentidele
+#### 14.2	Viited dokumentidele
 
 (a)	Lisa 2. AKI „ANDMEKOGUDE JUHEND“ - http://www.aki.ee/sites/www.aki.ee/files/elfinder/article_files/Andmekogude%20juhend_1.pdf
 
 (b)	Lisa 3. „Turvaserveri kasutusjuhend v 2.3“ - http://x-road.eu/docs/x-road_v6_security_server_user_guide.pdf.
-

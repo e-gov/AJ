@@ -3,19 +3,21 @@ Tarkvara rakendusjuhend
 
 **DUMonitor**
 
-Versioon 1.0, 09.05.2016
+Versioon 1.1, 19.01.2017
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ
 
-![EL struktuurifondid](img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 ## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor                    | Märkused
 |----------|------------|--------------------------|----------------------------------------------
 | 1.0      | 09.05.2016 | Tanel Tammet, Ivo Mehide | Esimene versioon
+| 1.1      | 19.01.2017 | Piret Elm, Vitali Stupin | Logimise välistuste täpsustamine
+| 1.2      | 16.03.2017 | Piret Elm                | Logimise välistuste täpsustamine
 
 ## Sisukord
 
@@ -24,7 +26,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Sihtrühm](#sihtr%C3%BChm)
   * [Sissejuhatus](#sissejuhatus)
   * [Andmejälgija ülevaade](#andmej%C3%A4lgija-%C3%BClevaade)
-  * [Milliseid andme-edastamisi ja -kasutamisi logida](#milliseid-andme-edastamisi-ja--kasutamisi-logida)
+  * [Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte](#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid-mitte)
   * [Variandid andmejälgija kasutuselevõtuks](#variandid-andmej%C3%A4lgija-kasutuselev%C3%B5tuks)
   * [Andmejälgija kasutuselevõtmise protsess](#andmej%C3%A4lgija-kasutuselev%C3%B5tmise-protsess)
   * [Tarkvara paigaldamine](#tarkvara-paigaldamine)
@@ -71,7 +73,7 @@ Andmejälgija põhiosad on järgmised:
 
 Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse X-tee turvaserverisse kui mõnda olemasolevasse serverisse koos teiste süsteemidega, või hoopis eraldi serverisse.
 
-## Milliseid andme-edastamisi ja -kasutamisi logida
+## Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte
 
 Isikuandmete kaitse seadus sisaldab kahte punkti, mille lahendamise hõlbustamiseks andmejälgija
 lahendus on loodud:
@@ -88,7 +90,6 @@ Sarnased nõuded tulenevad ka euroopa direktiividest:
 a) mõistliku aja tagant, ilma piiranguteta ja ilma liigsete viivituste ja kulutusteta:
 - kinnitust selle kohta, kas isikut ennast käsitlevaid andmeid töödeldakse, ja teavet vähemalt töötlemise eesmärkide, asjaomaste andmete liikide ja nende vastuvõtjate või vastuvõtjate kategooriate kohta, kellele andmed avalikustatakse,
 - arusaadaval kujul teavet töödeldavate andmete ja nende allika kohta," (Direktiiv 95/46/EU, artikkel 12)
-
 
 Isikuandmetena käsitleb seadus mistahes andmeid isiku kohta - kaasa arvatud tema nimi ja sünniaeg - mitte ainult
 tundlikke isikuandmeid.
@@ -123,6 +124,35 @@ Teise ülaltoodud seadusepunkti jaoks tuleks lähtuda järgmisest:
 * Pika isikute loendi (näiteks üle mitmekümne inimese) vaatamist vms ei tule üldjuhul talletada nende isikutega seotuna.
 * Tehnilised ja administratiivsed ligipääsuvõimalused ja nende kehtimise perioodid tuleks talletada eraldi logisse/faili vms.
 
+Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiranguid (IKS § 20 lg 1-4).
+
+Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse, kui see võib:
+
+*	kahjustada teise isiku õigusi ja vabadusi; 
+*	ohustada lapse põlvnemise saladuse kaitset; 
+*	takistada kuriteo tõkestamist või kurjategija tabamist; 
+*	raskendada kriminaalmenetluses tõe väljaselgitamist.
+
+Seetõttu ei tohi kodanikele avaldada päringuid, mis on tehtud jälitustegevuse käigus ja teistel IKS § 20 toodud juhtudel, samuti konkreetse asutuse eriseadustest tulenevatest piirangutest. Juba andmejälgija tarkvara kasutusele võtmisel tuleb otsustada ja dokumenteerida milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat liidestada, milliseid andmeedastamisi ja -kasutamisi logida ja milliseid mitte. Millised on üldised ja millised asutuse eriseadusest tulenevad piirangud.
+
+Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> https://www.riigiteataja.ee/akt/121032011002:
+
+* Politsei- ja Piirivalveamet (70008747);
+* Kaitsepolitseiamet (70000591);
+* Maksu- ja Tolliamet (70000349);
+* Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
+* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) https://www.riigiteataja.ee/akt/117122015039#para28.
+
+Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule näha.
+
+Standardlahendus võimaldab piirata kodanikule näidatavat infot kahel moel:
+
+* Eraldusfiltris asuv Blacklist – võimaldab välja lülitada asutuse kogu andmevahetuse asutuse registrikoodi alusel, nii et asutuse päringuid ei logita üldse (vaata täpsemalt paigaldamisjuhendi peatükki  "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)").
+* Eraldusfiltri täpsem seadistus – võimaldab välistada teatud päringute logimise teenuse parameetri või alamsüsteemi täpsusega. 
+
+Sõltumata sellest, kumba moodust välistuse tagamiseks kasutatakse, tuleb piirangute seadistamise reeglid kokku leppida päringuid sooritava asutusega. Juhtumi- või kaasusepõhine filtreerimine ei ole standardlahendust kasutades võimalik. 
+
+Kodanikule andmete väljastamise filtreerimist standardlahendus ei toeta. Filtreeritud päringute kohta on kodanikul õigus teha asutusse järelepärimine traditsioonilisel moel (näiteks teabenõudega).
 
 ## Variandid andmejälgija kasutuselevõtuks
 
@@ -282,11 +312,6 @@ ette anda PostgreSQL standardsete keskkonnamuutujate PGDATABASE, PGHOST, PGPORT,
 mitte eraldiseisev süsteem. Seega ei nõua ta ka omaette ISKE analüüsi, omaette X-tee süsteeme jne. 
 
 Sellest tulenevalt ei saa aga üks andmejälgija teenindada korraga mitut andmekogu.
-
-Andmejälgijat paigaldades tuleb ta tingimata seadistada selliselt, et andmejälgija ei jälgiks päringuid, mille toimumine
-on selliste politseiliste menetlustoimingute osa, mis peavad jääma varjatuks. Sellised päringud tuleb reeglina
-lihtsalt jälgimata jätta. Abistava variandina osade päringute logimise keelamiseks saab kasutada jälgimisfiltri
-konfiguratsiooni osaks olevat nn blacklisti: vaata täpsemalt paigaldamisjuhendi peatükki "Välistuste kirjeldamine".
 
 Andmejälgija paigaldamisel tuleb seda teha selliselt, et andmesalvestaja komponendi erinevad teenused:
 * andmete salvestamise REST liides

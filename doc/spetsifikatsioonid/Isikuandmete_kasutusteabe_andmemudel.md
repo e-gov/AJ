@@ -2,19 +2,20 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.0, 20.12.2015
+Versioon 1.1, 13.06.2016
 
 Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
-![EL struktuurifondid](../img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 ## 1. Dokumendi ajalugu
 
 | Versioon | Kuupäev | Autor | Märkused |
 | --- | --- | --- | --- |
 | 1.0 | 20.12.2015 | Tanel Tammet | Esimene versioon |
+| 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist 
 
 ## 2. Sisukord
 
@@ -27,7 +28,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
 ## 3. Sissejuhatus
 
-Käesolev dokument esitab tarkvaralise lahenduse "Andmejälgija" isikuandmete kasutusteabe andmemudeli kirjelduse. Andmemudeli näol on tegemist andmesalvestaja poolt sisemiselt kasutatava andmestruktuuriga. Mudel esitatakse ERD-skeemina ning tuuakse ära olemite kirjeldused.
+Käesolev dokument esitab tarkvaralise lahenduse "Andmejälgija" isikuandmete kasutusteabe andmemudeli kirjelduse. Andmemudeli näol on tegemist andmesalvestaja poolt sisemiselt kasutatava andmestruktuuriga. Mudel on esitatud ERD-skeemina ning toodud ära olemite kirjeldused.
 
 ## 4. ERD-skeem
 
@@ -37,11 +38,9 @@ Käesolev dokument esitab tarkvaralise lahenduse "Andmejälgija" isikuandmete ka
 
 ### 5.1. Toimingud
 
-Iga kirje andmejälgijas sisaldab järgmisi välju, kusjuures eesti.ee kaudu kuvatakse neist ainult esimesed viis välja, järgmised on sisekasutuseks. Enamus välju ei ole kohustuslikud. eesti.ee jaoks loodav X-tee päring ei edasta välju, mis ei ole eesti.ee-s aluseks ja mida eesti.ee ei kuva.
+Iga kirje andmejälgijas sisaldab järgmisi välju, kusjuures eesti.ee kaudu kuvatakse neist ainult esimesed viis välja, järgmised on sisekasutuseks. Enamus välju ei ole kohustuslikud. eesti.ee jaoks kasutatav X-tee päring ei edasta välju, mis ei ole eesti.ee-s aluseks ja mida eesti.ee ei kuva.
 
 Järgnevas toodud väljad esitatakse ingliskeelsete väljanimedena, mis on identsed nii andmebaasis kui SOAP ja REST päringutes.
-
-
 
 Toimingute olemis hoitakse andmejälgija andmesalvestaja komponendi poolt säilitatavaid isikuandmete kasutusteabe registreeringuid. Iga isikuandmete kasutusteabe registreering esitatakse olemis ühe kirjena.
 

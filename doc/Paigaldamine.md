@@ -9,13 +9,17 @@ Tellija: Riigi Infosüsteemi Amet
 
 Täitja: Degeetia OÜ, Mindstone OÜ
 
-![EL struktuurifondid](img/EL_struktuuri-_ja_investeerimisfondid_horisontaalne.jpg)
+![EL Regionaalarengu Fond](img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
 ## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor                    | Märkused
-|----------|------------|--------------------------|----------------------------------------------
+|----------|------------|--------------------------|-----------------------------------------------------------
 | 1.0      | 09.05.2016 | Ivo Mehide, Tanel Tammet | Esimene versioon
+| 1.1      | 27.12.2016 | Piret Elm, Vitali Stupin | Eraldusfiltris vaikeväärtuste musta nimekirja täpsustamine
+| 1.3      | 06.04.2017 | Piret Elm                | Lisatud eeldus andmejälgija kasutamiseks
+| 1.4      | 02.05.2017 | Piret Elm                | Lisatud peatükk andmejälgija teenuse avaldamine riigiportaalis
+| 1.5      | 08.03.2018 | Vitali Stupin            | Lisatud näidis päringu ja vastuse eristamiseks
 
 ## Sisukord
 
@@ -23,11 +27,18 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Sisukord](#sisukord)
   * [Sissejuhatus](#sissejuhatus)
   * [Andmejälgija tarkvara paigaldamine](#andmej%C3%A4lgija-tarkvara-paigaldamine)
+    * [Eeldus andmejälgija tarkvara paigaldamiseks](#eeldus-andmejälgija-tarkvara-paigaldamiseks)
     * [Üldised nõuded](#%C3%9Cldised-n%C3%B5uded)
     * [Rakenduse paigaldamine X\-tee turvaserverisse](#rakenduse-paigaldamine-x-tee-turvaserverisse)
     * [Rakenduse paigaldamine Java rakendusserverisse](#rakenduse-paigaldamine-java-rakendusserverisse)
       * [Andmebaasi skeemi tekitamine](#andmebaasi-skeemi-tekitamine)
     * [MISP2 X\-forms faili paigaldamine](#misp2-x-forms-faili-paigaldamine)
+    * [Andmejälgija teenuse avaldamine riigiportaalis](#andmejälgija-teenuse-avaldamine-riigiportaalis)
+      * [Andmejälgija teenuse testimine riigiportaali partnerite arenduskeskkonnas www.koolitus.eesti.ee](#andmejälgija-teenuse-testimine-riigiportaali-partnerite-arenduskeskkonnas-wwwkoolituseestiee)
+      * [Andmejälgija teenuse avaldamine riigiportaali toodangukeskkonnas](#andmejälgija-teenuse-avaldamine-riigiportaali-toodangukeskkonnas)
+      * [Kasutajatugi, hooldustööd ja katkestused](#kasutajatugi-hooldustööd-ja-katkestused)
+      * [Katkestused teenuse töös](#katkestused-teenuse-töös)
+      * [Teenuse tööaeg ja katkestuste kestus](#teenuse-tööaeg-ja-katkestuste-kestus)
     * [Rakenduse eemaldamine](#rakenduse-eemaldamine)
       * [X\-tee turvaserverisse paigaldatud rakenduse komponentide eemaldamine](#x-tee-turvaserverisse-paigaldatud-rakenduse-komponentide-eemaldamine)
     * [Java rakendusserverisse paigaldatud rakenduse komponentide eemaldamine](#java-rakendusserverisse-paigaldatud-rakenduse-komponentide-eemaldamine)
@@ -48,6 +59,10 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 Antud dokument on [rakendusjuhendi](Rakendusjuhend.md) üks osa ning annab ammendavad ja samm-sammulised juhised andmejälgija tarkvara kõigi komponentide paigaldamiseks, konfigureerimiseks, eemaldamiseks. See on vormistatud eraldiseisva dokumendina hoidmaks rakendusjuhendi põhidokumendi mahtu madalal ja läbi selle tagades dokumentide parema loetavuse.
 
 ## Andmejälgija tarkvara paigaldamine
+
+### Eeldus andmejälgija tarkvara paigaldamiseks
+
+Andmejälgija tarkvara on arendatud X-tee versioon 6 turvaserveri jaoks, st eelnevalt peab olema paigaldatud versioon 6 turvaserver, omatakse allkirjastamisseadet ja kasutatakse usaldusteenuse pakkujaid, kirjeldatud on alamsüsteemid läbi mille saab teenuseid kasutada. Vt X-tee kasutamise juhend https://moodle.ria.ee/mod/page/view.php?id=288.
 
 ### Üldised nõuded
 
@@ -196,6 +211,83 @@ Antud fail tuleb paigaldada MISP2 tarkvarasse vastavalt selle tarkvara tootja po
 
 MISP2 rakenduses on vaja ära näidata ka andmekogu WSDL. See on kättesaadav lingilt "{andmesalvestajaUrl}/dumonitor.wsdl".
 
+### Andmejälgija teenuse avaldamine riigiportaalis
+
+**Eeldused**:
+
+- paigaldatud on v6 turvaserver
+- paigaldatud ja häälestatud on andmejälgija komponendid vastavalt tarkvara paigaldamise juhendile: https://github.com/e-gov/AJ/blob/master/doc/Paigaldamine.md).
+
+Andmejälgijat paigaldades tuleb seadistused valida selliselt, et andmejälgija ei jälgiks päringuid, mis on tehtud niisuguste politseiliste menetlustoimingute osana, mis peavad jääma varjatuks: https://github.com/e-gov/AJ/blob/master/doc/Rakendusjuhend.md#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid-mitte.
+
+Päringute logimise keelamiseks saab tüüplahenduse juures kasutada jälgimisfiltri konfiguratsiooni osaks olevat nn blacklist'i: täpsemalt paigaldamisjuhendi peatükis "Välistuste kirjeldamine" https://github.com/e-gov/AJ/blob/master/doc/Paigaldamine.md#v%C3%A4listuste-kirjeldamine.
+
+Küsimuste korral võtke ühendust RIA kasutajatoega aadressil help@ria.ee (teema: andmejälgija paigaldamine).
+
+X-tee v6 erinevates keskkondades olemas olevate asutuste teenuste kohta saab infot siit: http://x-road.eu/allmethods/
+
+Soovitavalt tuleks sama alamsüsteemi nimetust kasutada kõikides X-tee keskkondades.
+
+#### Andmejälgija teenuse testimine riigiportaali partnerite arenduskeskkonnas www.koolitus.eesti.ee
+
+- Alamsüsteemi loomine ja registreerimine (vajadusel)
+  * Andmejälgija teenust võib osutada mõne olemasoleva alamsüsteemi kaudu.
+  * Kui teenusepakkuja otsustab andmejälgija teenuse pakkumiseks luua eraldi alamsüsteemi, tuleb see oma X-tee arendus- või testkeskkonna turvaserveri kaudu registreerimisele esitada.
+  * X-tee keskus rahuldab alamsüsteemi taotluse üldjuhul paari tööpäeva jooksul. Turvaserveri kasutajaliideses annab sellest märku alamsüsteemi juures olev märge 'Registered'.
+- Andmejälgija teenuse avamine RIA-le
+  * Teenusepakkuja peab oma X-tee v6 arendus- või testkeskkonna turvaserveris avama RIA-le andmejälgija teenuse `findUsage`:
+    + arenduskeskkonnas alamsüsteemile: `ee-dev : GOV : 70006317 : riigiportaal-citizen`,
+    + testkeskkonnas alamsüsteemile: `ee-test : GOV : 70006317 : riigiportaal-citizen`.
+- Teenuse avaldamine ja testimine www.koolitus.eesti.ee keskkonnas.
+  * Teenusepakkuja edastab RIA kasutajatoele (help@ria.ee) soovi hakata partnerite arenduskeskkonnas teenust testima. Sealhulgas tuleb nimetada:
+    + X-tee keskkond (arendus- või testkeskkond),
+    + alamsüsteemi nimi, mille vahendusel teenust pakutakse,
+    + www.koolitus.eesti.ee keskkonnale ligipääsude loomiseks testijate andmed (kui neid pole varem taotletud):
+      - nimi
+      - isikukood
+      - asutus
+  * Riigiportaali teenusehaldur lisab seejärel www.koolitus.eesti.ee keskkonnas teenuse vormi, testib selle toimimist ning annab teenusepakkujale teada, kui see võib asuda ka ise testima.
+
+#### Andmejälgija teenuse avaldamine riigiportaali toodangukeskkonnas
+
+- Alamsüsteemi loomine ja registreerimine (vajadusel); teenuse info lisamine RIHAs
+  * Andmejälgija teenust võib osutada mõne olemasoleva alamsüsteemi kaudu.
+  * Kui teenusepakkuja otsustab andmejälgija teenuse pakkumiseks luua eraldi alamsüsteemi, tuleb see RIHA keskkonnas ja oma X-tee toodangukeskkonna turvaserveri kaudu registreerimisele esitada (https://moodle.ria.ee/mod/page/view.php?id=288 p.4).
+    + X-tee keskus rahuldab alamsüsteemi taotluse üldjuhul paari tööpäeva jooksul, sellest antakse teada RIHAs alamsüsteemi juures märgitud kontaktisikule.
+  * Teenusepakkuja lisab RIHAs alamsüsteemile teenuse info:
+    + infosüsteemi ülem laadib RIHAs alamsüsteemi teenuste vaates üles teenuse WSDLi (nupp 'Laadi infosüsteemi X-tee v6 keskkonna teenuste WSDL')
+- Andmejälgija teenuse avamine RIA-le.
+  * Teenusepakkuja avab oma X-tee v6 toodangukeskkonna turvaserveris andmejälgija teenuse `findUsage` RIA alamsüsteemile: `EE : GOV : 70006317 : riigiportaal-citizen`.
+- Taotluse esitamine teenuse riigiportaalis avaldamiseks ja teenuse avaldamine
+  * Teenusepakkuja täidab andmejälgija teenuse registreerimise taotluse (https://www.ria.ee/public/Riigiportaal/aj_teenuse_taotlus.pdf).
+  * Taotluse peab allkirjastama asutuse allkirjaõiguslik isik.
+  * Taotlus tuleb edastada RIA kasutajatoe aadressile help@ria.ee. 
+  * Kui teenus on riigiportaalis avaldatud, antakse sellest taotluse esitajale teada.
+
+#### Kasutajatugi, hooldustööd ja katkestused
+
+https://www.eesti.ee/est/riigiportaali_abi/info_e_teenuse_tegijale/teenuse_avamine_muutmine_ja_sulgemine/kasutajatugi_hooldustood_ja_katkestused
+
+- Teenusele osutab esmast kasutajatuge RIA. Kui kasutajatugi ei saa kasutajat kohe aidata, suunab ta küsimuse edasi teenuseomanikule. 
+- Kõikide RIA kasutajatoelt teenuse omanikule suunatud lõppkasutajate pöördumiste lahendused tuleb edastada ka RIA kasutajatoele. See tähendab, et kasutajale e-posti teel vastates tuleb edastada koopia RIA kasutajatoele (help@ria.ee) koos viitega pöördumise ID-numbrile.
+- RIA kasutajatoelt saadetud e-kirjadele tuleb edastada automaatvastus, mis sisaldab hiliseimat vastamistähtaega.
+
+#### Katkestused teenuse töös
+
+- Teenusega seotud hooldustöödest ja planeeritud katkestustest peab teenusepakkuja RIA kasutajatuge teavitama (lisaks RIHA kaudu edastatavale teatele teenuse kasutajatele) vähemalt 48 tundi enne katkestuse toimumist (nädalavahetusel ja/või esmaspäeval toimuvatest katkestustest tuleb teavitada hiljemalt reedel kell 10.00).
+- Katkestuse info peab olema selge, lõppkasutajale arusaadav ja sobilik riigiportaalis avaldamiseks.
+- Teenusega seotud planeerimata katkestustest peab teenusepakkuja RIA kasutajatuge aadressil help@ria.ee teavitama niipea kui võimalik, märkides võimalusel ära katkestuse eeldatava lõppaja.
+- RIA kasutajatugi teavitab teenusepakkujat riigiportaali üldistest hooldustöödest ja katkestustest teenusepakkuja edastatud e-posti listiaadressil vähemalt 48 tundi enne nende toimumist.
+
+#### Teenuse tööaeg ja katkestuste kestus
+
+- Teenuse tööaeg ja kasutajatoe aeg peab olema vähemalt E–R kl 9–17.
+- Teenuse tööajal planeeritud katkestuste maksimaalne kogukestus aastas võib olla kuni 24 tundi.
+- Teenuse ühe planeeritud katkestuse maksimaalne kestus võib olla kuni kaks tundi.
+- Soovituslikult võiks planeeritud katkestusi teenuse tööajal olla ühes kuus kaks.
+- Teenuse tööajal planeerimata katkestuste kogukestus aastas võib olla kuni 24 tundi.
+- Teenuse ühekordse planeerimata katkestuse kestus võib olla kuni 12 tundi.
+
 ### Rakenduse eemaldamine
 
 #### X-tee turvaserverisse paigaldatud rakenduse komponentide eemaldamine
@@ -238,7 +330,7 @@ Lisaks on eraldusfiltri komponendil olemas ka eraldi konfiguratsioonifail "dumon
 Andmesalvestaja konfigureerimiseks on vaja täiendavalt kindlaks määrata järgmised konfiguratsiooni elemendid:
 
 * Andmesalvestaja X-tee teenuse nimeruum. Kui on vaja kasutada vaikeväärtusest erinevat XML nimeruumi.
-* Andmebaasi ühenduse JNDI nimi. Juhul, kui soovitakse andmebaasi ühendus kirjeldata JNDI nime kaudu (vt täpsemalt https://wiki.eclipse.org/Jetty/Feature/JNDI). 
+* Andmebaasi ühenduse JNDI nimi. Juhul, kui soovitakse andmebaasi ühendus kirjeldada JNDI nime kaudu (vt täpsemalt https://wiki.eclipse.org/Jetty/Feature/JNDI). 
 * Andmebaasi ühendusstring. Juhul, kui soovitakse andmebaasi ühendus luua vahetult konfiguratsioonifailis kasutajatunnuse ja parooli ära näitamisega.
 
 
@@ -330,8 +422,12 @@ leidub väärtus, mis langeb sellega kokku, siis seda sõnumit ei logita.
 
 NB! Funktsiooni "inBlacklist" tuleb tingimata kasutada koos nimeruumile "http://x-road.eu/xsd/dumonitor.xsd" viitava prefiksiga ning see prefiks tuleb kirjeldada ka elemendi "namespaces" all. Vt näidet allpool. 
 
-Eraldusfiltri komponendil on vaikimisi elemendi "exclusions" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis
-elementi "exclusions" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
+Eraldusfiltri komponendil on vaikimisi elemendi "exclusions" sisuks allpool toodud näites näha olev sisu. Kui kasutaja poolt koostatud failis elementi "exclusions" ei leidu, siis kasutatakse vaikeväärtust, vastasel korral kasutatakse kasutaja poolt koostatud failis näidatut.
+
+Faili [dumonitor.properties](../filter/etc/dumonitor.properties) konfiguratsiooni element "dumonitor.blacklist" peab sisaldama väärtuseid 70000591, 70008747, 70005938, 70000349, 70000898 (Kaitsepolitseiamet, Politsei- ja Piirivalveamet, Teabeamet, Maksu- ja Tolliamet, Justiitsministeerium). Ehk:
+```
+dumonitor.blacklist=70000591, 70008747, 70005938, 70000349, 70000898
+```
 
 ##### Vaikeväärtuste kirjeldamine
 
@@ -404,11 +500,11 @@ Allpool on toodud näidis ühest võimalikust filtri konfiguratsiooni failist.
     <defaults>
         <sender>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sender>
         <receiver>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receiver>
-        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode<sendercode>
-        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode<receivercode>
-        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id<xroadrequestid>
-        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode<xroadservice>
-        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId<usercode>
+        <sendercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:memberCode</sendercode>
+        <receivercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:client/id:memberCode</receivercode>
+        <xroadrequestid>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:id</xroadrequestid>
+        <xroadservice>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode</xroadservice>
+        <usercode>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:userId</usercode>
     </defaults>
     <filters>
 		<filter>
@@ -422,6 +518,28 @@ Allpool on toodud näidis ühest võimalikust filtri konfiguratsiooni failist.
 		</filter>
     </filters>
 </filterConfiguration>
+```
+
+Filtri kirjeldamises peab arvestama, et väljal `personcode` on vaja isikukood esitada riigi prefiksiga. Kui päringus
+on aga isikukoodid ilma riigi prefiksita, siis tuleb riigi prefiks lisada XPath avaldise abil näiteks järgmiselt (eelmise
+näite baasilt):
+
+```xml
+<personcode>concat('EE',/SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse/replaceWithXPathToPersonCode)</personcode>
+```
+
+Samal ajal tuleks tähele panna, et eraldusfilter otsib vastavusi nii päringus kui ka vastuses. Ning juhul kui `personcode`
+välja otsimiseks kasutatud xpath avaldis leiab väärtuse ainult vastuses, siis päringu puhul `concat` liidab 'EE' tühja
+väärtusega ning tulemusena saab 'EE', mis omakorda on salvestatud andmesalvestajasse.
+
+Antud probleemi on võimalik lahendada määrates `<xpath>` elemendis, et antud filter kehtib vaid päringu või vastuse puhul.
+Näiteks järgmine `<xpath>` väärtus on tõene vaid päringute puhul:
+
+```xml
+<xpath>/SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceCode = 'replaceWithServiceCode'
+	and /SOAP-ENV:Envelope/SOAP-ENV:Header/xrd:service/id:serviceVersion = 'replaceWithServiceVersion'
+	and /SOAP-ENV:Envelope/SOAP-ENV:Body/pr:replaceWithServiceCodeResponse
+</xpath>
 ```
 
 ### Esitamise testrakenduse häälestamine
