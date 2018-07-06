@@ -9,7 +9,7 @@ Andmejälgija eesmärk on pakkuda kodanikule selget ülevaadet tema andmetega so
 
 RIA pakub andmekogu omanikule paindlikud standardkomponendid lahenduse tehniliseks teostuseks, võimaldades logida nii X-tee liiklust kui asutusesiseseid päringuid. Andmejälgija loob läbipaistvuse isikuandmete töötlemisel, parandades nii kodanike informeeritust kui abistades asutusi isikuandmete päringute selgitamisel.
 
-!(AJ/doc/img/AJ_2.PNG)
+![AJ_2](doc/img/AJ_2.PNG)
 
 Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md).
 
