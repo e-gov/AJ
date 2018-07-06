@@ -5,8 +5,11 @@ Andmejälgija / Personal Data Usage Monitor
 
 #### ET
 
-Andmejälgija tarkvara ("DUMonitor") eesmärk on pakkuda andmekogude haldajatele paindlikud standardkomponendid 
-isikuandmete töötlemise logimiseks ning nende faktide esitamiseks eesti.ee portaali kaudu.
+Andmejälgija eesmärk on pakkuda kodanikule selget ülevaadet tema andmetega sooritatud toimingutest, kuvades tervikliku ülevaate portaalis eesti.ee. 
+
+RIA pakub andmekogu omanikule paindlikud standardkomponendid lahenduse tehniliseks teostuseks, võimaldades logida nii X-tee liiklust kui asutusesiseseid päringuid. Andmejälgija loob läbipaistvuse isikuandmete töötlemisel, parandades nii kodanike informeeritust kui abistades asutusi isikuandmete päringute selgitamisel.
+
+
 
 Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md).
 
