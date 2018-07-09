@@ -13,9 +13,9 @@ RIA pakub andmekogu omanikule paindlikud standardkomponendid lahenduse tehnilise
 
 Andmejälgija pakub järgmisi funktsionaalsusi, ning võimaldab neist ka ainult valitute kasutamist ja teiste ignoreerimist:
 
-a) Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi: selleks kasutatakse eraldusfiltrit ja andmesalvestajat.
-b) X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu: nn kodaniku vaatamisrakendus.
-c) Asutuse sisekontrollija rakenduse REST liides ja veebiliides.
+* Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi: selleks kasutatakse **eraldusfiltrit** ja **andmesalvestajat**.
+* X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu: nn **kodaniku vaatamisrakendus**.
+* Asutuse **sisekontrollija rakenduse** REST liides ja veebiliides.
 
 ![AJ_3](doc/img/AJ_3.png)
 
