@@ -3,17 +3,19 @@
 Andmejälgija / Personal Data Usage Monitor
 =====================
 
-#### ET
+#### Ülevaade
 
 Andmejälgija eesmärk on pakkuda kodanikule selget ülevaadet tema andmetega sooritatud toimingutest, kuvades tervikliku ülevaate portaalis eesti.ee. 
 
 RIA pakub andmekogu omanikule paindlikud standardkomponendid lahenduse tehniliseks teostuseks, võimaldades logida nii X-tee liiklust kui asutusesiseseid päringuid. Andmejälgija loob läbipaistvuse isikuandmete töötlemisel, parandades nii kodanike informeeritust kui abistades asutusi isikuandmete päringute selgitamisel.
 
+#### Funktsionaalsus
+
 Andmejälgija pakub järgmisi funktsionaalsusi, ning võimaldab neist ka ainult valitute kasutamist ja teiste ignoreerimist:
 
-Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi: selleks kasutatakse eraldusfiltrit ja andmesalvestajat.
-X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu: nn kodaniku vaatamisrakendus.
-Asutuse sisekontrollija rakenduse REST liides ja veebiliides.
+a) Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi: selleks kasutatakse eraldusfiltrit ja andmesalvestajat.
+b) X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu: nn kodaniku vaatamisrakendus.
+c) Asutuse sisekontrollija rakenduse REST liides ja veebiliides.
 
 ![AJ_3](doc/img/AJ_3.png)
 
