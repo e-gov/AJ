@@ -17,7 +17,7 @@ Andmejälgija pakub järgmisi funktsionaalsusi, ning võimaldab neist ka ainult 
 * X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu: nn **kodaniku vaatamisrakendus**.
 * Asutuse **sisekontrollija rakenduse** REST liides ja veebiliides.
 
-![AJ_3](doc/img/AJ_3.png)
+![AJ_3](doc/img/AJ_4.png)
 
 Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md).
 
