@@ -21,7 +21,7 @@ Andmejälgija pakub järgmisi funktsionaalsusi, ning võimaldab neist ka ainult 
 
 Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md).
 
-Teabekiri ![Soovitusi Andmejälgija rakendamiseks](https://github.com/e-gov/AJ/blob/master/doc/Soovitusi%20Andmejalgija%20rakendamiseks.pdf)
+Teabekiri [Soovitusi Andmejälgija rakendamiseks](https://github.com/e-gov/AJ/blob/master/doc/Soovitusi%20Andmejalgija%20rakendamiseks.pdf)
 
 Andmejälgija on [MIT litsentsiga](LICENSE.txt) vabatarkvara.
 
