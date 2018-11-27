@@ -31,6 +31,6 @@ Personal Data Usage Monitor is a set of 4 microservice-style applications that, 
 
 [A brief architectural overview](https://github.com/e-gov/AJ/blob/master/preliminary/Overview.md).
 
-![AJ_3](doc/img/AJ_en.png)
+![AJ_3](doc/img/AJ_en.PNG)
 
 Personal Data Usage Monitor software is licenced with an MIT licence.
