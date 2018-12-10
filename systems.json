@@ -13,6 +13,6 @@
       "documentation": "https://github.com/e-gov/AJ",
       "name": "Andmejälgija",
       "shortname": "AJ",
-      "uri": "https://rawgit.com/e-gov/AJ/master/AJ.json"
+      "uri": "https://cdn.jsdelivr.net/gh/e-gov/AJ@master/AJ.json"
    }
 ]
