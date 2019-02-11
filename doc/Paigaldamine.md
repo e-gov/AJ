@@ -259,7 +259,7 @@ Soovitavalt tuleks sama alamsüsteemi nimetust kasutada kõikides X-tee keskkond
 - Andmejälgija teenuse avamine RIA-le.
   * Teenusepakkuja avab oma X-tee v6 toodangukeskkonna turvaserveris andmejälgija teenuse `findUsage` RIA alamsüsteemile: `EE : GOV : 70006317 : riigiportaal-citizen`.
 - Taotluse esitamine teenuse riigiportaalis avaldamiseks ja teenuse avaldamine
-  * Teenusepakkuja täidab andmejälgija teenuse registreerimise taotluse (https://www.ria.ee/public/Riigiportaal/aj_teenuse_taotlus.pdf).
+  * Teenusepakkuja täidab andmejälgija teenuse registreerimise taotluse (https://github.com/e-gov/AJ/blob/master/doc/aj_teenuse_taotlus.pdf).
   * Taotluse peab allkirjastama asutuse allkirjaõiguslik isik.
   * Taotlus tuleb edastada RIA kasutajatoe aadressile help@ria.ee. 
   * Kui teenus on riigiportaalis avaldatud, antakse sellest taotluse esitajale teada.
