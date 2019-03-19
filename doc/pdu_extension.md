@@ -2,7 +2,7 @@
 
 **Technical Specification**
 
-Version: 0.1.0  
+Version: 0.1.1  
 Doc. ID: PR-PDU
 
 ---
@@ -12,6 +12,7 @@ Doc. ID: PR-PDU
  Date       | Version | Description                                           | Author
  ---------- | ------- | ------------------------------------------------------|--------------------
  23.01.2019 | 0.1.0   | Initial version                                       | Vitali Stupin
+ 18.03.2019 | 0.1.1   | Added introduction                                    | Sander Randorg
  
 ## Table of Contents
 
