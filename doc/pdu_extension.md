@@ -13,6 +13,7 @@ Doc. ID: PR-PDU
  ---------- | ------- | ------------------------------------------------------|--------------------
  23.01.2019 | 0.1.0   | Initial version                                       | Vitali Stupin
  18.03.2019 | 0.1.1   | Added introduction                                    | Sander Randorg
+ 09.04.2019 | 0.2.0   | Reason changed to optional, comments for "hidden"     | Vitali Stupin
  
 ## Table of Contents
 
@@ -72,12 +73,12 @@ The following listing shows the header of the schema definition.
     xmlns="http://x-road.eu/xsd/pdu.xsd">
 ```
 
-The `PduType` complex type is used to describe personal data usage information. It consists of three elements – `reason`, `system` and `hidden` from which only `reason` is mandatory and others can be used for additional information.
+The `PduType` complex type is used to describe personal data usage information. It consists of three optional elements – `reason`, `system` and `hidden`.
 
 ```xml
 <xs:complexType name="PduType">
     <xs:sequence>
-        <xs:element minOccurs="1" ref="reason"/>
+        <xs:element minOccurs="0" ref="reason"/>
         <xs:element minOccurs="0" ref="system"/>
         <xs:element minOccurs="0" ref="hidden"/>
     </xs:sequence>
@@ -90,7 +91,7 @@ Element `reason` is used to provide a human-readable reason why this request was
 
 Element `system` is used to provide a human-readable name of system that performed the request.
 
-If boolean element `hidden` has value `true` then this request MUST be hidden from the person who's data was processed during this request. This feature can be used only if service consumer by law has rights to perform queries that cannot me monitored by Personal Data usage monitoring system.
+If boolean element `hidden` has value `true` then it indicates that this request MUST be hidden from the person who's data was processed during this request. This feature can be used only if service consumer by law has rights to perform queries that cannot be monitored by Personal Data usage monitoring system. Personal Data usage monitoring system MAY implement a whitelist for systems that are allowed to use request hiding or any other measures to prevent misuse of request hiding.
 
 ```xml
 <xs:element name="reason" type="xs:string"/>
