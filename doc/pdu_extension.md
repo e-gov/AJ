@@ -143,7 +143,7 @@ Table 1. Supported header fields
     </xs:element>
     <xs:complexType name="PduType">
         <xs:sequence>
-            <xs:element minOccurs="1" ref="reason"/>
+            <xs:element minOccurs="0" ref="reason"/>
             <xs:element minOccurs="0" ref="system"/>
             <xs:element minOccurs="0" ref="hidden"/>
         </xs:sequence>
