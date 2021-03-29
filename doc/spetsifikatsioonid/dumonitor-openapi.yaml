@@ -17,6 +17,16 @@ paths:
       description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks
       operationId: getPets
       parameters:
+      - name: X-Road-UserId
+        in: header
+        schema:
+          type: string
+          example: "EE12345678901"
+          description: Andmesubjekti isikukood peab olema lisatud X-Road päise sisse
+          externalDocs:
+            description: Täiendav informatsioon X-Road päiste kohta
+            url: 'https://x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html'
+        required: true
       - name: offset
         in: query
         description: Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 1).
