@@ -1,6 +1,6 @@
 ![EL Regionaalarengu Fond](doc/img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
-Andmejälgija / Data tracker
+Andmejälgija / Data Tracker
 =====================
 
 ### Andmejälgija üldine kirjeldus
