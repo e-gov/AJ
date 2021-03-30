@@ -314,21 +314,21 @@ X-Road REST json teenus on samaväärne SOAP teenusega, ning omab sarnased sisen
 ```yaml
 openapi: 3.0.0
 info:
-  description: Andmejälgija kasutusteabe küsimise teenus
+  description: Andmejälgija teenus, mille käest küsib eesti.ee andmekogus toimunud isikuandmete töötluse infot ehk kasutusteavet
   version: 1.0.0
-  title: Andmejälgija kasutusteabe
+  title: Andmejälgija kasutusteabe teenus
   contact:
     email: help@ria.ee
 tags:
 - name: usage
-  description: Andmejälgija kasutusteabe
+  description: Andmejälgija kasutusteave
 paths:
   /findUsage:
     get:
       tags:
       - usage
       summary: Kasutusteabe küsimine
-      description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks
+      description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks eesti.ee-s
       operationId: findUsage
       parameters:
       - name: X-Road-UserId
@@ -367,23 +367,23 @@ paths:
         '400':
           description: Päringu sisu ei vasta nõuetele
         '500':
-          description: Päringu täitmisel juhtus viga
+          description: Päringu täitmisel tekkis viga
 components:
   schemas:
     Usage:
       type: object
       properties:
         logtime:
-          description: Kirje ajamoment.
+          description: Kirje ajamoment
           type: string
           format: date-time
           example: "2021-01-31T10:20:30"
         action:
-          description: Menetluse/tegevuse inimmõistetav nimi.
+          description: Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust
           type: string
           example: "Isiku ees- ja perenime päring"
         receiver:
-          description: Asutuse kood, kellele isikuandmeid edastati.
+          description: Asutuse nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles
           type: string
-          example: "Riigiportaal"
+          example: "Tallinna Linnavalitsus"
 ```
