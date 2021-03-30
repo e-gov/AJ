@@ -27,7 +27,7 @@ Andmejälgija teenuse ehitamiseks on 2 meetodit
    Kuna andmekogud ja neid teenindavad infosüsteemid on väga erinevad, on praktikas reeglina mõistlik realiseerida Andmejälgija teenus iseseisvalt, vastavalt konkreetse süsteemi iseloomule ja nõuetele. Tihti on mõistlik aluseks võtta igas infosüsteemis olev logilahendus, mis talletab kõik isikuandmetega toimunud sündmused.
 
    X-teel avatava teenuse findUsage spetsifikatsioon
-   * Kasutusteabe esitamise protokoll (SOAP) - kirjutatud andmesalvesti seiskohast
+   * [Kasutusteabe esitamise protokoll (SOAP) - kirjutatud andmesalvesti seiskohast](https://github.com/e-gov/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
    * Kasutusteabe esitamise protokoll (REST) - eesti.ee tugi 2021 II+ kvartal
 
 2. Kasutada RIA poolt loodud standardkomponente (AS-IS põhimõttel, aktiivset arendust hetkel ei toimu)
