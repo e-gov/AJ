@@ -20,7 +20,7 @@ Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi p
 
 Andmejälgija teenuse ehitamiseks on 2 meetodit
 
-**1. Soovitatav: Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus**
+**1. Soovitatav: Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
 
    RIA vaatest on oluline, et kõik Andmejälgijat rakendavad andmekogud teeks seda samadel alustel, st rakendaks enda teenuse realiseerimisel Andmejälgija protokolli. Lihtsalt öeldes peab olema Andmejälgija teenus ehitatud RIA poolt pakutud spetsifikatsiooni põhjal, et oleks võimalik erinevate andmekogude Andmejälgija teenused eesti.ee portaalis sarnaselt kuvada.
 
