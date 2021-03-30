@@ -39,7 +39,9 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
   * [10\. Vastavusklausel](#10-vastavusklausel)
   * [11\. Vastavusmudel](#11-vastavusmudel)
     * [11\.1\. Kasutusteabe lugemise vastavus](#111-kasutusteabe-lugemise-vastavus)
-  * [12\. LISA: dumonitor\.wsdl](#12-lisa-dumonitorwsdl)
+  * [12\. X-Road REST protokolli tugi](#12-x-road-rest-protokolli-tugi)
+  * [13\. LISA: dumonitor\.wsdl](#13-lisa-dumonitorwsdl)
+  * [14\. LISA: dumonitor-openapi\.yaml](#14-lisa-dumonitor-openapiyaml)
 
 ## 3. Ülevaade
 
@@ -56,6 +58,8 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 Käesoleva kasutusteabe esitamise protokolli lahutamatuteks osadeks on:
 
 - Kasutusteabe esitamise protokolli WSDL-kirjeldus "dumonitor.wsdl" (esitatud lõpus lisana)
+
+- Kasutusteabe esitamise protokolli OPENAPI-kirjeldus "dumonitor-openapi.yaml" (esitatud lõpus lisana)
 
 Kasutusteabe esitamise protokolli normatiivsed viited:
 
@@ -157,7 +161,14 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
-## 12. LISA: dumonitor.wsdl
+## 12. X-Road REST protokolli tugi
+Andmejälgija näidislahendus ei toeta X-Road REST protokolli.
+
+Kuid vaatamata sellele X-Road REST protokolli kasutamine kasutusteabe edastamiseks on võimalik, ning kasutusteabe esitamise teenus portaalis Eesti.ee hakkab varsti seda toetama.
+
+X-Road REST json teenus on samaväärne SOAP teenusega, ning omab sarnased sisendid ja väljundid. Teenusekirjeldusega saab lähemalt tutvuda lõpus esitatud lisas.
+
+## 13. LISA: dumonitor.wsdl
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -297,4 +308,82 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
+```
+
+## 14. LISA: dumonitor-openapi.yaml
+```yaml
+openapi: 3.0.0
+info:
+  description: Andmejälgija kasutusteabe küsimise teenus
+  version: 1.0.0
+  title: Andmejälgija kasutusteabe
+  contact:
+    email: help@ria.ee
+tags:
+- name: usage
+  description: Andmejälgija kasutusteabe
+paths:
+  /findUsage:
+    get:
+      tags:
+      - usage
+      summary: Kasutusteabe küsimine
+      description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks
+      operationId: findUsage
+      parameters:
+      - name: X-Road-UserId
+        in: header
+        schema:
+          type: string
+          example: "EE12345678901"
+          description: Andmesubjekti isikukood peab olema lisatud X-Road päise sisse
+          externalDocs:
+            description: Täiendav informatsioon X-Road päiste kohta
+            url: 'https://x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html'
+        required: true
+      - name: offset
+        in: query
+        description: Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 1).
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Tagastata maksimaalselt näidatud arv kirjeid (vaikimisi tagastatakse maksimaalselt 100 kirjet).
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usage'
+        '400':
+          description: Päringu sisu ei vasta nõuetele
+        '500':
+          description: Päringu täitmisel juhtus viga
+components:
+  schemas:
+    Usage:
+      type: object
+      properties:
+        logtime:
+          description: Kirje ajamoment.
+          type: string
+          format: date-time
+          example: "2021-01-31T10:20:30"
+        action:
+          description: Menetluse/tegevuse inimmõistetav nimi.
+          type: string
+          example: "Isiku ees- ja perenime päring"
+        receiver:
+          description: Asutuse kood, kellele isikuandmeid edastati.
+          type: string
+          example: "Riigiportaal"
 ```
