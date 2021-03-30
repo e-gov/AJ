@@ -1,36 +1,44 @@
 ![EL Regionaalarengu Fond](doc/img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
-Andmejälgija / Personal Data Usage Monitor
+Andmejälgija / Data Tracker
 =====================
 
-#### Ülevaade
+### Andmejälgija üldine kirjeldus
 
-Andmejälgija eesmärk on pakkuda kodanikule selget ülevaadet tema andmetega sooritatud toimingutest, kuvades tervikliku ülevaate portaalis eesti.ee. 
+Andmejälgija on inimesele suunatud teenus eesti.ee-s, mille eesmärgiks on tagada isikuandmete töötluse läbipaistvus avalikus sektoris. Andmejälgija toetub iga andmekogu võimekusele enda sees toimuvat andmetöötlust logide kujul talletada, et seda hiljem inimesele ehk andmesubjektile eesti.ee-s oleva teenuse kaudu kuvada. 
 
-RIA pakub andmekogu omanikule paindlikud standardkomponendid lahenduse tehniliseks teostuseks, võimaldades logida nii X-tee liiklust kui asutusesiseseid päringuid. Andmejälgija loob läbipaistvuse isikuandmete töötlemisel, parandades nii kodanike informeeritust kui abistades asutusi isikuandmete päringute selgitamisel.
+Arhitektuurselt on tegemist täielikult hajusa süsteemiga, st inimesele kuvatav info pärineb otse Andmejälgija teenuse realiseerinud andmekogust. Eesti.ee teeb kasutaja soovil päringu igasse Andmejälgija teenusesse ning kuvab päringuvastuse ilma salvestamata välja.
 
-#### Funktsionaalsus
+![AJ_3](img/aj_model.PNG)
+### Andmejälgijas kajastuv info
 
-Andmejälgija pakub järgmisi funktsionaalsusi, ning võimaldab neist ka ainult valitute kasutamist ja teiste ignoreerimist:
+Andmejälgija peab inimesele kuvama infot nii andmekogus lokaalselt toimuvast andmetöötlusest (ametnike-töötajate tegevused isikuandmetega) kui ka ülevaadet sellest, kui andmeid on edastatud mõnele kolmandale osapoolele (üle X-tee teisele riigiasutusele, ettevõttele jm). 
 
-* Isikuandmete edastamise ja kasutamise logimine andmejälgija oma andmebaasi: selleks kasutatakse **eraldusfiltrit** ja **andmesalvestajat**.
-* X-tee teenuse kaudu kodanike päringutele vastamine eesti.ee veebilehe kaudu: nn **kodaniku vaatamisrakendus**.
-* Asutuse **sisekontrollija rakenduse** REST liides ja veebiliides.
+Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi projekteerides, arvestades vajadusega süsteemis toimuv andmetöötlus tulevikus inimeste jaoks läbipaistvaks ja arusaadavaks muuta. 
 
-![AJ_3](doc/img/AJ_4.png)
+### Andmejälgija teenus ja protokoll
 
-Põhjaliku info ning juhendid leiad [dokumentatsioonist](doc/README.md).
+Andmejälgija teenuse ehitamiseks on 2 meetodit
 
-Teabekiri [Soovitusi Andmejälgija rakendamiseks](https://github.com/e-gov/AJ/blob/master/doc/Soovitusi%20Andmejalgija%20rakendamiseks.pdf)
+**1. Soovitatav: Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
 
-Andmejälgija on [MIT litsentsiga](LICENSE.txt) vabatarkvara.
+   RIA vaatest on oluline, et kõik Andmejälgijat rakendavad andmekogud teeks seda samadel alustel, st rakendaks enda teenuse realiseerimisel Andmejälgija protokolli. Lihtsalt öeldes peab olema Andmejälgija teenus ehitatud RIA poolt pakutud spetsifikatsiooni põhjal, et oleks võimalik erinevate andmekogude Andmejälgija teenused eesti.ee portaalis sarnaselt kuvada.
 
-#### EN
+   Kuna andmekogud ja neid teenindavad infosüsteemid on väga erinevad, on praktikas reeglina mõistlik realiseerida Andmejälgija teenus iseseisvalt, vastavalt konkreetse süsteemi iseloomule ja nõuetele. Tihti on mõistlik aluseks võtta igas infosüsteemis olev logilahendus, mis talletab kõik isikuandmetega toimunud sündmused.
 
-Personal Data Usage Monitor is a set of 4 microservice-style applications that, when combined with each other and attached to X-Road can offer citizens a comprehensive view of how their personal data has been used by the government.
+   X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/e-gov/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
+   * Kasutusteabe esitamise protokoll (SOAP) - andmesalvesti rollis on mis tahes vastavaid andmeid sisaldav rätseplahendus
+   * Lisatud OpenAPI kirjeldus REST teenuse loomiseks - eesti.ee päringutugi tuleb 2021 II+ kvartal
 
-[A brief architectural overview](https://github.com/e-gov/AJ/blob/master/preliminary/Overview.md).
+2. Kasutada RIA poolt loodud standardkomponente (AS-IS põhimõttel, aktiivset arendust hetkel ei toimu)
 
-![AJ_3](doc/img/AJ_en.PNG)
+   RIA poolt 2016. aastal loodud standardkomponendid on võimelised eristama andmekogust väljuvaid X-tee päringute vastuseid, mis sisaldavad inimese isikukoodi, kattes ära osa Andmejälgija teenuse jaoks vajalikust funktsionaalsusest. Siiski tuleb seda vaadelda kui ainult osa ühes andmekogus toimuvast andmetöötlusest. Andmekogude puhul, kus andmevahetus üle X-tee on minimaalne, kuid isikuandmeid töödeldakse lokaalselt, jätaks ainult standardkomponentide kasutamine andmesubjektile väära mulje vähesest andmetöötlusest.
 
-Personal Data Usage Monitor software is licenced with an MIT licence.
+   Kuna lokaalne andmetöötlus ning üle X-tee toimuv andmetöötlus on tihti praktikas läbipõimunud ning kõigi logide põhjal Andmejälgija funktsionaalsuse loomine hõlmab endas ka X-tee päringuid, on standardkomponentide kasutus jäänud väikseks. Sellepärast pakub RIA hetkel neid komponente AS-IS põhimõttel ning aktiivselt arendusse vahendeid ei suuna.
+
+Standardkomponentide dokumentatsioon https://github.com/e-gov/AJ/blob/master/doc/README.md
+
+### Kontakt ja täpsem info
+
+Kõigi küsimuste puhul palume võtta ühendust Andmejälgija tootejuhiga Riigi Infosüsteemi Ametis:
+Sander Randorg sander.randorg@ria.ee

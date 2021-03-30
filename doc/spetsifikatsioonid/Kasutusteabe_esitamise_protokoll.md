@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.2.1, 29.09.2016
+Versioon 1.3, 30.03.2021
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -18,6 +18,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist | 
 | 1.2 | 03.07.2016 | Ivo Mehide | WSDL viidud vastavusse lahenduses kasutatavaga | 
 | 1.2.1 | 29.09.2016 | Priit Parmakson | Lisatud nõue esitada kirjed ajamomendi kahanemise järjekorras (vt jaotis 8.1.4). Vt Issue 2 |
+| 1.3 | 30.03.2021 | Vitali Stupin, Sander Randorg | Lisatud OpenAPI teenuse kirjeldus |
 
 ## 2. Sisukord
 
@@ -39,7 +40,9 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
   * [10\. Vastavusklausel](#10-vastavusklausel)
   * [11\. Vastavusmudel](#11-vastavusmudel)
     * [11\.1\. Kasutusteabe lugemise vastavus](#111-kasutusteabe-lugemise-vastavus)
-  * [12\. LISA: dumonitor\.wsdl](#12-lisa-dumonitorwsdl)
+  * [12\. X-Road REST protokolli tugi](#12-x-road-rest-protokolli-tugi)
+  * [13\. LISA: dumonitor\.wsdl](#13-lisa-dumonitorwsdl)
+  * [14\. LISA: dumonitor-openapi\.yaml](#14-lisa-dumonitor-openapiyaml)
 
 ## 3. Ülevaade
 
@@ -56,6 +59,8 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 Käesoleva kasutusteabe esitamise protokolli lahutamatuteks osadeks on:
 
 - Kasutusteabe esitamise protokolli WSDL-kirjeldus "dumonitor.wsdl" (esitatud lõpus lisana)
+
+- Kasutusteabe esitamise protokolli OpenAPI-kirjeldus "dumonitor-openapi.yaml" (esitatud lõpus lisana)
 
 Kasutusteabe esitamise protokolli normatiivsed viited:
 
@@ -157,7 +162,14 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
-## 12. LISA: dumonitor.wsdl
+## 12. X-Road REST protokolli tugi
+Andmejälgija standardkomponendid ei toeta X-Road REST protokolli.
+
+Kuid vaatamata sellele on X-Road REST protokolli kasutamine kasutusteabe edastamiseks võimalik, ning kasutusteabe esitamise teenus portaalis Eesti.ee hakkab varsti seda toetama.
+
+X-Road REST json teenus on samaväärne SOAP teenusega, ning omab sarnaseid sisendeid ja väljundeid. Teenusekirjeldusega saab lähemalt tutvuda lõpus esitatud lisas.
+
+## 13. LISA: dumonitor.wsdl
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -297,4 +309,82 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
+```
+
+## 14. LISA: dumonitor-openapi.yaml
+```yaml
+openapi: 3.0.0
+info:
+  description: Andmejälgija teenus, mille käest küsib eesti.ee andmekogus toimunud isikuandmete töötluse infot ehk kasutusteavet
+  version: 1.0.0
+  title: Andmejälgija kasutusteabe teenus
+  contact:
+    email: help@ria.ee
+tags:
+- name: usage
+  description: Andmejälgija kasutusteave
+paths:
+  /findUsage:
+    get:
+      tags:
+      - usage
+      summary: Kasutusteabe küsimine
+      description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks eesti.ee-s
+      operationId: findUsage
+      parameters:
+      - name: X-Road-UserId
+        in: header
+        schema:
+          type: string
+          example: "EE12345678901"
+          description: Andmesubjekti isikukood peab olema lisatud X-Road päise sisse
+          externalDocs:
+            description: Täiendav informatsioon X-Road päiste kohta
+            url: 'https://x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html'
+        required: true
+      - name: offset
+        in: query
+        description: Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 1).
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Tagastata maksimaalselt näidatud arv kirjeid (vaikimisi tagastatakse maksimaalselt 100 kirjet).
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usage'
+        '400':
+          description: Päringu sisu ei vasta nõuetele
+        '500':
+          description: Päringu täitmisel tekkis viga
+components:
+  schemas:
+    Usage:
+      type: object
+      properties:
+        logtime:
+          description: Kirje ajamoment
+          type: string
+          format: date-time
+          example: "2021-01-31T10:20:30"
+        action:
+          description: Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust
+          type: string
+          example: "Isiku ees- ja perenime päring"
+        receiver:
+          description: Asutuse nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles
+          type: string
+          example: "Tallinna Linnavalitsus"
 ```
