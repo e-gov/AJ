@@ -15,7 +15,7 @@ paths:
       - usage
       summary: Kasutusteabe küsimine
       description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks
-      operationId: getPets
+      operationId: findUsage
       parameters:
       - name: X-Road-UserId
         in: header
