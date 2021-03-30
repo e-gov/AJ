@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.2.1, 29.09.2016
+Versioon 1.3, 30.03.2021
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -18,6 +18,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist | 
 | 1.2 | 03.07.2016 | Ivo Mehide | WSDL viidud vastavusse lahenduses kasutatavaga | 
 | 1.2.1 | 29.09.2016 | Priit Parmakson | Lisatud nõue esitada kirjed ajamomendi kahanemise järjekorras (vt jaotis 8.1.4). Vt Issue 2 |
+| 1.3 | 30.03.2021 | Vitali Stupin, Sander Randorg | Lisatud OpenAPI teenuse kirjeldus |
 
 ## 2. Sisukord
 
@@ -59,7 +60,7 @@ Käesoleva kasutusteabe esitamise protokolli lahutamatuteks osadeks on:
 
 - Kasutusteabe esitamise protokolli WSDL-kirjeldus "dumonitor.wsdl" (esitatud lõpus lisana)
 
-- Kasutusteabe esitamise protokolli OPENAPI-kirjeldus "dumonitor-openapi.yaml" (esitatud lõpus lisana)
+- Kasutusteabe esitamise protokolli OpenAPI-kirjeldus "dumonitor-openapi.yaml" (esitatud lõpus lisana)
 
 Kasutusteabe esitamise protokolli normatiivsed viited:
 
@@ -162,11 +163,11 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 ## 12. X-Road REST protokolli tugi
-Andmejälgija näidislahendus ei toeta X-Road REST protokolli.
+Andmejälgija standardkomponendid ei toeta X-Road REST protokolli.
 
-Kuid vaatamata sellele X-Road REST protokolli kasutamine kasutusteabe edastamiseks on võimalik, ning kasutusteabe esitamise teenus portaalis Eesti.ee hakkab varsti seda toetama.
+Kuid vaatamata sellele on X-Road REST protokolli kasutamine kasutusteabe edastamiseks võimalik, ning kasutusteabe esitamise teenus portaalis Eesti.ee hakkab varsti seda toetama.
 
-X-Road REST json teenus on samaväärne SOAP teenusega, ning omab sarnased sisendid ja väljundid. Teenusekirjeldusega saab lähemalt tutvuda lõpus esitatud lisas.
+X-Road REST json teenus on samaväärne SOAP teenusega, ning omab sarnaseid sisendeid ja väljundeid. Teenusekirjeldusega saab lähemalt tutvuda lõpus esitatud lisas.
 
 ## 13. LISA: dumonitor.wsdl
 
