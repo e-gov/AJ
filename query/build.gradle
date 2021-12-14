@@ -1,4 +1,4 @@
-version '1.0.0'
+version '1.0.1'
 
 apply plugin: 'java'
 apply plugin: 'checkstyle'
@@ -14,8 +14,8 @@ checkstyle {
 dependencies {
 	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
 
-	compile 'org.apache.logging.log4j:log4j-api:2.3'
-	compile 'org.apache.logging.log4j:log4j-core:2.3'
+	compile 'org.apache.logging.log4j:log4j-api:2.16.0'
+	compile 'org.apache.logging.log4j:log4j-core:2.16.0'
 	compile project(':dumonitor-common')
 	compile 'org.eclipse.jetty:jetty-servlets:8.0.4.v20111024'
 
