@@ -16,7 +16,7 @@ if [ ! -f "build/libs/$projectName.war" ]; then
 fi
 
 # Uuendame debian-i kirjeldusfailides versiooninumbri info:
-perl -pi -e 's{^('"$projectName"'\s+)\([^)]+\)(\s+unstable;)}{$1('"$version"'-1)$2}' etc/debian/changelog
+#perl -pi -e 's{^('"$projectName"'\s+)\([^)]+\)(\s+unstable;)}{$1('"$version"'-1)$2}' etc/debian/changelog
 
 
 (cd etc ; debuild --no-tgz-check -us -uc || exit $?)

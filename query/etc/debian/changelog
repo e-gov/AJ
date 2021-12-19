@@ -1,10 +1,16 @@
+dumonitor-query (1.0.2-1) unstable; urgency=low
+
+  * Upgrading Log4J to version 2.17.0
+
+ -- Vitali Stupin <vitali.stupin@ria.ee>  Tue, 14 Dec 2021 09:40:00 +0200
+
 dumonitor-query (1.0.1-1) unstable; urgency=low
 
   * Upgrading Log4J to version 2.16.0
 
  -- Vitali Stupin <vitali.stupin@ria.ee>  Tue, 14 Dec 2021 12:00:00 +0200
 
-dumonitor-query (1.0.1-1) unstable; urgency=low
+dumonitor-query (1.0.0-1) unstable; urgency=low
 
   * Initial release
 
