@@ -41,4 +41,4 @@ Standardkomponentide dokumentatsioon https://github.com/e-gov/AJ/blob/master/doc
 ### Kontakt ja täpsem info
 
 Kõigi küsimuste puhul palume võtta ühendust Andmejälgija tootejuhiga Riigi Infosüsteemi Ametis:
-Sander Randorg sander.randorg@ria.ee
+Piret Pärna piret.parna@ria.ee
