@@ -12,15 +12,15 @@ checkstyle {
 }
 
 dependencies {
-	providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+	implementation 'javax.servlet:javax.servlet-api:3.0.1'
 
-	compile 'org.apache.logging.log4j:log4j-api:2.17.1'
-	compile 'org.apache.logging.log4j:log4j-core:2.17.1'
-	compile project(':dumonitor-common')
-	compile 'org.eclipse.jetty:jetty-servlets:8.0.4.v20111024'
+	implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+	implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+	implementation project(':dumonitor-common')
+	implementation 'org.eclipse.jetty:jetty-servlets:8.0.4.v20111024'
 
-	testCompile 'junit:junit:4.12'
-	testCompile 'org.mockito:mockito-all:1.10.18'
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'org.mockito:mockito-all:1.10.18'
 }
 
 license {

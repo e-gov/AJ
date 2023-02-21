@@ -12,19 +12,19 @@ checkstyle {
 }
 
 dependencies {
-    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+    implementation 'javax.servlet:javax.servlet-api:3.0.1'
 
-    compile 'org.slf4j:slf4j-api:1.7.18'
-    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
-    compile 'org.apache.logging.log4j:log4j-core:2.17.1'
-    compile 'com.sun.xml.messaging.saaj:saaj-impl:1.3.25'
-    compile 'com.google.code.gson:gson:2.6.2'
+    implementation 'org.slf4j:slf4j-api:1.7.18'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    implementation 'com.sun.xml.messaging.saaj:saaj-impl:1.3.25'
+    implementation 'com.google.code.gson:gson:2.6.2'
 
-	testCompile 'junit:junit:4.12'
-	testCompile 'org.mockito:mockito-all:1.10.18'
-    testCompile 'org.eclipse.jetty.aggregate:jetty-all:8.1.19.v20160209'
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'org.mockito:mockito-all:1.10.18'
+    testImplementation 'org.eclipse.jetty.aggregate:jetty-all:8.1.19.v20160209'
     
-    compile project(':dumonitor-common')
+    implementation project(':dumonitor-common')
 }
 
 license {

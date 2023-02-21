@@ -10,12 +10,11 @@ checkstyle {
 }
 
 dependencies {
-    compileOnly 'javax.servlet:javax.servlet-api:3.0.1'
-
-    compile 'org.slf4j:slf4j-api:1.7.18'
-    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
-    compile 'org.apache.logging.log4j:log4j-core:2.17.1'
-    compile 'com.google.code.gson:gson:2.6.2'
+    implementation 'javax.servlet:javax.servlet-api:3.0.1'
+    implementation 'org.slf4j:slf4j-api:1.7.18'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    implementation 'com.google.code.gson:gson:2.6.2'
 }
 
 license {

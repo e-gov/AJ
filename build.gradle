@@ -4,9 +4,6 @@ plugins {
     id 'com.github.hierynomus.license' version '0.11.0'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
-}
 
 allprojects {
 	group 'ee.ria'

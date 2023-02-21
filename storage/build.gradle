@@ -12,20 +12,20 @@ checkstyle {
 }
 
 dependencies {
-    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+    implementation 'javax.servlet:javax.servlet-api:3.0.1'
 
-    compile 'org.slf4j:slf4j-api:1.7.18'
-    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
-    compile 'org.apache.logging.log4j:log4j-core:2.17.1'
-	compile 'org.json:json:20160212'
-	compile 'org.postgresql:postgresql:9.4.1208.jre6'
+    implementation 'org.slf4j:slf4j-api:1.7.18'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+	implementation 'org.json:json:20160212'
+	implementation 'org.postgresql:postgresql:9.4.1208.jre6'
 
-    compile project(':dumonitor-common')
+    implementation project(':dumonitor-common')
 
-	testCompile 'junit:junit:4.12'
-	testCompile 'org.mockito:mockito-all:1.10.18'
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'org.mockito:mockito-all:1.10.18'
 	
-	 compile project(':dumonitor-common')
+	 implementation project(':dumonitor-common')
 }
 
 license {
