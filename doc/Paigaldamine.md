@@ -34,7 +34,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
       * [Andmebaasi skeemi tekitamine](#andmebaasi-skeemi-tekitamine)
     * [MISP2 X\-forms faili paigaldamine](#misp2-x-forms-faili-paigaldamine)
     * [Andmejälgija teenuse avaldamine riigiportaalis](#andmejälgija-teenuse-avaldamine-riigiportaalis)
-      * [Andmejälgija teenuse testimine riigiportaali partnerite arenduskeskkonnas www.koolitus.eesti.ee](#andmejälgija-teenuse-testimine-riigiportaali-partnerite-arenduskeskkonnas-wwwkoolituseestiee)
+      * [Andmejälgija teenuse testimine riigiportaali partnerite arenduskeskkonnas www.stage.eesti.ee](#andmejälgija-teenuse-testimine-riigiportaali-partnerite-arenduskeskkonnas-wwwstageeestiee)
       * [Andmejälgija teenuse avaldamine riigiportaali toodangukeskkonnas](#andmejälgija-teenuse-avaldamine-riigiportaali-toodangukeskkonnas)
       * [Kasutajatugi, hooldustööd ja katkestused](#kasutajatugi-hooldustööd-ja-katkestused)
       * [Katkestused teenuse töös](#katkestused-teenuse-töös)
@@ -228,45 +228,37 @@ X-tee v6 erinevates keskkondades olemas olevate asutuste teenuste kohta saab inf
 
 Soovitavalt tuleks sama alamsüsteemi nimetust kasutada kõikides X-tee keskkondades.
 
-#### Andmejälgija teenuse testimine riigiportaali partnerite arenduskeskkonnas www.koolitus.eesti.ee
+#### Andmejälgija teenuse testimine riigiportaali partnerite arenduskeskkonnas www.stage.eesti.ee
 
 - Alamsüsteemi loomine ja registreerimine (vajadusel)
   * Andmejälgija teenust võib osutada mõne olemasoleva alamsüsteemi kaudu.
-  * Kui teenusepakkuja otsustab andmejälgija teenuse pakkumiseks luua eraldi alamsüsteemi, tuleb see oma X-tee arendus- või testkeskkonna turvaserveri kaudu registreerimisele esitada.
+  * Kui teenusepakkuja otsustab andmejälgija teenuse pakkumiseks luua eraldi alamsüsteemi, tuleb see oma X-tee testkeskkonna turvaserveri kaudu registreerimisele esitada.
   * X-tee keskus rahuldab alamsüsteemi taotluse üldjuhul paari tööpäeva jooksul. Turvaserveri kasutajaliideses annab sellest märku alamsüsteemi juures olev märge 'Registered'.
 - Andmejälgija teenuse avamine RIA-le
-  * Teenusepakkuja peab oma X-tee v6 arendus- või testkeskkonna turvaserveris avama RIA-le andmejälgija teenuse `findUsage`:
-    + arenduskeskkonnas alamsüsteemile: `ee-dev : GOV : 70006317 : riigiportaal-citizen`,
+  * Teenusepakkuja peab oma X-tee v6 testkeskkonna turvaserveris avama RIA-le andmejälgija teenuse `findUsage`:
     + testkeskkonnas alamsüsteemile: `ee-test : GOV : 70006317 : riigiportaal-citizen`.
-- Teenuse avaldamine ja testimine www.koolitus.eesti.ee keskkonnas.
-  * Teenusepakkuja edastab RIA kasutajatoele (help@ria.ee) soovi hakata partnerite arenduskeskkonnas teenust testima. Sealhulgas tuleb nimetada:
-    + X-tee keskkond (arendus- või testkeskkond),
-    + alamsüsteemi nimi, mille vahendusel teenust pakutakse,
-    + www.koolitus.eesti.ee keskkonnale ligipääsude loomiseks testijate andmed (kui neid pole varem taotletud):
-      - nimi
-      - isikukood
-      - asutus
-  * Riigiportaali teenusehaldur lisab seejärel www.koolitus.eesti.ee keskkonnas teenuse vormi, testib selle toimimist ning annab teenusepakkujale teada, kui see võib asuda ka ise testima.
+- Teenuse avaldamine ja testimine www.stage.eesti.ee keskkonnas.
+  * Teenusepakkuja edastab RIA kasutajatoele (help@ria.ee) taotluse ja lepingu andmejälgija kasutamiseks
+    + Teenusepakkuja täidab andmejälgija teenuse registreerimise taotluse (https://github.com/e-gov/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx) ja lepingu (https://github.com/e-gov/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx).
+    + Taotluse ja lepingu peab allkirjastama asutuse allkirjaõiguslik isik.
+    + Taotlus ja leping tuleb edastada RIA kasutajatoe aadressile help@ria.ee. 
+  * Teenusepakkuja saadab RIA kasutajatoele (help@ria.ee) testija(te) IP-aadress(id), et saaksime tekitada ligipääsu stage riigiportaali. 
+  * Teenusepakkuja lisab testandmed Smart-ID testisikukoodile 30303039914.
+  * Riigiportaali teenusehaldur lisab seejärel www.stage.eesti.ee keskkonnas teenuse vormi, testib selle toimimist ning annab teenusepakkujale teada, kui see võib asuda ka ise testima.
 
 #### Andmejälgija teenuse avaldamine riigiportaali toodangukeskkonnas
 
-- Alamsüsteemi loomine ja registreerimine (vajadusel); teenuse info lisamine RIHAs
+- Alamsüsteemi loomine ja registreerimine (vajadusel); teenuse info lisamine x-tee iseteeninduses (x-tee.ee)
   * Andmejälgija teenust võib osutada mõne olemasoleva alamsüsteemi kaudu.
-  * Kui teenusepakkuja otsustab andmejälgija teenuse pakkumiseks luua eraldi alamsüsteemi, tuleb see RIHA keskkonnas ja oma X-tee toodangukeskkonna turvaserveri kaudu registreerimisele esitada (https://moodle.ria.ee/mod/page/view.php?id=288 p.4).
+  * Kui teenusepakkuja otsustab andmejälgija teenuse pakkumiseks luua eraldi alamsüsteemi, tuleb see oma X-tee toodangukeskkonna turvaserveri kaudu registreerimisele esitada (https://x-tee.ee/docs/live/xroad/ug-ss_x-road_7_security_server_user_guide.html#42-adding-a-security-server-client).
     + X-tee keskus rahuldab alamsüsteemi taotluse üldjuhul paari tööpäeva jooksul, sellest antakse teada RIHAs alamsüsteemi juures märgitud kontaktisikule.
-  * Teenusepakkuja lisab RIHAs alamsüsteemile teenuse info:
-    + infosüsteemi ülem laadib RIHAs alamsüsteemi teenuste vaates üles teenuse WSDLi (nupp 'Laadi infosüsteemi X-tee v6 keskkonna teenuste WSDL')
+  * Teenusepakkuja lisab X-tee iseteeninduses (x-tee.ee) alamsüsteemile teenuse info
 - Andmejälgija teenuse avamine RIA-le.
   * Teenusepakkuja avab oma X-tee v6 toodangukeskkonna turvaserveris andmejälgija teenuse `findUsage` RIA alamsüsteemile: `EE : GOV : 70006317 : riigiportaal-citizen`.
-- Taotluse esitamine teenuse riigiportaalis avaldamiseks ja teenuse avaldamine
-  * Teenusepakkuja täidab andmejälgija teenuse registreerimise taotluse (https://github.com/e-gov/AJ/blob/master/doc/aj_teenuse_taotlus.pdf).
-  * Taotluse peab allkirjastama asutuse allkirjaõiguslik isik.
-  * Taotlus tuleb edastada RIA kasutajatoe aadressile help@ria.ee. 
-  * Kui teenus on riigiportaalis avaldatud, antakse sellest taotluse esitajale teada.
+- Kui teenusepakkuja on arendustega lõpule jõudnud ja soovib toodangukeskkonda liikuda oma andmejälgijaga, siis edastab selle soovi RIA kasutajatoele (help@ria.ee)
+  * Riigiportaali teenusehaldur lisab seejärel www.eesti.ee keskkonnas teenuse vormi ja annab teenusepakkujale teada, kui see on lisatud.
 
 #### Kasutajatugi, hooldustööd ja katkestused
-
-https://www.eesti.ee/est/riigiportaali_abi/info_e_teenuse_tegijale/teenuse_avamine_muutmine_ja_sulgemine/kasutajatugi_hooldustood_ja_katkestused
 
 - Teenusele osutab esmast kasutajatuge RIA. Kui kasutajatugi ei saa kasutajat kohe aidata, suunab ta küsimuse edasi teenuseomanikule. 
 - Kõikide RIA kasutajatoelt teenuse omanikule suunatud lõppkasutajate pöördumiste lahendused tuleb edastada ka RIA kasutajatoele. See tähendab, et kasutajale e-posti teel vastates tuleb edastada koopia RIA kasutajatoele (help@ria.ee) koos viitega pöördumise ID-numbrile.
