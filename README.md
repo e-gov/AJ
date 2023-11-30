@@ -28,7 +28,7 @@ Andmejälgija teenuse ehitamiseks on 2 meetodit
 
    X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/e-gov/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
    * Kasutusteabe esitamise protokoll (SOAP) - andmesalvesti rollis on mis tahes vastavaid andmeid sisaldav rätseplahendus
-   * Lisatud OpenAPI kirjeldus REST teenuse loomiseks - eesti.ee päringutugi tuleb 2021 II+ kvartal
+   * Lisatud OpenAPI kirjeldus REST teenuse loomiseks - eesti.ee päringutugi tuleb 2024 I+ kvartal
 
 2. Kasutada RIA poolt loodud näidislahendus (AS-IS põhimõttel)
 
