@@ -18,9 +18,7 @@ Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi p
 
 ### Andmejälgija teenus ja protokoll
 
-Andmejälgija teenuse ehitamiseks on 2 meetodit
-
-**1. Soovitatav: Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
+**Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
 
    RIA vaatest on oluline, et kõik Andmejälgijat rakendavad andmekogud teeks seda samadel alustel, st rakendaks enda teenuse realiseerimisel Andmejälgija protokolli. Lihtsalt öeldes peab olema Andmejälgija teenus ehitatud RIA poolt pakutud spetsifikatsiooni põhjal, et oleks võimalik erinevate andmekogude Andmejälgija teenused eesti.ee portaalis sarnaselt kuvada.
 
@@ -29,14 +27,6 @@ Andmejälgija teenuse ehitamiseks on 2 meetodit
    X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/e-gov/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
    * Kasutusteabe esitamise protokoll (SOAP) - andmesalvesti rollis on mis tahes vastavaid andmeid sisaldav rätseplahendus
    * Lisatud OpenAPI kirjeldus REST teenuse loomiseks - eesti.ee päringutugi tuleb 2024 I+ kvartal
-
-2. Kasutada RIA poolt loodud näidislahendus (AS-IS põhimõttel)
-
-   RIA poolt 2016. aastal loodud näidislahendus on võimelised eristama andmekogust väljuvaid X-tee päringute vastuseid, mis sisaldavad inimese isikukoodi, kattes ära osa Andmejälgija teenuse jaoks vajalikust funktsionaalsusest. Siiski tuleb seda vaadelda kui ainult osa ühes andmekogus toimuvast andmetöötlusest. Andmekogude puhul, kus andmevahetus üle X-tee on minimaalne, kuid isikuandmeid töödeldakse lokaalselt, jätaks ainult näidislahenduse kasutamine andmesubjektile väära mulje vähesest andmetöötlusest.
-
-   Kuna lokaalne andmetöötlus ning üle X-tee toimuv andmetöötlus on tihti praktikas läbipõimunud ning kõigi logide põhjal Andmejälgija funktsionaalsuse loomine hõlmab endas ka X-tee päringuid, ei ole näidislahenduse parim viis andmejälgijas rakendada. Sellepärast pakub RIA hetkel neid komponente AS-IS põhimõttel ning aktiivselt arendusse vahendeid ei suuna.
-
-Näidiskomponentide dokumentatsioon https://github.com/e-gov/AJ/blob/master/doc/README.md
 
 ### Kontakt ja täpsem info
 
