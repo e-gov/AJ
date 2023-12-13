@@ -15,8 +15,5 @@ ning ei ole tarkvara kasutuselevõtuks või arendamiseks otseselt vajalikud:
 
 * [Spetsifikatsioonid](spetsifikatsioonid/README.md)  
 
-Testimisjuhendid on vajalikud ühiktestide süsteemi kasutamiseks, mitte
-aga paigaldamiseks või arendamiseks:
-
 
 ![](img/EL_Regionaalarengu_Fond_horisontaalne.jpg "Euroopa Liit | Euroopa Regionaalarengu Fond | Eesti tuleviku heaks")
