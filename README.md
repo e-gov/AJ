@@ -30,5 +30,4 @@ Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi p
 
 ### Kontakt ja täpsem info
 
-Kõigi küsimuste puhul palume võtta ühendust Andmejälgija tootejuhiga Riigi Infosüsteemi Ametis:
-Piret Pärna piret.parna@ria.ee
+Kõigi küsimuste puhul palume võtta ühendust Riigi Infosüsteemi Ameti kasutajatoega help@ria.ee
