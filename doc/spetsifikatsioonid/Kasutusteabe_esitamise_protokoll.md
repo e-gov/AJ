@@ -18,7 +18,6 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.1 | 13.06.2016 | Tanel Tammet | Uuendused ja täpsustused peale süsteemi valmimist | 
 | 1.2 | 03.07.2016 | Ivo Mehide | WSDL viidud vastavusse lahenduses kasutatavaga | 
 | 1.2.1 | 29.09.2016 | Priit Parmakson | Lisatud nõue esitada kirjed ajamomendi kahanemise järjekorras (vt jaotis 8.1.4). Vt Issue 2 |
-| 1.3 | 30.03.2021 | Vitali Stupin, Sander Randorg | Lisatud OpenAPI teenuse kirjeldus |
 
 ## 2. Sisukord
 
