@@ -162,11 +162,7 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 ## 12. X-Road REST protokolli tugi
-Andmejälgija standardkomponendid ei toeta X-Road REST protokolli.
-
-Kuid vaatamata sellele on X-Road REST protokolli kasutamine kasutusteabe edastamiseks võimalik, ning kasutusteabe esitamise teenus portaalis Eesti.ee hakkab varsti seda toetama.
-
-X-Road REST json teenus on samaväärne SOAP teenusega, ning omab sarnaseid sisendeid ja väljundeid. Teenusekirjeldusega saab lähemalt tutvuda lõpus esitatud lisas.
+Andmejälgija standardkomponendid ei toeta X-Road REST protokolli. Tugi tuleb millalgi tulevikus.
 
 ## 13. LISA: dumonitor.wsdl
 
