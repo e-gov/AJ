@@ -162,7 +162,8 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 ## 12. X-Road REST protokolli tugi
-Andmejälgija standardkomponendid ei toeta X-Road REST protokolli. Tugi tuleb millalgi tulevikus.
+Andmejälgija näidiskomponendid ei toeta X-Road REST protokolli. 
+Eesti.ee andmejälgija rakendusele tuleb REST tugi millalgi tulevikus.
 
 ## 13. LISA: dumonitor.wsdl
 
