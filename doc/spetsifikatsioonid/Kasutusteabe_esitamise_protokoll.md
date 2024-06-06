@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.3, 30.03.2021
+Versioon 1.3.1, 30.05.2024
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -19,6 +19,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.2 | 03.07.2016 | Ivo Mehide | WSDL viidud vastavusse lahenduses kasutatavaga | 
 | 1.2.1 | 29.09.2016 | Priit Parmakson | Lisatud nõue esitada kirjed ajamomendi kahanemise järjekorras (vt jaotis 8.1.4). Vt Issue 2 |
 | 1.3 | 30.03.2021 | Vitali Stupin, Sander Randorg | Lisatud OpenAPI teenuse kirjeldus |
+| 1.3.1 | 30.05.2024 | Siim-Sander Virula | Eemaldatud mitterelevantne OpenAPI kirjeldus |
 
 ## 2. Sisukord
 
@@ -162,11 +163,8 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 - Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 ## 12. X-Road REST protokolli tugi
-Andmejälgija standardkomponendid ei toeta X-Road REST protokolli.
-
-Kuid vaatamata sellele on X-Road REST protokolli kasutamine kasutusteabe edastamiseks võimalik, ning kasutusteabe esitamise teenus portaalis Eesti.ee hakkab varsti seda toetama.
-
-X-Road REST json teenus on samaväärne SOAP teenusega, ning omab sarnaseid sisendeid ja väljundeid. Teenusekirjeldusega saab lähemalt tutvuda lõpus esitatud lisas.
+Andmejälgija näidiskomponendid ei toeta X-Road REST protokolli. 
+Eesti.ee andmejälgija rakendusele tuleb REST tugi millalgi tulevikus.
 
 ## 13. LISA: dumonitor.wsdl
 
