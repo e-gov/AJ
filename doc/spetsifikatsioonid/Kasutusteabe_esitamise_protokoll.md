@@ -118,7 +118,7 @@ Päringu sisendis on järgmised elemendid:
 
 | Element | Andmetüüp | Kohustuslik | Kirjeldus |
 | --- | --- | --- | --- |
-| offset | int | ei | Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 1). |
+| offset | int | ei | Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 0). |
 | limit | int | ei | Tagastata maksimaalselt näidatud arv kirjeid (vaikimisi tagastatakse maksimaalselt 100 kirjet). |
 
 #### 8.1.4. Päringu väljund
