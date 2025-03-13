@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.4, 06.03.2025
+Versioon 1.4.1, 12.03.2025
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -19,8 +19,9 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.2      | 03.07.2016 | Ivo Mehide                    | WSDL viidud vastavusse lahenduses kasutatavaga                                              |
 | 1.2.1    | 29.09.2016 | Priit Parmakson               | Lisatud nõue esitada kirjed ajamomendi kahanemise järjekorras (vt jaotis 8.1.4). Vt Issue 2 |
 | 1.3      | 30.03.2021 | Vitali Stupin, Sander Randorg | Lisatud OpenAPI teenuse kirjeldus                                                           |
-| 1.3.1    | 30.05.2024 | Siim-Sander Virula            | Eemaldatud mitterelevantne OpenAPI kirjeldus  
-| 1.4      | 06.03.2025 | Kätlin Tammoja                | Lisatud REST päringute kirjeldused                                       |
+| 1.3.1    | 30.05.2024 | Siim-Sander Virula            | Eemaldatud mitterelevantne OpenAPI kirjeldus                                                |
+| 1.4      | 06.03.2025 | Kätlin Tammoja                | Lisatud REST päringute kirjeldused                                                          |
+| 1.4.1    | 12.03.2025 | Kätlin Tammoja, Vitali Stupin | Parandatud REST päringute kirjeldused                                                       |
 
 ## 2. Sisukord
 
@@ -31,19 +32,33 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 - [5\. Mõisted](#5-m%C3%B5isted)
 - [6\. Üldistatud kirjeldus](#6-%C3%9Cldistatud-kirjeldus)
 - [7\. Arhitektuuriline ülevaade](#7-arhitektuuriline-%C3%BClevaade)
-- [8\. REST päringute kirjeldused](#9-rest-p%C3%A4ringute-kirjeldused)
-  - [8\.1\. Kasutusteabe küsimine](#91-kasutusteabe-k%C3%BCsimine)
-    - [8\.1\.1\. Päringu nimi](#911-p%C3%A4ringu-nimi)
-    - [8\.1\.2\. Päringu töö kirjeldus](#912-p%C3%A4ringu-t%C3%B6%C3%B6-kirjeldus)
-  - [8\.1\.3\. Päringu sisend](#913-p%C3%A4ringu-sisend)
-  - [8\.1\.4\. Päringu väljund](#914-p%C3%A4ringu-v%C3%A4ljund)
-  - [8\.1\.5\. Veasituatsioonid](#915-veasituatsioonid)
-  - [8\.1\.6\. Päringu näide](#916-p%C3%A4ringu-n%C3%A4ide)
-- [9\. Disaini konstrueerimise kaalutlused](#10-disaini-konstrueerimise-kaalutlused)
-- [10\. Vastavusklausel](#11-vastavusklausel)
-- [11\. Vastavusmudel](#12-vastavusmudel)
-  - [11\.1\. Kasutusteabe lugemise vastavus](#121-kasutusteabe-lugemise-vastavus)
-- [12\. LISA: dumonitor-openapi\.yaml](#15-lisa-dumonitor-openapiyaml)
+- [8\. REST päringute kirjeldused](#8-rest-p%C3%A4ringute-kirjeldused)
+  - [8\.1\. Kasutusteabe küsimine](#81-kasutusteabe-k%C3%BCsimine)
+    - [8\.1\.1\. Päringu nimi](#811-p%C3%A4ringu-nimi)
+    - [8\.1\.2\. Päringu töö kirjeldus](#812-p%C3%A4ringu-t%C3%B6%C3%B6-kirjeldus)
+    - [8\.1\.3\. Päringu sisend](#813-p%C3%A4ringu-sisend)
+    - [8\.1\.4\. Päringu väljund](#814-p%C3%A4ringu-v%C3%A4ljund)
+    - [8\.1\.5\. Veasituatsioonid](#815-veasituatsioonid)
+    - [8\.1\.6\. Päringu näide](#816-p%C3%A4ringu-n%C3%A4ide)
+  - [8\.2\. Kasutusteabe ajaperiood](#82-kasutusteabe-ajaperiood)
+    - [8\.2\.1\. Päringu nimi](#821-p%C3%A4ringu-nimi)
+    - [8\.2\.2\. Päringu töö kirjeldus](#822-p%C3%A4ringu-t%C3%B6%C3%B6-kirjeldus)
+    - [8\.2\.3\. Päringu sisend](#823-p%C3%A4ringu-sisend)
+    - [8\.2\.4\. Päringu väljund](#824-p%C3%A4ringu-v%C3%A4ljund)
+    - [8\.2\.5\. Veasituatsioonid](#825-veasituatsioonid)
+    - [8\.2\.6\. Päringu näide](#826-p%C3%A4ringu-n%C3%A4ide)
+  - [8\.3\. Kasutusteabe elutukse](#83-kasutusteabe-elutukse)
+    - [8\.3\.1\. Päringu nimi](#831-p%C3%A4ringu-nimi)
+    - [8\.3\.2\. Päringu töö kirjeldus](#832-p%C3%A4ringu-t%C3%B6%C3%B6-kirjeldus)
+    - [8\.3\.3\. Päringu sisend](#833-p%C3%A4ringu-sisend)
+    - [8\.3\.4\. Päringu väljund](#834-p%C3%A4ringu-v%C3%A4ljund)
+    - [8\.3\.5\. Veasituatsioonid](#835-veasituatsioonid)
+    - [8\.3\.6\. Päringu näide](#836-p%C3%A4ringu-n%C3%A4ide)
+- [9\. Disaini konstrueerimise kaalutlused](#9-disaini-konstrueerimise-kaalutlused)
+- [10\. Vastavusklausel](#10-vastavusklausel)
+- [11\. Vastavusmudel](#11-vastavusmudel)
+  - [11\.1\. Kasutusteabe lugemise vastavus](#111-kasutusteabe-lugemise-vastavus)
+- [12\. LISA: dumonitor-openapi\.yaml](#12-lisa-dumonitor-openapiyaml)
 
 ## 3. Ülevaade
 
@@ -55,13 +70,13 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 
 ## 4. Seotud dokumendid
 
+X-tee dokumentatsioon:  https://x-tee.ee/docs/live/xroad/, https://x-tee.ee/docs/live/xroad/ug-ss_x-road_6_security_server_user_guide.html#63-enabling-and-disabling-a-service-description
+
 Käesoleva kasutusteabe esitamise protokolli lahutamatuteks osadeks on:
-
-
 - Kasutusteabe esitamise protokolli OpenAPI-kirjeldus "dumonitor-openapi.yaml" (esitatud lõpus lisana)
 
 Kasutusteabe esitamise protokolli normatiivsed viited:
-- X-tee REST protokoll (https://www.x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html)
+- X-tee REST sõnumiprotokoll (https://www.x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html)
 
 ## 5. Mõisted
 
@@ -87,7 +102,7 @@ Protokollis on kaks interaktsiooni osapoolt:
 
 Protokolli üldine tööpõhimõte on päring-vastus loogikaga: päringu algataja poolt esitatakse päring, mis sisaldab täpsemat infot soovitava kasutusteabe või tegevuse kohta, ning andmesalvestaja tagastab päringu vastuses päringule vastava tulemuse.
 
-Protokolli päringud baseeruvad REST-protokollil ning vastavad X-tee versioon 6 põhimõtetele.
+Protokolli päringud baseeruvad REST-protokollil ning vastavad X-tee versioon 7 põhimõtetele.
 
 Päringu algataja ja andmesalvestaja vaheline suhtlus toimub vastavalt X-tee põhimõtetele mõlema osapoole turvaserverite vahendusel. Protokoll toimib olekuvabalt – igas päringus leidub ammendav info päringu vastuse koostamiseks ning puuduvad erinevate päringute omavahelised sõltuvused.
 
@@ -98,48 +113,49 @@ Suhtlus algab alati päringu algataja poolt – päringu algataja esitab päring
 
 ## 8. REST päringute kirjeldused
 
-Päringute täpsed spetsifikatsioonid on toodud OpenAPI-kirjelduse failis "dumonitor-openapi.yaml". Allpool on toodud seal esitatud findUsage päringu lahtiseletus.
+Uued liidestused tuleb teha REST päringu põhjal, varasema SOAP päringu kirjeldus on leitav siit: https://github.com/e-gov/AJ/blob/master/archive/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md.
 
-#### 8.1. Kasutusteabe küsimine
+Päringute täpsed spetsifikatsioonid on toodud OpenAPI-kirjelduse failis "dumonitor-openapi.yaml". Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringte lahtiselgitused.
 
-##### 9.1.1. Päringu nimi
+### 8.1. Kasutusteabe küsimine
+
+#### 8.1.1. Päringu nimi
 
 findUsage
 
-##### 8.1.2. Päringu töö kirjeldus
+#### 8.1.2. Päringu töö kirjeldus
 
 Päringuga otsitakse andmesalvestaja andmebaasist kasutusteabe kirjeid, mis vastavad sisendis antud piirangutele. Päringu väljundis tagastatakse kõik leitud kirjed.
 
 #### 8.1.3. Päringu sisend
 
-Päringu päises on järgmised elemendid:
+Päringu päises tuleb kasutada X-tee päised vastavalt X-tee REST sõnumiprotokollile. Päis "X-Road-User-Id" ei ole kohustuslik X-tee sõnumiprotokollis, kuid on kohustuslik kasutusteabe küsimisel:
 
-| Element        | Andmetüüp | Kohustuslik | Kirjeldus                                                                                                    |
-| -------------- | --------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
-| X-Road-User-Id | string    | jah         | Päringu algataja isikukood                                                                                   |
-| X-Road-Client  | string    | jah         | Info turvaserveri keskkonna, asutuse member class, member code ja alamsüsteemi subsystem code väärtuse kohta |
+| Element        | Andmetüüp | Kohustuslik | Kirjeldus                                                        |
+| -------------- | --------- | ----------- | ---------------------------------------------------------------- |
+| X-Road-User-Id | string    | jah         | Päringu algataja isikukood peab olema lisatud X-Road päise sisse |
 
 Päringu sisendis on järgmised elemendid:
 
-| Element     | Andmetüüp | Kohustuslik | Kirjeldus                                                                                                                                                      |
-| ----------- | --------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Element     | Andmetüüp | Kohustuslik | Kirjeldus |
+| ----------- | --------- | ----------- | --------- |
 | userCode    | string    | jah         | Andmesubjekti isikukood, kelle kohta tuleks tagastada kasutusteavet. Võib erineda X-Road-UserId päise väärtusest, kui päring on käivitatud esindusõiguse abil. |
-| offset      | int       | ei          | Tagastada kirjed, mille järjekorranumber on alates näidatud täisarvust (esimese kirje järjekorranumber on 0).                                                  |
-| limit       | int       | ei          | Tagastata maksimaalselt näidatud arv kirjeid (vaikimisi tagastatakse maksimaalselt 100 kirjet).                                                                |
-| periodStart | int       | ei          | Tagastada andmetöötluse kirjeid alates näidatud ajast                                                                                                          |
-| periodEnd   | int       | ei          | Tagastada andmetöötluse kirjeid kuni näidatud ajani                                                                                                            |
+| periodStart | int       | ei          | Tagastada andmetöötluse kirjeid alates näidatud ajast |
+| periodEnd   | int       | ei          | Tagastada andmetöötluse kirjeid kuni näidatud ajani |
+| offset      | int       | ei          | Jätta vahele näidatud arvu kirjed ja tagastada järgmised (analoogne SQL offset käitumisega) |
+| limit       | int       | ei          | Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet) |
 
 #### 8.1.4. Päringu väljund
 
-Päringu väljundis tagastatakse nimekiri elementidest "usage" ning arv "totalUsages", mis ütleb kui palju neid elemente oli. Iga element vastab ühele isikuandmete kasutuse kirjele ning selle struktuur on järgnev:
+Päringu väljundis tagastatakse nimekiri elementidest "usage" ning arv "totalUsages", mis ütleb kui palju neid elemente oli. Iga "usage" element vastab ühele isikuandmete kasutuse kirjele ning selle struktuur on järgnev:
 
-| Element        | Andmetüüp | Kirjeldus                                                                        |
-| -------------- | --------- | -------------------------------------------------------------------------------- |
-| logtime        | dateTime  | Kirje ajamoment.                                                                 |
-| action         | string    | Menetluse/tegevuse inimmõistetav nimi.                                           |
-| receiverName   | string    | Asutuse nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles         |
-| receiverSystem | string    | Infosüsteemi nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles    |
-| receiverCode   | string    | Asutuse registrikood, kellele isikuandmeid edastati või kes isikuandmeid töötles |
+| Element        | Andmetüüp | Kohustuslik | Kirjeldus                                                                         |
+| -------------- | --------- | ----------- | --------------------------------------------------------------------------------- |
+| logtime        | dateTime  | jah         | Andmetöötluse ajamoment                                                           |
+| action         | string    | jah         | Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust |
+| receiverCode   | string    | jah         | Asutuse registrikood, kellele isikuandmeid edastati või kes isikuandmeid töötles  |
+| receiverName   | string    | ei          | Asutuse nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles          |
+| receiverSystem | string    | jah         | Infosüsteemi nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles     |
 
 Isikuandmete kasutuse kirjed tuleb tagastada kirje ajamomendi kahanemise järjekorras (hilisem eespool).
 
@@ -150,43 +166,123 @@ Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
 #### 8.1.6. Päringu näide
 
 Näidispäring:
-
-```
+```bash
 curl -H "X-Road-User-Id:EE12345678901" -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
 "https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/findUsage?userCode=EE12345678901&offset=0&limit=10"
 ```
 
 Näidisvastus:
-
-```
+```json
 {
-	"totalUsages": 1,
-	"usages": [
-		{
-		"logtime": "2023-10-01T12:00:00Z",
-		"receiverName": "TEHIK",
-		"receiverCode": "12345678",
-		"receiverSystem": "Terviseportaal",
-		"action": "Isiku ees- ja perenime päring"
-		}
-  	]
+  "totalUsages": 1,
+  "usages": [
+    {
+      "logtime": "2023-10-01T12:00:00Z",
+      "receiverName": "TEHIK",
+      "receiverCode": "12345678",
+      "receiverSystem": "Terviseportaal",
+      "action": "Isiku ees- ja perenime päring"
+    }
+  ]
+}
+```
+
+### 8.2. Kasutusteabe ajaperiood
+
+#### 8.2.1. Päringu nimi
+
+usagePeriod
+
+#### 8.2.2. Päringu töö kirjeldus
+
+Ajaperiood, mille kohta saab pärida kasutusteavet.
+
+#### 8.2.3. Päringu sisend
+
+Päringu päises tuleb kasutada X-tee päised vastavalt X-tee REST sõnumiprotokollile.
+
+Päringul pole sisendparameetreid.
+
+#### 8.2.4. Päringu väljund
+
+Päringu väljundis tagastatakse järgmised elemendid:
+
+| Element     | Andmetüüp | Kohustuslik | Kirjeldus |
+| ----------- | --------- | ----------- | --------- |
+| periodStart | dateTime  | jah         | Süsteem hoiab andmetöötluse kirjeid alates näidatud ajast |
+| periodEnd   | dateTime  | ei          | Süsteem hoiab andmetöötluse kirjeid kuni näidatud ajani (välja puudumine näitab, et kirjeid saab küsida kuni praeguse ajani) |
+
+#### 8.2.5. Veasituatsioonid
+
+Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
+
+#### 8.2.6. Päringu näide
+
+Näidispäring:
+```bash
+curl -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
+"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/usagePeriod"
+```
+
+Näidisvastus:
+```json
+{
+  "periodStart": "2021-01-31T10:20:30"
+}
+```
+
+### 8.3. Kasutusteabe elutukse
+
+#### 8.3.1. Päringu nimi
+
+heartbeat
+
+#### 8.3.2. Päringu töö kirjeldus
+
+Andmejälgija kasutusteabe elutukse küsimine.
+
+#### 8.3.3. Päringu sisend
+
+Päringu päises tuleb kasutada X-tee päised vastavalt X-tee REST sõnumiprotokollile.
+
+Päringul pole sisendparameetreid.
+
+#### 8.3.4. Päringu väljund
+
+Päringu väljundis tagastatakse järgmised elemendid:
+
+| Element | Andmetüüp | Kohustuslik | Kirjeldus                                     |
+| --------| --------- | ----------- | --------------------------------------------- |
+| status  | string    | jah         | Elutuukse staatus                             |
+| message | string    | ei          | Inimloetav elutuukse staatuse kirjeldav sõnum |
+
+#### 8.3.5. Veasituatsioonid
+
+Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
+
+#### 8.3.6. Päringu näide
+
+Näidispäring:
+```bash
+curl -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
+"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/heartbeat"
+```
+
+Näidisvastus:
+```json
+{
+  "status": "OK",
+  "message": "API is ready"
 }
 ```
 
 ## 9. Disaini konstrueerimise kaalutlused
 
-Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa.
-Punktis "8.1 Kasutusteabe küsimine" kirjeldatud päringu kasutamisel tuleb vajadusel näidata parameetri
-"limit" abil soovitavate kirjete maksimumarv (juhul, kui soovitakse vaikimisi kasutatavast maksimumarvust erinevat
-kirjete arvu). Kui päringu vastuses tagastatakse maksimumarv kirjeid, siis järelikult leiti kirjeid rohkem.
-Ülejäänud kirjete saamiseks tuleb käivitada sama päring samade otsitingimustega uuesti,
-näidates parameetri "offset" väärtuseks eelmise päringu poolt tagastatud kirjete arv + 1 (esimese kirje järjekorranumber on 0). Päringut korratakse
-analoogse loogikaga (suurendades iga kord "offset" parameetri väärtust maksimumkirjete arvu võrra) niikaua, kuni
-päringu vastuses tagastatud kirjete arv on väiksem maksimumarvust.
+Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa. Punktis "8.1. Kasutusteabe küsimine" kirjeldatud päringu kasutamisel tuleb vajadusel näidata parameetri "limit" abil soovitavate kirjete maksimumarv (juhul, kui soovitakse vaikimisi kasutatavast maksimumarvust erinevat kirjete arvu). Kui päringu vastuses tagastatakse maksimumarv kirjeid, siis järelikult leiti kirjeid rohkem. Ülejäänud kirjete saamiseks tuleb käivitada sama päring samade otsitingimustega uuesti, näidates parameetri "offset" väärtuseks eelmise päringu poolt tagastatud kirjete arvu. Päringut korratakse analoogse loogikaga (suurendades iga kord "offset" parameetri väärtust juba saadud kirjete arvuni) niikaua, kuni päringu vastuses tagastatud kirjete arv on väiksem maksimumarvust.
 
 ## 10. Vastavusklausel
 
-Lahendus on vastavuses kasutusteabe esitamise protokolliga juhul, kui selles on realiseeritud punktis "8 Päringute kirjeldused" kirjeldatud teenused vastavalt neis sätestatud nõuetele ning lisaks on arvestatud punktis "9 Disaini konstrueerimise kaalutlused" toodud nõudeid.
+Lahendus on vastavuses kasutusteabe esitamise protokolliga juhul, kui selles on realiseeritud punktis "8. REST Päringute kirjeldused" kirjeldatud teenused vastavalt neis sätestatud nõuetele ning lisaks on arvestatud punktis "9. Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 ## 11. Vastavusmudel
 
@@ -194,7 +290,7 @@ Kasutusteabe esitamise protokollil on üks vastavusprofiil:
 
 ### 11.1. Kasutusteabe lugemise vastavus
 
-- Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "Disaini konstrueerimise kaalutlused" toodud nõudeid.
+- Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "8.1. Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "9. Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 
 
@@ -212,66 +308,66 @@ info:
     url: https://opensource.org/licenses/MIT
   version: 2.0.0
 tags:
-  - name: usage
-    description: Andmejälgija kasutusteave
+- name: usage
+  description: Andmejälgija kasutusteave
 paths:
   /findUsage:
     get:
       tags:
-        - usage
+      - usage
       summary: Kasutusteabe küsimine
       description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks eesti.ee-s
       operationId: findUsage
       parameters:
-        - name: X-Road-UserId
-          in: header
-          description: Päringu algataja isikukood peab olema lisatud X-Road päise sisse
-          schema:
-            type: string
-            example: EE12345678901
-            externalDocs:
-              description: Täiendav informatsioon X-Road päiste kohta
-              url: https://x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html
-          required: true
-        - name: user_code
-          in: query
-          description: Andmesubjekti isikukood, kelle kohta tuleks tagastada kasutusteavet. Võib erineda X-Road-UserId päise väärtusest, kui päring on käivitatud esindusõiguse abil.
-          schema:
-            type: string
-            example: EE12345678901
-          required: true
-        - name: period_start
-          in: query
-          description: Tagastada andmetöötluse kirjeid alates näidatud ajast
-          required: false
-          example: '2021-01-31T10:20:30'
-          schema:
-            type: string
-            format: date-time
-        - name: period_end
-          in: query
-          description: Tagastada andmetöötluse kirjeid kuni näidatud ajani
-          required: false
-          example: '2021-01-31T10:20:30'
-          schema:
-            type: string
-            format: date-time
-        - name: offset
-          in: query
-          description: Jätta vahele näidatud arvu kirjed ja tagastada järgmised (analoogne SQL offset käitumisega).
-          required: false
-          schema:
-            type: integer
-            format: int32
-            default: 0
-        - name: limit
-          in: query
-          description: Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet).
-          required: false
-          schema:
-            type: integer
-            format: int32
-            default: 1000
+      - name: X-Road-UserId
+        in: header
+        description: Päringu algataja isikukood peab olema lisatud X-Road päise sisse
+        schema:
+          type: string
+          example: EE12345678901
+          externalDocs:
+            description: Täiendav informatsioon X-Road päiste kohta
+            url: https://x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html
+        required: true
+      - name: userCode
+        in: query
+        description: Andmesubjekti isikukood, kelle kohta tuleks tagastada kasutusteavet. Võib erineda X-Road-UserId päise väärtusest, kui päring on käivitatud esindusõiguse abil.
+        schema:
+          type: string
+          example: EE12345678901
+        required: true
+      - name: periodStart
+        in: query
+        description: Tagastada andmetöötluse kirjeid alates näidatud ajast
+        required: false
+        example: '2021-01-31T10:20:30'
+        schema:
+          type: string
+          format: date-time
+      - name: periodEnd
+        in: query
+        description: Tagastada andmetöötluse kirjeid kuni näidatud ajani
+        required: false
+        example: '2021-01-31T10:20:30'
+        schema:
+          type: string
+          format: date-time
+      - name: offset
+        in: query
+        description: Jätta vahele näidatud arvu kirjed ja tagastada järgmised (analoogne SQL offset käitumisega)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        description: Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet)
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1000
       responses:
         '200':
           description: Edukas päring
@@ -286,7 +382,7 @@ paths:
   /usagePeriod:
     get:
       tags:
-        - usage
+      - usage
       summary: Kasutusteabe ajaperiood
       description: Ajaperiood, mille kohta saab pärida kasutusteavet
       operationId: usagePeriod
@@ -304,7 +400,7 @@ paths:
   /heartbeat:
     get:
       tags:
-        - usage
+      - usage
       summary: Kasutusteabe elutukse
       description: Andmejälgija kasutusteabe elutukse küsimine
       operationId: heartbeat
@@ -336,10 +432,10 @@ components:
     Usage:
       type: object
       required:
-        - logtime
-        - action
-        - receiverCode
-        - receiverSystem
+      - logtime
+      - action
+      - receiverCode
+      - receiverSystem
       properties:
         logtime:
           description: Andmetöötluse ajamoment
@@ -364,27 +460,31 @@ components:
           example: Terviseportaal
     UsagePeriodResponse:
       type: object
+      required:
+      - periodStart
       properties:
-        period_start:
+        periodStart:
           description: Süsteem hoiab andmetöötluse kirjeid alates näidatud ajast
           type: string
           format: date-time
           example: '2021-01-31T10:20:30'
-        period_end:
-          description: Süsteem hoiab andmetöötluse kirjeid kuni näidatud ajani
+        periodEnd:
+          description: Süsteem hoiab andmetöötluse kirjeid kuni näidatud ajani (välja puudumine näitab, et kirjeid saab küsida kuni praeguse ajani)
           type: string
           format: date-time
           example: '2021-01-31T10:20:30'
     HeartbeatResponse:
       type: object
+      required:
+      - status
       properties:
         status:
           description: Elutuukse staatus
           type: string
           example: OK
           enum:
-            - OK
-            - FAIL
+          - OK
+          - FAIL
         message:
           description: Inimloetav elutuukse staatuse kirjeldav sõnum
           type: string
