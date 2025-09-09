@@ -24,7 +24,6 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Dokumendi ajalugu](#dokumendi-ajalugu)
   * [Sisukord](#sisukord)
   * [Sihtrühm](#sihtr%C3%BChm)
-  * [Sissejuhatus](#sissejuhatus)
   * [Andmejälgija ülevaade](#andmej%C3%A4lgija-%C3%BClevaade)
   * [Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte](#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid-mitte)
   * [Variandid andmejälgija kasutuselevõtuks](#variandid-andmej%C3%A4lgija-kasutuselev%C3%B5tuks)
@@ -36,78 +35,39 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   
 ## Sihtrühm
 
-Käesoleva juhendi sihtrühmaks on andmekogude omanikud, haldajad ning arendajad, kes
-on huvitatud andmejälgija tarkvara kasutamisest oma tarbeks.
-
-## Sissejuhatus
-
-Isikuandmete kaitse seadus nõuab, et andmekogu haldaja peab vastama mistahes isiku arupärimisele
-selle kohta, kellele tema isikuandmeid on edastatud. Samuti peab olema võimalik tagantjärele teada
-saada, kelle poolt ja millal isikuandmeid töödeldi.
-
-Andmejälgija on Riigi Infosüsteemi Ameti poolt tellitud, 2016 kevadel valminud vabavaraline
-tarkvarasüsteem,  mille eesmärk on pakkuda andmekogude haldajatele paindlikud standardkomponendid 
-eeltoodud nõuete täitmiseks: eeskätt isikuandmete töötlemise faktide logimiseks ning nende
-faktide esitamiseks eesti.ee portaali kaudu.
+Käesoleva juhendi sihtrühmaks on andmekogude omanikud, haldajad ning arendajad, kes on huvitatud andmejälgija tarkvara kasutamisest. 
 
 ## Andmejälgija ülevaade
 
-Andmejälgija põhieesmärk on lõppkokkuvõttes pakkuda kõigile isikutele eesti.ee kaudu teenust,
-kust isik saab asutuste kaupa vaadata, millal, kuhu ja miks on tema isikuandmeid edastatud.
-Andmejälgija teine eesmärk on pakkuda andmekogule mugavad vahendid isikuandmete edastamise
-ja töötlemise jälgimiseks asutusesiseselt.
+Isikuandmete kaitse seadus nõuab, et andmekogu haldaja peab vastama mistahes isiku arupärimisele selle kohta, kellele tema isikuandmeid on edastatud. Samuti peab olema võimalik tagantjärele teada saada, kelle poolt ja millal isikuandmeid töödeldi.
 
-Andmejälgija paigaldatakse ja konfigureeritakse iga andmekogu jaoks eraldi, mingit riiklikku keskset 
-andmebaasi isikuandmete liikumise jaoks andmejälgija ette ei näe ega paku.
+Andmejälgija eesmärk on pakkuda kodanikule selget ülevaadet tema andmetega sooritatud toimingutest: millal, kuhu ja miks on tema isikuandmeid edastatud. Terviklik ülevaade kuvatakse riigiportaalis eesti.ee.
 
-Andmejälgija ei ole üks monoliitne tarkvarasüsteem, vaid koosneb mitmest sõltumatust, kergesti
-muudetavast komponendist, mida kasutades saab iga andmekogu enda jaoks võimalikult sobival viisil
-oma andmejälgija süsteemi paigaldada või ehitada. 
+Andmejälgija teine eesmärk on pakkuda andmekogule mugavad vahendid isikuandmete edastamise ja töötlemise jälgimiseks asutusesiseselt.
 
-Andmejälgija põhiosad on järgmised:
+Andmejälgija luuakse, paigaldatakse ja konfigureeritakse iga andmekogu jaoks eraldi, mingit riiklikku keskset andmebaasi isikuandmete liikumise jaoks ega keskset paigaldatud lahendust andmejälgija ette ei näe ega paku.
 
-* Eraldusfilter - X-tee liikluse jälgija, mis tuvastab isikuandmete edasisaatmised X-tee kaudu.
-* Andmesalvestaja - Isikuandmete liikluse logiandmebaas koos REST-liidesega, mida saab mistahes tarkvarast välja kutsuda.
-* Sisekontrollija rakendus - Isikuandmete liikluse logiandmebaasi veebiliides asutuse sisekasutuseks: [vaata ekraanipilti](img/screenshot_andmesalvestaja.png)
-* Kodaniku vaatamisrakendus - X-tee liides kodanike päringutele vastamiseks http://eesti.ee kaudu. Konkreetne ekraanipilt hetkel puudub, kuid vaata [testrakenduse ekraanipilti](img/screenshot_testrakendus.png).
-
-Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse X-tee turvaserverisse kui mõnda olemasolevasse serverisse koos teiste süsteemidega, või hoopis eraldi serverisse.
+Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse X-tee turvaserverisse kui mõnda olemasolevasse serverisse koos teiste süsteemidega, või hoopis eraldi serverisse. 
 
 ## Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte
 
-Isikuandmete kaitse seadus sisaldab kahte punkti, mille lahendamise hõlbustamiseks andmejälgija
-lahendus on loodud:
-
+Isikuandmete kaitse seadus sisaldab punkte, mille lahendamise hõlbustamiseks andmejälgija lahendus on loodud:
+* Isikuandmete töötlemise eesmärgid; Kui kodanik küsib, tuleb ettevõttel vastata, mis eesmärgil tema andmeid töödeldi (IKS § 19 lg 1 p 2);
 * Andmesubjekti soovil peab isikuandmete töötleja andmesubjektile teatavaks tegema kolmandad isikud, kellele tema isikuandmeid on edastatud. (IKS § 19 lg 1 p 5);
-
 * Isikuandmete töötleja on isikuandmete töötlemisel kohustatud tagama, et tagantjärele oleks võimalik kindlaks teha, millal, kelle poolt ja milliseid isikuandmeid salvestati, muudeti või kustutati või millal, kelle poolt ja millistele isikuandmetele andmetöötlussüsteemis juurdepääs saadi. (IKS § 25 lg 2 p 3)
 
-Sarnased nõuded tulenevad ka euroopa direktiividest:
-
-*	Isikule peab olema võimaldatud: b. saada määratletud ajavahemike järel ning ilma liigse viivituseta või kuluta teavet, kas tema isikuandmeid säilitatakse automatiseeritud andmekogus ja saada neid andmeid talle mõistetavas vormis" (Euroopa Nõukogu Isikuandmete automatiseeritud töötlemisel isiku kaitse konventsioon, artikkel 8 "Lisatagatised andmesubjektile")
-
-* Liikmesriigid tagavad, et igal andmesubjektil on õigus nõuda vastutavalt töötlejalt:
-a) mõistliku aja tagant, ilma piiranguteta ja ilma liigsete viivituste ja kulutusteta:
-- kinnitust selle kohta, kas isikut ennast käsitlevaid andmeid töödeldakse, ja teavet vähemalt töötlemise eesmärkide, asjaomaste andmete liikide ja nende vastuvõtjate või vastuvõtjate kategooriate kohta, kellele andmed avalikustatakse,
-- arusaadaval kujul teavet töödeldavate andmete ja nende allika kohta," (Direktiiv 95/46/EU, artikkel 12)
+//**Euroopa GDPR isikuandmete seadustest punktid **
 
 Isikuandmetena käsitleb seadus mistahes andmeid isiku kohta - kaasa arvatud tema nimi ja sünniaeg - mitte ainult
 tundlikke isikuandmeid.
 
-Reaalsuses edastatakse isikuandmeid väga erinevatel viisidel. Näiteks: üksiku isiku kohta käiv teenus X-teel, 
-sadu inimesi väljastav otsipäring X-teel, regulaarne mass-päring kümnete tuhandete isikute kohta
-nende andmete ajutiseks puhverdamiseks, isikuandmeid sisaldavate PDF failide edasisaatmine,
-isikuandmeid sisaldava andmebaasi kokkupakitud dumbi kopeerimine ftp kaudu jne.
+Reaalsuses edastatakse isikuandmeid väga erinevatel viisidel. Näiteks: üksiku isiku kohta käiv teenus X-teel, sadu inimesi väljastav otsipäring X-teel, regulaarne mass-päring kümnete tuhandete isikute kohta nende andmete ajutiseks puhverdamiseks, isikuandmeid sisaldavate PDF failide edasisaatmine, isikuandmeid sisaldava andmebaasi kokkupakitud dumbi kopeerimine ftp kaudu jne.
 
-Samuti toimub isikuandmete töötlemine väga mitmekesisel moel, muuhulgas on ka andmetele ligipääsu mõiste mitmeti arusaadav: 
-see võib tähendada üksiku inimese andmete vaatamist, sadade inimeste loendi kiiret ülevaatust, tehnilisi ligipääsuõigusi jne.
+Samuti toimub isikuandmete töötlemine väga mitmekesisel moel, muuhulgas on ka andmetele ligipääsu mõiste mitmeti arusaadav: see võib tähendada üksiku inimese andmete vaatamist, sadade inimeste loendi kiiret ülevaatust, tehnilisi ligipääsuõigusi jne.
 
-Lihtsaid ja üheseid reegleid nimetatud seaduspunktide täitmiseks ei ole võimalik koostada: oluline on
-lähtuda seaduse mõttest ning arvestada konkreetse andmekogu või infosüsteemi eripäradega.
+Lihtsaid ja üheseid reegleid nimetatud seaduspunktide täitmiseks ei ole võimalik koostada: oluline on lähtuda seaduse mõttest ning arvestada konkreetse andmekogu või infosüsteemi eripäradega.
 
-Kõige üldisem põhimõte, millest lähtuda, on konkreetsele isikule teadliku tähelepanu pööramise või spetsiaalselt tema
-andmete edasisaatmise talletamisvajadus, samal ajal kui inimese andmete liikumine või töötlemine nö taustandmetes, puhverdamiseks
-vms ei nõua alati isikupõhist talletamist, küll aga edastamis/töötlemis-põhimõtete tutvustamist kõigile huvitatutele.
+Kõige üldisem põhimõte, millest lähtuda, on konkreetsele isikule teadliku tähelepanu pööramise või spetsiaalselt tema andmete edasisaatmise talletamisvajadus, samal ajal kui inimese andmete liikumine või töötlemine nö taustandmetes, puhverdamiseks vms ei nõua alati isikupõhist talletamist, küll aga edastamis/töötlemis-põhimõtete tutvustamist kõigile huvitatutele.
 
 Konkreetsemad põhimõtted, millest esimese ülaltoodud seaduspunkti täitmisel lähtuda, on järgmised:
 
