@@ -23,15 +23,14 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 ## Sisukord
 
   * [Dokumendi ajalugu](#dokumendi-ajalugu)
-  * [Sisukord](#sisukord)
   * [Sihtrühm](#sihtr%C3%BChm)
   * [Andmejälgija ülevaade](#andmej%C3%A4lgija-%C3%BClevaade)
   * [Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte](#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid-mitte)
-  * [Variandid andmejälgija kasutuselevõtuks](#variandid-andmej%C3%A4lgija-kasutuselev%C3%B5tuks)
+  * [Andmejälgija kasutuselevõtt](#variandid-andmej%C3%A4lgija-kasutuselev%C3%B5tuks)
   * [Andmejälgija kasutuselevõtmise protsess](#andmej%C3%A4lgija-kasutuselev%C3%B5tmise-protsess)
   * [Tarkvara paigaldamine](#tarkvara-paigaldamine)
-  * [Tarkvara ehitamine ja kohandamine](#tarkvara-ehitamine-ja-kohandamine)
-  * [Andmejälgija haldustoimingud](#andmej%C3%A4lgija-haldustoimingud)  
+  * [Andmejälgija haldustoimingud](#andmej%C3%A4lgija-haldustoimingud)
+  * [Aegunud andmejälgija logiridade kustutamine](#infoturbe-k%C3%BCsimused) 
   * [Infoturbe küsimused](#infoturbe-k%C3%BCsimused)
   
 ## Sihtrühm
@@ -94,14 +93,16 @@ Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandm
 3)	ohustada riigi julgeolekut;s
 4)	ohustada avaliku korra kaitset;
 5)	takistada ametlikku uurimist või menetlust. 
+
 Seetõttu ei tohi kodanikele avaldada päringuid, mis on tehtud jälitustegevuse käigus ja teistel IKS § 24 toodud juhtudel, samuti konkreetse asutuse eriseadustest tulenevatest piirangutest. Juba andmejälgija tarkvara kasutusele võtmisel tuleb otsustada ja dokumenteerida milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat liidestada, milliseid andmeedastamisi ja -kasutamisi logida ja milliseid mitte. Millised on üldised ja millised asutuse eriseadusest tulenevad piirangud.
 Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 1262 https://www.riigiteataja.ee/akt/121032011002:
-•	Politsei- ja Piirivalveamet (70008747);
-•	Kaitsepolitseiamet (70000591);
-•	Maksu- ja Tolliamet (70000349);
-•	Sõjaväepolitsei (70008641); 
-•	Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
-•	Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) https://www.riigiteataja.ee/akt/117122015039#para28.
+
+* Politsei- ja Piirivalveamet (70008747);
+* Kaitsepolitseiamet (70000591);
+* Maksu- ja Tolliamet (70000349);
+* Sõjaväepolitsei (70008641);
+* Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
+* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) https://www.riigiteataja.ee/akt/117122015039#para28.
 
 Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule näha.
 
@@ -138,13 +139,13 @@ Soovituslikult võiks meeskond koosneda järgnevalt:
 
 3.	Otsustada, millistesse olemasolevatesse serveritesse Andmejälgija lisda või vajdusel hankida uus server. 
 
-6.	Valikuliselt: konfigureerida asutuse X-tee liidest, kui see osutub valitud liidestusviisi jaoks vajalikuks. 
+4.	Valikuliselt: konfigureerida asutuse X-tee liidest, kui see osutub valitud liidestusviisi jaoks vajalikuks. 
 
-7.	Valikuliselt: realiseerida eriliidesed oma infosüsteemides andmejälgija külge, kui etapis kaks on nii otsustatud. Andmejälgija ei vaja otseselt eriliideseid, seega see etapp üldse  ja tema maht sõltub täielikult konkreetse asutuse vajadustest ja otsustest.
+5.	Valikuliselt: realiseerida eriliidesed oma infosüsteemides andmejälgija külge, kui etapis kaks on nii otsustatud. Andmejälgija ei vaja otseselt eriliideseid, seega see etapp üldse  ja tema maht sõltub täielikult konkreetse asutuse vajadustest ja otsustest.
 
-8. Töötav süsteem tuleks tervikuna läbi testida. Testlugusid ega testimise juhendeid ei ole ette antud, vaid oluline on ja tuleks tuvastada, et andmejälgija on töökorras ja tõrkeid ei esine.  Spetsiaalseid formaalseid testsüsteeme ei ole siin vaja kasutada, tuleks aga lihtsalt tuvastada, et ettenähtud funktsionaalsus töötab ja ei paista ette-ennustamatuid kõrvalefekte. 
+6. Töötav süsteem tuleks tervikuna läbi testida. Testlugusid ega testimise juhendeid ei ole ette antud, vaid oluline on ja tuleks tuvastada, et andmejälgija on töökorras ja tõrkeid ei esine.  Spetsiaalseid formaalseid testsüsteeme ei ole siin vaja kasutada, tuleks aga lihtsalt tuvastada, et ettenähtud funktsionaalsus töötab ja ei paista ette-ennustamatuid kõrvalefekte. 
 
-9.	Leppida asutusesiseselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
+7.	Leppida asutusesiseselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
 
 
 ## Tarkvara paigaldamine
