@@ -24,7 +24,7 @@ Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi p
 
    Kuna andmekogud ja neid teenindavad infosüsteemid on väga erinevad, on praktikas reeglina mõistlik realiseerida Andmejälgija teenus iseseisvalt, vastavalt konkreetse süsteemi iseloomule ja nõuetele. Tihti on mõistlik aluseks võtta igas infosüsteemis olev logilahendus, mis talletab kõik isikuandmetega toimunud sündmused.
 
-   X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/e-gov/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
+   X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
    * Kasutusteabe esitamise protokoll (SOAP) - andmesalvesti rollis on mis tahes vastavaid andmeid sisaldav rätseplahendus
    * Eesti.ee REST päringu tugi tuleb tulevikus
 
