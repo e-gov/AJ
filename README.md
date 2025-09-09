@@ -30,10 +30,10 @@ Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi p
 
 Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda [siin](https://github.com/sipsu1/AJ/blob/master/doc/Rakendusjuhend.md)
 
-### Liitumistaotlus ja -leping
+### Liitumisleping ja -taotlus
 
-Andmejälgijaga liitumistatoluse vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx).
-Andmejälgijaga liitumislepingu vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx).
+* Andmejälgijaga liitumislepingu vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx).
+* Andmejälgijaga liitumistatoluse vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx).
 
 ### Kontakt ja täpsem info
 
