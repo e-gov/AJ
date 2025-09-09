@@ -1,4 +1,0 @@
-SOAP-ENV=http://schemas.xmlsoap.org/soap/envelope/
-xrd=http://x-road.eu/xsd/xroad.xsd
-id=http://x-road.eu/xsd/identifiers
-prod=http://dumonitor.x-road.eu/producer

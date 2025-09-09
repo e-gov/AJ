@@ -1,4 +1,0 @@
-../build/libs/dumonitor-filter.war /etc/xroad/jetty/contexts-public
-dumonitor-filter.xml /usr/share/dumonitor/filter
-dumonitor.properties /usr/share/dumonitor/filter
-dumonitor /usr/share/dumonitor/filter
