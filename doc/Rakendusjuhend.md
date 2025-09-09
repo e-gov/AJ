@@ -87,203 +87,92 @@ Teise ülaltoodud seadusepunkti jaoks tuleks lähtuda järgmisest:
 
 Isikuandmete kaitse seadus sisaldab teabe ja isikuandmete saamise õiguse piiranguid (IKS § 20 lg 1-4).
 
-Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse, kui see võib:
+Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandmete töötlemisel piiratakse. Seaduses sätestatud juhtudel võib vastutav töötleja käesoleva paragrahvi lõikes 1 nimetatud teabe andmesubjektile esitada hiljem, piirata selle esitamist või jätta selle esitamata, kui see võib (IKS § 24 lg 2): 
 
-*	kahjustada teise isiku õigusi ja vabadusi; 
-*	ohustada lapse põlvnemise saladuse kaitset; 
-*	takistada kuriteo tõkestamist või kurjategija tabamist; 
-*	raskendada kriminaalmenetluses tõe väljaselgitamist.
-
-Seetõttu ei tohi kodanikele avaldada päringuid, mis on tehtud jälitustegevuse käigus ja teistel IKS § 20 toodud juhtudel, samuti konkreetse asutuse eriseadustest tulenevatest piirangutest. Juba andmejälgija tarkvara kasutusele võtmisel tuleb otsustada ja dokumenteerida milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat liidestada, milliseid andmeedastamisi ja -kasutamisi logida ja milliseid mitte. Millised on üldised ja millised asutuse eriseadusest tulenevad piirangud.
-
-Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 126<sup>2</sup> https://www.riigiteataja.ee/akt/121032011002:
-
-* Politsei- ja Piirivalveamet (70008747);
-* Kaitsepolitseiamet (70000591);
-* Maksu- ja Tolliamet (70000349);
-* Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
-* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) https://www.riigiteataja.ee/akt/117122015039#para28.
+1)	takistada või kahjustada süüteo tõkestamist, avastamist või menetlemist või karistuse täideviimist;
+2)	kahjustada teise isiku õigusi ja vabadusi;
+3)	ohustada riigi julgeolekut;s
+4)	ohustada avaliku korra kaitset;
+5)	takistada ametlikku uurimist või menetlust. 
+Seetõttu ei tohi kodanikele avaldada päringuid, mis on tehtud jälitustegevuse käigus ja teistel IKS § 24 toodud juhtudel, samuti konkreetse asutuse eriseadustest tulenevatest piirangutest. Juba andmejälgija tarkvara kasutusele võtmisel tuleb otsustada ja dokumenteerida milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat liidestada, milliseid andmeedastamisi ja -kasutamisi logida ja milliseid mitte. Millised on üldised ja millised asutuse eriseadusest tulenevad piirangud.
+Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku ja teiste seaduste muutmise seaduses § 1262 https://www.riigiteataja.ee/akt/121032011002:
+•	Politsei- ja Piirivalveamet (70008747);
+•	Kaitsepolitseiamet (70000591);
+•	Maksu- ja Tolliamet (70000349);
+•	Sõjaväepolitsei (70008641); 
+•	Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
+•	Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) https://www.riigiteataja.ee/akt/117122015039#para28.
 
 Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule näha.
 
 Standardlahendus võimaldab piirata kodanikule näidatavat infot kahel moel:
 
-* Eraldusfiltris asuv Blacklist – võimaldab välja lülitada asutuse kogu andmevahetuse asutuse registrikoodi alusel, nii et asutuse päringuid ei logita üldse (vaata täpsemalt paigaldamisjuhendi peatükki  "[Välistuste kirjeldamine](Paigaldamine.md#välistuste-kirjeldamine)").
+* Eraldusfiltris asuv Blacklist – võimaldab välja lülitada asutuse kogu andmevahetuse asutuse registrikoodi alusel, nii et asutuse päringuid ei logita üldse.
 * Eraldusfiltri täpsem seadistus – võimaldab välistada teatud päringute logimise teenuse parameetri või alamsüsteemi täpsusega. 
 
 Sõltumata sellest, kumba moodust välistuse tagamiseks kasutatakse, tuleb piirangute seadistamise reeglid kokku leppida päringuid sooritava asutusega. Juhtumi- või kaasusepõhine filtreerimine ei ole standardlahendust kasutades võimalik. 
 
 Kodanikule andmete väljastamise filtreerimist standardlahendus ei toeta. Filtreeritud päringute kohta on kodanikul õigus teha asutusse järelepärimine traditsioonilisel moel (näiteks teabenõudega).
 
-## Variandid andmejälgija kasutuselevõtuks
+## Andmejälgija kasutuselevõtt
 
-Andmejälgija on loodud olema võimalikult paindlik, tagamaks erinevate andmekogude spetsiifika jaoks
-võimalikult mugavat ja lihtsat kasutuselevõtu viisi. Samuti on andmejälgija realiseeritud selliselt,
-et teda on võimalik paigaldada ka otse X-tee turvaserverisse, segamata viimase tööd.
+Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubadaolukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
 
-Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubada
-olukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
+Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubada olukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest.
 
-Standardvariandina töötab andmejälgija selliselt, et tema eraldusfiltri komponent on infosüsteemi ja X-tee turvaserveri
-vahel nö proxy-režiimis: infosüsteem edastab oma X-tee päringuid otse eraldusfiltri komponendile, mis siis 
-omakorda edastab neid turvaserverile. Kui seos andmekogu ja turvaserveriga ei ole üksühene, ei tekita
-see probleeme:
-
-* Sama režiimi on võimalik kasutada ka juhul, kui üks X-tee turvaserver teenindab korraga mitut andmekogu: 
-siis küll ei saa paigaldada andmejälgijat otse turvaserverisse.
-* Samuti on lubatav olukord, kus üks andmekogu kasutab mitut turvaserverit: eraldusfiltri komponendid
-tuleb sel juhul paigaldada iga turvaserveri ja andmekogu vahele.
-
-Järgnevas esitame põhilised otsusekohad andmejälgija tehnilise kasutuselevõtu variantide jaoks.
-
-Esimene otsusekoht tuleneb küsimusest, kas andmekogus on juba realiseeritud isikuandmete edastamise ja 
-kasutamise logimine. 
-
-* Kui jah, siis ei ole tingimata vaja teha muud, kui võtta andmesalvestaja
-X-tee liidese alamkomponent, asendada selle lähtekoodis andmebaasiühendus ja SQL-päring olemasoleva logibaasi ja
-temale vastava päringuga, kompileerida ja paigaldada komponent ning luua X-tee turvaserverisse vastav
-teenus eesti.ee jaoks.
-
-* Kui ei, siis kõige otsesemaks viisiks andmejälgijat kasutusele võtta on installeerida ja konfigureerida kõik tema komponendid:
-sel juhul asub süsteem jälgima oma konfiguratsioonis seatud väljaminevaid sõnumeid X-teel, leiab sealt 
-konfiguratsioonis antud teel asuva isikukoodi ja salvestab selle oma andmebaasi. Andmebaasiga on omakorda 
-seotud X-tee teenus, mis vastab eesti.ee kaudu tulnud isikupõhistele päringutele. Lisaks sisaldab andmejälgija
-sisekontrollija rakendust - asutusesiseseks kasutamiseks mõeldud lihtsat veebirakendust sellestsamast andmebaasist päringute tegemiseks.
-Kõik need komponendid on paigaldatavad ilma arendustööta, küll aga nõuavad nad konfigureerimis- ja paigaldustöid
-ja oskust seadistada X-tee turvaserverit, nõudes seega infosüsteemi haldava spetsialisti panustust.
-
-Teine otsusekoht tuleb küsimusest, kas isikuandmete edastamine on üheselt seotud konkreetsete X-tee päringutega,
-kus liiguvad korraga ainult ühe inimese andmed ja tema isikukoodi saab X-tee päringust leida, või ei ole X-tee
-päringutest üheselt võimalik isikuid leida.
-
-* Kui isikuandmeid edastatakse X-teel ja selliselt, et seal liiguvad korraga ainult ühe inimese andmed ja 
-tema isikukoodi saab X-tee päringust leida, tasub paigaldada ja konfigureerida andmejälgija eraldusfiltri komponent 
-X-tee liikluse jälgimiseks. See nõuab konfigureerimistöid, kuid mitte arendustöid.
-
-* Kui X-tee lihtne jälgimine ei ole võimalik, saab andmejälgijat kasutada selliselt, et ehitada andmekogu infosüsteemi
-lihtsad HTTP(S) põhised REST-päringud, millega isikuandmete edastamise või töötlemise fakt saadetakse otse
-andmejälgija andmesalvestaja komponendi andmebaasi. See nõuab arendustöid.
-
-Mõistlik võib olla ka stsenaarium, kus kasutatakse nii eraldusfiltri komponenti valitud X-tee teenuste
-jälgimiseks, kui REST teenuseid otse infosüsteemist logikirjete salvestamiseks andmejälgija baasi.
-
-Kolmas otsusekoht on küsimus, kas kasutada andmejälgija oma andmebaasi (Postgresql) või asutuses juba
-olemasolevat muud andmebaasi, ning millisesse serverisse andmejälgija paigutada:
-
-* Üks võimalus on paigaldada andmejälgija valitud komponendid otse samasse serverisse, kus töötab X-tee turvaserver,
-kasutades seejuures (uue X-tee versiooni korral) otse X-tee poolt kasutatavat Postgresql andmebaasi.
-
-* Teine võimalus on paigaldada andmejälgija komponendid muudesse serveritesse: nende ressursinõudlus on väike
-ja nad ei vaja tingimata omaette serverit.
-
-* Kolmas võimalus on mitte paigaldada eraldi andmebaasi-serverit andmejälgija jaoks, vaid kasutada mõnda andmekogu 
-infosüsteemis olevat andmebaasi. Eriti lihtne (ei vaja arendustööd) on see juhul, 
-kui andmebaas on realiseeritud Postgresql-l. Vastasel korral võib tekkida vajadus teha väikeses mahus
-arendust, muutmaks ära andmejälgija komponentides olevad SQL-päringud ja kompileerimaks andmejälgija uuesti.
-
-Neljas otsusekoht on küsimus, kas ja kuidas paigaldada ja konfigureerida sisekontrollija rakendus - asutuse sisekasutuseks 
-ettenähtud veebirakendus, mis võimaldab mugavalt otsida andmejälgija andmebaasis olevaid kirjeid:
-
-* Kui asutuses on juba olemas oma isikuandmete liikumise/kasutamise logisüsteem koos mugava võimalusega
-sealt otsinguid teha, ei ole mainitud komponenti mõtet installeerida.
-* Kui taolist süsteemi ei ole, on komponendi installeerimine tõenäoliselt mõttekas. Sel juhul on tingimata
-vaja konfigureerida selle komponendi veebiserver selliselt, et rakenduse API-dele ei oleks välist ligipääsu
-ning asutusesiselt pääseks ligi ainult piiratud hulk töötajaid.
-
+Samuti andmejälgija kasutab X-tee protolli teenuse jaoks, mille kaudu kutsutakse küsitakse logid. See kus neid hoitakse, milline on teenus või adapter, mis findusaget implementeerib me ette ei defineeri.
 
 ## Andmejälgija kasutuselevõtmise protsess
 
-Eelmisest punktist lähtuvalt on kasutuselevõtu protsess erinevate andmekogude jaoks küllalt erinev.
-Sellegipoolest toome välja üldjuhul vajalikud põhietapid koos nende umbkaudse ajahinnanguga:
+Alljärgnevalt toome välja põhilised tähelepanekud, millega asutuselevõtmisega tuleks arvestada:
 
 1.	Leppida asutusesiseselt kokku konkreetne meeskond, kes juurutuse läbi viib, koos esialgse ajakavaga. 
-Kindlasti on vaja, et meeskonnas oleks:
-  * Põhimõtete otsustaja: millise teenuse/kasutuse külge andmejälgija liidestada jms.
-  *	IT süsteemide haldaja, kes mh konfigureerib X-tee liideseid ja haldab infosüsteeme, mille külge andmejälgija liidestub.
-Soovitav oleks, et meeskonnas on ka:
-  * Arendaja, kes vajadusel liidestatavale infosüsteemile liidestusi ja täiendusi ehitab.
+Soovituslikult võiks meeskond koosneda järgnevalt:
+  * Põhimõtete otsustaja: millise teenuse/kasutuse külge andmejälgija arendada jms.
+  *	IT süsteemide haldaja, kes mh konfigureerib X-tee liideseid ja haldab infosüsteeme, mille külge andmejälgija soovitakse arendada.
+  * Arendaja, kes vajadusel infosüsteemile liidestusi ja täiendusi ehitab.
 
-2.	Otsustada, milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat liidestada;  samuti, millised andmejälgija komponendid kasutusele võtta. Töö võiks võtta mõnest tunnist kuni ca ühe päevani. Siin etapis on vaja 
+2.	Otsustada, milliste teenuste, millise olemasoleva tarkvara või milliste olemasolevate logibaaside külge andmejälgijat arendada. 
   * Aru saada andmejälgija põhimõtetest ja võimalustest.
   * Arutada variante teenuse/infosüsteemi haldaja ja/või arendajaga.
 
-3.	Otsustada, millistesse olemasolevatesse serveritesse süsteemi komponendid paigutada, või kas hankida uus server. Töö võiks võtta mõne tunni ja eeskätt on otsustajaks asutuse IT süsteemide haldaja, kes peab selleks hetkeks olema kursis andmejälgija põhimõtete ja eelneva punkt 2 otsusega.
+3.	Otsustada, millistesse olemasolevatesse serveritesse Andmejälgija lisda või vajdusel hankida uus server. 
 
-4.	Installeerida andmejälgija valitud komponendid.  Töö võiks võtta mõne tunni kuni ca ühe päeva ja realiseerijaks on asutuse IT süsteemide haldaja, keda võib vajadusel toetada arendaja.
+6.	Valikuliselt: konfigureerida asutuse X-tee liidest, kui see osutub valitud liidestusviisi jaoks vajalikuks. 
 
-5.	Konfigureerida andmejälgija valitud komponendid tööle ja testida nad läbi. Töö võiks võtta mõne tunni ja realiseerijaks asutuse IT süsteemide haldaja, keda võib vajadusel toetada arendaja.
+7.	Valikuliselt: realiseerida eriliidesed oma infosüsteemides andmejälgija külge, kui etapis kaks on nii otsustatud. Andmejälgija ei vaja otseselt eriliideseid, seega see etapp üldse  ja tema maht sõltub täielikult konkreetse asutuse vajadustest ja otsustest.
 
-6.	Valikuliselt: konfigureerida asutuse X-tee liidest, kui see osutub valitud liidestusviisi jaoks vajalikuks. Töö võiks võtta mõne tunni ja realiseerijaks isik, kes on seni asutuse X-tee liideseid konfigureerinud.
+8. Töötav süsteem tuleks tervikuna läbi testida. Testlugusid ega testimise juhendeid ei ole ette antud, vaid oluline on ja tuleks tuvastada, et andmejälgija on töökorras ja tõrkeid ei esine.  Spetsiaalseid formaalseid testsüsteeme ei ole siin vaja kasutada, tuleks aga lihtsalt tuvastada, et ettenähtud funktsionaalsus töötab ja ei paista ette-ennustamatuid kõrvalefekte. 
 
-7.	Valikuliselt: realiseerida eriliidesed oma infosüsteemides andmejälgija külge, kui etapis kaks on nii otsustatud. Andmejälgija ei vaja otseselt eriliideseid, seega see etapp üldse  ja tema maht sõltub täielikult konkreetse asutuse vajadustest ja otsustest. Siin on tarvilik asutuse IT arendaja töö. Kui neid töid teha, võiks mahuks planeerida ca ühe tööpäeva.
-
-8.	Valikuliselt: teha andmejälgija standardkomponentides muutusi ja täiendusi,  kui etapis kaks on nii otsustatud. Jällegi, andmejälgija ei vaja otseselt muutusi ja täiendusi – kuigi ta on realiseeritud selliselt, et seda oleks lihtne teha - seega see etapp üldse  ja tema maht sõltub täielikult konkreetse asutuse vajadustest ja otsustest. Siin on tarvilik asutuse IT arendaja töö. Kui neid töid teha, võiks mahuks planeerida ühe või paar tööpäeva.
-
-9.	Töötav süsteem tervikuna läbi testida. Spetsiaalseid formaalseid testsüsteeme ei ole siin vaja kasutada, tuleks aga lihtsalt tuvastada, et ettenähtud funktsionaalsus töötab ja ei paista ette-ennustamatuid kõrvalefekte. Siin võiks osa võtta asutuse IT põhimõtete otsustaja ja IT süsteemide haldaja, mahuks planeerida mõned tunnid kuni päeva.
-
-10.	Leppida asutusesiseselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
+9.	Leppida asutusesiseselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
 
 
 ## Tarkvara paigaldamine
 
-Andmejälgija komponentide paigaldamise, eemaldamise ja konfigureerimise tegevused on kirjeldatud eraldi dokumendis 
-[Tarkvara paigaldamise juhend](Paigaldamine.md)
-
-# Tarkvara ehitamine ja kohandamine
-
-Andmejälgija komponentide lätekoodist kompileerimise ja ehitamise tegevused on kirjeldatud eraldi dokumendis 
-[Tarkvara ehitusjuhend](Ehitusjuhend.md)
-
-Andmejälgija komponentide kohandamise ehk lähtekoodi muutmise ja edasiarendamise võimalused on kirjeldatud eraldi dokumendis 
-[Tarkvara kohandamise juhend](Kohandamine.md)
+Tarkvara vajalikud juhendid on kättesaadavad avalikus GitHub repositooriumis (https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md). 
 
 ## Andmejälgija haldustoimingud
 
-Paigaldatud ja konfigureeritud andmejälgija ei vaja palju haldustoiminguid. Siiski tuleb regulaarselt teha harilikke
-tegevusi:
+Paigaldatud ja konfigureeritud andmejälgija ei vaja palju haldustoiminguid. Siiski tuleb regulaarselt teha harilikke tegevusi:
 
 * Kontrollida, et andmejälgija andmebaas ei hakka lõpuni täitma serveri kettaruumi.
 * Kontrollida, et andmejälgija regulaarselt andmeid ka salvestab ning eesti.ee-st on salvestatud andmed kättesaadavad.
-* Kontrollida, et andmesalvestaja liidesed ei ole serverite konfiguratsioonide muutmise käigus asutuseväliselt kättesaadavaks tehtud.
 * Uute isikuandmeid edastavate X-tee teenuste ehitamise või muude uute isikuandmete töötlemisvõimaluste ehitamise korral
 lisada ka need andmejälgijasse.
 * Perioodiliselt kustutada aegunud logiridu.
 
 ### Aegunud andmejälgija logiridade kustutamine
 
-Aegunud andmejälgija logiread tuleb kustutada andmebaasist SQL käsu abil. Kõige lihtsamal juhul saab ridu kustutada käsuga:
+Infosüsteem peab logima ise andmeid ning aegunud logid eemaldama.
 
-```sql
-delete from ajlog where logtime < to_date('{kuupaev}', 'YYYY-MM-DD');
-```
-
-Seal {kuupaev} tuleb asendada kuupäevaga kujul AAAA-KK-PP.
-
-Andmesalvestaja komponendi andmebaasiskriptide hulgas leidub ka kaks käsurea skripti vanade kirjete haldamiseks PostgreSQL andmebaasi korral.
-
-* Skript archive-old-records.sh väljastab vanad kirjed stdout-i. Vajdusel tuleb suunata skripti väljund faili.
-* Skript delete-old-records.sh kustutab andmebaasist vanad kirjed.
-
-Mõlemad skriptid vajavad parameetrina eelpool toodud kujul kuupäeva. Andmebaas ja autentimisinfo tuleb skriptidele
-ette anda PostgreSQL standardsete keskkonnamuutujate PGDATABASE, PGHOST, PGPORT, PGUSER, PGPASSWORD abil.
+Kui asutusel on juba olemas logimise süsteem, siis saab luua sellele findusage päringu toe, kui seda pole, siis tuleb see üles ehitada nullist.
 
 ## Infoturbe küsimused
 
-Üldise põhimõttena andmejälgija paigaldamisel tuleks lähtuda sellest, et andmejälgija on põhiandmekogu osa, 
-mitte eraldiseisev süsteem. Seega ei nõua ta ka omaette ISKE analüüsi, omaette X-tee süsteeme jne. 
+Üldise põhimõttena andmejälgija paigaldamisel tuleks lähtuda sellest, et andmejälgija on põhiandmekogu osa, mitte eraldiseisev süsteem. Seega ei nõua ta ka omaette ISKE analüüsi, omaette X-tee süsteeme jne. 
 
-Sellest tulenevalt ei saa aga üks andmejälgija teenindada korraga mitut andmekogu.
+Üks andmejälgija ei saa teenindada korraga mitut andmekogu. Kõik andmejälgija päringud kasutavad x-tee pärinugid ja seetõttu on oluline x-tee ja turvaserverite olemasolu. Kui seda ei ole, siis tuleb esmalt endale hankida turvaserverid ja luua x-tee lahendused enda süsteemidesse. X-tee ja turvaserveri olemasolu on eelduseks andmejälgija kasutuselevõtuks.
 
-Andmejälgija paigaldamisel tuleb seda teha selliselt, et andmesalvestaja komponendi erinevad teenused:
-* andmete salvestamise REST liides
-* sisekontrollija rakenduse päringu REST liides
-* X-tee turvaserveri SOAP liides
-ei oleks ligipääsetavad asutusest/andmekogust väljapool.
+X-tee turvaserveri ülesandeks on vahendada päringuid X-tee võrgu ja asutuse siseste X-teed kasutavate lahenduste või teenuste vahel.
 
-Sisekontrollija rakenduse paigaldamise korral tuleb server seadistada selliselt, et ligipääsud REST teenusele
-oleks võimalikud ainult selleks konkreetse õiguse saanud töötajatele. Rakendus ise selleks mingeid
-vahendeid ei paku, eeldades ligipääsu piiramist veebiserveri standardvahenditega: 
-vaata täpsemalt paigaldamisjuhendi peatükki "Autentimise häälestamine".
 
-Rõhutame, et palju olulisem, kui veebirakendusele endale ligipääsu piiramine, on eelpool mainitud
-andmesalvestaja komponendi teenustele ligipääsu piiramine.
