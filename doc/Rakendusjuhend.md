@@ -3,7 +3,7 @@ Tarkvara rakendusjuhend
 
 **DUMonitor**
 
-Versioon 1.1, 19.01.2017
+Versioon 1.3, 09.09.2025
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -18,6 +18,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
 | 1.0      | 09.05.2016 | Tanel Tammet, Ivo Mehide | Esimene versioon
 | 1.1      | 19.01.2017 | Piret Elm, Vitali Stupin | Logimise välistuste täpsustamine
 | 1.2      | 16.03.2017 | Piret Elm                | Logimise välistuste täpsustamine
+| 1.3      | 09.09.2025 |  	 	                     | Dokumendi täiendamine
 
 ## Sisukord
 
