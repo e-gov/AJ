@@ -28,6 +28,8 @@ Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi p
    * Kasutusteabe esitamise protokoll (SOAP) - andmesalvesti rollis on mis tahes vastavaid andmeid sisaldav rätseplahendus
    * Eesti.ee REST päringu tugi tuleb tulevikus
 
+Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda siin [https://github.com/sipsu1/AJ/blob/master/doc/Rakendusjuhend.md]
+
 ### Kontakt ja täpsem info
 
 Kõigi küsimuste puhul palume võtta ühendust Riigi Infosüsteemi Ameti kasutajatoega help@ria.ee
