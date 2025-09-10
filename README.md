@@ -24,13 +24,11 @@ Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. Sellek
 
 **Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
 
-RIA vaatest on oluline, et kõik Andmejälgijat rakendavad andmekogud teeks seda samadel alustel, st rakendaks enda teenuse realiseerimisel Andmejälgija protokolli. Lihtsalt öeldes peab olema Andmejälgija teenus ehitatud RIA poolt pakutud spetsifikatsiooni põhjal, et oleks võimalik erinevate andmekogude Andmejälgija teenused eesti.ee portaalis sarnaselt kuvada.
+Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kasutusel standardiseeritud teenus findUsage, mis võimaldab kuvada logi eesti.ee sektsioonis Andmejälgija. Vajadusel on võimalik päringu tegemiseks kasutada ka mõnda teist (nt juba eelnevalt olemasolevat) teenust juhul, kui selle väljund vastab findUsage spetsifikatsioonile. Taustal teeb riigiportaal eesti.ee kasutaja päringu peale X-tee päringu valitud andmekogu andmejälgijasse.
 
-Kuna andmekogud ja neid teenindavad infosüsteemid on väga erinevad, on praktikas reeglina mõistlik realiseerida Andmejälgija teenus iseseisvalt, vastavalt konkreetse süsteemi iseloomule ja nõuetele. Tihti on mõistlik aluseks võtta igas infosüsteemis olev logilahendus, mis talletab kõik isikuandmetega toimunud sündmused.
+X-tee turvaserveris tuleb registreerida asutuse alamsüsteemi pakutav teenus (findUsage), mis väljastab andmejälgija kasutusteabe esitamise protokollile vastavalt logid. X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
 
-X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
-   * Kasutusteabe esitamise protokoll (SOAP) - andmesalvesti rollis on mis tahes vastavaid andmeid sisaldav rätseplahendus
-   * Eesti.ee REST päringu tugi tuleb tulevikus
+X-tee turvaserveris on vaja  ning teenus teha kättesaadavaks riigiportaalile, tunnus EE/GOV/70006317/riigiportaal-citizen
 
 Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda [siin](https://github.com/sipsu1/AJ/blob/master/doc/Rakendusjuhend.md)
 
