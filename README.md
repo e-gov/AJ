@@ -17,9 +17,7 @@ Andmejälgija peab inimesele kuvama infot nii andmekogus lokaalselt toimuvast an
 Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi projekteerides, arvestades vajadusega süsteemis toimuv andmetöötlus tulevikus inimeste jaoks läbipaistvaks ja arusaadavaks muuta. 
 
 ### Andmejälgija funktsionaalsuse loomine infosüsteemile või andmekogule
-Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. Luua olemasolevate logide põhjal kindlaid andmetöötlussündmusi (nt andmeväljastusi, muudatusi, vaatamisi) koondav rakendus, millel on vastav liides andmete hilisemaks üle X-tee kuvamiseks.
-
-**Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
+Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. 
 
 Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kasutusel standardiseeritud teenus findUsage, mis võimaldab kuvada logi eesti.ee sektsioonis Andmejälgija. X-tee turvaserveris tuleb registreerida asutuse alamsüsteemi pakutav teenus (findUsage), mis väljastab andmejälgija kasutusteabe esitamise protokollile vastavalt logid. X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
 
