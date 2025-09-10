@@ -16,23 +16,38 @@ Andmejälgija peab inimesele kuvama infot nii andmekogus lokaalselt toimuvast an
 
 Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi projekteerides, arvestades vajadusega süsteemis toimuv andmetöötlus tulevikus inimeste jaoks läbipaistvaks ja arusaadavaks muuta. 
 
-### Andmejälgija teenus ja protokoll
+### Andmejälgija funktsionaalsuse loomine infosüsteemile või andmekogule
+Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. Selleks on mitu võimalust:
+
+* Iseseisev arendus: Luua olemasolevate logide põhjal kindlaid andmetöötlussündmusi (nt andmeväljastusi, muudatusi, vaatamisi) koondav rakendus, millel on vastav liides andmete hilisemaks üle X-tee kuvamiseks
+* RIA pakutavad standardkomponendid, mis on võimalik turvaserveri ja infosüsteemi vahelist liiklust "jälgima panna". Kasutada võib kõiki või ainult mõnda komponenti, vastavalt
 
 **Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
 
-   RIA vaatest on oluline, et kõik Andmejälgijat rakendavad andmekogud teeks seda samadel alustel, st rakendaks enda teenuse realiseerimisel Andmejälgija protokolli. Lihtsalt öeldes peab olema Andmejälgija teenus ehitatud RIA poolt pakutud spetsifikatsiooni põhjal, et oleks võimalik erinevate andmekogude Andmejälgija teenused eesti.ee portaalis sarnaselt kuvada.
+RIA vaatest on oluline, et kõik Andmejälgijat rakendavad andmekogud teeks seda samadel alustel, st rakendaks enda teenuse realiseerimisel Andmejälgija protokolli. Lihtsalt öeldes peab olema Andmejälgija teenus ehitatud RIA poolt pakutud spetsifikatsiooni põhjal, et oleks võimalik erinevate andmekogude Andmejälgija teenused eesti.ee portaalis sarnaselt kuvada.
 
-   Kuna andmekogud ja neid teenindavad infosüsteemid on väga erinevad, on praktikas reeglina mõistlik realiseerida Andmejälgija teenus iseseisvalt, vastavalt konkreetse süsteemi iseloomule ja nõuetele. Tihti on mõistlik aluseks võtta igas infosüsteemis olev logilahendus, mis talletab kõik isikuandmetega toimunud sündmused.
+Kuna andmekogud ja neid teenindavad infosüsteemid on väga erinevad, on praktikas reeglina mõistlik realiseerida Andmejälgija teenus iseseisvalt, vastavalt konkreetse süsteemi iseloomule ja nõuetele. Tihti on mõistlik aluseks võtta igas infosüsteemis olev logilahendus, mis talletab kõik isikuandmetega toimunud sündmused.
 
-   X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
+X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
    * Kasutusteabe esitamise protokoll (SOAP) - andmesalvesti rollis on mis tahes vastavaid andmeid sisaldav rätseplahendus
    * Eesti.ee REST päringu tugi tuleb tulevikus
 
 Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda [siin](https://github.com/sipsu1/AJ/blob/master/doc/Rakendusjuhend.md)
 
-### Liitumisleping ja -taotlus
+###  Andmetöötluslepingu sõlmimine RIA ning andmejälgijat kasutava asutuse vahel
+
+Leping sõlmitakse RIA ja andmejälgija teenust pakkuva asutuse vahel.
 
 * Andmejälgijaga liitumislepingu vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx).
+
+###  Taotlus andmejälgija teenuse avamiseks riigiportaalis eesti.ee
+
+Andmekogu omav asutus esitab eesti.ee-le taotluse teenuse avamiseks. Vajalik info:
+* Teenuse nimi riigiportaalis (eesti, inglise ja vene keeles); kuvatakse kasutajale dropdown menüüs
+* X-tee alamsüsteemi nimetus, mille vahendusel andmejälgija teenust pakutakse
+* Teenuse sisulise omaniku kontaktandmed (nimi, ametikoht, e-post, asutus). Kontaktisik, kellega võetakse ühendust teenuse osutamist puudutavate üldiste küsimuste korral.
+* Teenuse andmekogu spetsiifiline kirjeldus riigiportaalis avaldamiseks (eesti, inglise ja venekeelne variant). Kirjeldus andmekogu inimmõistetavast eesmärgist ning üldine kirjeldus selles toimuvast andmetöötlusest.
+
 * Andmejälgijaga liitumistatoluse vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx).
 
 ### Kontakt ja täpsem info
