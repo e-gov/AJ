@@ -17,10 +17,7 @@ Andmejälgija peab inimesele kuvama infot nii andmekogus lokaalselt toimuvast an
 Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi projekteerides, arvestades vajadusega süsteemis toimuv andmetöötlus tulevikus inimeste jaoks läbipaistvaks ja arusaadavaks muuta. 
 
 ### Andmejälgija funktsionaalsuse loomine infosüsteemile või andmekogule
-Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. Selleks on mitu võimalust:
-
-* Iseseisev arendus: Luua olemasolevate logide põhjal kindlaid andmetöötlussündmusi (nt andmeväljastusi, muudatusi, vaatamisi) koondav rakendus, millel on vastav liides andmete hilisemaks üle X-tee kuvamiseks
-* RIA pakutavad standardkomponendid, mis on võimalik turvaserveri ja infosüsteemi vahelist liiklust "jälgima panna". Kasutada võib kõiki või ainult mõnda komponenti, vastavalt
+Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. Luua olemasolevate logide põhjal kindlaid andmetöötlussündmusi (nt andmeväljastusi, muudatusi, vaatamisi) koondav rakendus, millel on vastav liides andmete hilisemaks üle X-tee kuvamiseks.
 
 **Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
 
