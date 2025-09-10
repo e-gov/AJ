@@ -21,9 +21,7 @@ Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. Luua o
 
 **Realiseerida Andmejälgija kasutusteabe esitamise protokollile vastav X-tee teenus iseseisvalt**
 
-Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kasutusel standardiseeritud teenus findUsage, mis võimaldab kuvada logi eesti.ee sektsioonis Andmejälgija. Vajadusel on võimalik päringu tegemiseks kasutada ka mõnda teist (nt juba eelnevalt olemasolevat) teenust juhul, kui selle väljund vastab findUsage spetsifikatsioonile. Taustal teeb riigiportaal eesti.ee kasutaja päringu peale X-tee päringu valitud andmekogu andmejälgijasse.
-
-X-tee turvaserveris tuleb registreerida asutuse alamsüsteemi pakutav teenus (findUsage), mis väljastab andmejälgija kasutusteabe esitamise protokollile vastavalt logid. X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
+Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kasutusel standardiseeritud teenus findUsage, mis võimaldab kuvada logi eesti.ee sektsioonis Andmejälgija. X-tee turvaserveris tuleb registreerida asutuse alamsüsteemi pakutav teenus (findUsage), mis väljastab andmejälgija kasutusteabe esitamise protokollile vastavalt logid. X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md)
 
 X-tee turvaserveris on vaja  ning teenus teha kättesaadavaks riigiportaalile, tunnus EE/GOV/70006317/riigiportaal-citizen
 
