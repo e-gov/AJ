@@ -35,7 +35,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   
 ## Sihtrühm
 
-Käesoleva juhendi sihtrühmaks on andmekogude omanikud, haldajad ning arendajad, kes on huvitatud andmejälgija tarkvara kasutamisest. 
+Käesoleva juhendi sihtrühmaks on andmekogude omanikud, haldajad ning arendajad.
 
 ## Andmejälgija ülevaade
 
@@ -47,8 +47,6 @@ Andmejälgija teine eesmärk on pakkuda andmekogule mugavad vahendid isikuandmet
 
 Andmejälgija luuakse, paigaldatakse ja konfigureeritakse iga andmekogu jaoks eraldi, mingit riiklikku keskset andmebaasi isikuandmete liikumise jaoks ega keskset paigaldatud lahendust andmejälgija ette ei näe ega paku.
 
-Andmejälgija on realiseeritud Javas (võib töötada alates Java versioonist 1.6), andmebaasiks on Postgresql ja põhimõtteliselt võib teda installeerida nii otse X-tee turvaserverisse kui mõnda olemasolevasse serverisse koos teiste süsteemidega, või hoopis eraldi serverisse. 
-
 ## Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte
 
 Isikuandmete kaitse seadus sisaldab punkte, mille lahendamise hõlbustamiseks andmejälgija lahendus on loodud:
@@ -58,8 +56,7 @@ Isikuandmete kaitse seadus sisaldab punkte, mille lahendamise hõlbustamiseks an
 
 //**Euroopa GDPR isikuandmete seadustest punktid **
 
-Isikuandmetena käsitleb seadus mistahes andmeid isiku kohta - kaasa arvatud tema nimi ja sünniaeg - mitte ainult
-tundlikke isikuandmeid.
+Isikuandmetena käsitleb seadus mistahes andmeid isiku kohta - kaasa arvatud tema nimi ja sünniaeg - mitte ainult tundlikke isikuandmeid.
 
 Reaalsuses edastatakse isikuandmeid väga erinevatel viisidel. Näiteks: üksiku isiku kohta käiv teenus X-teel, sadu inimesi väljastav otsipäring X-teel, regulaarne mass-päring kümnete tuhandete isikute kohta nende andmete ajutiseks puhverdamiseks, isikuandmeid sisaldavate PDF failide edasisaatmine, isikuandmeid sisaldava andmebaasi kokkupakitud dumbi kopeerimine ftp kaudu jne.
 
@@ -106,20 +103,9 @@ Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku j
 
 Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule näha.
 
-Standardlahendus võimaldab piirata kodanikule näidatavat infot kahel moel:
-
-* Eraldusfiltris asuv Blacklist – võimaldab välja lülitada asutuse kogu andmevahetuse asutuse registrikoodi alusel, nii et asutuse päringuid ei logita üldse.
-* Eraldusfiltri täpsem seadistus – võimaldab välistada teatud päringute logimise teenuse parameetri või alamsüsteemi täpsusega. 
-
-Sõltumata sellest, kumba moodust välistuse tagamiseks kasutatakse, tuleb piirangute seadistamise reeglid kokku leppida päringuid sooritava asutusega. Juhtumi- või kaasusepõhine filtreerimine ei ole standardlahendust kasutades võimalik. 
-
-Kodanikule andmete väljastamise filtreerimist standardlahendus ei toeta. Filtreeritud päringute kohta on kodanikul õigus teha asutusse järelepärimine traditsioonilisel moel (näiteks teabenõudega).
-
 ## Andmejälgija kasutuselevõtt
 
 Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubadaolukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
-
-Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubada olukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest.
 
 Samuti andmejälgija kasutab X-tee protolli teenuse jaoks, mille kaudu kutsutakse küsitakse logid. See kus neid hoitakse, milline on teenus või adapter, mis findusaget implementeerib me ette ei defineeri.
 
