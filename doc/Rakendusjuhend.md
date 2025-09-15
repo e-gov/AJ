@@ -102,7 +102,7 @@ Jälitustegevuse õigusega asutused on loetletud kriminaalmenetluse seadustiku j
 * Maksu- ja Tolliamet (70000349);
 * Sõjaväepolitsei (70008641);
 * Justiitsministeeriumi (70000898) vanglate osakond ja vangla;
-* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) https://www.riigiteataja.ee/akt/117122015039#para28.
+* Julgeolekuasutuste seaduses § 5. on toodud julgeolekuasutusena ka Teabeamet (70005938) [Julgeolekuastuste seadus](https://www.riigiteataja.ee/akt/114032023025).
 
 Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle andmekasutus ei tohi olla kodanikule näha.
 
