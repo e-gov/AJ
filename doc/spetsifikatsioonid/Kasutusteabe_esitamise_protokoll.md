@@ -177,7 +177,7 @@ Näidisvastus:
   "totalUsages": 1,
   "usages": [
     {
-      "logtime": "2023-10-01T12:00:00Z",
+      "logtime": "2023-10-01T12:00:00",
       "receiverName": "TEHIK",
       "receiverCode": "12345678",
       "receiverSystem": "Terviseportaal",
