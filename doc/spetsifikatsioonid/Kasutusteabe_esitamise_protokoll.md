@@ -72,9 +72,11 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 
 X-tee dokumentatsioon:  https://x-tee.ee/docs/live/xroad/, https://x-tee.ee/docs/live/xroad/ug-ss_x-road_6_security_server_user_guide.html#63-enabling-and-disabling-a-service-description
 
-Käesoleva kasutusteabe esitamise protokolli lahutamatuteks osadeks on:
-- Kasutusteabe esitamise protokolli OpenAPI-kirjeldus [dumonitor-openapi.yaml](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/dumonitor-openapi-v2.yaml)
+Käesoleva kasutusteabe esitamise protokolli osadeks on:
+- REST prototkolli kirjeldus: [dumonitor-openapi.yaml](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/dumonitor-openapi-v2.yaml).
 
+- SOAP protokolli kirjeldus: [dumonitor.wsdl](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/dumonitor.wsdl).
+  
 Kasutusteabe esitamise protokolli normatiivsed viited:
 - X-tee REST sõnumiprotokoll (https://www.x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html)
 
@@ -113,9 +115,7 @@ Suhtlus algab alati päringu algataja poolt – päringu algataja esitab päring
 
 ## 8. REST päringute kirjeldused
 
-Uued liidestused tuleb teha REST päringu põhjal, varasema SOAP päringu kirjeldus on leitav siit: https://github.com/e-gov/AJ/blob/master/archive/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md.
-
-Päringute täpsed spetsifikatsioonid on toodud OpenAPI-kirjelduse failis "dumonitor-openapi.yaml". Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringte lahtiselgitused.
+Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringte lahtiselgitused.
 
 ### 8.1. Kasutusteabe küsimine
 
