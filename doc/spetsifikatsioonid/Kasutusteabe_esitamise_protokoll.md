@@ -56,13 +56,12 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 - [7\. Disaini konstrueerimise kaalutlused](#7-disaini-konstrueerimise-kaalutlused)
 - [8\. Vastavusklausel](#8-vastavusklausel)
 - [9\. Vastavusmudel](#9-vastavusmudel)
-  - [9\.1\. Kasutusteabe lugemise vastavus](#91-kasutusteabe-lugemise-vastavus)
 
 ## 1. Ülevaade
 
 Käesolev dokument esitab tarkvaralise lahenduse "Andmejälgija" kasutusteabe esitamise protokolli, mida kasutatakse eesti.ee-st X-tee päringute tegemisel andmesalvestajale.
 
-Kasututeabe esitamise protokoll on spetsifikatsioon, mis määratleb, kuidas toimub Andmesalvestajasse isikuandmete kasutusteabe edastamine ning isikuandmete kasutusteabe küsimine.
+Kasutusteabe esitamise protokoll on spetsifikatsioon, mis määratleb, kuidas toimub Andmesalvestajasse isikuandmete kasutusteabe edastamine ning isikuandmete kasutusteabe küsimine.
 
 Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestajaga suhtlemine kas sinna isikuandmete kasutusteabe edastamiseks või siis selle info küsimiseks.
 
@@ -71,9 +70,9 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 X-tee dokumentatsioon:  https://x-tee.ee/docs/live/xroad/, https://x-tee.ee/docs/live/xroad/ug-ss_x-road_6_security_server_user_guide.html#63-enabling-and-disabling-a-service-description
 
 Käesoleva kasutusteabe esitamise protokolli osadeks on:
-- REST prototkolli kirjeldus: [dumonitor-openapi.yaml](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/dumonitor-openapi-v2.yaml).
+- REST protokolli kirjeldus on dokumendis "dumonitor-openapi.yaml".
 
-- SOAP protokolli kirjeldus: [dumonitor.wsdl](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/dumonitor.wsdl).
+- SOAP protokolli kirjeldus on dokumendis "dumonitor.wsd".
   
 Kasutusteabe esitamise protokolli normatiivsed viited:
 - X-tee REST sõnumiprotokoll (https://www.x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html)
@@ -108,12 +107,12 @@ Päringu algataja ja andmesalvestaja vaheline suhtlus toimub vastavalt X-tee põ
 
 Suhtlus algab alati päringu algataja poolt – päringu algataja esitab päringu ning andmesalvestaja vastab.
 
-![Kasutusteabe esitamise protkolli diagramm](../img/kasutusteabe_esitamise_protokolli_diagramm.png)
+![Kasutusteabe esitamise protokolli diagramm](../img/kasutusteabe_esitamise_protokolli_diagramm.png)
 
 
 ## 6. REST päringute kirjeldused
 
-Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringte lahtiselgitused. Need kolm teenust on kohustuslikud andmejälgija korrektseks tööks.
+Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringute lahtiselgitused. Need kolm teenust on kohustuslikud andmejälgija korrektseks tööks.
 
 Kõikide päringute kuupäev ja kellaeg on Eesti ajas kujul YYYY-MM-DDTHH:MM:SS.
 
@@ -282,12 +281,8 @@ Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa. Pu
 
 ## 8. Vastavusklausel
 
-Lahendus on vastavuses kasutusteabe esitamise protokolliga juhul, kui selles on realiseeritud punktis "8. REST Päringute kirjeldused" kirjeldatud teenused vastavalt neis sätestatud nõuetele ning lisaks on arvestatud punktis "9. Disaini konstrueerimise kaalutlused" toodud nõudeid.
+Lahendus on vastavuses kasutusteabe esitamise protokolliga juhul, kui selles on realiseeritud punktis "6. REST päringute kirjeldused" kirjeldatud teenused vastavalt neis sätestatud nõuetele ning lisaks on arvestatud punktis "7. Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 ## 9. Vastavusmudel
 
-Kasutusteabe esitamise protokollil on üks vastavusprofiil:
-
-### 9.1. Kasutusteabe lugemise vastavus
-
-- Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "8.1. Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "9. Disaini konstrueerimise kaalutlused" toodud nõudeid.
+- Lahendus küsib andmesalvestajalt isikuandmete kasutusteavet punktis "6.1. Kasutusteabe küsimine" kirjeldatud päringu abil ning järgib täiendavalt punktis "7. Disaini konstrueerimise kaalutlused" toodud nõudeid.
