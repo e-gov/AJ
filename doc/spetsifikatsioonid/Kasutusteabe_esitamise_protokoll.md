@@ -115,7 +115,7 @@ Suhtlus algab alati päringu algataja poolt – päringu algataja esitab päring
 
 ## 8. REST päringute kirjeldused
 
-Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringte lahtiselgitused.
+Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringte lahtiselgitused. Need kolm teenust on kohustuslikud andmejälgija korrektseks tööks.
 
 ### 8.1. Kasutusteabe küsimine
 
