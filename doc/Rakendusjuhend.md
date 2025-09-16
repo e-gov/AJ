@@ -43,7 +43,7 @@ Isikuandmete kaitse seadus nõuab, et andmekogu haldaja peab vastama mistahes is
 
 Andmejälgija eesmärk on pakkuda kodanikule selget ülevaadet tema andmetega sooritatud toimingutest: millal, kuhu ja miks on tema isikuandmeid edastatud. Terviklik ülevaade kuvatakse riigiportaalis eesti.ee.
 
-Andmejälgija teine eesmärk on pakkuda andmekogule mugavad vahendid isikuandmete edastamise ja töötlemise jälgimiseks asutusesiseselt.
+Andmejälgija teine eesmärk on pakkuda andmekogule mugavad vahendid isikuandmete edastamiseks.
 
 Andmejälgija luuakse, paigaldatakse ja konfigureeritakse iga andmekogu jaoks eraldi, mingit riiklikku keskset andmebaasi isikuandmete liikumise jaoks ega keskset paigaldatud lahendust andmejälgija ette ei näe ega paku.
 
@@ -54,7 +54,7 @@ Isikuandmete kaitse seadus sisaldab punkte, mille lahendamise hõlbustamiseks an
 * Andmesubjekti soovil peab isikuandmete töötleja andmesubjektile teatavaks tegema kolmandad isikud, kellele tema isikuandmeid on edastatud. (IKS § 19 lg 1 p 5);
 * Isikuandmete töötleja on isikuandmete töötlemisel kohustatud tagama, et tagantjärele oleks võimalik kindlaks teha, millal, kelle poolt ja milliseid isikuandmeid salvestati, muudeti või kustutati või millal, kelle poolt ja millistele isikuandmetele andmetöötlussüsteemis juurdepääs saadi. (IKS § 25 lg 2 p 3)
 
-//**Euroopa GDPR isikuandmete seadustest punktid **
+//**Euroopa GDPR isikuandmete seadustest punktid**
 
 Isikuandmetena käsitleb seadus mistahes andmeid isiku kohta - kaasa arvatud tema nimi ja sünniaeg - mitte ainult tundlikke isikuandmeid.
 
@@ -87,7 +87,7 @@ Andmesubjekti õigust saada teavet ja enda kohta käivaid isikuandmeid isikuandm
 
 1)	takistada või kahjustada süüteo tõkestamist, avastamist või menetlemist või karistuse täideviimist;
 2)	kahjustada teise isiku õigusi ja vabadusi;
-3)	ohustada riigi julgeolekut;s
+3)	ohustada riigi julgeolekut;
 4)	ohustada avaliku korra kaitset;
 5)	takistada ametlikku uurimist või menetlust. 
 
@@ -105,9 +105,9 @@ Asutuse valdkondlikus regulatsioonis võib olla täiendavaid osapooli, kelle and
 
 ## Andmejälgija kasutuselevõtt
 
-Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubadaolukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
+Andmejälgija andmebaas on alati seotud üheainsa andmekoguga: juba turvakaalutlustel ei tohi lubada olukorda, kus üks andmejälgija salvestab andmeid erinevatest andmekogudest. 
 
-Samuti andmejälgija kasutab X-tee protolli teenuse jaoks, mille kaudu kutsutakse küsitakse logid. See kus neid hoitakse, milline on teenus või adapter, mis findusaget implementeerib me ette ei defineeri.
+Samuti andmejälgija kasutab X-tee protokolli teenuse jaoks, mille kaudu küsitakse logid.
 
 ## Andmejälgija kasutuselevõtmise protsess
 
@@ -123,13 +123,13 @@ Soovituslikult võiks meeskond koosneda järgnevalt:
   * Aru saada andmejälgija põhimõtetest ja võimalustest.
   * Arutada variante teenuse/infosüsteemi haldaja ja/või arendajaga.
 
-3.	Otsustada, millistesse olemasolevatesse serveritesse Andmejälgija lisda või vajdusel hankida uus server. 
+3.	Otsustada, millistesse olemasolevatesse serveritesse Andmejälgija lisada või vajadusel hankida uus server. 
 
 4.	Valikuliselt: konfigureerida asutuse X-tee liidest, kui see osutub valitud liidestusviisi jaoks vajalikuks. 
 
-5.	Valikuliselt: realiseerida eriliidesed oma infosüsteemides andmejälgija külge, kui etapis kaks on nii otsustatud. Andmejälgija ei vaja otseselt eriliideseid, seega see etapp üldse  ja tema maht sõltub täielikult konkreetse asutuse vajadustest ja otsustest.
+5.	Valikuliselt: realiseerida eriliidesed oma infosüsteemides andmejälgija külge, kui etapis kaks on nii otsustatud. 
 
-6. Töötav süsteem tuleks tervikuna läbi testida. Testlugusid ega testimise juhendeid ei ole ette antud, vaid oluline on ja tuleks tuvastada, et andmejälgija on töökorras ja tõrkeid ei esine.  Spetsiaalseid formaalseid testsüsteeme ei ole siin vaja kasutada, tuleks aga lihtsalt tuvastada, et ettenähtud funktsionaalsus töötab ja ei paista ette-ennustamatuid kõrvalefekte. 
+6. Töötav süsteem tuleks tervikuna läbi testida. Testlugusid ega testimise juhendeid ei ole ette antud, vaid oluline on ja tuleks tuvastada, et andmejälgija on töökorras ja tõrkeid ei esine.  Spetsiaalseid formaalseid testsüsteeme ei ole siin vaja kasutada, tuleks aga lihtsalt tuvastada, et ettenähtud funktsionaalsus töötab ja ei paista ettenägematuid kõrvalefekte. 
 
 7.	Leppida asutusesiseselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
 
@@ -158,7 +158,7 @@ Kui asutusel on juba olemas logimise süsteem, siis saab luua sellele findusage 
 
 Üldise põhimõttena andmejälgija paigaldamisel tuleks lähtuda sellest, et andmejälgija on põhiandmekogu osa, mitte eraldiseisev süsteem. Seega ei nõua ta ka omaette ISKE analüüsi, omaette X-tee süsteeme jne. 
 
-Üks andmejälgija ei saa teenindada korraga mitut andmekogu. Kõik andmejälgija päringud kasutavad x-tee pärinugid ja seetõttu on oluline x-tee ja turvaserverite olemasolu. Kui seda ei ole, siis tuleb esmalt endale hankida turvaserverid ja luua x-tee lahendused enda süsteemidesse. X-tee ja turvaserveri olemasolu on eelduseks andmejälgija kasutuselevõtuks.
+Üks andmejälgija ei saa teenindada korraga mitut andmekogu. Kõik andmejälgija päringud kasutavad x-tee pärinuguid ja seetõttu on oluline x-tee ja turvaserverite olemasolu. Kui seda ei ole, siis tuleb esmalt endale hankida turvaserverid ja luua x-tee lahendused enda süsteemidesse. X-tee ja turvaserveri olemasolu on eelduseks andmejälgija kasutuselevõtuks.
 
 X-tee turvaserveri ülesandeks on vahendada päringuid X-tee võrgu ja asutuse siseste X-teed kasutavate lahenduste või teenuste vahel.
 
