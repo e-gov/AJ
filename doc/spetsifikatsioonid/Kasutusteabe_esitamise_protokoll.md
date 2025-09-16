@@ -117,6 +117,8 @@ Suhtlus algab alati päringu algataja poolt – päringu algataja esitab päring
 
 Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringte lahtiselgitused. Need kolm teenust on kohustuslikud andmejälgija korrektseks tööks.
 
+Kõikide päringute kuupäev ja kellaeg on Eesti ajas kujul YYYY-MM-DDTHH:MM:SS.
+
 ### 8.1. Kasutusteabe küsimine
 
 #### 8.1.1. Päringu nimi
