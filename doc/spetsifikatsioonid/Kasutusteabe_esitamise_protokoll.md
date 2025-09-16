@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.4.1, 12.03.2025
+Versioon 1.5, 16.09.2025
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -22,6 +22,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.3.1    | 30.05.2024 | Siim-Sander Virula            | Eemaldatud mitterelevantne OpenAPI kirjeldus                                                |
 | 1.4      | 06.03.2025 | Kätlin Tammoja                | Lisatud REST päringute kirjeldused                                                          |
 | 1.4.1    | 12.03.2025 | Kätlin Tammoja, Vitali Stupin | Parandatud REST päringute kirjeldused                                                       |
+| 1.5    | 16.09.2025 | Riina Soggar-Henk | Täiendatud dokument  
 
 ## 2. Sisukord
 
