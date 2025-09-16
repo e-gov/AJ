@@ -23,7 +23,7 @@ Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kas
 
 X-tee turvaserveris on vaja  ning teenus teha kättesaadavaks riigiportaalile, tunnus EE/GOV/70006317/datatracker
 
-Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda [siin](https://github.com/sipsu1/AJ/blob/master/doc/Rakendusjuhend.md)
+Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda [siin](https://github.com/sipsu1/AJ/blob/master/doc/Rakendusjuhend.md).
 
 ###  Andmetöötluslepingu sõlmimine RIA ning andmejälgijat kasutava asutuse vahel
 
@@ -34,8 +34,8 @@ Leping sõlmitakse RIA ja andmejälgija teenust pakkuva asutuse vahel.
 ###  Taotlus andmejälgija teenuse avamiseks riigiportaalis eesti.ee
 
 Andmekogu omav asutus esitab eesti.ee-le taotluse teenuse avamiseks. Vajalik info:
-* Teenuse nimi riigiportaalis (eesti, inglise ja vene keeles); kuvatakse kasutajale dropdown menüüs
-* X-tee alamsüsteemi nimetus, mille vahendusel andmejälgija teenust pakutakse
+* Teenuse nimi riigiportaalis (eesti, inglise ja vene keeles); kuvatakse kasutajale dropdown menüüs.
+* X-tee alamsüsteemi nimetus, mille vahendusel andmejälgija teenust pakutakse.
 * Teenuse sisulise omaniku kontaktandmed (nimi, ametikoht, e-post, asutus). Kontaktisik, kellega võetakse ühendust teenuse osutamist puudutavate üldiste küsimuste korral.
 * Teenuse andmekogu spetsiifiline kirjeldus riigiportaalis avaldamiseks (eesti, inglise ja venekeelne variant). Kirjeldus andmekogu inimmõistetavast eesmärgist ning üldine kirjeldus selles toimuvast andmetöötlusest.
 
@@ -43,4 +43,4 @@ Andmekogu omav asutus esitab eesti.ee-le taotluse teenuse avamiseks. Vajalik inf
 
 ### Kontakt ja täpsem info
 
-Kõigi küsimuste puhul palume võtta ühendust Riigi Infosüsteemi Ameti kasutajatoega help@ria.ee
+Kõigi küsimuste puhul palume võtta ühendust Riigi Infosüsteemi Ameti kasutajatoega help@ria.ee.
