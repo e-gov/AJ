@@ -19,17 +19,17 @@ Soovituslik on Andmejälgija funktsionaalsuse peale mõelda juba infosüsteemi p
 ### Andmejälgija funktsionaalsuse loomine infosüsteemile või andmekogule
 Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi. 
 
-Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kasutusel standardiseeritud teenus findUsage, mis võimaldab kuvada logi eesti.ee sektsioonis Andmejälgija. X-tee turvaserveris tuleb registreerida asutuse alamsüsteemi pakutav teenus (findUsage), mis väljastab andmejälgija kasutusteabe esitamise protokollile vastavalt logid. X-teel avatava [teenuse findUsage spetsifikatsioon](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md). Liidestus tuleb teha REST päringu põhjal.
+Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kasutusel standardiseeritud teenus findUsage, mis võimaldab kuvada logi eesti.ee sektsioonis Andmejälgija. X-tee turvaserveris tuleb registreerida asutuse alamsüsteemi pakutav teenus (findUsage), mis väljastab andmejälgija kasutusteabe esitamise protokollile vastavalt logid. X-teel avatava teenuse findUsage spetsifikatsioon on dokumendis "Kasutusteabe esitamise protokoll". Liidestus tuleb teha REST päringu põhjal.
 
 X-tee turvaserveris on vaja  ning teenus teha kättesaadavaks riigiportaalile, tunnus EE/GOV/70006317/datatracker
 
-Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda [siin](https://github.com/sipsu1/AJ/blob/master/doc/Rakendusjuhend.md).
+Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda dokumendis "Rakendusjuhend".
 
 ###  Andmetöötluslepingu sõlmimine RIA ning andmejälgijat kasutava asutuse vahel
 
 Leping sõlmitakse RIA ja andmejälgija teenust pakkuva asutuse vahel.
 
-* Andmejälgijaga liitumislepingu vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx).
+* Andmejälgijaga liitumislepingu vormi fail on "Andmejälgija liitumislepingu põhi".
 
 ###  Taotlus andmejälgija teenuse avamiseks riigiportaalis eesti.ee
 
@@ -39,7 +39,7 @@ Andmekogu omav asutus esitab eesti.ee-le taotluse teenuse avamiseks. Vajalik inf
 * Teenuse sisulise omaniku kontaktandmed (nimi, ametikoht, e-post, asutus). Kontaktisik, kellega võetakse ühendust teenuse osutamist puudutavate üldiste küsimuste korral.
 * Teenuse andmekogu spetsiifiline kirjeldus riigiportaalis avaldamiseks (eesti, inglise ja venekeelne variant). Kirjeldus andmekogu inimmõistetavast eesmärgist ning üldine kirjeldus selles toimuvast andmetöötlusest.
 
-* Andmejälgijaga liitumistatoluse vormi leiad [siit](https://github.com/sipsu1/AJ/blob/master/doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx).
+* Andmejälgijaga liitumistatoluse vormi fail on "Andmejälgija liitumistaotluse põhi".
 
 ### Kontakt ja täpsem info
 
