@@ -28,8 +28,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ
   * [Milliseid andme-edastamisi ja -kasutamisi logida ja milliseid mitte](#milliseid-andme-edastamisi-ja--kasutamisi-logida-ja-milliseid-mitte)
   * [Andmejälgija kasutuselevõtt](#variandid-andmej%C3%A4lgija-kasutuselev%C3%B5tuks)
   * [Andmejälgija kasutuselevõtmise protsess](#andmej%C3%A4lgija-kasutuselev%C3%B5tmise-protsess)
-  * [Tarkvara paigaldamine](#tarkvara-paigaldamine)
-  * [Andmejälgija haldustoimingud](#andmej%C3%A4lgija-haldustoimingud)
+  * [Andmejälgija paigaldamine](#andmej%C3%A4lgija-paigaldamine)
   * [Aegunud andmejälgija logiridade kustutamine](#infoturbe-k%C3%BCsimused) 
   * [Infoturbe küsimused](#infoturbe-k%C3%BCsimused)
   
@@ -134,19 +133,9 @@ Soovituslikult võiks meeskond koosneda järgnevalt:
 7.	Leppida asutusesiseselt kokku andmejälgija haldamise töökorraldus: milline IT haldaja kontrollib tema töökorda, teeb tagavarakoopiaid, jälgib, et ketas ei saaks täis jne.
 
 
-## Tarkvara paigaldamine
+## Andmejälgija paigaldamine
 
-Tarkvara vajalikud juhendid on kättesaadavad avalikus GitHub repositooriumis (https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md). 
-
-## Andmejälgija haldustoimingud
-
-Paigaldatud ja konfigureeritud andmejälgija ei vaja palju haldustoiminguid. Siiski tuleb regulaarselt teha harilikke tegevusi:
-
-* Kontrollida, et andmejälgija andmebaas ei hakka lõpuni täitma serveri kettaruumi.
-* Kontrollida, et andmejälgija regulaarselt andmeid ka salvestab ning eesti.ee-st on salvestatud andmed kättesaadavad.
-* Uute isikuandmeid edastavate X-tee teenuste ehitamise või muude uute isikuandmete töötlemisvõimaluste ehitamise korral
-lisada ka need andmejälgijasse.
-* Perioodiliselt kustutada aegunud logiridu.
+Andmejälgija paigalamiseks vajalikud juhendid on kättesaadavad avalikus GitHub repositooriumis nimega "Kasutusteabe esitamise protokoll". 
 
 ### Aegunud andmejälgija logiridade kustutamine
 
