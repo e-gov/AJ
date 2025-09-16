@@ -73,7 +73,7 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 X-tee dokumentatsioon:  https://x-tee.ee/docs/live/xroad/, https://x-tee.ee/docs/live/xroad/ug-ss_x-road_6_security_server_user_guide.html#63-enabling-and-disabling-a-service-description
 
 Käesoleva kasutusteabe esitamise protokolli lahutamatuteks osadeks on:
-- Kasutusteabe esitamise protokolli OpenAPI-kirjeldus "dumonitor-openapi.yaml" (esitatud lõpus lisana)
+- Kasutusteabe esitamise protokolli OpenAPI-kirjeldus [dumonitor-openapi.yaml](https://github.com/sipsu1/AJ/blob/master/doc/spetsifikatsioonid/dumonitor-openapi-v2.yaml)
 
 Kasutusteabe esitamise protokolli normatiivsed viited:
 - X-tee REST sõnumiprotokoll (https://www.x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html)
