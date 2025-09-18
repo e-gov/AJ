@@ -21,7 +21,7 @@ Oluline on esmalt luua andmekogus toimuvat andmetöötlust kajastav logi.
 
 Andmetöötlusfaktid (logid) tuleb teha publitseeritavaks X-teel. Selleks on kasutusel standardiseeritud teenus findUsage, mis võimaldab kuvada logi eesti.ee sektsioonis Andmejälgija. X-tee turvaserveris tuleb registreerida asutuse alamsüsteemi pakutav teenus (findUsage), mis väljastab andmejälgija kasutusteabe esitamise protokollile vastavalt logid. X-teel avatava teenuse findUsage spetsifikatsioon on dokumendis "Kasutusteabe esitamise protokoll". Liidestus tuleb teha REST päringu põhjal.
 
-X-tee turvaserveris on vaja  ning teenus teha kättesaadavaks riigiportaalile, tunnus EE/GOV/70006317/datatracker
+X-tee turvaserveris on vaja ning teenus teha kättesaadavaks riigiportaalile, LIVE keskkonna tunnus EE/GOV/70006317/datatracker. Testkeskkonna tunnus EE-TEST/GOV/70006317/datatracker ja arenduskeskkonna tunnus on EE-DEV/GOV/70006317/datatracker.
 
 Andmejälgida teenuse kasutusele võtmisega seotud juriidilise infoga saad tutvuda dokumendis "Rakendusjuhend".
 
