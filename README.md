@@ -46,7 +46,7 @@ Andmekogu omav asutus esitab eesti.ee-le taotluse teenuse avamiseks. Vajalik inf
 Asutustele, kes soovivad riigiportaali andmejälgijaga liidestuda:
 
 1.  **Teenuse arendus:** Arendada `findUsage` teenus vastavalt [kasutusteabe esitamise protokollile](doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md).
-2.  **Liitumistaotlus:** Asutuse allkirjaõiguslikul isikul täita ja allkirjastada [andmejälgija liitumistaotlus](doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx) ning saata see aadressile `klient@ria.ee` või edastada DHX kaudu.
+2.  **Liitumistaotlus:** Asutuse allkirjaõiguslikul isikul täita ja allkirjastada [andmejälgija liitumistaotlus](doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx) ning saata see aadressile `help@ria.ee` või edastada DHX kaudu.
 3.  **Ligipääsude avamine:** Avada infosüsteemi `findUsage` teenus X-teel järgmistele RIA alamsüsteemidele:
     * `ee-dev/GOV/70006317/datatracker`
     * `ee-test/GOV/70006317/datatracker`
