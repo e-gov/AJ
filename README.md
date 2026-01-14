@@ -41,6 +41,22 @@ Andmekogu omav asutus esitab eesti.ee-le taotluse teenuse avamiseks. Vajalik inf
 
 * Andmejälgijaga liitumistatoluse vormi fail on "Andmejälgija liitumistaotluse põhi".
 
+## Liidestumise protsess
+
+Asutustele, kes soovivad riigiportaali andmejälgijaga liidestuda:
+
+1.  **Teenuse arendus:** Arendada `findUsage` teenus vastavalt [kasutusteabe esitamise protokollile](doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md).
+2.  **Liitumistaotlus:** Asutuse allkirjaõiguslikul isikul täita ja allkirjastada [andmejälgija liitumistaotlus](doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx) ning saata see aadressile `klient@ria.ee` või edastada DHX kaudu.
+3.  **Ligipääsude avamine:** Avada asutuse `findUsage` teenus X-teel järgmistele RIA alamsüsteemidele:
+    * `ee-dev/GOV/70006317/datatracker`
+    * `ee-test/GOV/70006317/datatracker`
+    * `EE/GOV/70006317/datatracker`
+    * *Märkus: Toodangu ligipääsu võib avada pärast lepingu sõlmimist, kuid enne päringu toodangusse minekut.*
+4.  **Testandmed:** Genereerida `ee-test` X-teel olevale andmejälgija teenusele testkirjed kokkulepitud demo-isikukoodile (näiteks `60001017869` või `39901012239`), et RIA saaks veenduda teenuse toimimises.
+5.  **Testimine:** RIA testib esmalt teenuse tehnilist toimimist. Eduka testi korral lisatakse päring riigiportaali *stage*-keskkonda, kuhu luuakse asutusele ligipääs IP *whitelist*'i alusel kontrollimiseks.
+6.  **Leping:** Sõlmida RIA-ga [andmetöötlusleping](doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx). Lepingu protsessiga võib alustada paralleelselt tehniliste tegevustega (punkt 3).
+7.  **Toodang:** Kui teenus on testitud, leping sõlmitud ja toodangu X-tee ligipääs avatud, lisatakse päring riigiportaali andmejälgija rakendusse (live).
+
 ### Kontakt ja täpsem info
 
 Kõigi küsimuste puhul palume võtta ühendust Riigi Infosüsteemi Ameti kasutajatoega help@ria.ee.
