@@ -7,12 +7,12 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: 2.0.0
+  version: 2.1.0
 tags:
 - name: usage
   description: Andmejälgija kasutusteave
 paths:
-  /findUsage:
+  /v2/findUsage:
     get:
       tags:
       - usage
@@ -41,7 +41,7 @@ paths:
         in: query
         description: Tagastada andmetöötluse kirjeid alates näidatud ajast
         required: false
-        example: '2021-01-31T10:20:30'
+        example: '2021-01-31T10:20:30Z'
         schema:
           type: string
           format: date-time
@@ -49,7 +49,7 @@ paths:
         in: query
         description: Tagastada andmetöötluse kirjeid kuni näidatud ajani
         required: false
-        example: '2021-01-31T10:20:30'
+        example: '2021-01-31T10:20:30Z'
         schema:
           type: string
           format: date-time
@@ -80,7 +80,7 @@ paths:
           description: Päringu sisu ei vasta nõuetele
         '500':
           description: Päringu täitmisel tekkis viga
-  /usagePeriod:
+  /v2/usagePeriod:
     get:
       tags:
       - usage
@@ -98,7 +98,7 @@ paths:
           description: Päringu sisu ei vasta nõuetele
         '500':
           description: Päringu täitmisel tekkis viga
-  /heartbeat:
+  /v2/heartbeat:
     get:
       tags:
       - usage
@@ -142,7 +142,7 @@ components:
           description: Andmetöötluse ajamoment
           type: string
           format: date-time
-          example: '2021-01-31T10:20:30'
+          example: '2021-01-31T10:20:30Z'
         action:
           description: Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust
           type: string
@@ -168,12 +168,12 @@ components:
           description: Süsteem hoiab andmetöötluse kirjeid alates näidatud ajast
           type: string
           format: date-time
-          example: '2021-01-31T10:20:30'
+          example: '2021-01-31T10:20:30Z'
         periodEnd:
           description: Süsteem hoiab andmetöötluse kirjeid kuni näidatud ajani (välja puudumine näitab, et kirjeid saab küsida kuni praeguse ajani)
           type: string
           format: date-time
-          example: '2021-01-31T10:20:30'
+          example: '2021-01-31T10:20:30Z'
     HeartbeatResponse:
       type: object
       required:

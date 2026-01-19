@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.5, 16.09.2025
+Versioon 1.6, 19.01.2026
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -10,7 +10,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 
 ![EL Regionaalarengu Fond](../img/EL_Regionaalarengu_Fond_horisontaalne.jpg)
 
-## 1. Dokumendi ajalugu
+## Dokumendi ajalugu
 
 | Versioon | Kuupäev    | Autor                         | Märkused                                                                                    |
 | -------- | ---------- | ----------------------------- | ------------------------------------------------------------------------------------------- |
@@ -22,40 +22,44 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.3.1    | 30.05.2024 | Siim-Sander Virula            | Eemaldatud mitterelevantne OpenAPI kirjeldus                                                |
 | 1.4      | 06.03.2025 | Kätlin Tammoja                | Lisatud REST päringute kirjeldused                                                          |
 | 1.4.1    | 12.03.2025 | Kätlin Tammoja, Vitali Stupin | Parandatud REST päringute kirjeldused                                                       |
-| 1.5    | 16.09.2025 | Riina Soggar-Henk | Täiendatud dokument  
+| 1.5      | 16.09.2025 | Riina Soggar-Henk             | Täiendatud dokument                                                                         |
+| 1.6      | 16.09.2025 | Vitali Stupin                 | REST päringute kirjelduste parandamine                                                      |
 
-## 2. Sisukord
+## Sisukord
 
-- [1\. Ülevaade](#1-%C3%9Clevaade)
-- [2\. Seotud dokumendid](#2-seotud-dokumendid)
-- [3\. Mõisted](#3-m%C3%B5isted)
-- [4\. Üldistatud kirjeldus](#4-%C3%9Cldistatud-kirjeldus)
-- [5\. Arhitektuuriline ülevaade](#5-arhitektuuriline-%C3%BClevaade)
-- [6\. REST päringute kirjeldused](#6-rest-p%C3%A4ringute-kirjeldused)
-  - [6\.1\. Kasutusteabe küsimine](#61-kasutusteabe-k%C3%BCsimine)
-    - [6\.1\.1\. Päringu nimi](#611-p%C3%A4ringu-nimi)
-    - [6\.1\.2\. Päringu töö kirjeldus](#612-p%C3%A4ringu-t%C3%B6%C3%B6-kirjeldus)
-    - [6\.1\.3\. Päringu sisend](#613-p%C3%A4ringu-sisend)
-    - [6\.1\.4\. Päringu väljund](#614-p%C3%A4ringu-v%C3%A4ljund)
-    - [6\.1\.5\. Veasituatsioonid](#615-veasituatsioonid)
-    - [6\.1\.6\. Päringu näide](#616-p%C3%A4ringu-n%C3%A4ide)
-  - [6\.2\. Kasutusteabe ajaperiood](#62-kasutusteabe-ajaperiood)
-    - [6\.2\.1\. Päringu nimi](#621-p%C3%A4ringu-nimi)
-    - [6\.2\.2\. Päringu töö kirjeldus](#622-p%C3%A4ringu-t%C3%B6%C3%B6-kirjeldus)
-    - [6\.2\.3\. Päringu sisend](#623-p%C3%A4ringu-sisend)
-    - [6\.2\.4\. Päringu väljund](#624-p%C3%A4ringu-v%C3%A4ljund)
-    - [6\.2\.5\. Veasituatsioonid](#625-veasituatsioonid)
-    - [6\.2\.6\. Päringu näide](#626-p%C3%A4ringu-n%C3%A4ide)
-  - [6\.3\. Kasutusteabe elutukse](#63-kasutusteabe-elutukse)
-    - [6\.3\.1\. Päringu nimi](#631-p%C3%A4ringu-nimi)
-    - [6\.3\.2\. Päringu töö kirjeldus](#632-p%C3%A4ringu-t%C3%B6%C3%B6-kirjeldus)
-    - [6\.3\.3\. Päringu sisend](#633-p%C3%A4ringu-sisend)
-    - [6\.3\.4\. Päringu väljund](#634-p%C3%A4ringu-v%C3%A4ljund)
-    - [6\.3\.5\. Veasituatsioonid](#635-veasituatsioonid)
-    - [6\.3\.6\. Päringu näide](#636-p%C3%A4ringu-n%C3%A4ide)
-- [7\. Disaini konstrueerimise kaalutlused](#7-disaini-konstrueerimise-kaalutlused)
-- [8\. Vastavusklausel](#8-vastavusklausel)
-- [9\. Vastavusmudel](#9-vastavusmudel)
+- [Andmejälgija kasutusteabe esitamise protokoll](#andmejälgija-kasutusteabe-esitamise-protokoll)
+  - [Dokumendi ajalugu](#dokumendi-ajalugu)
+  - [Sisukord](#sisukord)
+  - [1. Ülevaade](#1-ülevaade)
+  - [2. Seotud dokumendid](#2-seotud-dokumendid)
+  - [3. Mõisted](#3-mõisted)
+  - [4. Üldistatud kirjeldus](#4-üldistatud-kirjeldus)
+  - [5. Arhitektuuriline ülevaade](#5-arhitektuuriline-ülevaade)
+  - [6. REST päringute kirjeldused](#6-rest-päringute-kirjeldused)
+    - [6.1. Kasutusteabe küsimine](#61-kasutusteabe-küsimine)
+      - [6.1.1. Päringu nimi](#611-päringu-nimi)
+      - [6.1.2. Päringu töö kirjeldus](#612-päringu-töö-kirjeldus)
+      - [6.1.3. Päringu sisend](#613-päringu-sisend)
+      - [6.1.4. Päringu väljund](#614-päringu-väljund)
+      - [6.1.5. Veasituatsioonid](#615-veasituatsioonid)
+      - [6.1.6. Päringu näide](#616-päringu-näide)
+    - [6.2. Kasutusteabe ajaperiood](#62-kasutusteabe-ajaperiood)
+      - [6.2.1. Päringu nimi](#621-päringu-nimi)
+      - [6.2.2. Päringu töö kirjeldus](#622-päringu-töö-kirjeldus)
+      - [6.2.3. Päringu sisend](#623-päringu-sisend)
+      - [6.2.4. Päringu väljund](#624-päringu-väljund)
+      - [6.2.5. Veasituatsioonid](#625-veasituatsioonid)
+      - [6.2.6. Päringu näide](#626-päringu-näide)
+    - [6.3. Kasutusteabe elutukse](#63-kasutusteabe-elutukse)
+      - [6.3.1. Päringu nimi](#631-päringu-nimi)
+      - [6.3.2. Päringu töö kirjeldus](#632-päringu-töö-kirjeldus)
+      - [6.3.3. Päringu sisend](#633-päringu-sisend)
+      - [6.3.4. Päringu väljund](#634-päringu-väljund)
+      - [6.3.5. Veasituatsioonid](#635-veasituatsioonid)
+      - [6.3.6. Päringu näide](#636-päringu-näide)
+  - [7. Disaini konstrueerimise kaalutlused](#7-disaini-konstrueerimise-kaalutlused)
+  - [8. Vastavusklausel](#8-vastavusklausel)
+  - [9. Vastavusmudel](#9-vastavusmudel)
 
 ## 1. Ülevaade
 
@@ -67,15 +71,16 @@ Dokument on suunatud arendajatele, kellel on tarvis realiseerida Andmesalvestaja
 
 ## 2. Seotud dokumendid
 
-X-tee dokumentatsioon:  https://x-tee.ee/docs/live/xroad/, https://x-tee.ee/docs/live/xroad/ug-ss_x-road_6_security_server_user_guide.html#63-enabling-and-disabling-a-service-description
+X-tee dokumentatsioon: <https://x-tee.ee/docs/live/xroad/>, <https://x-tee.ee/docs/live/xroad/ug-ss_x-road_6_security_server_user_guide.html#63-enabling-and-disabling-a-service-description>
 
 Käesoleva kasutusteabe esitamise protokolli osadeks on:
-- REST protokolli kirjeldus on dokumendis "dumonitor-openapi.yaml".
 
-- SOAP protokolli kirjeldus on dokumendis "dumonitor.wsd".
+- REST protokolli kirjeldus on dokumendis "[dumonitor-openapi.yaml](dumonitor-openapi.yaml)".
+- SOAP protokolli kirjeldus on dokumendis "[dumonitor.wsdl](dumonitor.wsdl)".
   
 Kasutusteabe esitamise protokolli normatiivsed viited:
-- X-tee REST sõnumiprotokoll (https://www.x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html)
+
+- X-tee REST sõnumiprotokoll (<https://www.x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html>)
 
 ## 3. Mõisted
 
@@ -109,12 +114,13 @@ Suhtlus algab alati päringu algataja poolt – päringu algataja esitab päring
 
 ![Kasutusteabe esitamise protokolli diagramm](../img/kasutusteabe_esitamise_protokolli_diagramm.png)
 
-
 ## 6. REST päringute kirjeldused
 
-Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat päringute lahtiselgitused. Need kolm teenust on kohustuslikud andmejälgija korrektseks tööks.
+X-tee REST teenuse nimeks tuleb kasutada "findUsage".
 
-Kõikide päringute kuupäev ja kellaeg on Eesti ajas kujul YYYY-MM-DDTHH:MM:SS.
+Allpool on toodud seal esitatud findUsage, usagePeriod ja heartbeat otspunktide lahtiselgitused. Need kolm teenuse otspunkti on kohustuslikud andmejälgija korrektseks tööks.
+
+Kõikides päringutes ja vastustes on kasutatud aegu RFC 3339 vormingus, mis sisaldavad ajatsooni või on märkega UTC (Z). Näiteks kujul YYYY-MM-DDTHH:MM:SSZ.
 
 ### 6.1. Kasutusteabe küsimine
 
@@ -165,18 +171,20 @@ Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
 #### 6.1.6. Päringu näide
 
 Näidispäring:
+
 ```bash
 curl -H "X-Road-User-Id:EE12345678901" -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
-"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/findUsage?userCode=EE12345678901&offset=0&limit=10"
+"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/findUsage/v2/findUsage?userCode=EE12345678901&offset=0&limit=10"
 ```
 
 Näidisvastus:
+
 ```json
 {
   "totalUsages": 1,
   "usages": [
     {
-      "logtime": "2023-10-01T12:00:00",
+      "logtime": "2023-10-01T12:00:00Z",
       "receiverName": "TEHIK",
       "receiverCode": "12345678",
       "receiverSystem": "Terviseportaal",
@@ -218,15 +226,17 @@ Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
 #### 6.2.6. Päringu näide
 
 Näidispäring:
+
 ```bash
 curl -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
-"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/usagePeriod"
+"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/findUsage/v2/usagePeriod"
 ```
 
 Näidisvastus:
+
 ```json
 {
-  "periodStart": "2021-01-31T10:20:30"
+  "periodStart": "2021-01-31T10:20:30Z"
 }
 ```
 
@@ -262,12 +272,14 @@ Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
 #### 6.3.6. Päringu näide
 
 Näidispäring:
+
 ```bash
 curl -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
-"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/heartbeat"
+"https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/findUsage/v2/heartbeat"
 ```
 
 Näidisvastus:
+
 ```json
 {
   "status": "OK",
@@ -281,7 +293,7 @@ Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa. Pu
 
 ## 8. Vastavusklausel
 
-Lahendus on vastavuses kasutusteabe esitamise protokolliga juhul, kui selles on realiseeritud punktis "6. REST päringute kirjeldused" kirjeldatud teenused vastavalt neis sätestatud nõuetele ning lisaks on arvestatud punktis "7. Disaini konstrueerimise kaalutlused" toodud nõudeid.
+Lahendus on vastavuses kasutusteabe esitamise protokolliga juhul, kui selles on realiseeritud punktis "6. REST päringute kirjeldused" kirjeldatud teenuse otspunktid vastavalt neis sätestatud nõuetele ning lisaks on arvestatud punktis "7. Disaini konstrueerimise kaalutlused" toodud nõudeid.
 
 ## 9. Vastavusmudel
 
