@@ -134,11 +134,11 @@ Päringuga otsitakse andmesalvestaja andmebaasist kasutusteabe kirjeid, mis vast
 
 #### 6.1.3. Päringu sisend
 
-Päringu päises tuleb kasutada X-tee päised vastavalt X-tee REST sõnumiprotokollile. Päis "X-Road-User-Id" ei ole kohustuslik X-tee sõnumiprotokollis, kuid on kohustuslik kasutusteabe küsimisel:
+Päringu päises tuleb kasutada X-tee päised vastavalt X-tee REST sõnumiprotokollile. Päis "X-Road-UserId" ei ole kohustuslik X-tee sõnumiprotokollis, kuid on kohustuslik kasutusteabe küsimisel:
 
 | Element        | Andmetüüp | Kohustuslik | Kirjeldus                                                        |
 | -------------- | --------- | ----------- | ---------------------------------------------------------------- |
-| X-Road-User-Id | string    | jah         | Päringu algataja isikukood peab olema lisatud X-Road päise sisse |
+| X-Road-UserId | string    | jah         | Päringu algataja isikukood peab olema lisatud X-Road päise sisse |
 
 Päringu sisendis on järgmised elemendid:
 
@@ -173,7 +173,7 @@ Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
 Näidispäring:
 
 ```bash
-curl -H "X-Road-User-Id:EE12345678901" -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
+curl -H "X-Road-UserId:EE12345678901" -H "X-Road-Client:INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM"
 "https://SECURITYSERVER:443/r1/INSTANCE/MEMBERCLASS/MEMBERCODE/SUBSYSTEM/findUsage/v2/findUsage?userCode=EE12345678901&offset=0&limit=10"
 ```
 
