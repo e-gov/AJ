@@ -1,0 +1,373 @@
+openapi: 3.1.1
+info:
+  title: Andmejälgija kasutusteabe teenus
+  description: Andmejälgija teenus, mille käest küsib eesti.ee andmekogus toimunud isikuandmete töötluse infot ehk kasutusteavet
+  contact:
+    email: help@ria.ee
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+  version: 3.0.0
+tags:
+  - name: usage
+    description: Andmejälgija kasutusteave
+paths:
+  /v3/findUsage:
+    get:
+      tags:
+        - usage
+      summary: Kasutusteabe küsimine
+      description: Andmejälgija kasutusteabe küsimine andmesubjektile kuvamiseks eesti.ee-s
+      externalDocs:
+        description: Täiendav informatsioon X-Road päiste kohta
+        url: https://x-tee.ee/docs/live/xroad/pr-rest_x-road_message_protocol_for_rest.html
+      operationId: findUsage
+      parameters:
+        - name: X-Road-UserId
+          in: header
+          description: Päringu algataja isikukood peab olema lisatud X-Road päise sisse
+          required: true
+          schema:
+            $ref: '#/components/schemas/PersonCode'
+        - name: userCode
+          in: query
+          description: Andmesubjekti isikukood, kelle kohta tuleks tagastada kasutusteavet. Võib erineda X-Road-UserId päise väärtusest, kui päring on käivitatud esindusõiguse abil.
+          required: true
+          style: form
+          schema:
+            $ref: '#/components/schemas/PersonCode'
+        - name: processingType
+          in: query
+          description: |
+            Tagastada ainult loetletud andmetöötluse kirjete tüübid:
+            * `DATA_REQUEST` - Infosüsteemi poolt algatatud isikuandmete päring (seal hulgas andmete lisamine, muutmine ja kustutamine). AvTS §43(11) lõige 2(3);
+            * `DATA_RESPONSE` - Andmekogu vastus sissetulevale isikuandmete päringule. AvTS §43(11) lõige 2(4) ja 2(5);
+            * `DATA_PROCESSING` - Teisest andmekogust eelnevalt saadud isikuandmete töötlemise raporteerimine. Kasutatud näiteks siis, kui isikuandmed on töödeldud eelnevalt täidetud infosüsteemi puhvrist. AvTS §43(11) lõige 2(3);
+            * `INTERNAL_PROCESSING` - Andmekogusisene andmete töötlemine (source ja recipient on sama asutus). AvTS §43(11) lõige 2(3).
+
+            Üleliigsed X-tee päringud lisavad palju latentsust ja koormust turvaserveritele ning seoses sellega näeb tavapärane kasutusmuster ette, et findUsage tagastab kõik andmetöötluse kirjete tüübid korraga.
+            Teenuse loomisel tuleks pöörata tähelepanu kirjete sorteerimisele, et 'limit' ja 'offset' käituksid ootuspäraselt. On eeldatud, et kirjed on sorteeritud 'logTime' järgi.
+            Andmejälgija rakendus vaikimisi ei saada 'processingType' parameetrit ning teenus peab vastama kõikide kirjetüüpidega, mis tal on. Kuid teenus ei tohi ignoreerida 'processingType' parameetrit,
+            kuna Andmejälgija võib kasutada seda siis, kui lõppkasutaja valib, et tahab näha vaid teatud liiki logikirjeid.
+            Juhul, kui on õigustatud põhjused, miks teenus ei suuda tagastada kõiki kirjete tüüpe korraga (näiteks asuvad erinevad logid erinevates süsteemides ning nende kokkuviimine sorteerimiseks on keeruline),
+            siis on Andmejälgijaga liidestamisel võimalik leppida kokku, et erinevate kirjetüüpide laadimiseks kasutatakse eraldi X-tee päringuid.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - DATA_REQUEST
+                - DATA_RESPONSE
+                - DATA_PROCESSING
+                - INTERNAL_PROCESSING
+            default:
+              - DATA_REQUEST
+              - DATA_RESPONSE
+              - DATA_PROCESSING
+              - INTERNAL_PROCESSING
+            example:
+              - DATA_REQUEST
+              - DATA_RESPONSE
+              - DATA_PROCESSING
+              - INTERNAL_PROCESSING
+        - name: includeBulkProcessing
+          in: query
+          description: |
+            Määrab, kas päring peaks tagastama ka massandmetöötluse logisid (näiteks suured automatiseeritud taustaprotsessid, perioodilised masspäringud jne):
+            * `true` - Tagastatakse kõik kirjed, sealhulgas massandmetöötlus;
+            * `false` - Massandmetöötluse kirjed jäetakse tulemustest välja, tagastatakse vaid tavapärased logid.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: boolean
+            default: false
+            example: false
+        - name: periodStart
+          in: query
+          description: Tagastada andmetöötluse kirjeid alates näidatud ajast. Kui parameeter puudub, tagastada kirjeid alates kõige vanemast.
+          required: false
+          style: form
+          schema:
+            type: string
+            format: date-time
+            example: '2021-01-31T10:20:30Z'
+        - name: periodEnd
+          in: query
+          description: Tagastada andmetöötluse kirjeid kuni näidatud ajani. Kui parameeter puudub, tagastada kirjeid kuni kõige värskemani.
+          required: false
+          style: form
+          schema:
+            type: string
+            format: date-time
+            example: '2021-01-31T10:20:30Z'
+        - name: limit
+          in: query
+          description: Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet)
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 10000
+            default: 1000
+            example: 1000
+        - name: offset
+          in: query
+          description: Jätta vahele näidatud arvu kirjed ja tagastada järgmised (analoogne SQL offset käitumisega)
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+            example: 0
+      responses:
+        '200':
+          description: Edukas päring
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindUsageResponse'
+        '400':
+          description: Päringu sisu ei vasta nõuetele
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Päringu täitmisel tekkis viga
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v3/heartbeat:
+    get:
+      tags:
+        - usage
+      summary: Kasutusteabe elutukse
+      description: Andmejälgija kasutusteabe elutukse küsimine
+      operationId: heartbeat
+      responses:
+        '200':
+          description: Edukas päring
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+        '500':
+          description: Päringu täitmisel tekkis viga
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    FindUsageResponse:
+      type: object
+      required:
+        - totalUsages
+        - returnedUsages
+      properties:
+        totalUsages:
+          description: Kirjete koguarv üle kõikide kategooriate kokku (vaatamata limit ja offset väärtustele)
+          type: integer
+          format: int32
+          example: 2000
+        returnedUsages:
+          description: Tagastatud kirjete arv üle kõikide kategooriate kokku
+          type: integer
+          format: int32
+          example: 200
+        dataRequests:
+          type:
+            - array
+            - 'null'
+          description: Infosüsteemi poolt algatatud isikuandmete päringud
+          items:
+            $ref: '#/components/schemas/UsageTransfer'
+        dataResponses:
+          type:
+            - array
+            - 'null'
+          description: Andmekogu vastused sissetulevatele isikuandmete päringutele
+          items:
+            $ref: '#/components/schemas/UsageTransfer'
+        dataProcessings:
+          type:
+            - array
+            - 'null'
+          description: Teisest andmekogust eelnevalt saadud isikuandmete töötlemise raporteerimised
+          items:
+            $ref: '#/components/schemas/UsageProcessing'
+        internalProcessings:
+          type:
+            - array
+            - 'null'
+          description: Andmekogusisesed andmete töötlemised
+          items:
+            $ref: '#/components/schemas/UsageProcessing'
+
+    UsageCommon:
+      type: object
+      required:
+        - logTime
+        - purpose
+      anyOf:
+        - required:
+            - initiatorOrg
+        - required:
+            - initiatorPerson
+      properties:
+        logTime:
+          description: Andmetöötluse ajamoment
+          type: string
+          format: date-time
+          example: '2021-01-31T10:20:30Z'
+        purpose:
+          description: Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust
+          type: string
+          example: Isiku ees- ja perenime päring
+        bulkProcessing:
+          description: |
+            Tunnus, mis näitab, kas see konkreetne logikirje sündis massandmetöötluse käigus (näiteks suured automatiseeritud taustaprotsessid, perioodilised masspäringud jne):
+            * `true` - Kirje on osa massandmetöötlusest;
+            * `false`, `null` või kui väli puudub - Tavapärane isikuandmete töötlus.
+          type:
+            - boolean
+            - 'null'
+          example: false
+        legalBasis:
+          description: Andmetöötluse õiguslik alus
+          type:
+            - string
+            - 'null'
+          example: Tervise infosüsteemi põhimäärus (§nn)
+        consentReference:
+          description: Andmenõusoleku viide, kui päring oli teostatud nõusoleku alusel
+          type:
+            - string
+            - 'null'
+          example: 3f2a9c14-8b7e-4d2a-9f10-2c5b1e6a7d44
+        queryId:
+          description: Päringuga seotud ID (näiteks X-tee puhul sõnumi ID), mille abil saab kokku siduda andmevahetuse osapoolte andmetöötluse logid
+          type:
+            - string
+            - 'null'
+          example: a34df1a9-f2cf-459f-b99c-6f0737e6aed6
+        initiatorOrg:
+          description: Asutus, kes algatas isikuandmete töötlemise
+          oneOf:
+            - $ref: '#/components/schemas/Organization'
+            - type: 'null'
+        initiatorPerson:
+          description: Isik, kes algatas isikuandmete töötlemise
+          oneOf:
+            - $ref: '#/components/schemas/Person'
+            - type: 'null'
+
+    UsageTransfer:
+      allOf:
+        - $ref: '#/components/schemas/UsageCommon'
+        - type: object
+          required:
+            - target
+          properties:
+            target:
+              description: Asutus, kes töötles päringut
+              $ref: '#/components/schemas/Organization'
+
+    UsageProcessing:
+      allOf:
+        - $ref: '#/components/schemas/UsageCommon'
+        - type: object
+          required:
+            - source
+          properties:
+            source:
+              description: Isikuandmete allikas
+              $ref: '#/components/schemas/Organization'
+
+    OrganizationCode:
+      type: string
+      pattern: '^[0-9]{8}$'
+      example: '12345678'
+
+    Organization:
+      type: object
+      required:
+        - type
+        - code
+      properties:
+        type:
+          description: |
+            Asutuse tüüp:
+            * `PUBLIC` - Avaliku sektori asutus;
+            * `PRIVATE` - Erasektori asutus.
+          type: string
+          example: PUBLIC
+          enum:
+            - PUBLIC
+            - PRIVATE
+        code:
+          description: Asutuse registrikood
+          $ref: '#/components/schemas/OrganizationCode'
+        name:
+          description: Asutuse nimi
+          type: string
+          example: TEHIK
+        systemName:
+          description: Infosüsteemi nimi
+          type: string
+          example: Terviseportaal
+
+    PersonCode:
+      type: string
+      pattern: '^EE[0-9]{11}$'
+      example: 'EE12345678901'
+
+    Person:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          description: Inimese isikukood
+          $ref: '#/components/schemas/PersonCode'
+        name:
+          description: Isiku nimi
+          type: string
+          example: Eesnimi Perenimi
+
+    HeartbeatResponse:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          description: Elutukse staatus
+          type: string
+          example: OK
+          enum:
+            - OK
+            - FAIL
+        message:
+          description: Inimloetav elutukse staatuse kirjeldav sõnum
+          type: string
+          example: API is ready
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+
