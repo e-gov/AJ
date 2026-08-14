@@ -7,7 +7,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: 3.0.0
+  version: 3.0.0-rc.1
 tags:
   - name: usage
     description: Andmejälgija kasutusteave
