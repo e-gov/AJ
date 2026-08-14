@@ -7,7 +7,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: 3.0.0-rc.1
+  version: 3.0.0-rc.2
 tags:
   - name: usage
     description: Andmejälgija kasutusteave
@@ -86,6 +86,27 @@ paths:
             type: boolean
             default: false
             example: false
+        - name: logSourceSystems
+          in: query
+          description: |
+            Tagastada ainult loetletud alliksüsteemide kirjed. Kasutatakse siis, kui üks findUsage teenus haldab mitme infosüsteemi logisid.
+
+            Üleliigsed X-tee päringud lisavad palju latentsust ja koormust turvaserveritele ning seoses sellega näeb tavapärane kasutusmuster ette, et findUsage tagastab kõikide infosüsteemide kirjed korraga.
+            Teenuse loomisel tuleks pöörata tähelepanu kirjete sorteerimisele, et 'limit' ja 'offset' käituksid ootuspäraselt.
+            Andmejälgija rakendus vaikimisi ei saada 'logSourceSystems' parameetrit ning teenus peab vastama kõikide infosüsteemide kirjetega, mis tal on. Kuid teenus ei tohi ignoreerida 'logSourceSystems' parameetrit,
+            kuna Andmejälgija võib kasutada seda siis, kui lõppkasutaja valib, et tahab näha vaid teatud infosüsteemide kirjeid.
+            Juhul, kui on õigustatud põhjused, miks teenus ei suuda tagastada kõikide infosüsteemide kirjeid korraga, siis on Andmejälgijaga liidestamisel võimalik leppida kokku,
+            et erinevate infosüsteemide laadimiseks kasutatakse eraldi X-tee päringuid.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+            example:
+              - Terviseportaal
+              - Digilugu
         - name: periodStart
           in: query
           description: Tagastada andmetöötluse kirjeid alates näidatud ajast. Kui parameeter puudub, tagastada kirjeid alates kõige vanemast.
@@ -136,6 +157,40 @@ paths:
                 $ref: '#/components/schemas/FindUsageResponse'
         '400':
           description: Päringu sisu ei vasta nõuetele
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Päringu täitmisel tekkis viga
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v3/disclose:
+    post:
+      tags:
+        - usage
+      summary: Peidetud kirjete avalikustamine
+      description: Peidetud kasutusteabe kirjete avalikustamine andmesubjektile kuvamiseks. Ühe päringu kohta saab avalikustada korraga kuni 10000 kirjet. Teenuse rakendamine on valikuline — teenuse tarbija ja teenuse osutaja peavad selle kasutuses eraldi kokku leppima.
+      operationId: disclose
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscloseRequest'
+      responses:
+        '200':
+          description: Kirjed edukalt avalikustatud
+        '400':
+          description: Päringu sisu ei vasta nõuetele
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Näidatud queryId-ga kirjet ei leitud
           content:
             application/json:
               schema:
@@ -233,6 +288,14 @@ components:
           description: Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust
           type: string
           example: Isiku ees- ja perenime päring
+        logSourceSystem:
+          description: |
+            Alliksüsteemi nimi, millesse see logikirje kuulub. Välja tuleks täita siis, kui teenus võib tagastada erinevate infosüsteemide kirjeid.
+            Kui väli puudub, määrab Andmejälgija infosüsteemi nime liidestamise käigus määratud andmete põhjal.
+          type:
+            - string
+            - 'null'
+          example: Terviseportaal
         bulkProcessing:
           description: |
             Tunnus, mis näitab, kas see konkreetne logikirje sündis massandmetöötluse käigus (näiteks suured automatiseeritud taustaprotsessid, perioodilised masspäringud jne):
@@ -260,6 +323,19 @@ components:
             - string
             - 'null'
           example: a34df1a9-f2cf-459f-b99c-6f0737e6aed6
+        hiddenReason:
+          description: Inimmõistetav põhjendus, miks kirje oli andmesubjekti eest peidetud (nt viide õigusnormile). Kuvatakse andmesubjektile ainult pärast avalikustamist, st kui hiddenUntil on täidetud ja selle ajahetk on möödunud.
+          type:
+            - string
+            - 'null'
+          example: Jälitustegevuse seadus §15
+        hiddenUntil:
+          description: Ajamoment, milleni kirje oli andmesubjekti eest peidetud. Pärast seda ajahetke on kirje andmesubjektile nähtav. Kui väli puudub, ei olnud kirjet peidetud. Väli täidetakse kas esialgse X-tee päringu käigus (koos hiddenReason väljaga) või hiljem "disclose" teenuse kaudu.
+          type:
+            - string
+            - 'null'
+          format: date-time
+          example: '2030-01-01T00:00:00Z'
         initiatorOrg:
           description: Asutus, kes algatas isikuandmete töötlemise
           oneOf:
@@ -302,18 +378,26 @@ components:
       type: object
       required:
         - type
-        - code
+      anyOf:
+        - required:
+            - code
+        - required:
+            - name
       properties:
         type:
           description: |
             Asutuse tüüp:
-            * `PUBLIC` - Avaliku sektori asutus;
-            * `PRIVATE` - Erasektori asutus.
+            * `GOV` - Eesti avaliku sektori asutused (riigiasutused, kohalikud omavalitsused);
+            * `COM` - Eesti äriühingud;
+            * `NGO` - Eesti mittetulundusühingud ja sihtasutused;
+            * `NEE` - Välismaa asutused või ettevõtted.
           type: string
-          example: PUBLIC
+          example: GOV
           enum:
-            - PUBLIC
-            - PRIVATE
+            - GOV
+            - COM
+            - NGO
+            - NEE
         code:
           description: Asutuse registrikood
           $ref: '#/components/schemas/OrganizationCode'
@@ -333,12 +417,24 @@ components:
 
     Person:
       type: object
-      required:
-        - code
+      anyOf:
+        - required:
+            - code
+        - required:
+            - alternativeCode
+        - required:
+            - name
       properties:
         code:
           description: Inimese isikukood
           $ref: '#/components/schemas/PersonCode'
+        alternativeCode:
+          description: |
+            Muu isikut identifitseeriv kood: töötõendi number või muu unikaalne isiku identifikaator,
+            mille abil päringut sooritanud süsteem suudab koodi tegeliku isikuga seostada;
+            samuti välisriigi isiku identifitseerimiskood.
+          type: string
+          example: D10001
         name:
           description: Isiku nimi
           type: string
@@ -360,6 +456,34 @@ components:
           description: Inimloetav elutukse staatuse kirjeldav sõnum
           type: string
           example: API is ready
+
+    DiscloseItem:
+      type: object
+      required:
+        - queryId
+        - hiddenReason
+        - hiddenUntil
+      properties:
+        queryId:
+          description: Avalikustamisele kuuluva kasutusteabe kirje ID (X-tee sõnumi ID)
+          type: string
+          example: a34df1a9-f2cf-459f-b99c-6f0737e6aed6
+        hiddenReason:
+          description: Inimmõistetav põhjendus, miks kirje oli andmesubjekti eest peidetud (nt viide õigusnormile)
+          type: string
+          example: Jälitustegevuse seadus §15
+        hiddenUntil:
+          description: Ajamoment, milleni kirje oli andmesubjekti eest peidetud. Pärast seda ajahetke on kirje andmesubjektile nähtav.
+          type: string
+          format: date-time
+          example: '2030-01-01T00:00:00Z'
+
+    DiscloseRequest:
+      type: array
+      minItems: 1
+      maxItems: 10000
+      items:
+        $ref: '#/components/schemas/DiscloseItem'
 
     Error:
       type: object
