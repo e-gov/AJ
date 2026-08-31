@@ -2,7 +2,7 @@
 
 X-tee andmejälgija analüüs ja disain
 
-Versioon 1.6, 19.01.2026
+Versioon 1.6.1, 31.08.2026
 
 Tellija: Riigi Infosüsteemi Amet
 
@@ -24,6 +24,7 @@ Täitja: Degeetia OÜ, Mindstone OÜ ja FocusIT OÜ
 | 1.4.1    | 12.03.2025 | Kätlin Tammoja, Vitali Stupin | Parandatud REST päringute kirjeldused                                                       |
 | 1.5      | 16.09.2025 | Riina Soggar-Henk             | Täiendatud dokument                                                                         |
 | 1.6      | 16.09.2025 | Vitali Stupin                 | REST päringute kirjelduste parandamine                                                      |
+| 1.6.1    | 31.08.2026 | Siim-Sander Virula            | Parandatud findUsage kirjeldused, täpsustatud heartbeat staatused ja veakoodid              |
 
 ## Sisukord
 
@@ -138,35 +139,35 @@ Päringu päises tuleb kasutada X-tee päised vastavalt X-tee REST sõnumiprotok
 
 | Element        | Andmetüüp | Kohustuslik | Kirjeldus                                                        |
 | -------------- | --------- | ----------- | ---------------------------------------------------------------- |
-| X-Road-UserId | string    | jah         | Päringu algataja isikukood peab olema lisatud X-Road päise sisse |
+| X-Road-UserId  | string    | jah         | Päringu algataja isikukood peab olema lisatud X-Road päise sisse |
 
 Päringu sisendis on järgmised elemendid:
 
 | Element     | Andmetüüp | Kohustuslik | Kirjeldus |
 | ----------- | --------- | ----------- | --------- |
 | userCode    | string    | jah         | Andmesubjekti isikukood, kelle kohta tuleks tagastada kasutusteavet. Võib erineda X-Road-UserId päise väärtusest, kui päring on käivitatud esindusõiguse abil. |
-| periodStart | int       | ei          | Tagastada andmetöötluse kirjeid alates näidatud ajast |
-| periodEnd   | int       | ei          | Tagastada andmetöötluse kirjeid kuni näidatud ajani |
+| periodStart | dateTime  | ei          | Tagastada andmetöötluse kirjeid alates näidatud ajast |
+| periodEnd   | dateTime  | ei          | Tagastada andmetöötluse kirjeid kuni näidatud ajani |
 | offset      | int       | ei          | Jätta vahele näidatud arvu kirjed ja tagastada järgmised (analoogne SQL offset käitumisega) |
 | limit       | int       | ei          | Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet) |
 
 #### 6.1.4. Päringu väljund
 
-Päringu väljundis tagastatakse nimekiri elementidest "usage" ning arv "totalUsages", mis ütleb kui palju neid elemente oli. Iga "usage" element vastab ühele isikuandmete kasutuse kirjele ning selle struktuur on järgnev:
+Päringu väljundis tagastatakse nimekiri elementidest "usages" ning arv "totalUsages", mis näitab kirjete koguarvu (tagastatud kirjete arv võib olla koguarvust väiksem, koguarvu ei mõjuta "limit" ja "offset" väärtused). Iga "usages" element vastab ühele isikuandmete kasutuse kirjele ning selle struktuur on järgnev:
 
-| Element        | Andmetüüp | Kohustuslik | Kirjeldus                                                                         |
-| -------------- | --------- | ----------- | --------------------------------------------------------------------------------- |
-| logtime        | dateTime  | jah         | Andmetöötluse ajamoment                                                           |
-| action         | string    | jah         | Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust |
-| receiverCode   | string    | jah         | Asutuse registrikood, kellele isikuandmeid edastati või kes isikuandmeid töötles  |
-| receiverName   | string    | ei          | Asutuse nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles          |
-| receiverSystem | string    | jah         | Infosüsteemi nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles     |
+| Element        | Andmetüüp | Kohustuslik | Kirjeldus                                                                                            |
+| -------------- | --------- | ----------- | ---------------------------------------------------------------------------------------------------- |
+| logtime        | dateTime  | jah         | Andmetöötluse ajamoment                                                                              |
+| action         | string    | jah         | Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust                    |
+| receiverCode   | string    | jah         | Asutuse registrikood või isiku isikukood, kellele isikuandmeid edastati või kes isikuandmeid töötles |
+| receiverName   | string    | ei          | Asutuse või isiku nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles                   |
+| receiverSystem | string    | ei          | Infosüsteemi nimi, kellele isikuandmeid edastati või kes isikuandmeid töötles                        |
 
 Isikuandmete kasutuse kirjed tuleb tagastada kirje ajamomendi kahanemise järjekorras (hilisem eespool).
 
 #### 6.1.5. Veasituatsioonid
 
-Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
+Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood: "400", kui päringu sisu ei vasta nõuetele, ning "500", kui päringu täitmisel tekkis viga.
 
 #### 6.1.6. Päringu näide
 
@@ -221,7 +222,7 @@ Päringu väljundis tagastatakse järgmised elemendid:
 
 #### 6.2.5. Veasituatsioonid
 
-Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
+Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood: "400", kui päringu sisu ei vasta nõuetele, ning "500", kui päringu täitmisel tekkis viga.
 
 #### 6.2.6. Päringu näide
 
@@ -260,14 +261,14 @@ Päringul pole sisendparameetreid.
 
 Päringu väljundis tagastatakse järgmised elemendid:
 
-| Element | Andmetüüp | Kohustuslik | Kirjeldus                                     |
-| --------| --------- | ----------- | --------------------------------------------- |
-| status  | string    | jah         | Elutuukse staatus                             |
-| message | string    | ei          | Inimloetav elutuukse staatuse kirjeldav sõnum |
+| Element | Andmetüüp | Kohustuslik | Kirjeldus                                              |
+| ------- | --------- | ----------- | ------------------------------------------------------ |
+| status  | string    | jah         | Elutuukse staatus, lubatud väärtused on "OK" ja "FAIL" |
+| message | string    | ei          | Inimloetav elutuukse staatuse kirjeldav sõnum          |
 
 #### 6.3.5. Veasituatsioonid
 
-Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood.
+Päringu täitmisel juhtunud vea korral tagastatakse vastav HTTP staatuskood: "400", kui päringu sisu ei vasta nõuetele, ning "500", kui päringu täitmisel tekkis viga.
 
 #### 6.3.6. Päringu näide
 
@@ -289,7 +290,7 @@ Näidisvastus:
 
 ## 7. Disaini konstrueerimise kaalutlused
 
-Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa. Punktis "8.1. Kasutusteabe küsimine" kirjeldatud päringu kasutamisel tuleb vajadusel näidata parameetri "limit" abil soovitavate kirjete maksimumarv (juhul, kui soovitakse vaikimisi kasutatavast maksimumarvust erinevat kirjete arvu). Kui päringu vastuses tagastatakse maksimumarv kirjeid, siis järelikult leiti kirjeid rohkem. Ülejäänud kirjete saamiseks tuleb käivitada sama päring samade otsitingimustega uuesti, näidates parameetri "offset" väärtuseks eelmise päringu poolt tagastatud kirjete arvu. Päringut korratakse analoogse loogikaga (suurendades iga kord "offset" parameetri väärtust juba saadud kirjete arvuni) niikaua, kuni päringu vastuses tagastatud kirjete arv on väiksem maksimumarvust.
+Andmesalvestajalt kasutusteabe küsimine tuleb realiseerida lehekülje kaupa. Punktis "6.1. Kasutusteabe küsimine" kirjeldatud päringu kasutamisel tuleb vajadusel näidata parameetri "limit" abil soovitavate kirjete maksimumarv (juhul, kui soovitakse vaikimisi kasutatavast maksimumarvust erinevat kirjete arvu). Kui päringu vastuses tagastatakse maksimumarv kirjeid, siis järelikult leiti kirjeid rohkem. Ülejäänud kirjete saamiseks tuleb käivitada sama päring samade otsitingimustega uuesti, näidates parameetri "offset" väärtuseks eelmise päringu poolt tagastatud kirjete arvu. Päringut korratakse analoogse loogikaga (suurendades iga kord "offset" parameetri väärtust juba saadud kirjete arvuni) niikaua, kuni päringu vastuses tagastatud kirjete arv on väiksem maksimumarvust.
 
 ## 8. Vastavusklausel
 
