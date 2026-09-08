@@ -7,7 +7,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: 3.0.0-rc.2
+  version: 3.0.0-rc.3
 tags:
   - name: usage
     description: Andmejälgija kasutusteave
@@ -333,6 +333,17 @@ components:
             - 'null'
           examples:
             - a34df1a9-f2cf-459f-b99c-6f0737e6aed6
+        queryGroupId:
+          description: |
+            Identifikaator, mis võimaldab siduda mitu seotud X-tee päringut üheks terviklikuks protsessiks (toimikuks).
+            Kui X-tee protokolli välja X-Road-Issue kasutatakse toimikunumbri edastamiseks, sobib see väärtus siia otse, tingimusel et see on piisavalt unikaalne erinevate teenuse tarbijate vahel.
+            Vastasel juhul SOOVITATAKSE kasutada UUID väärtust või asutuse koodi eesliitega kujul `asutuskood-toimikunumber`, mis tagab unikaalsuse ka siis, kui sama toimikunumber võib esineda mitme tarbija juures.
+          type:
+            - string
+            - 'null'
+          examples:
+            - 70000562-toimik-2024-001
+            - 3dea4e87-dbb6-4d88-aaef-93d89c1f1625
         hiddenReason:
           description: Inimmõistetav põhjendus, miks kirje oli andmesubjekti eest peidetud (nt viide õigusnormile). Kuvatakse andmesubjektile ainult pärast avalikustamist, st kui hiddenUntil on täidetud ja selle ajahetk on möödunud.
           type:
