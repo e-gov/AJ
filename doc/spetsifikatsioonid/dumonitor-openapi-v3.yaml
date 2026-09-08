@@ -68,11 +68,8 @@ paths:
               - DATA_RESPONSE
               - DATA_PROCESSING
               - INTERNAL_PROCESSING
-            example:
-              - DATA_REQUEST
-              - DATA_RESPONSE
-              - DATA_PROCESSING
-              - INTERNAL_PROCESSING
+            examples:
+              - [DATA_REQUEST, DATA_RESPONSE, DATA_PROCESSING, INTERNAL_PROCESSING]
         - name: includeBulkProcessing
           in: query
           description: |
@@ -85,7 +82,8 @@ paths:
           schema:
             type: boolean
             default: false
-            example: false
+            examples:
+              - false
         - name: logSourceSystems
           in: query
           description: |
@@ -104,9 +102,8 @@ paths:
             type: array
             items:
               type: string
-            example:
-              - Terviseportaal
-              - Digilugu
+            examples:
+              - [Terviseportaal, Digilugu]
         - name: periodStart
           in: query
           description: Tagastada andmetöötluse kirjeid alates näidatud ajast. Kui parameeter puudub, tagastada kirjeid alates kõige vanemast.
@@ -115,7 +112,8 @@ paths:
           schema:
             type: string
             format: date-time
-            example: '2021-01-31T10:20:30Z'
+            examples:
+              - '2021-01-31T10:20:30Z'
         - name: periodEnd
           in: query
           description: Tagastada andmetöötluse kirjeid kuni näidatud ajani. Kui parameeter puudub, tagastada kirjeid kuni kõige värskemani.
@@ -124,7 +122,8 @@ paths:
           schema:
             type: string
             format: date-time
-            example: '2021-01-31T10:20:30Z'
+            examples:
+              - '2021-01-31T10:20:30Z'
         - name: limit
           in: query
           description: Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet)
@@ -136,7 +135,8 @@ paths:
             minimum: 1
             maximum: 10000
             default: 1000
-            example: 1000
+            examples:
+              - 1000
         - name: offset
           in: query
           description: Jätta vahele näidatud arvu kirjed ja tagastada järgmised (analoogne SQL offset käitumisega)
@@ -147,7 +147,8 @@ paths:
             format: int32
             minimum: 0
             default: 0
-            example: 0
+            examples:
+              - 0
       responses:
         '200':
           description: Edukas päring
@@ -233,12 +234,14 @@ components:
           description: Kirjete koguarv üle kõikide kategooriate kokku (vaatamata limit ja offset väärtustele)
           type: integer
           format: int32
-          example: 2000
+          examples:
+            - 2000
         returnedUsages:
           description: Tagastatud kirjete arv üle kõikide kategooriate kokku
           type: integer
           format: int32
-          example: 200
+          examples:
+            - 200
         dataRequests:
           type:
             - array
@@ -283,11 +286,13 @@ components:
           description: Andmetöötluse ajamoment
           type: string
           format: date-time
-          example: '2021-01-31T10:20:30Z'
+          examples:
+            - '2021-01-31T10:20:30Z'
         purpose:
           description: Menetluse/tegevuse/sündmuse inimmõistetav nimi, mis seletab andmetöötluse põhjust
           type: string
-          example: Isiku ees- ja perenime päring
+          examples:
+            - Isiku ees- ja perenime päring
         logSourceSystem:
           description: |
             Alliksüsteemi nimi, millesse see logikirje kuulub. Välja tuleks täita siis, kui teenus võib tagastada erinevate infosüsteemide kirjeid.
@@ -295,7 +300,8 @@ components:
           type:
             - string
             - 'null'
-          example: Terviseportaal
+          examples:
+            - Terviseportaal
         bulkProcessing:
           description: |
             Tunnus, mis näitab, kas see konkreetne logikirje sündis massandmetöötluse käigus (näiteks suured automatiseeritud taustaprotsessid, perioodilised masspäringud jne):
@@ -304,38 +310,44 @@ components:
           type:
             - boolean
             - 'null'
-          example: false
+          examples:
+            - false
         legalBasis:
           description: Andmetöötluse õiguslik alus
           type:
             - string
             - 'null'
-          example: Tervise infosüsteemi põhimäärus (§nn)
+          examples:
+            - Tervise infosüsteemi põhimäärus (§nn)
         consentReference:
           description: Andmenõusoleku viide, kui päring oli teostatud nõusoleku alusel
           type:
             - string
             - 'null'
-          example: 3f2a9c14-8b7e-4d2a-9f10-2c5b1e6a7d44
+          examples:
+            - 3f2a9c14-8b7e-4d2a-9f10-2c5b1e6a7d44
         queryId:
           description: Päringuga seotud ID (näiteks X-tee puhul sõnumi ID), mille abil saab kokku siduda andmevahetuse osapoolte andmetöötluse logid
           type:
             - string
             - 'null'
-          example: a34df1a9-f2cf-459f-b99c-6f0737e6aed6
+          examples:
+            - a34df1a9-f2cf-459f-b99c-6f0737e6aed6
         hiddenReason:
           description: Inimmõistetav põhjendus, miks kirje oli andmesubjekti eest peidetud (nt viide õigusnormile). Kuvatakse andmesubjektile ainult pärast avalikustamist, st kui hiddenUntil on täidetud ja selle ajahetk on möödunud.
           type:
             - string
             - 'null'
-          example: Jälitustegevuse seadus §15
+          examples:
+            - Jälitustegevuse seadus §15
         hiddenUntil:
           description: Ajamoment, milleni kirje oli andmesubjekti eest peidetud. Pärast seda ajahetke on kirje andmesubjektile nähtav. Kui väli puudub, ei olnud kirjet peidetud. Väli täidetakse kas esialgse X-tee päringu käigus (koos hiddenReason väljaga) või hiljem "disclose" teenuse kaudu.
           type:
             - string
             - 'null'
           format: date-time
-          example: '2030-01-01T00:00:00Z'
+          examples:
+            - '2030-01-01T00:00:00Z'
         initiatorOrg:
           description: Asutus, kes algatas isikuandmete töötlemise
           oneOf:
@@ -372,7 +384,8 @@ components:
     OrganizationCode:
       type: string
       pattern: '^[0-9]{8}$'
-      example: '12345678'
+      examples:
+        - '12345678'
 
     Organization:
       type: object
@@ -392,7 +405,8 @@ components:
             * `NGO` - Eesti mittetulundusühingud ja sihtasutused;
             * `NEE` - Välismaa asutused või ettevõtted.
           type: string
-          example: GOV
+          examples:
+            - GOV
           enum:
             - GOV
             - COM
@@ -404,16 +418,19 @@ components:
         name:
           description: Asutuse nimi
           type: string
-          example: TEHIK
+          examples:
+            - TEHIK
         systemName:
           description: Infosüsteemi nimi
           type: string
-          example: Terviseportaal
+          examples:
+            - Terviseportaal
 
     PersonCode:
       type: string
       pattern: '^EE[0-9]{11}$'
-      example: 'EE12345678901'
+      examples:
+        - 'EE12345678901'
 
     Person:
       type: object
@@ -434,11 +451,13 @@ components:
             mille abil päringut sooritanud süsteem suudab koodi tegeliku isikuga seostada;
             samuti välisriigi isiku identifitseerimiskood.
           type: string
-          example: D10001
+          examples:
+            - D10001
         name:
           description: Isiku nimi
           type: string
-          example: Eesnimi Perenimi
+          examples:
+            - Eesnimi Perenimi
 
     HeartbeatResponse:
       type: object
@@ -448,14 +467,16 @@ components:
         status:
           description: Elutukse staatus
           type: string
-          example: OK
+          examples:
+            - OK
           enum:
             - OK
             - FAIL
         message:
           description: Inimloetav elutukse staatuse kirjeldav sõnum
           type: string
-          example: API is ready
+          examples:
+            - API is ready
 
     DiscloseItem:
       type: object
@@ -467,16 +488,19 @@ components:
         queryId:
           description: Avalikustamisele kuuluva kasutusteabe kirje ID (X-tee sõnumi ID)
           type: string
-          example: a34df1a9-f2cf-459f-b99c-6f0737e6aed6
+          examples:
+            - a34df1a9-f2cf-459f-b99c-6f0737e6aed6
         hiddenReason:
           description: Inimmõistetav põhjendus, miks kirje oli andmesubjekti eest peidetud (nt viide õigusnormile)
           type: string
-          example: Jälitustegevuse seadus §15
+          examples:
+            - Jälitustegevuse seadus §15
         hiddenUntil:
           description: Ajamoment, milleni kirje oli andmesubjekti eest peidetud. Pärast seda ajahetke on kirje andmesubjektile nähtav.
           type: string
           format: date-time
-          example: '2030-01-01T00:00:00Z'
+          examples:
+            - '2030-01-01T00:00:00Z'
 
     DiscloseRequest:
       type: array
@@ -494,4 +518,3 @@ components:
           type: string
         message:
           type: string
-
