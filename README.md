@@ -15,19 +15,19 @@ Arhitektuurselt on tegemist täielikult hajusa süsteemiga, st inimesele kuvatav
 
 ## Liidestumise protsess
 
-Asutustele, kes soovivad riigiportaali andmejälgijaga liidestuda:
+Asutustele, kes soovivad riigiportaali andmejälgijaga liidestuda. Sammud 1 kuni 4 ja 6 teeb liidestuv asutus, sammud 5 ja 7 RIA. Taotluse (2) ja lepingu (6) võib käivitada kohe, paralleelselt arendusega.
 
-1.  **Teenuse arendus:** Arendada `findUsage` teenus vastavalt [kasutusteabe esitamise protokollile](doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md).
+1.  **Teenuse arendus:** Arendada oma X-tee alamsüsteemi `findUsage` teenus vastavalt [kasutusteabe esitamise protokollile](doc/spetsifikatsioonid/Kasutusteabe_esitamise_protokoll.md). Eelduseks on, et andmekogu logib isikuandmete töötlust; mida logida, kirjeldab [Rakendusjuhend](doc/Rakendusjuhend.md).
 2.  **Liitumistaotlus:** Asutuse allkirjaõiguslikul isikul täita ja allkirjastada [andmejälgija liitumistaotlus](doc/Andmej%C3%A4lgija%20liitumistaotlus%20p%C3%B5hi.docx) ning saata see aadressile `klient@ria.ee` või edastada DHX kaudu.
-3.  **Ligipääsude avamine:** Avada infosüsteemi `findUsage` teenus X-teel järgmistele RIA alamsüsteemidele:
+3.  **Ligipääsude avamine:** Anda X-tee turvaserveris `findUsage` teenusele ligipääs järgmistele RIA alamsüsteemidele:
     * `ee-dev/GOV/70006317/datatracker`
     * `ee-test/GOV/70006317/datatracker`
     * `EE/GOV/70006317/datatracker`
     * *Märkus: Toodangu ligipääsu võib avada pärast lepingu sõlmimist, kuid enne päringu toodangusse minekut.*
-4.  **Testandmed:** Liidestuda sooviv asutus genereerib `ee-test` X-teel olevale andmejälgija teenusele testkirjed kokkulepitud demo-isikukoodile (näiteks `60001019906`), et RIA saaks veenduda teenuse toimimises.
-5.  **Testimine:** RIA testib esmalt teenuse tehnilist toimimist. Eduka testi korral lisatakse päring riigiportaali *stage*-keskkonda, kuhu luuakse asutusele ligipääs IP *whitelist*'i alusel kontrollimiseks.
-6.  **Leping:** Sõlmida RIA-ga [andmetöötlusleping](doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx). RIA-le tuleks saata andmetöötlusleping täidetult, aga allkirjastamata. Lepingu protsessiga võib alustada paralleelselt liitumistaotlusega (punkt 2).
-7.  **Toodang:** Kui teenus on testitud, leping sõlmitud ja toodangu X-tee ligipääs avatud, lisatakse päring riigiportaali andmejälgija rakendusse (live).
+4.  **Testandmed:** Luua oma testkeskkonna andmekogusse kasutusteabe kirjed (logikirjed) RIA testisiku isikukoodile `60001019906`, nii et `findUsage` teenus `ee-test` X-teel need tagastab. Muu testisiku kasutamine lepitakse eelnevalt RIA-ga kokku.
+5.  **Testimine:** RIA teeb `ee-test` X-teel teenusele päringu ja kontrollib, et vastus vastab protokollile. Seejärel lisab RIA teenuse riigiportaali *stage*-keskkonda, kus asutus saab tulemust ise vaadata, logides sisse testisikuna. Stage-keskkonda pääseb ainult lubatud IP-aadressidelt, seega saadab asutus RIA-le IP-aadressid, millelt kontrollitakse.
+6.  **Leping:** Sõlmida RIA-ga [andmetöötlusleping](doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx). Leping saata aadressile `klient@ria.ee` täidetult, aga allkirjastamata. Lepingu võib käivitada kohe koos liitumistaotlusega (punkt 2).
+7.  **Toodang:** Kui teenus on testitud, leping sõlmitud ja toodangu X-tee ligipääs (punkt 3) avatud, lisab RIA teenuse riigiportaali Andmejälgijasse ja see muutub eesti.ee-s inimestele nähtavaks.
 
 ### Andmejälgijas kajastuv info
 
