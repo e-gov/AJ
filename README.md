@@ -24,7 +24,7 @@ Asutustele, kes soovivad riigiportaali andmejälgijaga liidestuda:
     * `ee-test/GOV/70006317/datatracker`
     * `EE/GOV/70006317/datatracker`
     * *Märkus: Toodangu ligipääsu võib avada pärast lepingu sõlmimist, kuid enne päringu toodangusse minekut.*
-4.  **Testandmed:** Genereerida `ee-test` X-teel olevale andmejälgija teenusele testkirjed kokkulepitud demo-isikukoodile (näiteks `60001019906`), et RIA saaks veenduda teenuse toimimises.
+4.  **Testandmed:** Liidestuda sooviv asutus genereerib `ee-test` X-teel olevale andmejälgija teenusele testkirjed kokkulepitud demo-isikukoodile (näiteks `60001019906`), et RIA saaks veenduda teenuse toimimises.
 5.  **Testimine:** RIA testib esmalt teenuse tehnilist toimimist. Eduka testi korral lisatakse päring riigiportaali *stage*-keskkonda, kuhu luuakse asutusele ligipääs IP *whitelist*'i alusel kontrollimiseks.
 6.  **Leping:** Sõlmida RIA-ga [andmetöötlusleping](doc/Andmej%C3%A4lgija%20liitumisleping%20p%C3%B5hi.docx). RIA-le tuleks saata andmetöötlusleping täidetult, aga allkirjastamata. Lepingu protsessiga võib alustada paralleelselt liitumistaotlusega (punkt 2).
 7.  **Toodang:** Kui teenus on testitud, leping sõlmitud ja toodangu X-tee ligipääs avatud, lisatakse päring riigiportaali andmejälgija rakendusse (live).
