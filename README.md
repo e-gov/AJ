@@ -3,6 +3,18 @@
 Andmejälgija / Data Tracker
 =====================
 
+> ⚠️ **Teavitus: uus protokoll (v3) on tulekul**
+>
+> Selles repositooriumis kirjeldatud kasutusteabe esitamise protokoll (v2) on Andmejälgija praegu kasutusel olev protokoll. See jääb esialgu tööle, kuid on plaanis asendada uue protokolliga (v3), mille spetsifikatsioon on saadaval siin:
+> * [dumonitor-openapi-v3.yaml](doc/spetsifikatsioonid/dumonitor-openapi-v3.yaml) (findUsage v3 teenuse kirjeldus)
+> * X-tee Andmejälgija laiendus [REST-protokollile](doc/spetsifikatsioonid/dumonitor_v3_extension_rest.md) ja [SOAP-protokollile](doc/spetsifikatsioonid/dumonitor_v3_extension_soap.md)
+>
+> Üleminek on seotud avaliku teabe seaduse muutmise ja sellega seonduvalt teiste seaduste muutmise seaduse eelnõuga, mis loob Andmejälgijaga liidestumise kohustuse. Eelnõu on hetkel menetluses ega ole veel vastu võetud; sellega saab tutvuda [eelnõude infosüsteemis](https://eelnoud.valitsus.ee/main/mount/docList/2c0a18cd-b6f3-4b94-8079-5bfafcd74c40).
+>
+> **Soovitus:** kui alustate uut liidestumist või planeerite arendusressursse, arvestage juba v3 protokolliga, et vältida topelttööd. Uue protokolli olulisim muudatus: Andmejälgijasse edastab andmesubjektiga seotud päringu logikirjed andmekogu vastutav töötleja, kes andmeid päris.
+>
+> Küsimuste korral pöörduge: klient@ria.ee
+
 > **Soovid Andmejälgijaga liidestuda?** [Vaata liidestumise protsessi.](#liidestumise-protsess)
 
 ### Andmejälgija üldine kirjeldus
