@@ -13,6 +13,18 @@ Arhitektuurselt on tegemist täielikult hajusa süsteemiga, st inimesele kuvatav
 
 ![AJ_3](img/aj_model.PNG)
 
+> ⚠️ **Teavitus: uus protokoll (v3) on tulekul**
+>
+> Selles repositooriumis kirjeldatud kasutusteabe esitamise protokoll (v2) on Andmejälgija praegu kasutusel olev protokoll. See jääb esialgu tööle, kuid on plaanis asendada uue protokolliga (v3), mille spetsifikatsioon on saadaval siin:
+> * [dumonitor-openapi-v3.yaml](doc/spetsifikatsioonid/dumonitor-openapi-v3.yaml) (findUsage v3 teenuse kirjeldus)
+> * X-tee Andmejälgija laiendus [REST-protokollile](doc/spetsifikatsioonid/dumonitor_v3_extension_rest.md) ja [SOAP-protokollile](doc/spetsifikatsioonid/dumonitor_v3_extension_soap.md)
+>
+> Üleminek on seotud avaliku teabe seaduse muutmise ja sellega seonduvalt teiste seaduste muutmise seaduse eelnõuga, mis loob Andmejälgijaga liidestumise kohustuse. Eelnõu on hetkel menetluses ega ole veel vastu võetud; sellega saab tutvuda [eelnõude infosüsteemis](https://eelnoud.valitsus.ee/main/mount/docList/2c0a18cd-b6f3-4b94-8079-5bfafcd74c40).
+>
+> **Soovitus:** kui alustate uut liidestumist või planeerite arendusressursse, arvestage juba v3 protokolliga, et vältida topelttööd. Uue protokolli olulisim muudatus: kasutusteavet logivad ja esitavad mõlemad andmevahetuse pooled. Andmeid küsiv infosüsteem logib ka enda algatatud päringud ning saab X-tee päringuga kaasa anda töötluse konteksti (eesmärk, algataja, õiguslik alus), mille andmeid väljastav andmekogu logib. Praegu logib kasutusteavet ainult andmeid väljastav andmekogu.
+>
+> Küsimuste korral pöörduge: klient@ria.ee
+
 ## Liidestumise protsess
 
 Asutustele, kes soovivad riigiportaali andmejälgijaga liidestuda. Sammud 1 kuni 4 ja 6 teeb liidestuv asutus, sammud 5 ja 7 RIA. Taotluse (2) ja lepingu (6) võib käivitada kohe, paralleelselt arendusega.
