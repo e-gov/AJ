@@ -11,7 +11,7 @@ Andmejälgija / Data Tracker
 >
 > Üleminek on seotud avaliku teabe seaduse muutmise ja sellega seonduvalt teiste seaduste muutmise seaduse eelnõuga, mis loob Andmejälgijaga liidestumise kohustuse. Eelnõu on hetkel menetluses ega ole veel vastu võetud; sellega saab tutvuda [eelnõude infosüsteemis](https://eelnoud.valitsus.ee/main/mount/docList/2c0a18cd-b6f3-4b94-8079-5bfafcd74c40).
 >
-> **Soovitus:** kui alustate uut liidestumist või planeerite arendusressursse, arvestage juba v3 protokolliga, et vältida topelttööd. Uue protokolli olulisim muudatus: kasutusteavet logivad ja esitavad mõlemad andmevahetuse pooled. Andmeid küsiv infosüsteem logib ka enda algatatud päringud ning saab X-tee päringuga kaasa anda töötluse konteksti (eesmärk, algataja, õiguslik alus), mille andmeid väljastav andmekogu logib. Praegu logib kasutusteavet ainult andmeid väljastav andmekogu.
+> **Soovitus:** kui alustate uut liidestumist või planeerite arendusressursse, arvestage juba v3 protokolliga, et vältida topelttööd. Uue protokolli olulisim muudatus: Andmejälgijasse edastab andmesubjektiga seotud päringu logikirjed andmekogu vastutav töötleja, kes andmeid päris.
 >
 > Küsimuste korral pöörduge: klient@ria.ee
 
