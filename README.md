@@ -3,16 +3,6 @@
 Andmejälgija / Data Tracker
 =====================
 
-> **Soovid Andmejälgijaga liidestuda?** [Vaata liidestumise protsessi.](#liidestumise-protsess)
-
-### Andmejälgija üldine kirjeldus
-
-Andmejälgija on inimesele suunatud teenus eesti.ee-s, mille eesmärgiks on tagada isikuandmete töötluse läbipaistvus avalikus sektoris. Andmejälgija toetub iga andmekogu võimekusele enda sees toimuvat andmetöötlust logide kujul talletada, et seda hiljem inimesele ehk andmesubjektile eesti.ee-s oleva teenuse kaudu kuvada. 
-
-Arhitektuurselt on tegemist täielikult hajusa süsteemiga, st inimesele kuvatav info pärineb otse Andmejälgija teenuse realiseerinud andmekogust. Eesti.ee teeb kasutaja soovil päringu igasse Andmejälgija teenusesse ning kuvab päringuvastuse ilma salvestamata välja.
-
-![AJ_3](img/aj_model.PNG)
-
 > ⚠️ **Teavitus: uus protokoll (v3) on tulekul**
 >
 > Selles repositooriumis kirjeldatud kasutusteabe esitamise protokoll (v2) on Andmejälgija praegu kasutusel olev protokoll. See jääb esialgu tööle, kuid on plaanis asendada uue protokolliga (v3), mille spetsifikatsioon on saadaval siin:
@@ -24,6 +14,16 @@ Arhitektuurselt on tegemist täielikult hajusa süsteemiga, st inimesele kuvatav
 > **Soovitus:** kui alustate uut liidestumist või planeerite arendusressursse, arvestage juba v3 protokolliga, et vältida topelttööd. Uue protokolli olulisim muudatus: kasutusteavet logivad ja esitavad mõlemad andmevahetuse pooled. Andmeid küsiv infosüsteem logib ka enda algatatud päringud ning saab X-tee päringuga kaasa anda töötluse konteksti (eesmärk, algataja, õiguslik alus), mille andmeid väljastav andmekogu logib. Praegu logib kasutusteavet ainult andmeid väljastav andmekogu.
 >
 > Küsimuste korral pöörduge: klient@ria.ee
+
+> **Soovid Andmejälgijaga liidestuda?** [Vaata liidestumise protsessi.](#liidestumise-protsess)
+
+### Andmejälgija üldine kirjeldus
+
+Andmejälgija on inimesele suunatud teenus eesti.ee-s, mille eesmärgiks on tagada isikuandmete töötluse läbipaistvus avalikus sektoris. Andmejälgija toetub iga andmekogu võimekusele enda sees toimuvat andmetöötlust logide kujul talletada, et seda hiljem inimesele ehk andmesubjektile eesti.ee-s oleva teenuse kaudu kuvada. 
+
+Arhitektuurselt on tegemist täielikult hajusa süsteemiga, st inimesele kuvatav info pärineb otse Andmejälgija teenuse realiseerinud andmekogust. Eesti.ee teeb kasutaja soovil päringu igasse Andmejälgija teenusesse ning kuvab päringuvastuse ilma salvestamata välja.
+
+![AJ_3](img/aj_model.PNG)
 
 ## Liidestumise protsess
 
