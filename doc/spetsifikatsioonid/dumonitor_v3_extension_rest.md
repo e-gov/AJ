@@ -81,7 +81,7 @@ Tabel 2. Päringu algatanud asutuse päiseväljad
  Päis                               | Tüüp   | Kohustuslik / Valikuline | Vastab väljale            | Kirjeldus
  ---------------------------------- | ------ | ------------------------ | ------------------------- | ---------
  `X-Road-PDU-Initiator-Org-Type`    | string | K (asutuse puhul)        | `initiatorOrg.type`       | Asutuse tüüp. Lubatud väärtused: `GOV` (Eesti avalik sektor), `COM` (Eesti äriühing), `NGO` (Eesti mittetulundusühing), `NEE` (välismaa asutus).
- `X-Road-PDU-Initiator-Org-Code`    | string | V*                       | `initiatorOrg.code`       | Asutuse registrikood. Kaheksa numbrit, nt `12345678`.
+ `X-Road-PDU-Initiator-Org-Code`    | string | V*                       | `initiatorOrg.code`       | Asutuse registrikood. Eesti asutuse puhul kaheksa numbrit, nt `12345678`; välismaa asutuse puhul registrikood tema asukohariigis.
  `X-Road-PDU-Initiator-Org-Name`    | string | V*                       | `initiatorOrg.name`       | Asutuse inimmõistetav nimi.
  `X-Road-PDU-Initiator-Org-System`  | string | V                        | `initiatorOrg.systemName` | Päringu teinud infosüsteemi inimmõistetav nimi (kasulik, kui ühel asutusel on mitu erinevat süsteemi).
 

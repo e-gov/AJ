@@ -7,7 +7,7 @@ info:
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
-  version: 3.0.0-rc.3
+  version: 3.0.0-rc.4
 tags:
   - name: usage
     description: Andmejälgija kasutusteave
@@ -43,10 +43,10 @@ paths:
             * `DATA_REQUEST` - Infosüsteemi poolt algatatud isikuandmete päring (seal hulgas andmete lisamine, muutmine ja kustutamine). AvTS §32(2) lõige 3(3);
             * `DATA_RESPONSE` - Andmekogu vastus sissetulevale isikuandmete päringule. AvTS §32(2) lõige 3(4) ja 3(5);
             * `DATA_PROCESSING` - Teisest andmekogust eelnevalt saadud isikuandmete töötlemise raporteerimine. Kasutatud näiteks siis, kui isikuandmed on töödeldud eelnevalt täidetud infosüsteemi puhvrist. AvTS §32(2) lõige 3(3);
-            * `INTERNAL_PROCESSING` - Andmekogusisene andmete töötlemine (source ja recipient on sama asutus). AvTS §32(2) lõige 3(3).
+            * `INTERNAL_PROCESSING` - Andmekogusisene andmete töötlemine (andmete allikas 'dataSource' on teenuse osutaja ise). AvTS §32(2) lõige 3(3).
 
             Üleliigsed X-tee päringud lisavad palju latentsust ja koormust turvaserveritele ning seoses sellega näeb tavapärane kasutusmuster ette, et findUsage tagastab kõik andmetöötluse kirjete tüübid korraga.
-            Teenuse loomisel tuleks pöörata tähelepanu kirjete sorteerimisele, et 'limit' ja 'offset' käituksid ootuspäraselt. On eeldatud, et kirjed on sorteeritud 'logTime' järgi.
+            Teenuse loomisel tuleks pöörata tähelepanu kirjete sorteerimisele, et pagineerimine käituks ootuspäraselt.
             Andmejälgija rakendus vaikimisi ei saada 'processingType' parameetrit ning teenus peab vastama kõikide kirjetüüpidega, mis tal on. Kuid teenus ei tohi ignoreerida 'processingType' parameetrit,
             kuna Andmejälgija võib kasutada seda siis, kui lõppkasutaja valib, et tahab näha vaid teatud liiki logikirjeid.
             Juhul, kui on õigustatud põhjused, miks teenus ei suuda tagastada kõiki kirjete tüüpe korraga (näiteks asuvad erinevad logid erinevates süsteemides ning nende kokkuviimine sorteerimiseks on keeruline),
@@ -87,10 +87,10 @@ paths:
         - name: logSourceSystems
           in: query
           description: |
-            Tagastada ainult loetletud alliksüsteemide kirjed. Kasutatakse siis, kui üks findUsage teenus haldab mitme infosüsteemi logisid.
+            Tagastada ainult nende infosüsteemide logikirjed, mille nimi on loetletud (vt välja 'logSourceSystem'). Kasutatakse siis, kui üks findUsage teenus haldab mitme infosüsteemi logisid.
 
             Üleliigsed X-tee päringud lisavad palju latentsust ja koormust turvaserveritele ning seoses sellega näeb tavapärane kasutusmuster ette, et findUsage tagastab kõikide infosüsteemide kirjed korraga.
-            Teenuse loomisel tuleks pöörata tähelepanu kirjete sorteerimisele, et 'limit' ja 'offset' käituksid ootuspäraselt.
+            Teenuse loomisel tuleks pöörata tähelepanu kirjete sorteerimisele, et pagineerimine käituks ootuspäraselt.
             Andmejälgija rakendus vaikimisi ei saada 'logSourceSystems' parameetrit ning teenus peab vastama kõikide infosüsteemide kirjetega, mis tal on. Kuid teenus ei tohi ignoreerida 'logSourceSystems' parameetrit,
             kuna Andmejälgija võib kasutada seda siis, kui lõppkasutaja valib, et tahab näha vaid teatud infosüsteemide kirjeid.
             Juhul, kui on õigustatud põhjused, miks teenus ei suuda tagastada kõikide infosüsteemide kirjeid korraga, siis on Andmejälgijaga liidestamisel võimalik leppida kokku,
@@ -126,7 +126,10 @@ paths:
               - '2021-01-31T10:20:30Z'
         - name: limit
           in: query
-          description: Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet)
+          description: |
+            Tagastada maksimaalselt näidatud arv kasutusteabe kirjeid (vaikimisi tagastatakse maksimaalselt 1000 kirjet).
+            Teenus võib tagastada vähem kirjeid, kui parameeter ette näeb, ka siis, kui kirjeid on veel järel. Näiteks kui teenusel on seadistatud väiksem sisemine piirang või kui kirjete kogumise loogika ei võimalda tagastada täpselt küsitud arvu kirjeid.
+            Kirjete arv vastuses ei näita, kas tegemist on viimase pakiga. Selle määrab ainult vastuse väli 'nextCursor'.
           required: false
           style: form
           schema:
@@ -137,18 +140,21 @@ paths:
             default: 1000
             examples:
               - 1000
-        - name: offset
+        - name: cursor
           in: query
-          description: Jätta vahele näidatud arvu kirjed ja tagastada järgmised (analoogne SQL offset käitumisega)
+          description: |
+            Kursor järgmise kirjete paki pärimiseks. Väärtuseks on eelmise vastuse välja 'nextCursor' väärtus muutmata kujul.
+            Parameetrit ei saadeta esimese paki pärimisel.
+            Kursoriga päringus peavad kõik filtreerivad parameetrid (userCode, processingType, includeBulkProcessing, logSourceSystems, periodStart, periodEnd) olema samad, mis esimeses päringus. Parameetri 'limit' väärtus võib erineda.
+            Kursori sisu ja formaat on teenuse osutaja sisemine otsus ning teenuse tarbija ei tohi seda tõlgendada ega muuta.
+            Kursor võib sisaldada näiteks järgmise paki algust tähistavat nihet (offset) või viimase tagastatud kirje sorteerimisvõtit (keyset pagination).
+            Kui kursor on vigane või aegunud, tagastab teenus vea HTTP koodiga 400 ja veakoodiga `INVALID_CURSOR`. Sel juhul tuleb kirjete pärimist alustada uuesti algusest, ilma 'cursor' parameetrita.
           required: false
           style: form
           schema:
-            type: integer
-            format: int32
-            minimum: 0
-            default: 0
+            type: string
             examples:
-              - 0
+              - eyJsb2dUaW1lIjoiMjAyMS0wMS0zMVQxMDoyMDozMFoiLCJpZCI6MTIzNDV9
       responses:
         '200':
           description: Edukas päring
@@ -157,11 +163,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/FindUsageResponse'
         '400':
-          description: Päringu sisu ei vasta nõuetele
+          description: Päringu sisu ei vasta nõuetele (sh vigane või aegunud kursor)
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+              examples:
+                invalidCursor:
+                  summary: Vigane või aegunud kursor
+                  value:
+                    code: INVALID_CURSOR
+                    message: Kursor on aegunud
         '500':
           description: Päringu täitmisel tekkis viga
           content:
@@ -226,50 +238,52 @@ components:
   schemas:
     FindUsageResponse:
       type: object
-      required:
-        - totalUsages
-        - returnedUsages
+      description: |
+        Kirjed tagastatakse pakkidena kursori abil. Järgmise paki pärimiseks korratakse päringut parameetriga 'cursor', mille väärtuseks on vastuse välja 'nextCursor' väärtus.
+        Kui väli 'nextCursor' puudub, on null või tühi string, on tegemist viimase pakiga.
+
+        Teenus PEAKS võimaluse korral kontrollima, kas tegemist on viimase pakiga, ning sel juhul jätma 'nextCursor' välja tagastamata. Nii ei pea Andmejälgija tegema üleliigset päringut, mis tagastaks tühja tulemuse.
+        Kui vastus ei sisalda ühtegi kirjet, lõpetab Andmejälgija kirjete pärimise ka siis, kui vastuses on 'nextCursor' väärtus.
+        Seega ei tohi teenus tagastada tühja pakki, kui kirjeid on veel järel. Seda tuleb arvestada eriti siis, kui teenus filtreerib kirjeid pärast andmebaasist lugemist: kui ükski loetud kirje ei läbinud filtrit, peab teenus jätkama lugemist, kuni leitakse vähemalt üks kirje või kirjed saavad otsa.
+
+        Teenus PEAB tagastama kirjed püsivas järjekorras, mis põhineb unikaalsel võtmel (nt logikirje ID või logTime koos logikirje ID-ga), et pagineerimine ei jätaks kirjeid vahele ega tagastaks neid topelt.
+        Sorteerimise välja valib teenuse osutaja. Andmejälgija ei eelda kirjete ajalist järjekorda ning sorteerib kirjed vajadusel ise pärast kõikide pakkide kättesaamist.
       properties:
-        totalUsages:
-          description: Kirjete koguarv üle kõikide kategooriate kokku (vaatamata limit ja offset väärtustele)
-          type: integer
-          format: int32
+        nextCursor:
+          description: Kursor järgmise kirjete paki pärimiseks (vt päringu parameetrit 'cursor'). Kui väli puudub, on null või tühi string, on tegemist viimase pakiga.
+          type:
+            - string
+            - 'null'
           examples:
-            - 2000
-        returnedUsages:
-          description: Tagastatud kirjete arv üle kõikide kategooriate kokku
-          type: integer
-          format: int32
-          examples:
-            - 200
+            - eyJsb2dUaW1lIjoiMjAyMS0wMS0zMVQxMDoyMDozMFoiLCJpZCI6MTIzNDV9
         dataRequests:
           type:
             - array
             - 'null'
           description: Infosüsteemi poolt algatatud isikuandmete päringud
           items:
-            $ref: '#/components/schemas/UsageTransfer'
+            $ref: '#/components/schemas/Usage'
         dataResponses:
           type:
             - array
             - 'null'
           description: Andmekogu vastused sissetulevatele isikuandmete päringutele
           items:
-            $ref: '#/components/schemas/UsageTransfer'
+            $ref: '#/components/schemas/Usage'
         dataProcessings:
           type:
             - array
             - 'null'
           description: Teisest andmekogust eelnevalt saadud isikuandmete töötlemise raporteerimised
           items:
-            $ref: '#/components/schemas/UsageProcessing'
+            $ref: '#/components/schemas/Usage'
         internalProcessings:
           type:
             - array
             - 'null'
           description: Andmekogusisesed andmete töötlemised
           items:
-            $ref: '#/components/schemas/UsageProcessing'
+            $ref: '#/components/schemas/Usage'
 
     UsageCommon:
       type: object
@@ -295,8 +309,9 @@ components:
             - Isiku ees- ja perenime päring
         logSourceSystem:
           description: |
-            Alliksüsteemi nimi, millesse see logikirje kuulub. Välja tuleks täita siis, kui teenus võib tagastada erinevate infosüsteemide kirjeid.
-            Kui väli puudub, määrab Andmejälgija infosüsteemi nime liidestamise käigus määratud andmete põhjal.
+            Logikirje allika ehk teenuse osutaja infosüsteemi nimi, kust see logikirje pärineb. Välja tuleks täita siis, kui teenus võib tagastada mitme infosüsteemi logikirjeid.
+            Väli ei tähista isikuandmete allikat, mis on kirjeldatud väljal 'dataSource'.
+            Kui väli puudub, määrab Andmejälgija logikirje allika liidestamise käigus määratud andmete põhjal.
           type:
             - string
             - 'null'
@@ -370,38 +385,31 @@ components:
             - $ref: '#/components/schemas/Person'
             - type: 'null'
 
-    UsageTransfer:
+    Usage:
       allOf:
         - $ref: '#/components/schemas/UsageCommon'
         - type: object
           required:
-            - target
+            - dataSource
           properties:
-            target:
-              description: Asutus, kes töötles päringut
-              $ref: '#/components/schemas/Organization'
+            dataSource:
+              description: |
+                Asutus, kellelt isikuandmed pärinevad, ehk isikuandmete allikas:
+                * `dataRequests` kirjete puhul - teine asutus (andmekogu), kellelt teenuse osutaja isikuandmeid küsis;
+                * `dataResponses` kirjete puhul - teenuse osutaja ise, kes vastas sissetulevale päringule;
+                * `dataProcessings` kirjete puhul - teine asutus (andmekogu), kellelt teenuse osutaja isikuandmed varem sai;
+                * `internalProcessings` kirjete puhul - teenuse osutaja ise.
 
-    UsageProcessing:
-      allOf:
-        - $ref: '#/components/schemas/UsageCommon'
-        - type: object
-          required:
-            - source
-          properties:
-            source:
-              description: Isikuandmete allikas
+                Isikuandmete töötlemise algatanud osapool on kirjeldatud väljadel 'initiatorOrg' ja 'initiatorPerson'.
               $ref: '#/components/schemas/Organization'
 
     OrganizationCode:
       type: string
-      pattern: '^[0-9]{8}$'
       examples:
         - '12345678'
 
     Organization:
       type: object
-      required:
-        - type
       anyOf:
         - required:
             - code
@@ -415,6 +423,9 @@ components:
             * `COM` - Eesti äriühingud;
             * `NGO` - Eesti mittetulundusühingud ja sihtasutused;
             * `NEE` - Välismaa asutused või ettevõtted.
+
+            Väli PEAKS olema täidetud, kui asutuse tüüp on teenuse osutajale teada. Välja võib jätta tagastamata peamiselt nende logikirjete puhul, mis on kogutud enne v3 protokolli kasutuselevõttu ning milles asutuse tüübi info puudub.
+            Uute logikirjete puhul on asutuse tüüp üldjuhul teada, kuna Andmejälgija laiendus X-tee protokollile nõuab selle edastamist.
           type: string
           examples:
             - GOV
@@ -424,7 +435,7 @@ components:
             - NGO
             - NEE
         code:
-          description: Asutuse registrikood
+          description: Asutuse registrikood. Eesti asutuse puhul Eesti registrikood (8 numbrit), välismaa asutuse (`NEE`) puhul asutuse registrikood tema asukohariigis.
           $ref: '#/components/schemas/OrganizationCode'
         name:
           description: Asutuse nimi
@@ -526,6 +537,11 @@ components:
         - message
       properties:
         code:
+          description: |
+            Masinloetav veakood. Standardsed veakoodid:
+            * `INVALID_CURSOR` - Parameetri 'cursor' väärtus on vigane või aegunud. Kirjete pärimist tuleb alustada uuesti algusest, ilma 'cursor' parameetrita.
           type: string
+          examples:
+            - INVALID_CURSOR
         message:
           type: string
